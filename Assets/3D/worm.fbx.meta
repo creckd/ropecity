@@ -1,0 +1,242 @@
+fileFormatVersion: 2
+guid: 73d4d154cd715854aa13fe13f633ea68
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Bone
+    100004: Bone.001
+    100006: Bone.002
+    100008: Bone.003
+    100010: Bone.004
+    100012: Bone.005
+    100014: Bone.005_end
+    100016: Bone.006
+    100018: Bone.006_end
+    100020: Hand.L
+    100022: Hand.R
+    100024: IndexDown.L
+    100026: IndexDown.L_end
+    100028: IndexDown.R
+    100030: IndexDown.R_end
+    100032: IndexUp.L
+    100034: IndexUp.R
+    100036: MiddleDown.L
+    100038: MiddleDown.L_end
+    100040: MiddleDown.R
+    100042: MiddleDown.R_end
+    100044: MiddleUp.L
+    100046: MiddleUp.R
+    100048: PinkyDown.L
+    100050: PinkyDown.L_end
+    100052: PinkyDown.R
+    100054: PinkyDown.R_end
+    100056: PinkyUp.L
+    100058: PinkyUp.R
+    100060: Point
+    100062: RootBone
+    100064: Sun
+    100066: ThumbDown.L
+    100068: ThumbDown.L_end
+    100070: ThumbDown.R
+    100072: ThumbDown.R_end
+    100074: ThumbUp.L
+    100076: ThumbUp.R
+    100078: Worm
+    100080: //RootNode
+    400000: Armature
+    400002: Bone
+    400004: Bone.001
+    400006: Bone.002
+    400008: Bone.003
+    400010: Bone.004
+    400012: Bone.005
+    400014: Bone.005_end
+    400016: Bone.006
+    400018: Bone.006_end
+    400020: Hand.L
+    400022: Hand.R
+    400024: IndexDown.L
+    400026: IndexDown.L_end
+    400028: IndexDown.R
+    400030: IndexDown.R_end
+    400032: IndexUp.L
+    400034: IndexUp.R
+    400036: MiddleDown.L
+    400038: MiddleDown.L_end
+    400040: MiddleDown.R
+    400042: MiddleDown.R_end
+    400044: MiddleUp.L
+    400046: MiddleUp.R
+    400048: PinkyDown.L
+    400050: PinkyDown.L_end
+    400052: PinkyDown.R
+    400054: PinkyDown.R_end
+    400056: PinkyUp.L
+    400058: PinkyUp.R
+    400060: Point
+    400062: RootBone
+    400064: Sun
+    400066: ThumbDown.L
+    400068: ThumbDown.L_end
+    400070: ThumbDown.R
+    400072: ThumbDown.R_end
+    400074: ThumbUp.L
+    400076: ThumbUp.R
+    400078: Worm
+    400080: //RootNode
+    2100000: Material.001
+    4300000: Worm
+    7400000: Armature|ArmatureAction
+    7400002: Armature|PointAction
+    7400004: Armature|RopeIdle
+    7400006: Armature|SunAction
+    7400008: Sun|PointAction
+    7400010: Sun|RopeIdle
+    7400012: Sun|SunAction
+    7400014: Point|PointAction
+    7400016: Point|RopeIdle
+    7400018: Point|SunAction
+    7400020: Armature|RopeIdleActual
+    9500000: //RootNode
+    10800000: Point
+    10800002: Sun
+    13700000: Worm
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|RopeIdle
+      takeName: Armature|RopeIdle
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|RopeIdleActual
+      takeName: Armature|RopeIdleActual
+      firstFrame: 0
+      lastFrame: 415
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.25
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.0025
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
