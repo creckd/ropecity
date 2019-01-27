@@ -212,4 +212,10 @@ public class Worm : MonoBehaviour {
 		hookPositions.Remove(hookPositions[hookPositions.Count - 1]);
 		distanceToKeep = Vector3.Distance(hookPositions[hookPositions.Count - 1], transform.position);
 	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (!other.isTrigger) {
+			velocity = Vector2.Reflect(velocity, (other.ClosestPointOnBounds(transform.position + (new Vector3(velocity.x,velocity.y,0f).normalized * 0.1f)) - transform.position).normalized);
+		}
+	}
 }
