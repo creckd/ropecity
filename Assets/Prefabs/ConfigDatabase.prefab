@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6960ddb980c9594abb49733e74f3841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reinitalizingDuration: 1
   gravityScale: 0.25
+  wormMass: 100
+  swingForceMultiplier: 10
   rotationSpeed: 600
   ropeShootSpeed: 250
   maxRopeDistance: 28
