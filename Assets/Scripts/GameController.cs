@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public enum GameState {
@@ -21,10 +20,14 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	[HideInInspector]
 	public GameState currentGameState = GameState.NotInitialized;
 
-	public Action StartTheGame = delegate { };
+	public Action GameStarted = delegate { };
+	public Action<bool> GameFinished = delegate { };
+	public Action ReinitalizeGame = delegate { };
 
+	[HideInInspector]
 	public Worm currentWorm = null;
 
 	private void Awake() {
@@ -33,7 +36,34 @@ public class GameController : MonoBehaviour {
 
 	private void Start() {
 		StartTheGame();
+	}
+
+	private void StartTheGame() {
+		GameStarted();
 		currentGameState = GameState.GameStarted;
+	}
+
+	public void FinishGame(bool success) {
+		if (currentGameState == GameState.GameFinished)
+			return;
+
+		currentGameState = GameState.GameFinished;
+		GameFinished(success);
+		if (!success) {
+			ReInitGame();
+		} else {
+			Time.timeScale = 0.1f;
+		}
+	}
+
+	private void ReInitGame() {
+		StartCoroutine(ReinitializingGame());
+	}
+
+	IEnumerator ReinitializingGame() {
+		ReinitalizeGame();
+		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
+		StartTheGame();
 	}
 }
 

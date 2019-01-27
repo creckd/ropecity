@@ -213,9 +213,22 @@ public class Worm : MonoBehaviour {
 		distanceToKeep = Vector3.Distance(hookPositions[hookPositions.Count - 1], transform.position);
 	}
 
+	private void Die() {
+		GameController.Instance.FinishGame(false);
+
+		InputController.Instance.TapHappened -= Tap;
+		InputController.Instance.ReleaseHappened -= Release;
+		Destroy(ropeEnd.gameObject);
+		Destroy(this.gameObject);
+	}
+
 	private void OnTriggerEnter(Collider other) {
 		if (!other.isTrigger) {
-			velocity = Vector2.Reflect(velocity, (other.ClosestPointOnBounds(transform.position + (new Vector3(velocity.x,velocity.y,0f).normalized * 0.1f)) - transform.position).normalized);
+			if (landedHook || other.CompareTag("Finish")) {
+				velocity = Vector2.Reflect(velocity, (other.ClosestPointOnBounds(transform.position + (new Vector3(velocity.x, velocity.y, 0f).normalized * 0.1f)) - transform.position).normalized);
+			} else {
+				Die();
+			}
 		}
 	}
 }

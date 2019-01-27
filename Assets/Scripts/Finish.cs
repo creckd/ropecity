@@ -24,11 +24,12 @@ public class Finish : MonoBehaviour {
 	private void OnTriggerEnter(Collider other) {
 		bool isWorm = other.CompareTag("Player");
 
-		if (isWorm) {
+		if (isWorm && GameController.Instance.currentGameState == GameState.GameStarted) {
 			Worm worm = other.GetComponent<Worm>();
 			anim.Play(finishAnimationStateName, 0, 0f);
 			StartCoroutine(TurnOnLight());
 			speedText.text = ConvertXVelocityToKMH(worm.Velocity.x).ToString();
+			GameController.Instance.FinishGame(true);
 		}
 	}
 
