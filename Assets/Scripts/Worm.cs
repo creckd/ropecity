@@ -135,8 +135,11 @@ public class Worm : MonoBehaviour {
 			if (currentHookSearchDistance >= ConfigDatabase.Instance.maxRopeDistance && !landedHook)
 				Release(currentHoldID);
 		}
-		//CheckIfGrounded();
 		SimulatePhysics();
+	}
+
+	private void FixedUpdate() {
+		HookCorrection();
 	}
 
 	private void CheckIfGrounded() {
@@ -147,21 +150,23 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void SimulatePhysics() {
-		velocity -= Vector2.down * gravity * Time.deltaTime;
-		//if (isGrounded)
-		//	velocity = Vector2.zero;
 
-		Vector3 targetPosition = new Vector3(transform.position.x - velocity.x, transform.position.y - velocity.y, transform.position.z);
+		velocity -= Vector2.down * gravity * Time.deltaTime;
+
+		Vector3 targetPosition = new Vector3(transform.position.x - (velocity.x * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.y - (velocity.y * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.z);
 		transform.position = targetPosition;
 
+	}
+
+	private void HookCorrection() {
 		if (landedHook) {
 			float currentDistance = Vector3.Distance(transform.position, hookPositions[hookPositions.Count - 1]);
 			float difference = currentDistance - distanceToKeep;
-			velocity -= ((Vector2)(hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
+			Vector2 differenceVelocity = ((Vector2)(hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
+			velocity -= differenceVelocity * Time.deltaTime * 10f * ConfigDatabase.Instance.swingForceMultiplier;
 
 			transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
 		}
-
 	}
 
 	public bool FindHookPoint(out Vector3 hookPoint, float distanceToUse) {
