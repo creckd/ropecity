@@ -12,6 +12,9 @@ public class ConfigDatabase : MonoBehaviour {
 			return instance;
 		}
 	}
+	[Header("Game")]
+	public float reinitalizingDuration = 1f;
+
 	[Header("Worm")]
 	public float gravityScale = 0.2f;
 	public float wormMass = 100;

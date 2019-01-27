@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +13,8 @@ public class Cannon : MonoBehaviour {
 	private void Awake() {
 		anim = GetComponent<Animator>();
 
-		GameController.Instance.StartTheGame += StartGame;
+		GameController.Instance.GameStarted += StartGame;
+		GameController.Instance.ReinitalizeGame += ReinitalizeCannon;
 	}
 
 	private void StartGame() {
@@ -36,5 +38,9 @@ public class Cannon : MonoBehaviour {
 		//CameraShake.Instance.Shake(0.1f, 0.5f, 4f);
 		instantiatedWorm.gameObject.SetActive(true);
 		instantiatedWorm.AddForce(ConfigDatabase.Instance.cannonShootDirection * ConfigDatabase.Instance.cannonShootForceMultiplier);
+	}
+
+	private void ReinitalizeCannon() {
+		anim.Play("Default", 0, 0f);
 	}
 }
