@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 95458892313403734}
   - component: {fileID: 114834486450662798}
   - component: {fileID: 65893284759875424}
+  - component: {fileID: 114703195159650316}
   m_Layer: 0
   m_Name: Finish
   m_TagString: Finish
@@ -445,6 +446,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114703195159650316
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1320901738942106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectID: FINISH
 --- !u!114 &114762109388994314
 MonoBehaviour:
   m_ObjectHideFlags: 1
