@@ -29,6 +29,10 @@ public class CameraController : MonoBehaviour {
 	private Vector3 offset;
 	private Vector3 cameraStartingPosition;
 
+	public float xDifferenceAllowed = 1f;
+	public float yDifferenceAllowed = 1f;
+	public float compensationSpeed = 10f;
+
 	private void Initialize() {
 		offset = target.position - transform.position;
 		cameraStartingPosition = transform.position;
@@ -36,11 +40,18 @@ public class CameraController : MonoBehaviour {
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
 	}
 
-	void Update () {
+	void LateUpdate () {
 		if (target != null) {
+			Vector3 wormCameraPosition = target.position - offset;
+			if (Mathf.Abs(wormCameraPosition.x - transform.position.x) > xDifferenceAllowed) {
+				float diff = wormCameraPosition.x - transform.position.x;
+				transform.position += Vector3.right * Mathf.Sign(diff) * Mathf.Abs(xDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;
+			}
 
-			Vector3 tarPosition = Vector3.Lerp(transform.position, target.position - offset, Time.deltaTime * 10f);
-			transform.position = new Vector3(tarPosition.x,transform.position.y,transform.position.z);
+			if (Mathf.Abs(wormCameraPosition.y - transform.position.y) > yDifferenceAllowed) {
+				float diff = wormCameraPosition.y - transform.position.y;
+				transform.position += Vector3.up * Mathf.Sign(diff) * Mathf.Abs(yDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;
+			}
 		}
 	}
 
