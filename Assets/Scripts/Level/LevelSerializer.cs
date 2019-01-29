@@ -66,7 +66,46 @@ public class LevelSerializer {
 	}
 
 	public static LevelData DeserializeLevel(string levelData) {
+		JSONNode jsonLevel = JSON.Parse(levelData);
+
 		LevelData level = new LevelData();
+
+		JSONArray levelObjects = jsonLevel[levelObjectsKey].AsArray;
+		LevelObjectData[] objDatas = new LevelObjectData[levelObjects.Count];
+
+		for (int i = 0; i < levelObjects.Count; i++) {
+			string uniqueID = "";
+			foreach (var k in jsonLevel[levelObjectsKey][i].Keys) {
+				uniqueID = k.Value;
+			}
+			int posX = jsonLevel[levelObjectsKey][i][uniqueID][posXKey].AsInt;
+			int posY = jsonLevel[levelObjectsKey][i][uniqueID][posYKey].AsInt;
+			int posZ = jsonLevel[levelObjectsKey][i][uniqueID][posZKey].AsInt;
+			int rotX = jsonLevel[levelObjectsKey][i][uniqueID][rotXKey].AsInt;
+			int rotY = jsonLevel[levelObjectsKey][i][uniqueID][rotYKey].AsInt;
+			int rotZ = jsonLevel[levelObjectsKey][i][uniqueID][rotZKey].AsInt;
+
+			LevelObjectData objData = new LevelObjectData();
+			objData.uniqueID = uniqueID;
+			objData.posX = posX;
+			objData.posY = posY;
+			objData.posZ = posZ;
+
+			objData.rotX = rotX;
+			objData.rotY = rotY;
+			objData.rotZ = rotZ;
+
+			objDatas[i] = objData;
+
+		}
+
+		level.levelName = jsonLevel[levelNameKey];
+		level.levelObjects = objDatas;
+
 		return level;
+	}
+
+	public static LevelData DeserializeLevelFromFile(string filePath) {
+		return DeserializeLevel(File.ReadAllText(filePath));
 	}
 }
