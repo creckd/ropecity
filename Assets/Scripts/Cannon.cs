@@ -38,6 +38,7 @@ public class Cannon : MonoBehaviour {
 		//CameraShake.Instance.Shake(0.1f, 0.5f, 4f);
 		instantiatedWorm.gameObject.SetActive(true);
 		instantiatedWorm.AddForce(ConfigDatabase.Instance.cannonShootDirection * ConfigDatabase.Instance.cannonShootForceMultiplier);
+		GameController.Instance.SlowTime();
 	}
 
 	private void ReinitalizeCannon() {

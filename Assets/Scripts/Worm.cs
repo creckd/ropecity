@@ -134,6 +134,7 @@ public class Worm : MonoBehaviour {
 				Release(currentHoldID);
 		}
 		SimulatePhysics();
+		CheckIfOutOfBoundaries();
 	}
 
 	private void LateUpdate() {
@@ -150,6 +151,13 @@ public class Worm : MonoBehaviour {
 		RaycastHit hit;
 		Physics.Raycast(ray, out hit, feetLength);
 		isGrounded = hit.collider != null;
+	}
+
+	private void CheckIfOutOfBoundaries() {
+		if (GameController.Instance.currentGameState != GameState.GameStarted)
+			return;
+		if (transform.position.y < ConfigDatabase.Instance.allTimeMininmumWorldY)
+			Die();
 	}
 
 	private void SimulatePhysics() {
@@ -216,7 +224,7 @@ public class Worm : MonoBehaviour {
 		distanceToKeep = Vector3.Distance(hookPositions[hookPositions.Count - 1], transform.position);
 	}
 
-	private void Die() {
+	public void Die() {
 		GameController.Instance.FinishGame(false);
 
 		InputController.Instance.TapHappened -= Tap;

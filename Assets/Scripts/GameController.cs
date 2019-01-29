@@ -30,12 +30,43 @@ public class GameController : MonoBehaviour {
 	[HideInInspector]
 	public Worm currentWorm = null;
 
+	private int lastUsedFingerID = -1;
+	private float targetTimeScale = 1f;
+
 	private void Awake() {
+		InputController.Instance.TapHappened += TapHappened;
+		InputController.Instance.ReleaseHappened += ReleaseHappened;
 		currentGameState = GameState.Initialized;
+	}
+
+	private void ReleaseHappened(int id) {
+		if (currentGameState == GameState.GameFinished)
+			return;
+		if (id == lastUsedFingerID) {
+			targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
+			lastUsedFingerID = -1;
+		}
+	}
+
+	private void TapHappened(int id) {
+		if (currentGameState == GameState.GameFinished)
+			return;
+		if (lastUsedFingerID == -1) {
+			lastUsedFingerID = id;
+			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
+		}
+	}
+
+	public void SlowTime() {
+		targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
 	}
 
 	private void Start() {
 		StartTheGame();
+	}
+
+	private void Update() {
+		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * 10f);
 	}
 
 	private void StartTheGame() {
@@ -52,8 +83,16 @@ public class GameController : MonoBehaviour {
 		if (!success) {
 			ReInitGame();
 		} else {
-			Time.timeScale = 0.1f;
+			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
+			StartCoroutine(ReInitiliazeGameAfter());
 		}
+	}
+
+	IEnumerator ReInitiliazeGameAfter() {
+		yield return new WaitForSeconds(1f);
+		if (currentWorm != null)
+			currentWorm.Die();
+		ReInitGame();
 	}
 
 	private void ReInitGame() {
@@ -61,6 +100,8 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator ReinitializingGame() {
+		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
+		lastUsedFingerID = -1;
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
 		StartTheGame();

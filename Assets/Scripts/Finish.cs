@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,12 @@ public class Finish : MonoBehaviour {
 	private void Awake() {
 		anim = GetComponent<Animator>();
 		bulbMeshRenderer.material = mat = Instantiate(bulbMeshRenderer.material);
+		GameController.Instance.ReinitalizeGame += ReInitFinish;
+	}
+
+	private void ReInitFinish() {
+		anim.Play("Default", 0, 0f);
+		speedText.text = "";
 	}
 
 	private void OnTriggerEnter(Collider other) {
