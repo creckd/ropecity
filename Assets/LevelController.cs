@@ -36,7 +36,7 @@ public class LevelController : MonoBehaviour {
 		this.level = level;
 
 		foreach (var remaining in FindObjectsOfType<LevelObject>()) {
-			DestroyImmediate(remaining.gameObject);
+			Destroy(remaining.gameObject);
 		}
 		initializedLevelObjects.Clear();
 
@@ -49,6 +49,8 @@ public class LevelController : MonoBehaviour {
 			levelObject.name = prefab.name + " - " + i.ToString();
 			initializedLevelObjects.Add(levelObject);
 		}
+
+		Debug.Log("Level initialization successfully completed!");
 	}
 
 }
