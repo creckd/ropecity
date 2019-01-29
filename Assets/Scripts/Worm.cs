@@ -124,13 +124,11 @@ public class Worm : MonoBehaviour {
 			transform.Rotate(new Vector3(0f, 0f, Time.deltaTime * ConfigDatabase.Instance.rotationSpeed));
 		}
 		if (landedHook) {
-			//RefreshRopeRenderer();
 			RefreshWormRotation();
 			CheckILastHitPointIsNotNeccessaryAnymore();
 			LookForHookCollision();
 		} else if (currentHoldID != -1) { //currently hooking
 			SearchForHitPoint();
-			//RefreshRopeRenderer();
 			currentHookSearchDistance += Time.deltaTime * ConfigDatabase.Instance.ropeShootSpeed;
 			if (currentHookSearchDistance >= ConfigDatabase.Instance.maxRopeDistance && !landedHook)
 				Release(currentHoldID);
