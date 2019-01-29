@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void ReleaseHappened(int id) {
-		if (currentGameState != GameState.GameStarted && canStartSlowingTime)
+		if (currentGameState != GameState.GameStarted || !canStartSlowingTime)
 			return;
 		if (id == lastUsedFingerID) {
 			targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
@@ -51,7 +51,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void TapHappened(int id) {
-		if (currentGameState != GameState.GameStarted && canStartSlowingTime)
+		if (currentGameState != GameState.GameStarted || !canStartSlowingTime)
 			return;
 		if (lastUsedFingerID == -1) {
 			lastUsedFingerID = id;
