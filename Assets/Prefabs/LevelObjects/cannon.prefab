@@ -105,6 +105,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1189938984684232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4861325311442492}
+  - component: {fileID: 33833524242445738}
+  - component: {fileID: 23202608864888988}
+  m_Layer: 0
+  m_Name: startPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1236823813106056
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +485,7 @@ Transform:
   m_LocalScale: {x: 96.05765, y: 96.05765, z: 96.05764}
   m_Children: []
   m_Father: {fileID: 4848398011671046}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4624847817856688
 Transform:
@@ -566,11 +583,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1095268163596418}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -39.908226, y: -4.228239, z: 8.960361}
+  m_LocalPosition: {x: -39.908226, y: -4.228239, z: 0}
   m_LocalScale: {x: 1.500001, y: 1.5, z: 1.500001}
   m_Children:
   - {fileID: 4394908241959864}
   - {fileID: 4964249068859822}
+  - {fileID: 4861325311442492}
   - {fileID: 4602890262714726}
   - {fileID: 4896624911642808}
   m_Father: {fileID: 0}
@@ -589,6 +607,19 @@ Transform:
   m_Father: {fileID: 4444782724304958}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4861325311442492
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1189938984684232}
+  m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: -0.50000006, w: 0.49999997}
+  m_LocalPosition: {x: 0, y: -0.2999999, z: -2.0866663}
+  m_LocalScale: {x: 424.08276, y: 424.08264, z: 424.0829}
+  m_Children: []
+  m_Father: {fileID: 4848398011671046}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4896624911642808
 Transform:
   m_ObjectHideFlags: 1
@@ -600,7 +631,7 @@ Transform:
   m_LocalScale: {x: 0.6666663, y: 0.6666667, z: 0.6666663}
   m_Children: []
   m_Father: {fileID: 4848398011671046}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4930231132870060
 Transform:
@@ -663,6 +694,41 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!23 &23202608864888988
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1189938984684232}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
+  m_Materials:
+  - {fileID: 2100000, guid: 2a0b735988ff6104d9731a64f9b40f87, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!33 &33420004236771490
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -670,6 +736,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772389943034016}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &33833524242445738
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1189938984684232}
+  m_Mesh: {fileID: 4300000, guid: a5dd6720a9023404085a2f5fe515ab9a, type: 3}
 --- !u!95 &95530428347616932
 Animator:
   serializedVersion: 3
