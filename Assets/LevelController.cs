@@ -18,22 +18,27 @@ public class LevelController : MonoBehaviour {
 	private List<LevelObject> initializedLevelObjects = new List<LevelObject>();
 
 	public void InitializeLevel(LevelData level) {
+
 		if (this.level == level) {
-			Debug.Log("Level already initialized!");
-			return;
+			bool thereIsAnObjectMissing = false;
+			if (initializedLevelObjects.Count == 0)
+				thereIsAnObjectMissing = true;
+			foreach (var obj in initializedLevelObjects) {
+				if (obj == null)
+					thereIsAnObjectMissing = true;
+			}
+			if (!thereIsAnObjectMissing) {
+				Debug.Log("Level already initialized!");
+				return;
+			}
 		}
 
 		this.level = level;
 
-		if (initializedLevelObjects.Count > 0) {
-			foreach (var levelObject in initializedLevelObjects) {
-				Destroy(levelObject.gameObject);
-			}
-		} else {
-			foreach (var remaining in FindObjectsOfType<LevelObject>()) {
-				Destroy(remaining.gameObject);
-			}
+		foreach (var remaining in FindObjectsOfType<LevelObject>()) {
+			DestroyImmediate(remaining.gameObject);
 		}
+		initializedLevelObjects.Clear();
 
 		for (int i = 0; i < level.levelObjects.Length; i++) {
 			LevelObjectData data = level.levelObjects[i];
@@ -41,6 +46,7 @@ public class LevelController : MonoBehaviour {
 			Vector3 position = new Vector3(data.posX, data.posY, data.posZ);
 			Vector3 rotation = new Vector3(data.rotX, data.rotY, data.rotZ);
 			LevelObject levelObject = Instantiate(prefab, position, Quaternion.Euler(rotation), transform) as LevelObject;
+			levelObject.name = prefab.name + " - " + i.ToString();
 			initializedLevelObjects.Add(levelObject);
 		}
 	}

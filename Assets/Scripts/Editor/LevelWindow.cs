@@ -24,6 +24,7 @@ public class LevelWindow : EditorWindow {
 			if (levelPath != "") {
 				LevelData levelData = LevelSerializer.DeserializeLevelFromFile(levelPath);
 				LevelController.Instance.InitializeLevel(levelData);
+				EditorApplication.MarkSceneDirty();
 			} else {
 				EditorUtility.DisplayDialog("No level!", "No level was selected, nothing to load.", "Okay");
 			}
