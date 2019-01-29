@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reinitalizingDuration: 0.5
   normalSpeed: 1
-  slowMotionSpeed: 1
+  slowMotionSpeed: 0.3
   allTimeMininmumWorldY: -10
   gravityScale: 0.5
   wormMass: 20

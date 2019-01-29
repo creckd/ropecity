@@ -19,11 +19,24 @@ public class InputController : MonoBehaviour {
 
 	private void Update() {
 		// PC
+#if UNITY_EDITOR
 		if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) {
 			TapHappened(0);
 		}
 		if (Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) {
 			ReleaseHappened(0);
 		}
+#endif
+#if UNITY_ANDROID && !UNITY_EDITOR
+				Touch[] touches = Input.touches;
+		foreach (var touch in touches) {
+			if (touch.phase == TouchPhase.Began) {
+				TapHappened(touch.fingerId);
+			}
+			if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) {
+				ReleaseHappened(touch.fingerId);
+			}
+		}
+#endif
 	}
 }
