@@ -51,14 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6960ddb980c9594abb49733e74f3841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reinitalizingDuration: 1
-  gravityScale: 0.25
-  wormMass: 100
-  swingForceMultiplier: 10
+  reinitalizingDuration: 0.5
+  gravityScale: 0.5
+  wormMass: 20
+  swingForceMultiplier: 2
   rotationSpeed: 600
   ropeShootSpeed: 250
   maxRopeDistance: 28
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}
   cannonShootDirection: {x: 1, y: 0.8}
-  cannonShootForceMultiplier: 0.25
+  cannonShootForceMultiplier: 0.4
