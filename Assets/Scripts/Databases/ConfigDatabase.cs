@@ -14,6 +14,9 @@ public class ConfigDatabase : MonoBehaviour {
 	}
 	[Header("Game")]
 	public float reinitalizingDuration = 1f;
+	public float normalSpeed = 1f;
+	public float slowMotionSpeed = 0.5f;
+	public float allTimeMininmumWorldY = 0f;
 
 	[Header("Worm")]
 	public float gravityScale = 0.2f;

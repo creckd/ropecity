@@ -33,11 +33,18 @@ public class CameraController : MonoBehaviour {
 	public float yDifferenceAllowed = 1f;
 	public float compensationSpeed = 10f;
 
+	private bool initialized = false;
+
 	private void Initialize() {
+		if (initialized)
+			return;
+		
 		offset = target.position - transform.position;
 		cameraStartingPosition = transform.position;
 
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
+
+		initialized = true;
 	}
 
 	void LateUpdate () {
