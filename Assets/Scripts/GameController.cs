@@ -105,6 +105,7 @@ public class GameController : MonoBehaviour {
 	IEnumerator ReinitializingGame() {
 		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 		lastUsedFingerID = -1;
+		canStartSlowingTime = false;
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
 		StartTheGame();
