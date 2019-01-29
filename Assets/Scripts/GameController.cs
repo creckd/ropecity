@@ -33,6 +33,8 @@ public class GameController : MonoBehaviour {
 	private int lastUsedFingerID = -1;
 	private float targetTimeScale = 1f;
 
+	private bool canStartSlowingTime = false;
+
 	private void Awake() {
 		InputController.Instance.TapHappened += TapHappened;
 		InputController.Instance.ReleaseHappened += ReleaseHappened;
@@ -40,7 +42,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void ReleaseHappened(int id) {
-		if (currentGameState == GameState.GameFinished)
+		if (currentGameState != GameState.GameStarted && canStartSlowingTime)
 			return;
 		if (id == lastUsedFingerID) {
 			targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
@@ -49,7 +51,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void TapHappened(int id) {
-		if (currentGameState == GameState.GameFinished)
+		if (currentGameState != GameState.GameStarted && canStartSlowingTime)
 			return;
 		if (lastUsedFingerID == -1) {
 			lastUsedFingerID = id;
@@ -57,8 +59,9 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	public void SlowTime() {
+	public void StartSlowingTime() {
 		targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
+		canStartSlowingTime = true;
 	}
 
 	private void Start() {
