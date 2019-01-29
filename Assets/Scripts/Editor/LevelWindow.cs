@@ -9,15 +9,24 @@ public class LevelWindow : EditorWindow {
 	}
 
 	string levelName = "";
+	string levelPath = "";
 
 	void OnGUI() {
 		levelName = EditorGUILayout.TextField("Level Name", levelName);
+		EditorGUILayout.LabelField("Selected level: " + levelPath);
 		GUILayout.FlexibleSpace();
 		GUI.backgroundColor = Color.yellow;
 		if (GUILayout.Button("Open Level")) {
-			string levelPath = EditorUtility.OpenFilePanel("Level Opener","Assets" + "\"" + "Level","level");
-			if(levelPath != "")
-			LevelSerializer.DeserializeLevelFromFile(levelPath);
+			levelPath = EditorUtility.OpenFilePanel("Level Opener","Assets" + "\"" + "Level","level");
+		}
+		GUI.backgroundColor = Color.cyan;
+		if (GUILayout.Button("Load Level")) {
+			if (levelPath != "") {
+				LevelData levelData = LevelSerializer.DeserializeLevelFromFile(levelPath);
+				LevelController.Instance.InitializeLevel(levelData);
+			} else {
+				EditorUtility.DisplayDialog("No level!", "No level was selected, nothing to load.", "Okay");
+			}
 		}
 		GUI.backgroundColor = Color.green;
 		if (GUILayout.Button("Save Level")) {
