@@ -78,7 +78,18 @@ public class Worm : MonoBehaviour {
 			hookPositions.Add(hitPosition);
 			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
 			distanceToKeep = Vector3.Distance(hitPosition, transform.position);
+			AddWormPullingForce(hitPosition);
 		}
+	}
+
+	private void AddWormPullingForce(Vector3 hitPosition) {
+		Vector2 forceDirection = (hitPosition - gunPositionObject.transform.position).normalized;
+		float angle = Vector2.Angle(Vector2.up, forceDirection);
+		forceDirection = Rotate(forceDirection, -Mathf.Sign(hitPosition.x - gunPositionObject.transform.position.x) * 90f);
+		float maximumRewardedAngle = ConfigDatabase.Instance.maximumRewardedAngleForPullForce;
+		float effectivenessMultiplier = Mathf.Clamp((180f - Mathf.Abs(angle - 45f)) - (180f - maximumRewardedAngle), 0f, maximumRewardedAngle);
+		effectivenessMultiplier = effectivenessMultiplier / maximumRewardedAngle;
+		AddForce(forceDirection * effectivenessMultiplier * 0.01f * ConfigDatabase.Instance.pullForceMultiplier);
 	}
 
 	private void RefreshRopeRenderer() {
@@ -231,6 +242,17 @@ public class Worm : MonoBehaviour {
 		InputController.Instance.ReleaseHappened -= Release;
 		Destroy(ropeEnd.gameObject);
 		Destroy(this.gameObject);
+	}
+
+	private Vector2 Rotate(Vector2 v, float degrees) {
+		float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+		float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+		float tx = v.x;
+		float ty = v.y;
+		v.x = (cos * tx) - (sin * ty);
+		v.y = (sin * tx) + (cos * ty);
+		return v;
 	}
 
 	private void OnTriggerEnter(Collider other) {

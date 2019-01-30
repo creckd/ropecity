@@ -53,14 +53,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reinitalizingDuration: 0.5
   normalSpeed: 1
-  slowMotionSpeed: 0.3
+  slowMotionSpeed: 0.4
   allTimeMininmumWorldY: -10
   gravityScale: 0.5
   wormMass: 20
   swingForceMultiplier: 2
   rotationSpeed: 600
-  ropeShootSpeed: 250
+  ropeShootSpeed: 500
   maxRopeDistance: 28
+  pullForceMultiplier: 5
+  maximumRewardedAngleForPullForce: 30
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}
   cannonShootDirection: {x: 1, y: 0.8}
