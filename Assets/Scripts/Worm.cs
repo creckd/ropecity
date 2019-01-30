@@ -32,7 +32,11 @@ public class Worm : MonoBehaviour {
 	private int currentHoldID = -1;
 	private float currentHookSearchDistance = 0f;
 
+	BoxCollider boxCollider;
+
 	public void Initialize() {
+		boxCollider = GetComponent<BoxCollider>();
+
 		InputController.Instance.TapHappened += Tap;
 		InputController.Instance.ReleaseHappened += Release;
 		CameraController.Instance.target = this.transform;
@@ -257,8 +261,11 @@ public class Worm : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider other) {
 		if (!other.isTrigger) {
+
 			if (landedHook || other.CompareTag("Finish")) {
-				velocity = Vector2.Reflect(velocity, (other.ClosestPointOnBounds(transform.position + (new Vector3(velocity.x, velocity.y, 0f).normalized * 0.1f)) - transform.position).normalized);
+				RaycastHit hit;
+				Physics.BoxCast(transform.position, boxCollider.extents * 0.5f, new Vector3(-velocity.x, -velocity.y, 0f), out hit);
+				velocity = -Vector2.Reflect(-velocity, hit.normal);
 			} else {
 				Die();
 			}
