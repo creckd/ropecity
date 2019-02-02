@@ -267,11 +267,8 @@ public class Worm : MonoBehaviour {
 		if (landedHook || collision.collider.CompareTag("Finish")) {
 			if(velocity.magnitude > 0.01f) {
 				Debug.Log("Original: " + velocity);
-				RaycastHit hit;
-				if (Physics.BoxCast(transform.position, boxCollider.size * 0.5f, new Vector3(-velocity.x, -velocity.y, 0f), out hit, transform.rotation, 5f)) {
-					velocity = -Vector2.Reflect(-velocity, hit.normal);
+					velocity = -Vector2.Reflect(-velocity,FindMedian(collision.contacts).medianNormal);
 					Debug.Log("Reflect: " + velocity);
-				}
 
 			}
 		} else {
@@ -280,14 +277,31 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void OnCollisionStay(Collision collision) {
-		Vector3 contactsMedian =  Vector3.zero;
-		foreach (var cP in collision.contacts) {
-			contactsMedian.x += cP.point.x;
-			contactsMedian.y += cP.point.y;
-			contactsMedian.z += cP.point.z;
+			float dot = Vector3.Dot(-velocity.normalized, (FindMedian(collision.contacts).medianPoint - transform.position).normalized);
+			dot = (dot + 1) / 2f;
+			velocity *= 1 - dot;
+	}
+
+	MedianPoint FindMedian(ContactPoint[] contacts) {
+		MedianPoint mP = new MedianPoint();
+		mP.medianPoint = Vector3.zero;
+		mP.medianNormal = Vector3.zero;
+		foreach (var cP in contacts) {
+			mP.medianPoint.x += cP.point.x;
+			mP.medianPoint.y += cP.point.y;
+			mP.medianPoint.z += cP.point.z;
+
+			mP.medianNormal.x += cP.normal.x;
+			mP.medianNormal.y += cP.normal.y;
+			mP.medianNormal.z += cP.normal.z;
 		}
-		contactsMedian = contactsMedian / collision.contacts.Length;
-		float dot = Vector3.Dot(-velocity.normalized, (contactsMedian - transform.position).normalized);
-		velocity *= 1 - dot;
+		mP.medianPoint /= contacts.Length;
+		mP.medianNormal /= contacts.Length;
+		return mP;
+	}
+
+	public class MedianPoint {
+		public Vector3 medianPoint;
+		public Vector3 medianNormal;
 	}
 }
