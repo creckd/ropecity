@@ -32,10 +32,12 @@ public class Worm : MonoBehaviour {
 	private int currentHoldID = -1;
 	private float currentHookSearchDistance = 0f;
 
+	Rigidbody rb;
 	BoxCollider boxCollider;
 
 	public void Initialize() {
 		boxCollider = GetComponent<BoxCollider>();
+		rb = GetComponent<Rigidbody>();
 
 		InputController.Instance.TapHappened += Tap;
 		InputController.Instance.ReleaseHappened += Release;
@@ -176,7 +178,9 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void SimulatePhysics() {
+		rb.velocity = Vector3.zero;
 
+		if (!isGrounded)
 		velocity -= Vector2.down * gravity * Time.deltaTime;
 
 		Vector3 targetPosition = new Vector3(transform.position.x - (velocity.x * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.y - (velocity.y * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.z);
@@ -207,7 +211,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	public void LookForHookCollision() {
-		if (Time.realtimeSinceStartup - lastTimeAPointWasAdded < 0.25f)
+		if (Time.realtimeSinceStartup - lastTimeAPointWasAdded < 0.025f)
 			return;
 		Ray ray = new Ray(gunPositionObject.transform.position, (hookPositions[hookPositions.Count - 1] - gunPositionObject.transform.position).normalized);
 		RaycastHit hit;
@@ -259,16 +263,31 @@ public class Worm : MonoBehaviour {
 		return v;
 	}
 
-	private void OnTriggerEnter(Collider other) {
-		if (!other.isTrigger) {
-
-			if (landedHook || other.CompareTag("Finish")) {
+	private void OnCollisionEnter(Collision collision) {
+		if (landedHook || collision.collider.CompareTag("Finish")) {
+			if(velocity.magnitude > 0.01f) {
+				Debug.Log("Original: " + velocity);
 				RaycastHit hit;
-				Physics.BoxCast(transform.position, boxCollider.extents * 0.5f, new Vector3(-velocity.x, -velocity.y, 0f), out hit);
-				velocity = -Vector2.Reflect(-velocity, hit.normal);
-			} else {
-				Die();
+				if (Physics.BoxCast(transform.position, boxCollider.size * 0.5f, new Vector3(-velocity.x, -velocity.y, 0f), out hit, transform.rotation, 5f)) {
+					velocity = -Vector2.Reflect(-velocity, hit.normal);
+					Debug.Log("Reflect: " + velocity);
+				}
+
 			}
+		} else {
+			Die();
 		}
+	}
+
+	private void OnCollisionStay(Collision collision) {
+		Vector3 contactsMedian =  Vector3.zero;
+		foreach (var cP in collision.contacts) {
+			contactsMedian.x += cP.point.x;
+			contactsMedian.y += cP.point.y;
+			contactsMedian.z += cP.point.z;
+		}
+		contactsMedian = contactsMedian / collision.contacts.Length;
+		float dot = Vector3.Dot(-velocity.normalized, (contactsMedian - transform.position).normalized);
+		velocity *= 1 - dot;
 	}
 }

@@ -1216,9 +1216,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 0
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 2
 --- !u!65 &65122855726882448
 BoxCollider:
@@ -1227,7 +1227,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1794239279911520}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.57, y: 2.78, z: 1}
