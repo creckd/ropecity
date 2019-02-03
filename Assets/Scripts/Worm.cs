@@ -271,7 +271,7 @@ public class Worm : MonoBehaviour {
 					Debug.Log("Reflect: " + velocity);
 
 			}
-		} else {
+		} else if(!collision.collider.CompareTag("LaunchPad")) {
 			Die();
 		}
 	}

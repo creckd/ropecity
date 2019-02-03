@@ -67,3 +67,4 @@ MonoBehaviour:
     type: 2}
   cannonShootDirection: {x: 1, y: 0.8}
   cannonShootForceMultiplier: 0.4
+  launchPadForce: 1

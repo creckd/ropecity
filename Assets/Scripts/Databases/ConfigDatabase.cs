@@ -34,4 +34,7 @@ public class ConfigDatabase : MonoBehaviour {
 	[Header("Cannon")]
 	public Vector2 cannonShootDirection = new Vector2(1f, 1f);
 	public float cannonShootForceMultiplier = 1f;
+
+	[Header("LaunchPad")]
+	public float launchPadForce = 1f;
 }
