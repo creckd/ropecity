@@ -58,3 +58,7 @@ MonoBehaviour:
     prefab: {fileID: 114101256204013906, guid: d6d98e2e759e3af45ac70c2af32f82e3, type: 2}
   - uniqueID: BASIC_TUBE
     prefab: {fileID: 114910161231584112, guid: 43f5fdfcad6c7a44698366f7e513b681, type: 2}
+  - uniqueID: PLATFORM_SCIFI
+    prefab: {fileID: 114149452433548590, guid: 2dd8b649ac12419429a078d386970eaf, type: 2}
+  - uniqueID: LAUNCH_PAD
+    prefab: {fileID: 114190732710252640, guid: 286477608d4d32046991112f892cb8f9, type: 2}
