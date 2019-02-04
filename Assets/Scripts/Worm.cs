@@ -16,6 +16,8 @@ public class Worm : MonoBehaviour {
 		}
 	}
 
+	public GameObject ragdoll;
+
 	private bool rotationEnabled = true;
 	private GameObject ropeEnd;
 
@@ -249,6 +251,11 @@ public class Worm : MonoBehaviour {
 		InputController.Instance.TapHappened -= Tap;
 		InputController.Instance.ReleaseHappened -= Release;
 		Destroy(ropeEnd.gameObject);
+		ragdoll.gameObject.SetActive(true);
+		ragdoll.transform.SetParent(null);
+		foreach (var rb in ragdoll.GetComponentsInChildren<Rigidbody>()) {
+			rb.AddForce(-velocity * 100f,ForceMode.Impulse);
+		}
 		Destroy(this.gameObject);
 	}
 

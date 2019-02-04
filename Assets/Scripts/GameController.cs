@@ -84,7 +84,8 @@ public class GameController : MonoBehaviour {
 		currentGameState = GameState.GameFinished;
 		GameFinished(success);
 		if (!success) {
-			ReInitGame();
+			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
+			StartCoroutine(ReInitiliazeGameAfter());
 		} else {
 			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 			StartCoroutine(ReInitiliazeGameAfter());
