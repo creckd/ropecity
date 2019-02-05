@@ -27,6 +27,7 @@ public class ConfigDatabase : MonoBehaviour {
 	public float maxRopeDistance = 10f;
 	public float pullForceMultiplier = 1f;
 	public float maximumRewardedAngleForPullForce = 30f;
+	public float remainingVelocityPercentAfterBounce = 0.75f;
 
 	[Header("Prefabs")]
 	public Worm wormPrefab;

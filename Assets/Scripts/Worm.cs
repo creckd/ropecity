@@ -51,7 +51,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	public void AddForce(Vector2 force) {
-		velocity -= force;
+		velocity += force;
 	}
 
 	private void Release(int inputIndex) {
@@ -97,7 +97,7 @@ public class Worm : MonoBehaviour {
 		float maximumRewardedAngle = ConfigDatabase.Instance.maximumRewardedAngleForPullForce;
 		float effectivenessMultiplier = Mathf.Clamp((180f - Mathf.Abs(angle - 45f)) - (180f - maximumRewardedAngle), 0f, maximumRewardedAngle);
 		effectivenessMultiplier = effectivenessMultiplier / maximumRewardedAngle;
-		AddForce(forceDirection * effectivenessMultiplier * 0.01f * ConfigDatabase.Instance.pullForceMultiplier);
+		AddForce(forceDirection * effectivenessMultiplier * 0.01f * ConfigDatabase.Instance.pullForceMultiplier * (1f/velocity.magnitude));
 	}
 
 	private void RefreshRopeRenderer() {
@@ -183,9 +183,9 @@ public class Worm : MonoBehaviour {
 		rb.velocity = Vector3.zero;
 
 		if (!isGrounded)
-		velocity -= Vector2.down * gravity * Time.deltaTime;
+		velocity += Vector2.down * gravity * Time.deltaTime;
 
-		Vector3 targetPosition = new Vector3(transform.position.x - (velocity.x * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.y - (velocity.y * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.z);
+		Vector3 targetPosition = new Vector3(transform.position.x + (velocity.x * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.y + (velocity.y * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.z);
 		transform.position = targetPosition;
 
 	}
@@ -195,7 +195,7 @@ public class Worm : MonoBehaviour {
 			float currentDistance = Vector3.Distance(transform.position, hookPositions[hookPositions.Count - 1]);
 			float difference = currentDistance - distanceToKeep;
 			Vector2 differenceVelocity = ((Vector2)(hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
-			velocity -= differenceVelocity * Time.deltaTime * 10f * ConfigDatabase.Instance.swingForceMultiplier;
+			velocity += differenceVelocity * Time.deltaTime * 10f * ConfigDatabase.Instance.swingForceMultiplier;
 
 			transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
 		}
@@ -254,7 +254,7 @@ public class Worm : MonoBehaviour {
 		ragdoll.gameObject.SetActive(true);
 		ragdoll.transform.SetParent(null);
 		foreach (var rb in ragdoll.GetComponentsInChildren<Rigidbody>()) {
-			rb.AddForce(-velocity * 100f,ForceMode.Impulse);
+			rb.AddForce(velocity * 100f,ForceMode.Impulse);
 		}
 		Destroy(this.gameObject);
 	}
@@ -271,21 +271,24 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter(Collision collision) {
-		if (landedHook || collision.collider.CompareTag("Finish")) {
-			if(velocity.magnitude > 0.01f) {
-				Debug.Log("Original: " + velocity);
-					velocity = -Vector2.Reflect(-velocity,FindMedian(collision.contacts).medianNormal);
-					Debug.Log("Reflect: " + velocity);
-
+		if (landedHook) {
+			if (velocity.magnitude > 0.01f) {
+				velocity = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
 			}
-		} else if(!collision.collider.CompareTag("LaunchPad")) {
+		} else if (collision.collider.CompareTag("Finish")) {
+			if (velocity.magnitude > 0.01f) {
+				velocity = Vector2.Reflect(velocity, FindMedian(collision.contacts).medianNormal);
+			}
+		} else if (!collision.collider.CompareTag("LaunchPad")) {
 			Die();
 		}
 	}
 
 	private void OnCollisionStay(Collision collision) {
-			float dot = Vector3.Dot(-velocity.normalized, (FindMedian(collision.contacts).medianPoint - transform.position).normalized);
+		Debug.Log((FindMedian(collision.contacts).medianPoint - transform.position).normalized);
+			float dot = Vector3.Dot(velocity.normalized, (FindMedian(collision.contacts).medianPoint - transform.position).normalized);
 			dot = (dot + 1) / 2f;
+		Debug.Log(dot);
 			velocity *= 1 - dot;
 	}
 
