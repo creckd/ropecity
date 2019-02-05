@@ -61,8 +61,9 @@ MonoBehaviour:
   rotationSpeed: 600
   ropeShootSpeed: 500
   maxRopeDistance: 28
-  pullForceMultiplier: 5
+  pullForceMultiplier: 2.5
   maximumRewardedAngleForPullForce: 30
+  remainingVelocityPercentAfterBounce: 0.75
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}
   cannonShootDirection: {x: 1, y: 0.8}
