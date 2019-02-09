@@ -10,11 +10,13 @@ public class Cannon : MonoBehaviour {
 	private const string cannonShootAnimationName = "Armature|Shoot";
 	private Animator anim;
 
-	private void Awake() {
-		anim = GetComponent<Animator>();
+	private void Start() {
+		if (GameController.Instance.currentGameState == GameState.Initialized) {
+			anim = GetComponent<Animator>();
 
-		GameController.Instance.GameStarted += StartGame;
-		GameController.Instance.ReinitalizeGame += ReinitalizeCannon;
+			GameController.Instance.GameStarted += StartGame;
+			GameController.Instance.ReinitalizeGame += ReinitalizeCannon;
+		}
 	}
 
 	private void StartGame() {

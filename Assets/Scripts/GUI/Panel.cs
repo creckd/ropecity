@@ -8,7 +8,7 @@ public class Panel : MonoBehaviour {
 
 	public List<Fader> faders = new List<Fader>();
 
-	public void Initialize() {
+	public virtual void Initialize() {
 
 		foreach (var f in GetComponentsInChildren<Fader>()) {
 			faders.Add(f);
@@ -17,10 +17,12 @@ public class Panel : MonoBehaviour {
 	}
 
 	public void Open(Action openedCallBack) {
+		OnStartedOpening();
 		StartCoroutine(OpeningAnimation(openedCallBack));
 	}
 
 	public void Close(Action closedCallBack) {
+		OnStartedClosing();
 		StartCoroutine(ClosingAnimation(closedCallBack));
 	}
 
@@ -52,6 +54,7 @@ public class Panel : MonoBehaviour {
 		} else {
 			yield return null;
 		}
+		OnOpened();
 		if (openedCallBack != null)
 			openedCallBack();
 	}
@@ -81,7 +84,13 @@ public class Panel : MonoBehaviour {
 		} else {
 			yield return null;
 		}
+		OnClosed();
 		if (closedCallBack != null)
 			closedCallBack();
 	}
+
+	public virtual void OnStartedOpening() { } 
+	public virtual void OnOpened() { }
+	public virtual void OnStartedClosing() { }
+	public virtual void OnClosed() { }
 }

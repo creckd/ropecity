@@ -17,10 +17,12 @@ public class Finish : MonoBehaviour {
 	public Color lampLightColor;
 	public Text speedText;
 
-	private void Awake() {
-		anim = GetComponent<Animator>();
-		bulbMeshRenderer.material = mat = Instantiate(bulbMeshRenderer.material);
-		GameController.Instance.ReinitalizeGame += ReInitFinish;
+	private void Start() {
+		if (GameController.Instance.currentGameState == GameState.Initialized) {
+			anim = GetComponent<Animator>();
+			bulbMeshRenderer.material = mat = Instantiate(bulbMeshRenderer.material);
+			GameController.Instance.ReinitalizeGame += ReInitFinish;
+		}
 	}
 
 	private void ReInitFinish() {

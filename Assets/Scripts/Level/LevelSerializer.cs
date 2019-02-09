@@ -62,7 +62,7 @@ public class LevelSerializer {
 		date = date.Replace("/", "-");
 		date = date.Replace(":", ".");
 
-		File.WriteAllText("Assets/Levels/Resources/" + level.levelName + " (" + date + ")" + ".level", jsonString);
+		File.WriteAllText("Assets/Levels/Resources/" + level.levelName + " (" + date + ")" + ".txt", jsonString);
 	}
 
 	public static LevelData DeserializeLevel(string levelData) {

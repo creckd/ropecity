@@ -36,8 +36,23 @@ public class GameController : MonoBehaviour {
 	private bool canStartSlowingTime = false;
 
 	private void Awake() {
+		InitializeGame();
+	}
+
+	public void InitializeGame() {
 		InputController.Instance.TapHappened += TapHappened;
 		InputController.Instance.ReleaseHappened += ReleaseHappened;
+
+		int levelIndex = 0;
+		string levelPath = "dani_001";
+		object levelMessage;
+		if (Messenger.Instance != null && Messenger.Instance.GetMessage(LevelSelectPanel.LevelIndexKey, out levelMessage)) {
+			levelIndex = (int)levelMessage;
+			levelPath = LevelResourceDatabase.Instance.levelResourceNames[levelIndex];
+		}
+		TextAsset levelAsset = (TextAsset)Resources.Load(levelPath, typeof(TextAsset));
+		LevelData data = LevelSerializer.DeserializeLevel(levelAsset.text);
+		LevelController.Instance.InitializeLevel(data);
 		currentGameState = GameState.Initialized;
 	}
 
@@ -65,6 +80,13 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Start() {
+		StartCoroutine(StartTheGameAfterAFewFrames()); // for subscriptions
+	}
+
+	IEnumerator StartTheGameAfterAFewFrames() {
+		yield return null;
+		yield return null;
+		yield return null;
 		StartTheGame();
 	}
 
