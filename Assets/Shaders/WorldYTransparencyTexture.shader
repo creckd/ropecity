@@ -10,13 +10,19 @@ Shader "Dani/WorldYTransparencyTexture"
 	}
 	SubShader
 	{
-		Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
+				Tags { "RenderType" = "Transparent" "Queue" = "Geometry" }
 
+				// Render into depth buffer only
+				Pass {
+					ColorMask 0
+				}
+			//Tags { "RenderType" = "Transparent" "Queue" = "Transparent" }
+	Pass
+	{
+		ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha
-
-		Pass
-		{
-			CGPROGRAM
+		ColorMask RGB
+		CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
 			
