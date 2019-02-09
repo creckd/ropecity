@@ -18,16 +18,6 @@
 	}
 
 	public static bool operator !=(LevelData a, LevelData b) {
-		bool theyAreEqual = true;
-		if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
-			return false;
-		if ((ReferenceEquals(a, null) && !ReferenceEquals(b, null)) || (ReferenceEquals(a, null) && !ReferenceEquals(b, null)))
-			return true;
-		if (a.levelName != b.levelName)
-			theyAreEqual = false;
-		if (a.levelObjects.Length != b.levelObjects.Length)
-			theyAreEqual = false;
-
-		return !theyAreEqual;
+		return !(a == b);
 	}
 }

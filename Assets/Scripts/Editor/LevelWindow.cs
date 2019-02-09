@@ -17,7 +17,7 @@ public class LevelWindow : EditorWindow {
 		GUILayout.FlexibleSpace();
 		GUI.backgroundColor = Color.yellow;
 		if (GUILayout.Button("Open Level")) {
-			levelPath = EditorUtility.OpenFilePanel("Level Opener","Assets" + "\"" + "Level","level");
+			levelPath = EditorUtility.OpenFilePanel("Level Opener","Assets" + "\"" + "Level","txt");
 		}
 		GUI.backgroundColor = Color.cyan;
 		if (GUILayout.Button("Load Level")) {
