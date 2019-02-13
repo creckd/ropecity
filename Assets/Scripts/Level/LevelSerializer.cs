@@ -25,13 +25,13 @@ public class LevelSerializer {
 			levelObjectDatas[i] = new LevelObjectData();
 
 			levelObjectDatas[i].uniqueID = levelObjects[i].objectID;
-			levelObjectDatas[i].posX = Mathf.FloorToInt(levelObjects[i].transform.position.x);
-			levelObjectDatas[i].posY = Mathf.FloorToInt(levelObjects[i].transform.position.y);
-			levelObjectDatas[i].posZ = Mathf.FloorToInt(levelObjects[i].transform.position.z);
+			levelObjectDatas[i].posX = (levelObjects[i].transform.position.x);
+			levelObjectDatas[i].posY = (levelObjects[i].transform.position.y);
+			levelObjectDatas[i].posZ = (levelObjects[i].transform.position.z);
 
-			levelObjectDatas[i].rotX = Mathf.FloorToInt(levelObjects[i].transform.rotation.eulerAngles.x);
-			levelObjectDatas[i].rotY = Mathf.FloorToInt(levelObjects[i].transform.rotation.eulerAngles.y);
-			levelObjectDatas[i].rotZ = Mathf.FloorToInt(levelObjects[i].transform.rotation.eulerAngles.z);
+			levelObjectDatas[i].rotX = (levelObjects[i].transform.rotation.eulerAngles.x);
+			levelObjectDatas[i].rotY = (levelObjects[i].transform.rotation.eulerAngles.y);
+			levelObjectDatas[i].rotZ = (levelObjects[i].transform.rotation.eulerAngles.z);
 		}
 
 		LevelData data = new LevelData();
@@ -47,13 +47,13 @@ public class LevelSerializer {
 		levelJson[levelNameKey] = level.levelName;
 
 		for (int i = 0; i < level.levelObjects.Length; i++) {
-			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][posXKey].AsInt = level.levelObjects[i].posX;
-			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][posYKey].AsInt = level.levelObjects[i].posY;
-			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][posZKey].AsInt = level.levelObjects[i].posZ;
+			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][posXKey].AsFloat = level.levelObjects[i].posX;
+			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][posYKey].AsFloat = level.levelObjects[i].posY;
+			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][posZKey].AsFloat = level.levelObjects[i].posZ;
 
-			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotXKey].AsInt = level.levelObjects[i].rotX;
-			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotYKey].AsInt = level.levelObjects[i].rotY;
-			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotZKey].AsInt = level.levelObjects[i].rotZ;
+			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotXKey].AsFloat = level.levelObjects[i].rotX;
+			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotYKey].AsFloat = level.levelObjects[i].rotY;
+			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotZKey].AsFloat = level.levelObjects[i].rotZ;
 		}
 
 		string jsonString = levelJson.ToString();
@@ -78,12 +78,12 @@ public class LevelSerializer {
 			foreach (var k in jsonLevel[levelObjectsKey][i].Keys) {
 				uniqueID = k.Value;
 			}
-			int posX = jsonLevel[levelObjectsKey][i][uniqueID][posXKey].AsInt;
-			int posY = jsonLevel[levelObjectsKey][i][uniqueID][posYKey].AsInt;
-			int posZ = jsonLevel[levelObjectsKey][i][uniqueID][posZKey].AsInt;
-			int rotX = jsonLevel[levelObjectsKey][i][uniqueID][rotXKey].AsInt;
-			int rotY = jsonLevel[levelObjectsKey][i][uniqueID][rotYKey].AsInt;
-			int rotZ = jsonLevel[levelObjectsKey][i][uniqueID][rotZKey].AsInt;
+			float posX = jsonLevel[levelObjectsKey][i][uniqueID][posXKey].AsFloat;
+			float posY = jsonLevel[levelObjectsKey][i][uniqueID][posYKey].AsFloat;
+			float posZ = jsonLevel[levelObjectsKey][i][uniqueID][posZKey].AsFloat;
+			float rotX = jsonLevel[levelObjectsKey][i][uniqueID][rotXKey].AsFloat;
+			float rotY = jsonLevel[levelObjectsKey][i][uniqueID][rotYKey].AsFloat;
+			float rotZ = jsonLevel[levelObjectsKey][i][uniqueID][rotZKey].AsFloat;
 
 			LevelObjectData objData = new LevelObjectData();
 			objData.uniqueID = uniqueID;
