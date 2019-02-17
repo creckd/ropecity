@@ -27,10 +27,14 @@ public class GameController : MonoBehaviour {
 	public Action<bool> GameFinished = delegate { };
 	public Action ReinitalizeGame = delegate { };
 
+	public Action<Vector3> FoundPotentionalHitPoint = delegate { };
+
+	public Action LandedHook = delegate { };
+	public Action ReleasedHook = delegate { };
+
 	[HideInInspector]
 	public Worm currentWorm = null;
 
-	private int lastUsedFingerID = -1;
 	private float targetTimeScale = 1f;
 
 	private bool canStartSlowingTime = false;
@@ -40,8 +44,8 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void InitializeGame() {
-		InputController.Instance.TapHappened += TapHappened;
-		InputController.Instance.ReleaseHappened += ReleaseHappened;
+		LandedHook += UnSlowTime;
+		ReleasedHook += SlowTime;
 
 		int levelIndex = 0;
 		string levelPath = "dani_002";
@@ -56,22 +60,16 @@ public class GameController : MonoBehaviour {
 		currentGameState = GameState.Initialized;
 	}
 
-	private void ReleaseHappened(int id) {
+	private void SlowTime() {
 		if (currentGameState != GameState.GameStarted || !canStartSlowingTime)
 			return;
-		if (id == lastUsedFingerID) {
-			targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
-			lastUsedFingerID = -1;
-		}
+		targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
 	}
 
-	private void TapHappened(int id) {
+	private void UnSlowTime() {
 		if (currentGameState != GameState.GameStarted || !canStartSlowingTime)
 			return;
-		if (lastUsedFingerID == -1) {
-			lastUsedFingerID = id;
-			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
-		}
+		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 	}
 
 	public void StartSlowingTime() {
@@ -91,7 +89,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Update() {
-		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * 10f);
+		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * 7.5f);
 	}
 
 	private void StartTheGame() {
@@ -127,7 +125,6 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator ReinitializingGame() {
 		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
-		lastUsedFingerID = -1;
 		canStartSlowingTime = false;
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);

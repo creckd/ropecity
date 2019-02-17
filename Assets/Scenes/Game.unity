@@ -6541,11 +6541,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 224087091674922660, guid: 345601d2cac71794592e5ccf616ed1a9,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 126.231445
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345601d2cac71794592e5ccf616ed1a9, type: 2}
   m_IsPrefabAsset: 0
@@ -6707,6 +6702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panels:
   - {fileID: 602251924}
+  mainCanvas: {fileID: 0}
+  mainCanvasRect: {fileID: 0}
 --- !u!222 &623532767
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -12458,6 +12455,7 @@ GameObject:
   - component: {fileID: 1205374546}
   - component: {fileID: 1205374544}
   - component: {fileID: 1205374545}
+  - component: {fileID: 1205374547}
   m_Layer: 0
   m_Name: GuiCamera
   m_TagString: Untagged
@@ -12525,6 +12523,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1205374547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1205374543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56d81f62b48c08740952c7e020cb441c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisCamera: {fileID: 0}
 --- !u!1 &1225376126
 GameObject:
   m_ObjectHideFlags: 0
@@ -13687,6 +13697,21 @@ Prefab:
     - target: {fileID: 4342270605166404, guid: 5e44b23b8172818499c9d46ad14fcd35, type: 2}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114374901576868304, guid: 5e44b23b8172818499c9d46ad14fcd35,
+        type: 2}
+      propertyPath: pullForceMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114374901576868304, guid: 5e44b23b8172818499c9d46ad14fcd35,
+        type: 2}
+      propertyPath: ropeShootSpeed
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 114374901576868304, guid: 5e44b23b8172818499c9d46ad14fcd35,
+        type: 2}
+      propertyPath: slowMotionSpeed
+      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e44b23b8172818499c9d46ad14fcd35, type: 2}
