@@ -1168,8 +1168,8 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
+  m_HDR: 0
+  m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
@@ -13697,21 +13697,6 @@ Prefab:
     - target: {fileID: 4342270605166404, guid: 5e44b23b8172818499c9d46ad14fcd35, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114374901576868304, guid: 5e44b23b8172818499c9d46ad14fcd35,
-        type: 2}
-      propertyPath: pullForceMultiplier
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114374901576868304, guid: 5e44b23b8172818499c9d46ad14fcd35,
-        type: 2}
-      propertyPath: ropeShootSpeed
-      value: 500
-      objectReference: {fileID: 0}
-    - target: {fileID: 114374901576868304, guid: 5e44b23b8172818499c9d46ad14fcd35,
-        type: 2}
-      propertyPath: slowMotionSpeed
-      value: 0.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e44b23b8172818499c9d46ad14fcd35, type: 2}
