@@ -82,9 +82,10 @@ public class Worm : MonoBehaviour {
 		SearchForHitPoint();
 	}
 
-	private void SearchForHitPoint() {
+	private void SearchForHitPoint(bool useInrementalDistance = false) {
 		Vector3 hitPosition = Vector3.zero;
-		if (!landedHook && FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
+		float tarDistance = useInrementalDistance ? currentHookSearchDistance : ConfigDatabase.Instance.maxRopeDistance;
+		if (!landedHook && FindHookPoint(out hitPosition, tarDistance)) {
 			rotationEnabled = false;
 			landedHook = true;
 			hookPositions.Add(hitPosition);
@@ -108,7 +109,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void RefreshRopeRenderer() {
-		if (landedHook) {
+		if (landedHook || currentHoldID != -1) {
 			List<Vector3> lineRendererPoints = new List<Vector3>();
 			lineRendererPoints.Add(gunPositionObject.transform.position);
 
@@ -122,6 +123,10 @@ public class Worm : MonoBehaviour {
 					direction = (hookPositions[0] - hookPositions[1]).normalized;
 				else
 					direction = (hookPositions[0] - gunPositionObject.transform.position).normalized;
+			} else {
+				ropeRenderer.positionCount = 2;
+				lineRendererPoints.Add(gunPositionObject.transform.position + (gunPositionObject.transform.position - transform.position).normalized * currentHookSearchDistance);
+				direction = (gunPositionObject.transform.position - transform.position).normalized;
 			}
 			Vector3[] points = lineRendererPoints.ToArray();
 			ropeEnd.transform.position = points[points.Length - 1] - direction * 0.5f;
@@ -155,12 +160,19 @@ public class Worm : MonoBehaviour {
 				GameController.Instance.FoundPotentionalHitPoint(hitPosition);
 			}
 		}
+		if (!landedHook && currentHoldID != -1) {
+			currentHookSearchDistance += Time.deltaTime * ConfigDatabase.Instance.ropeShootSpeed;
+			Debug.Log(currentHookSearchDistance);
+			SearchForHitPoint(true);
+			if (currentHookSearchDistance >= ConfigDatabase.Instance.maxRopeDistance && !landedHook)
+				Release(currentHoldID);
+		}
 		SimulatePhysics();
 		CheckIfOutOfBoundaries();
 	}
 
 	private void LateUpdate() {
-		if(landedHook)
+		if(landedHook || currentHoldID != -1)
 			RefreshRopeRenderer();
 	}
 
