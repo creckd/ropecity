@@ -55,6 +55,8 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Release(int inputIndex) {
+		if (!gameObject.activeSelf)
+			return;
 		if (currentHoldID == inputIndex) {
 			currentHoldID = -1;
 			rotationEnabled = true;
@@ -68,7 +70,8 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Tap(int inputIndex) {
-
+		if (!gameObject.activeSelf)
+			return;
 		if (currentHoldID == inputIndex)
 			Release(inputIndex);
 
