@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4068010982872946}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: IndexDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34,7 +34,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4058644558780426}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: MiddleUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49,7 +49,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4514942634466076}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4161906137301812}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PinkyDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4037950472007260}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hand.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 54547599620718134}
   - component: {fileID: 144636195264013406}
   - component: {fileID: 65312159412432910}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4880039763815118}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4466976367422392}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IndexDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 54844579689326056}
   - component: {fileID: 144385326525251926}
   - component: {fileID: 65996369944662744}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4486753321376670}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: MiddleDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4971882114830502}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: IndexUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 54692785367881758}
   - component: {fileID: 144661213979847114}
   - component: {fileID: 65678207847900138}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4089394015967112}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiddleDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4871583807674846}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4113342865658354}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: RootBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4518348115671932}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: MiddleUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -268,7 +268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4832839158326796}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4547285478295712}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: IndexDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4831952208088350}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiddleUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4008478264636394}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IndexDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4513489802455594}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PinkyUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4644518021510898}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IndexDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4582360887574966}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +373,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4636174410559596}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Ragdoll
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,7 +388,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4147407725575206}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PinkyDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4851477993536654}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4550853797125092}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThumbUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -433,7 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4843239773742768}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThumbDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -448,7 +448,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4154362232719700}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IndexUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -463,7 +463,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4463415246704438}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: MiddleDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4389203098262038}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.005_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4082729874332196}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4050140235527682}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: IndexUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4334819327315650}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: IndexDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -538,7 +538,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4321027483360680}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Armature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -553,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4678670964197786}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PinkyDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4181768383970360}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hand.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4749099663179490}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThumbDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -598,7 +598,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4478057017939744}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: ThumbDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -614,7 +614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4737855897783128}
   - component: {fileID: 54153033271378610}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4648249467950852}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: gunPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -644,7 +644,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4103782420057474}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PinkyUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -659,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4450882930996106}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiddleDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,7 +675,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4514652433447916}
   - component: {fileID: 137717109547299862}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -690,7 +690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4461623207032890}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiddleUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -705,7 +705,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4523043784888396}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThumbUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +721,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4364555779537632}
   - component: {fileID: 137605836019604848}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 4043929823666832}
   - component: {fileID: 54592538327066302}
   - component: {fileID: 65635933052725784}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Hand.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4363194338685248}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PinkyDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 54126041123529794}
   - component: {fileID: 144072809957665498}
   - component: {fileID: 65604511260066842}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.004
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -786,7 +786,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4870360380764058}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IndexUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -801,7 +801,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4999120490227590}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: ThumbUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -819,7 +819,7 @@ GameObject:
   - component: {fileID: 54255039163429216}
   - component: {fileID: 144863445471093448}
   - component: {fileID: 65918487223695576}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.005
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -834,7 +834,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4496368133204776}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThumbDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -849,7 +849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4790890376305318}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: RootBone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -864,7 +864,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4154609853759360}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PinkyDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -879,7 +879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4659353534863910}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: ThumbDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -894,7 +894,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4998619800134972}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PinkyDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -909,7 +909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4712969900965106}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.006_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -924,7 +924,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4527148145856798}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.003
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 120949294117686494}
   - component: {fileID: 65122855726882448}
   - component: {fileID: 54249283494531294}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Worm
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -958,7 +958,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4825179645661304}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ThumbDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -973,7 +973,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000644410024926}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PinkyDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -988,7 +988,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559655082947604}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PinkyDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1003,7 +1003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4865651085663924}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.006_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4511598507613358}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: ThumbUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1033,7 +1033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4387072209616370}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bone.005_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1048,7 +1048,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4806212761575716}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: ThumbDown.L_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1064,7 +1064,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4017424378752262}
   - component: {fileID: 95166219439722800}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: worm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1079,7 +1079,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4971385503134426}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: PinkyUp.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1094,7 +1094,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4980391793489722}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PinkyUp.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1109,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4178016963018626}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: IndexDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,7 +1124,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4087567732159234}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: IndexDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1141,7 +1141,7 @@ GameObject:
   - component: {fileID: 4028634274434730}
   - component: {fileID: 54466385441907200}
   - component: {fileID: 65584987871768528}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Hand.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1156,7 +1156,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4766306363539186}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiddleDown.L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1171,7 +1171,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4068749794402120}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: MiddleDown.R_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1186,7 +1186,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4327546338894516}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: ThumbDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1201,7 +1201,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4692548918473284}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: Bone.006
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1216,7 +1216,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4577933049678434}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: MiddleDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1231,7 +1231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4459696956796516}
-  m_Layer: 2
+  m_Layer: 9
   m_Name: MiddleDown.R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
