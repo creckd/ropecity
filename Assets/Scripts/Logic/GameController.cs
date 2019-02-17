@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour {
 		ReleasedHook += SlowTime;
 
 		int levelIndex = 0;
-		string levelPath = "dani_002";
+		string levelPath = "dani_001";
 		object levelMessage;
 		if (Messenger.Instance != null && Messenger.Instance.GetMessage(LevelSelectPanel.LevelIndexKey, out levelMessage)) {
 			levelIndex = (int)levelMessage;
