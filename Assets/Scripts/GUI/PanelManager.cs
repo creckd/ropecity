@@ -16,11 +16,15 @@ public class PanelManager : MonoBehaviour {
 	}
 
 	public List<Panel> panels = new List<Panel>();
+	public Canvas mainCanvas;
+	public RectTransform mainCanvasRect;
 
 	private Panel currentlyOpenedPanel = null;
 	private bool panelTransitionInProgress = false;
 
 	private void Awake() {
+		mainCanvas = GetComponentInParent<Canvas>();
+		mainCanvasRect = mainCanvas.GetComponent<RectTransform>();
 		foreach (var panel in panels) {
 			panel.Initialize();
 		}

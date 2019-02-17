@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1554597171109790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.02066, y: -0.3307314, z: -0.0003437996}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -61,8 +61,8 @@ MonoBehaviour:
   rotationSpeed: 600
   ropeShootSpeed: 500
   maxRopeDistance: 28
-  pullForceMultiplier: 2.5
-  maximumRewardedAngleForPullForce: 30
+  pullForceMultiplier: 1
+  maximumRewardedAngleForPullForce: 60
   remainingVelocityPercentAfterBounce: 0.75
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}

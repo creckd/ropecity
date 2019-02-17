@@ -63,6 +63,7 @@ public class Worm : MonoBehaviour {
 			landedHook = false;
 			ropeRenderer.positionCount = 0;
 			ropeEnd.gameObject.SetActive(false);
+			GameController.Instance.ReleasedHook();
 		}
 	}
 
@@ -80,13 +81,15 @@ public class Worm : MonoBehaviour {
 
 	private void SearchForHitPoint() {
 		Vector3 hitPosition = Vector3.zero;
-		if (!landedHook && FindHookPoint(out hitPosition, currentHookSearchDistance)) {
+		if (!landedHook && FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
 			rotationEnabled = false;
 			landedHook = true;
 			hookPositions.Add(hitPosition);
 			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
 			distanceToKeep = Vector3.Distance(hitPosition, transform.position);
 			AddWormPullingForce(hitPosition);
+			GameController.Instance.FoundPotentionalHitPoint(hitPosition);
+			GameController.Instance.LandedHook();
 		}
 	}
 
@@ -97,11 +100,12 @@ public class Worm : MonoBehaviour {
 		float maximumRewardedAngle = ConfigDatabase.Instance.maximumRewardedAngleForPullForce;
 		float effectivenessMultiplier = Mathf.Clamp((180f - Mathf.Abs(angle - 45f)) - (180f - maximumRewardedAngle), 0f, maximumRewardedAngle);
 		effectivenessMultiplier = effectivenessMultiplier / maximumRewardedAngle;
-		AddForce(forceDirection * effectivenessMultiplier * 0.01f * ConfigDatabase.Instance.pullForceMultiplier * (1f/velocity.magnitude));
+		float reverseVelocityEfficient = 2 * (1f - Vector2.Dot(forceDirection.normalized, velocity.normalized));
+		AddForce(forceDirection * effectivenessMultiplier * 0.01f * ConfigDatabase.Instance.pullForceMultiplier * ((1f/(0.1f + velocity.magnitude * 0.1f)) + reverseVelocityEfficient));
 	}
 
 	private void RefreshRopeRenderer() {
-		if (landedHook || currentHoldID != -1) {
+		if (landedHook) {
 			List<Vector3> lineRendererPoints = new List<Vector3>();
 			lineRendererPoints.Add(gunPositionObject.transform.position);
 
@@ -115,10 +119,6 @@ public class Worm : MonoBehaviour {
 					direction = (hookPositions[0] - hookPositions[1]).normalized;
 				else
 					direction = (hookPositions[0] - gunPositionObject.transform.position).normalized;
-			} else {
-				ropeRenderer.positionCount = 2;
-				lineRendererPoints.Add(gunPositionObject.transform.position + (gunPositionObject.transform.position - transform.position).normalized * currentHookSearchDistance);
-				direction = (gunPositionObject.transform.position - transform.position).normalized;
 			}
 			Vector3[] points = lineRendererPoints.ToArray();
 			ropeEnd.transform.position = points[points.Length - 1] - direction * 0.5f;
@@ -146,18 +146,18 @@ public class Worm : MonoBehaviour {
 			RefreshWormRotation();
 			CheckILastHitPointIsNotNeccessaryAnymore();
 			LookForHookCollision();
-		} else if (currentHoldID != -1) { //currently hooking
-			SearchForHitPoint();
-			currentHookSearchDistance += Time.deltaTime * ConfigDatabase.Instance.ropeShootSpeed;
-			if (currentHookSearchDistance >= ConfigDatabase.Instance.maxRopeDistance && !landedHook)
-				Release(currentHoldID);
+		} else {
+			Vector3 hitPosition;
+			if (FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
+				GameController.Instance.FoundPotentionalHitPoint(hitPosition);
+			}
 		}
 		SimulatePhysics();
 		CheckIfOutOfBoundaries();
 	}
 
 	private void LateUpdate() {
-		if(landedHook || currentHoldID != -1)
+		if(landedHook)
 			RefreshRopeRenderer();
 	}
 
