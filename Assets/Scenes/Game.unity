@@ -13698,6 +13698,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114374901576868304, guid: 5e44b23b8172818499c9d46ad14fcd35,
+        type: 2}
+      propertyPath: ropeShootSpeed
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e44b23b8172818499c9d46ad14fcd35, type: 2}
   m_IsPrefabAsset: 0
