@@ -75,5 +75,6 @@ public class CameraController : MonoBehaviour {
 			timer += Time.deltaTime;
 			yield return null;
 		}
+		transform.position = cameraStartingPosition;
 	}
 }
