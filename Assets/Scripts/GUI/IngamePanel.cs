@@ -9,11 +9,15 @@ public class IngamePanel : Panel {
 	public LineRenderer aiderLine;
 
 	private Vector3 crossHairTargetWorldPosition = Vector3.zero;
+
 	private float lastTimePositionWasChanged;
+	private bool crossHairShouldBeShown = false;
 
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
 		GameController.Instance.FoundPotentionalHitPoint += SetCrossHairPosition;
+		GameController.Instance.ShowUIHookAid += () => { crossHairShouldBeShown = true; };
+		GameController.Instance.HideUIHookAid += () => { crossHairShouldBeShown = false; };
 	}
 
 	public void BackToMainMenu() {
@@ -36,7 +40,6 @@ public class IngamePanel : Panel {
 		RectTransform mainCanvasRect = PanelManager.Instance.mainCanvasRect;
 		Vector3 guiPosition = new Vector3(screenPositionNormalized.x * mainCanvasRect.rect.width, screenPositionNormalized.y * mainCanvasRect.rect.height, 0f);
 		ropeCrossHair.rectTransform.anchoredPosition = guiPosition;
-		bool crossHairShouldBeShown = (Time.realtimeSinceStartup - lastTimePositionWasChanged) < 0.01f && GameController.Instance.currentGameState == GameState.GameStarted;
 		ropeCrossHair.enabled = crossHairShouldBeShown;
 		aiderLine.enabled = crossHairShouldBeShown;
 	}

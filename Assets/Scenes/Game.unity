@@ -1120,7 +1120,6 @@ GameObject:
   - component: {fileID: 369971036}
   - component: {fileID: 369971035}
   - component: {fileID: 369971038}
-  - component: {fileID: 369971039}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1202,18 +1201,6 @@ MonoBehaviour:
   xDifferenceAllowed: 10
   yDifferenceAllowed: 10
   compensationSpeed: 50
---- !u!114 &369971039
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 369971034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225c8e20dd9113c429a761aeaed5f9ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  camTransform: {fileID: 369971037}
 --- !u!1 &389443684
 GameObject:
   m_ObjectHideFlags: 0
