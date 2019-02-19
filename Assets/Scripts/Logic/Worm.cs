@@ -43,12 +43,19 @@ public class Worm : MonoBehaviour {
 
 		InputController.Instance.TapHappened += Tap;
 		InputController.Instance.ReleaseHappened += Release;
-		GameController.Instance.GameFinished += (bool win) => { if (win) ClearWormHook(); };
+		GameController.Instance.GameFinished += GameFinished;
 		CameraController.Instance.StartTracking(this.transform);
 
 		gravity = ConfigDatabase.Instance.gravityScale;
 		ropeEnd = Instantiate(ropeEndPrefab, transform.position, transform.rotation) as GameObject;
 		ropeEnd.gameObject.SetActive(false);
+	}
+
+	public void DestroyWorm() {
+		InputController.Instance.TapHappened -= Tap;
+		InputController.Instance.ReleaseHappened -= Release;
+		GameController.Instance.GameFinished -= GameFinished;
+		Destroy(this.gameObject);
 	}
 
 	public void AddForce(Vector2 force) {
@@ -273,15 +280,13 @@ public class Worm : MonoBehaviour {
 
 		GameController.Instance.FinishGame(false);
 
-		InputController.Instance.TapHappened -= Tap;
-		InputController.Instance.ReleaseHappened -= Release;
 		Destroy(ropeEnd.gameObject);
 		ragdoll.gameObject.SetActive(true);
 		ragdoll.transform.SetParent(null);
 		foreach (var rb in ragdoll.GetComponentsInChildren<Rigidbody>()) {
 			rb.AddForce(velocity * 100f,ForceMode.Impulse);
 		}
-		Destroy(this.gameObject);
+		DestroyWorm();
 	}
 
 	private Vector2 Rotate(Vector2 v, float degrees) {
@@ -332,6 +337,11 @@ public class Worm : MonoBehaviour {
 	public class MedianPoint {
 		public Vector3 medianPoint;
 		public Vector3 medianNormal;
+	}
+
+	private void GameFinished(bool win) {
+		if (win)
+			ClearWormHook();
 	}
 
 	private void ClearWormHook() {
