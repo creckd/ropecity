@@ -43,6 +43,7 @@ public class Worm : MonoBehaviour {
 
 		InputController.Instance.TapHappened += Tap;
 		InputController.Instance.ReleaseHappened += Release;
+		GameController.Instance.GameFinished += (bool win) => { if (win) ClearWormHook(); };
 		CameraController.Instance.StartTracking(this.transform);
 
 		gravity = ConfigDatabase.Instance.gravityScale;
@@ -331,5 +332,16 @@ public class Worm : MonoBehaviour {
 	public class MedianPoint {
 		public Vector3 medianPoint;
 		public Vector3 medianNormal;
+	}
+
+	private void ClearWormHook() {
+		currentHoldID = -1;
+		rotationEnabled = true;
+
+		hookPositions.Clear();
+		landedHook = false;
+		ropeRenderer.positionCount = 0;
+		ropeEnd.gameObject.SetActive(false);
+		GameController.Instance.ReleasedHook();
 	}
 }

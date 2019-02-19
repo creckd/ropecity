@@ -39,10 +39,12 @@ public class IngamePanel : Panel {
 	}
 
 	private void LateUpdate() {
-		Vector3[] points = new Vector3[2];
-		points[0] = GameController.Instance.currentWorm.gunPositionObject.transform.position;
-		points[1] = crossHairTargetWorldPosition;
-		aiderLine.positionCount = 2;
-		aiderLine.SetPositions(points);
+		if (crossHairShouldBeShown) {
+			Vector3[] points = new Vector3[2];
+			points[0] = GameController.Instance.currentWorm.gunPositionObject.transform.position;
+			points[1] = crossHairTargetWorldPosition;
+			aiderLine.positionCount = 2;
+			aiderLine.SetPositions(points);
+		}
 	}
 }
