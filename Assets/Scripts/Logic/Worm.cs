@@ -85,6 +85,7 @@ public class Worm : MonoBehaviour {
 	private void SearchForHitPoint(bool useInrementalDistance = false) {
 		Vector3 hitPosition = Vector3.zero;
 		float tarDistance = useInrementalDistance ? currentHookSearchDistance : ConfigDatabase.Instance.maxRopeDistance;
+
 		if (!landedHook && FindHookPoint(out hitPosition, tarDistance)) {
 			rotationEnabled = false;
 			landedHook = true;
@@ -94,6 +95,7 @@ public class Worm : MonoBehaviour {
 			AddWormPullingForce(hitPosition);
 			GameController.Instance.FoundPotentionalHitPoint(hitPosition);
 			GameController.Instance.LandedHook();
+			GameController.Instance.HideUIHookAid();
 		}
 	}
 
@@ -158,11 +160,13 @@ public class Worm : MonoBehaviour {
 			Vector3 hitPosition;
 			if (FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
 				GameController.Instance.FoundPotentionalHitPoint(hitPosition);
+				GameController.Instance.ShowUIHookAid();
+			} else {
+				GameController.Instance.HideUIHookAid();
 			}
 		}
 		if (!landedHook && currentHoldID != -1) {
 			currentHookSearchDistance += Time.deltaTime * ConfigDatabase.Instance.ropeShootSpeed;
-			Debug.Log(currentHookSearchDistance);
 			SearchForHitPoint(true);
 			if (currentHookSearchDistance >= ConfigDatabase.Instance.maxRopeDistance && !landedHook)
 				Release(currentHoldID);

@@ -32,6 +32,9 @@ public class GameController : MonoBehaviour {
 	public Action LandedHook = delegate { };
 	public Action ReleasedHook = delegate { };
 
+	public Action ShowUIHookAid = delegate { };
+	public Action HideUIHookAid = delegate { };
+
 	[HideInInspector]
 	public Worm currentWorm = null;
 
