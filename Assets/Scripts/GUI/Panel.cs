@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Panel : MonoBehaviour {
 
+	[HideInInspector]
 	public List<Fader> faders = new List<Fader>();
 
 	public virtual void Initialize() {

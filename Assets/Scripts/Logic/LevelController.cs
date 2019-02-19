@@ -14,6 +14,7 @@ public class LevelController : MonoBehaviour {
 	}
 
 	public LevelData level;
+	public int currentLevelIndex = -1;
 
 	private List<LevelObject> initializedLevelObjects = new List<LevelObject>();
 

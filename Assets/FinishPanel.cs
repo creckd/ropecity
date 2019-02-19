@@ -4,4 +4,12 @@ using UnityEngine;
 
 public class FinishPanel : Panel {
 
+	public void BackToMainMenu() {
+		GameController.Instance.BackToMainMenu();
+	}
+
+	public void RestartButton() {
+		GameController.Instance.RestartButton();
+	}
+
 }
