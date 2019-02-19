@@ -48,7 +48,7 @@ public class Finish : MonoBehaviour {
 		float timer = 0f;
 		Color startColor = mat.GetColor(lampColorPropertyName);
 		while (timer <= lampInterpolationSpeed) {
-			timer += Time.deltaTime;
+			timer += Time.unscaledDeltaTime;
 			mat.SetColor(lampColorPropertyName, Color.Lerp(startColor, lampLightColor, timer / lampInterpolationSpeed));
 			yield return null;
 		}

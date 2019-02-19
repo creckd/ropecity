@@ -28,7 +28,7 @@ public class Fader : MonoBehaviour {
 	IEnumerator Fade(float fromValue, float tarValue) {
 		float timer = 0f;
 		while (timer <= fadeTime) {
-			timer += Time.deltaTime;
+			timer += Time.unscaledDeltaTime;
 			cG.alpha = Mathf.Lerp(fromValue, tarValue, timer/fadeTime);
 			yield return null;
 		}

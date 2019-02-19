@@ -74,6 +74,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4632082234785630}
   - component: {fileID: 120475944652768018}
+  - component: {fileID: 114688735920932964}
   m_Layer: 0
   m_Name: aiderLineRenderer
   m_TagString: Untagged
@@ -261,6 +262,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114688735920932964
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1733996204303402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcca2e3b89b67e48a1d8e82b205d2a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -2.5
 --- !u!114 &114940582899313482
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,7 +455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.231445, y: -1145.9001}
+  m_AnchoredPosition: {x: 126.234375, y: -1145.9004}
   m_SizeDelta: {x: 171.5, y: 178.8}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224423825781870750
