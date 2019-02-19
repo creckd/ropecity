@@ -23,6 +23,14 @@ public class CameraController : MonoBehaviour {
 	public float yDifferenceAllowed = 1f;
 	public float compensationSpeed = 10f;
 
+	public AnimationCurve sweepCurve;
+	public float sweepingTime = 1f;
+
+	private void Awake() {
+		GameController.Instance.GameFinished += GameFinished;
+		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
+	}
+
 	public void StartTracking(Transform target) {
 		this.target = target;
 
@@ -32,7 +40,33 @@ public class CameraController : MonoBehaviour {
 			cameraStartingPosition = transform.position;
 		}
 
-		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
+	}
+
+	private void StopTracking() {
+		this.target = null;
+	}
+
+	private void GameFinished(bool win) {
+		if (win) {
+			StopTracking();
+			StartCoroutine(SweepToVictoryPosition(GetVictoryCameraTransfom()));
+		}
+	}
+
+	IEnumerator SweepToVictoryPosition(Transform victoryTransform) {
+		float timer = 0f;
+		Vector3 defPosition = transform.position;
+		Quaternion defRotation = transform.rotation;
+		while (timer < sweepingTime) {
+			timer += Time.unscaledDeltaTime;
+			transform.position = Vector3.Lerp(defPosition, victoryTransform.position, sweepCurve.Evaluate(timer / sweepingTime));
+			transform.rotation = Quaternion.Lerp(defRotation, victoryTransform.rotation, sweepCurve.Evaluate(timer / sweepingTime));
+			yield return null;
+		}
+	}
+
+	private Transform GetVictoryCameraTransfom() {
+		return VictoryCameraPosition.Instance.transform;
 	}
 
 	void LateUpdate () {

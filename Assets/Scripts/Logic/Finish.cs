@@ -38,6 +38,8 @@ public class Finish : MonoBehaviour {
 			anim.Play(finishAnimationStateName, 0, 0f);
 			StartCoroutine(TurnOnLight());
 			speedText.text = ConvertXVelocityToKMH(worm.Velocity.x).ToString();
+			Vector2 direction = ((transform.position + (transform.forward * 5f)) - worm.transform.position).normalized;
+			worm.AddForce(direction * 0.5f);
 			GameController.Instance.FinishGame(true);
 		}
 	}
