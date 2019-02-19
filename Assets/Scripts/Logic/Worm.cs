@@ -43,7 +43,7 @@ public class Worm : MonoBehaviour {
 
 		InputController.Instance.TapHappened += Tap;
 		InputController.Instance.ReleaseHappened += Release;
-		CameraController.Instance.target = this.transform;
+		CameraController.Instance.StartTracking(this.transform);
 
 		gravity = ConfigDatabase.Instance.gravityScale;
 		ropeEnd = Instantiate(ropeEndPrefab, transform.position, transform.rotation) as GameObject;
