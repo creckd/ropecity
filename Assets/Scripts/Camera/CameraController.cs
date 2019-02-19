@@ -14,37 +14,25 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
-	private Transform actualTarget = null;
-	public Transform target {
-		get {
-			return actualTarget;
-		}
-		set {
-			actualTarget = value;
-			if (actualTarget != null) {
-				Initialize();
-			}
-		}
-	}
+	private Transform target = null;
 	private Vector3 offset;
 	private Vector3 cameraStartingPosition;
+	private bool initializedOffsets = false;
 
 	public float xDifferenceAllowed = 1f;
 	public float yDifferenceAllowed = 1f;
 	public float compensationSpeed = 10f;
 
-	private bool initialized = false;
+	public void StartTracking(Transform target) {
+		this.target = target;
 
-	private void Initialize() {
-		if (initialized)
-			return;
-		
-		offset = target.position - transform.position;
-		cameraStartingPosition = transform.position;
+		if (!initializedOffsets) {
+			initializedOffsets = true;
+			offset = target.position - transform.position;
+			cameraStartingPosition = transform.position;
+		}
 
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
-
-		initialized = true;
 	}
 
 	void LateUpdate () {
