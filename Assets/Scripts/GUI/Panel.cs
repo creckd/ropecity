@@ -45,10 +45,10 @@ public class Panel : MonoBehaviour {
 						i++;
 					}
 					faders[i].FadeIn();
-					yield return new WaitForSeconds(highestWaitingTime);
+					yield return new WaitForSecondsRealtime(highestWaitingTime);
 				} else {
 					faders[i].FadeIn();
-					yield return new WaitForSeconds(faders[i].fadeTime);
+					yield return new WaitForSecondsRealtime(faders[i].fadeTime);
 				}
 			}
 		} else {
@@ -75,10 +75,10 @@ public class Panel : MonoBehaviour {
 						i++;
 					}
 					faders[i].FadeOut();
-					yield return new WaitForSeconds(highestWaitingTime);
+					yield return new WaitForSecondsRealtime(highestWaitingTime);
 				} else {
 					faders[i].FadeOut();
-					yield return new WaitForSeconds(faders[i].fadeTime);
+					yield return new WaitForSecondsRealtime(faders[i].fadeTime);
 				}
 			}
 		} else {

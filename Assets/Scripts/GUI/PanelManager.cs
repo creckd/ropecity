@@ -16,7 +16,10 @@ public class PanelManager : MonoBehaviour {
 	}
 
 	public List<Panel> panels = new List<Panel>();
+
+	[HideInInspector]
 	public Canvas mainCanvas;
+	[HideInInspector]
 	public RectTransform mainCanvasRect;
 
 	private Panel currentlyOpenedPanel = null;

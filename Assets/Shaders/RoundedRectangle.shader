@@ -5,6 +5,7 @@
 		_Width("Rect Width", Range(0,1)) = 1
 		_Height("Rect Height", Range(0,1)) = 1
 		_Radius("Roundness", Range(0,1)) = 1
+		_OutlineColor("Outline Color",Color) = (0,0,0,0)
 	}
 	SubShader
 	{
@@ -35,6 +36,7 @@
 			};
 
 			float4 _MainColor;
+			float4 _OutlineColor;
 
 			v2f vert (appdata v)
 			{
@@ -62,6 +64,9 @@
 				finalColor.a = f;
 				finalColor.rgb = i.color.rgb;
 				finalColor.a *= i.color.a;
+				int outline = lerp(0, 1, step(0.9, d));
+				finalColor.rgb = lerp(finalColor.rgb, _OutlineColor,outline);
+				finalColor.a = saturate(finalColor.a + (outline * step(0.01,finalColor.a)));
 				return finalColor;
 			}
 			ENDCG

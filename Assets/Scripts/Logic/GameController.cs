@@ -112,6 +112,7 @@ public class GameController : MonoBehaviour {
 			StartCoroutine(ReInitiliazeGameAfter());
 		} else {
 			targetTimeScale = 0.01f;
+			PanelManager.Instance.TryOpenPanel(1);
 		}
 	}
 
