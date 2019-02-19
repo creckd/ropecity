@@ -106,12 +106,12 @@ public class GameController : MonoBehaviour {
 
 		currentGameState = GameState.GameFinished;
 		GameFinished(success);
+		HideUIHookAid();
 		if (!success) {
 			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 			StartCoroutine(ReInitiliazeGameAfter());
 		} else {
-			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
-			StartCoroutine(ReInitiliazeGameAfter());
+			targetTimeScale = 0.01f;
 		}
 	}
 

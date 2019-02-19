@@ -55,7 +55,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Release(int inputIndex) {
-		if (!gameObject.activeSelf)
+		if (!gameObject.activeSelf || GameController.Instance.currentGameState == GameState.GameFinished)
 			return;
 		if (currentHoldID == inputIndex) {
 			currentHoldID = -1;
@@ -70,7 +70,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Tap(int inputIndex) {
-		if (!gameObject.activeSelf)
+		if (!gameObject.activeSelf || GameController.Instance.currentGameState == GameState.GameFinished)
 			return;
 		if (currentHoldID == inputIndex)
 			Release(inputIndex);
@@ -152,24 +152,26 @@ public class Worm : MonoBehaviour {
 		if (rotationEnabled) {
 			transform.Rotate(new Vector3(0f, 0f, Time.deltaTime * ConfigDatabase.Instance.rotationSpeed));
 		}
-		if (landedHook) {
-			RefreshWormRotation();
-			CheckILastHitPointIsNotNeccessaryAnymore();
-			LookForHookCollision();
-		} else {
-			Vector3 hitPosition;
-			if (FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
-				GameController.Instance.FoundPotentionalHitPoint(hitPosition);
-				GameController.Instance.ShowUIHookAid();
+		if (GameController.Instance.currentGameState != GameState.GameFinished) {
+			if (landedHook) {
+				RefreshWormRotation();
+				CheckILastHitPointIsNotNeccessaryAnymore();
+				LookForHookCollision();
 			} else {
-				GameController.Instance.HideUIHookAid();
+				Vector3 hitPosition;
+				if (FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
+					GameController.Instance.FoundPotentionalHitPoint(hitPosition);
+					GameController.Instance.ShowUIHookAid();
+				} else {
+					GameController.Instance.HideUIHookAid();
+				}
 			}
-		}
-		if (!landedHook && currentHoldID != -1) {
-			currentHookSearchDistance += Time.deltaTime * ConfigDatabase.Instance.ropeShootSpeed;
-			SearchForHitPoint(true);
-			if (currentHookSearchDistance >= ConfigDatabase.Instance.maxRopeDistance && !landedHook)
-				Release(currentHoldID);
+			if (!landedHook && currentHoldID != -1) {
+				currentHookSearchDistance += Time.deltaTime * ConfigDatabase.Instance.ropeShootSpeed;
+				SearchForHitPoint(true);
+				if (currentHookSearchDistance >= ConfigDatabase.Instance.maxRopeDistance && !landedHook)
+					Release(currentHoldID);
+			}
 		}
 		SimulatePhysics();
 		CheckIfOutOfBoundaries();
@@ -265,6 +267,9 @@ public class Worm : MonoBehaviour {
 	}
 
 	public void Die() {
+		if (GameController.Instance.currentGameState == GameState.GameFinished)
+			return;
+
 		GameController.Instance.FinishGame(false);
 
 		InputController.Instance.TapHappened -= Tap;
@@ -294,20 +299,14 @@ public class Worm : MonoBehaviour {
 			if (velocity.magnitude > 0.01f) {
 				velocity = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
 			}
-		} else if (collision.collider.CompareTag("Finish")) {
-			if (velocity.magnitude > 0.01f) {
-				velocity = Vector2.Reflect(velocity, FindMedian(collision.contacts).medianNormal);
-			}
 		} else if (!collision.collider.CompareTag("LaunchPad")) {
 			Die();
 		}
 	}
 
 	private void OnCollisionStay(Collision collision) {
-		Debug.Log((FindMedian(collision.contacts).medianPoint - transform.position).normalized);
 			float dot = Vector3.Dot(velocity.normalized, (FindMedian(collision.contacts).medianPoint - transform.position).normalized);
 			dot = (dot + 1) / 2f;
-		Debug.Log(dot);
 			velocity *= 1 - dot;
 	}
 
