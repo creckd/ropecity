@@ -61,12 +61,13 @@
 				float d = length(max(0, uv)) / Radius;
 				float f = saturate((1 - d) / fwidth(d));
 				float4 finalColor;
-				finalColor.a = f;
+				finalColor.a = 1;
 				finalColor.rgb = i.color.rgb;
 				finalColor.a *= i.color.a;
-				int outline = lerp(0, 1, step(0.9, d));
+				finalColor.a *= f;
+				float outline = 1 - saturate(saturate((1-d) - 0.2) * 1 / fwidth(d));
 				finalColor.rgb = lerp(finalColor.rgb, _OutlineColor,outline);
-				finalColor.a = saturate(finalColor.a + (outline * step(0.01,finalColor.a)));
+				finalColor.a = lerp(finalColor.a, saturate(finalColor.a * 2), outline);
 				return finalColor;
 			}
 			ENDCG
