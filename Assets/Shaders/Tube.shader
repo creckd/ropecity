@@ -37,13 +37,14 @@ Shader "Dani/Tube"
 			sampler2D _Mask;
 			sampler2D _Liquid;
 			float4 _TilingDirection;
+			float4 _Liquid_ST;
 
 			v2f vert (appdata v)
 			{
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
 				o.vertexWorld = mul(unity_ObjectToWorld, v.vertex);
-				o.uv = v.uv;
+				o.uv =  v.uv;
 				return o;
 			}
 			
@@ -51,10 +52,9 @@ Shader "Dani/Tube"
 			{
 				float4 col = tex2D(_MainTex,i.uv);
 				float4 mask = tex2D(_Mask, i.uv);
-				float4 liquid = tex2D(_Liquid, (i.uv * 3) + float2(_TilingDirection.x * _Time.y * 0.5, _TilingDirection.y * _Time.y * 0.75));
+				float4 liquid = tex2D(_Liquid, (i.uv * float2(_Liquid_ST.x, _Liquid_ST.y)) + float2(_TilingDirection.x * _Time.y * 0.5, _TilingDirection.y * _Time.y * 0.75));
 				int transparentPart = saturate((1 - col.a) * 10);
 				int final = transparentPart * step(sin((i.vertexWorld.x + i.vertexWorld.y) / 2 * 2 + _Time.y * 5) * 0.02 + 0.5, mask.r);
-				//col.rgb -= final * 0.5;
 				col.rgb = lerp(col.rgb, liquid.rgb, final);
 				return col;
 			}
