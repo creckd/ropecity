@@ -26,12 +26,6 @@ public class IngamePanel : Panel {
 
 	public void SetCrossHairPosition(Vector3 worldPosition) {
 		crossHairTargetWorldPosition = worldPosition;
-		lastTimePositionWasChanged = Time.realtimeSinceStartup;
-		Vector3[] points = new Vector3[2];
-		points[0] = GameController.Instance.currentWorm.gunPositionObject.transform.position;
-		points[1] = worldPosition;
-		aiderLine.positionCount = 2;
-		aiderLine.SetPositions(points);
 	}
 
 	private void Update() {
@@ -42,5 +36,13 @@ public class IngamePanel : Panel {
 		ropeCrossHair.rectTransform.anchoredPosition = guiPosition;
 		ropeCrossHair.enabled = crossHairShouldBeShown;
 		aiderLine.enabled = crossHairShouldBeShown;
+	}
+
+	private void LateUpdate() {
+		Vector3[] points = new Vector3[2];
+		points[0] = GameController.Instance.currentWorm.gunPositionObject.transform.position;
+		points[1] = crossHairTargetWorldPosition;
+		aiderLine.positionCount = 2;
+		aiderLine.SetPositions(points);
 	}
 }
