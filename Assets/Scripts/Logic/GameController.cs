@@ -57,6 +57,7 @@ public class GameController : MonoBehaviour {
 			levelIndex = (int)levelMessage;
 			levelPath = LevelResourceDatabase.Instance.levelResourceNames[levelIndex];
 		}
+		LevelController.Instance.currentLevelIndex = levelIndex;
 		TextAsset levelAsset = (TextAsset)Resources.Load(levelPath, typeof(TextAsset));
 		LevelData data = LevelSerializer.DeserializeLevel(levelAsset.text);
 		LevelController.Instance.InitializeLevel(data);
@@ -133,6 +134,15 @@ public class GameController : MonoBehaviour {
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
 		StartTheGame();
+	}
+
+	public void BackToMainMenu() {
+		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+	}
+
+	public void RestartButton() {
+		Messenger.Instance.SendMessage(LevelSelectPanel.LevelIndexKey, LevelController.Instance.currentLevelIndex);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
 	}
 }
 
