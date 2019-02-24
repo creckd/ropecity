@@ -293,6 +293,7 @@ public class Worm : MonoBehaviour {
 		ragdoll.transform.SetParent(null);
 		foreach (var rb in ragdoll.GetComponentsInChildren<Rigidbody>()) {
 			rb.AddForce(velocity * 100f,ForceMode.Impulse);
+			rb.AddForce(Vector3.right * 20f * Vector3.Distance(rb.transform.position,transform.position), ForceMode.Impulse);
 		}
 		DestroyWorm();
 	}
