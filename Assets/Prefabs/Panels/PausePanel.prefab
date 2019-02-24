@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 75fd63e4bcf0c564aa4998eedc77763d, type: 2}
+  m_Material: {fileID: 2100000, guid: c0a894369118def42b17f5e0455b5aa5, type: 2}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   order: 0
-  fadeTime: 0.5
+  fadeTime: 0.25
 --- !u!222 &222143880958072534
 CanvasRenderer:
   m_ObjectHideFlags: 1

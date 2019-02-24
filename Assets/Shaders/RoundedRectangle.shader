@@ -5,6 +5,7 @@
 		_Width("Rect Width", Range(0,1)) = 1
 		_Height("Rect Height", Range(0,1)) = 1
 		_Radius("Roundness", Range(0,1)) = 1
+		_OutlineWidth("Outline Width",Range(0,1)) = 0.2
 		_OutlineColor("Outline Color",Color) = (0,0,0,0)
 	}
 	SubShader
@@ -50,6 +51,7 @@
 			float _Width;
 			float _Height;
 			float _Radius;
+			float _OutlineWidth;
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
@@ -59,13 +61,13 @@
 				Radius = max(min(min(abs(Radius * 2), abs(Width)), abs(Height)), 1e-5);
 				float2 uv = abs(i.uv * 2 - 1) - float2(Width, Height) + Radius;
 				float d = length(max(0, uv)) / Radius;
-				float f = saturate((1 - d) / fwidth(d));
+				float f = saturate((1 - d) / (fwidth(d) * 4));
 				float4 finalColor;
 				finalColor.a = 1;
 				finalColor.rgb = i.color.rgb;
 				finalColor.a *= i.color.a;
 				finalColor.a *= f;
-				float outline = 1 - saturate(saturate((1-d) - 0.2) * 1 / fwidth(d));
+				float outline = 1 - saturate(saturate((1-d) - _OutlineWidth) / (fwidth(d) * 4));
 				finalColor.rgb = lerp(finalColor.rgb, _OutlineColor,outline);
 				finalColor.a = lerp(finalColor.a, saturate(finalColor.a * 2), outline);
 				return finalColor;
