@@ -8,6 +8,6 @@ public class SimpleRotate : MonoBehaviour {
 	public float speed;
 
 	public void Update() {
-		transform.Rotate(axis * speed * Time.deltaTime);
+		transform.Rotate(axis * speed * Time.unscaledDeltaTime);
 	}
 }

@@ -55,6 +55,41 @@ MonoBehaviour:
   normalSpeed: 1
   slowMotionSpeed: 0.4
   allTimeMininmumWorldY: -10
+  finishingSlowMotionTime: 0.75
+  finishingBlurTime: 0.5
+  finishSlowMotionCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 3.8823526
+      outSlope: 3.8823526
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.28851473
+    - serializedVersion: 3
+      time: 0.24551028
+      value: 0.6788408
+      inSlope: 1.1662393
+      outSlope: 1.1662393
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.15907459
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.033632416
+      outSlope: 0.033632416
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   gravityScale: 0.5
   wormMass: 20
   swingForceMultiplier: 2
@@ -63,7 +98,7 @@ MonoBehaviour:
   maxRopeDistance: 28
   pullForceMultiplier: 1
   maximumRewardedAngleForPullForce: 60
-  remainingVelocityPercentAfterBounce: 0.75
+  remainingVelocityPercentAfterBounce: 1
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}
   cannonShootDirection: {x: 1, y: 0.8}

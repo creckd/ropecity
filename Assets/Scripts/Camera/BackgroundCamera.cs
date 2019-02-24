@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class BackgroundCamera : MonoBehaviour {
 
+	private static BackgroundCamera instance = null;
+	public static BackgroundCamera Instance {
+		get {
+			if (instance == null) {
+				instance = FindObjectOfType<BackgroundCamera>();
+			}
+			return instance;
+		}
+	}
+
 	public GameObject backGround;
 
-	private Camera thisCamera;
+	public Camera thisCamera;
 
 	private void Awake() {
 		thisCamera = GetComponent<Camera>();

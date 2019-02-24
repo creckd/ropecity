@@ -47,6 +47,9 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void InitializeGame() {
+		QualitySettings.vSyncCount = 0;
+		Application.targetFrameRate = 300;
+
 		LandedHook += UnSlowTime;
 		ReleasedHook += SlowTime;
 
@@ -93,6 +96,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Update() {
+		if(currentGameState != GameState.GameFinished)
 		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * 7.5f);
 	}
 
@@ -112,9 +116,21 @@ public class GameController : MonoBehaviour {
 			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 			StartCoroutine(ReInitiliazeGameAfter());
 		} else {
-			targetTimeScale = 0.01f;
-			PanelManager.Instance.TryOpenPanel(1);
+			StartCoroutine(FinishingCoroutine());
 		}
+	}
+
+	IEnumerator FinishingCoroutine() {
+		float timer = 0f;
+		float deftimeScale = Time.timeScale;
+		while (timer <= ConfigDatabase.Instance.finishingSlowMotionTime) {
+			timer += Time.unscaledDeltaTime;
+			Time.timeScale = Mathf.Lerp(deftimeScale, 0f, ConfigDatabase.Instance.finishSlowMotionCurve.Evaluate(timer / ConfigDatabase.Instance.finishingSlowMotionTime));
+			yield return null;
+		}
+		Time.timeScale = 0f;
+		PanelManager.Instance.TryOpenPanel(1);
+		IngameBlurController.Instance.BlurImage(ConfigDatabase.Instance.finishingBlurTime);
 	}
 
 	IEnumerator ReInitiliazeGameAfter() {

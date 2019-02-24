@@ -18,6 +18,11 @@ public class ConfigDatabase : MonoBehaviour {
 	public float slowMotionSpeed = 0.5f;
 	public float allTimeMininmumWorldY = 0f;
 
+	[Header("Finish")]
+	public float finishingSlowMotionTime = 0.5f;
+	public float finishingBlurTime = 0.5f;
+	public AnimationCurve finishSlowMotionCurve;
+
 	[Header("Worm")]
 	public float gravityScale = 0.2f;
 	public float wormMass = 100;
