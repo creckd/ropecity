@@ -6,7 +6,8 @@ public enum GameState {
 	NotInitialized,
 	Initialized,
 	GameStarted,
-	GameFinished
+	GameFinished,
+	GamePaused
 }
 
 public class GameController : MonoBehaviour {
@@ -96,7 +97,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Update() {
-		if(currentGameState != GameState.GameFinished)
+		if(currentGameState != GameState.GameFinished && currentGameState != GameState.GamePaused)
 		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * 7.5f);
 	}
 
@@ -150,6 +151,24 @@ public class GameController : MonoBehaviour {
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
 		StartTheGame();
+	}
+
+	public void PauseGame() {
+		if (currentGameState == GameState.GameStarted) {
+			currentGameState = GameState.GamePaused;
+			Time.timeScale = 0f;
+			IngameBlurController.Instance.BlurImage(ConfigDatabase.Instance.pauseBlurTime, true);
+			PanelManager.Instance.TryOpenPanel(2);
+		}
+	}
+
+	public void ResumeGame() {
+		if (currentGameState == GameState.GamePaused) {
+			PanelManager.Instance.TryOpenPanel(0);
+			IngameBlurController.Instance.UnBlurImage(ConfigDatabase.Instance.pauseBlurTime);
+			currentGameState = GameState.GameStarted;
+			Time.timeScale = targetTimeScale;
+		}
 	}
 
 	public void BackToMainMenu() {

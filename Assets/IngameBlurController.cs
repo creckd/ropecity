@@ -21,22 +21,26 @@ public class IngameBlurController : MonoBehaviour {
 		blurApplier.enabled = false;
 	}
 
-	public void BlurImage(float blurTime = 1f) {
+	public void BlurImage(float blurTime = 1f, bool greyScale = false) {
+		currentlyBlured = true;
 		StaticBlurCreator.Instance.CreateStaticBlurImage();
 		blurApplier.mat.SetTexture("_SecondTex", Shader.GetGlobalTexture(StaticBlurCreator.renderTextureGlobalPropName));
+		blurApplier.mat.SetInt("_GreyScale", greyScale ? 1 : 0);
 		blurApplier.mat.SetFloat("_T", 0f);
 		blurApplier.enabled = true;
 		StartCoroutine(Blur(0f, 1f, blurTime));
 	}
 
 	public void UnBlurImage(float blurTime = 1f) {
+		currentlyBlured = false;
+		StartCoroutine(Blur(1f, 0f, blurTime));
 	}
 
 	IEnumerator Blur(float from, float target, float time) {
 		float timer = 0f;
 		while (timer < time) {
 			timer += Time.unscaledDeltaTime;
-			blurApplier.mat.SetFloat("_T", timer / time);
+			blurApplier.mat.SetFloat("_T", Mathf.Lerp(from,target,timer / time));
 			yield return null;
 		}
 		blurApplier.mat.SetFloat("_T", target);

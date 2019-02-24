@@ -5,6 +5,7 @@
 		_MainTex("Main Texture",2D) = "white" {}
 		_SecondTex("Second Texture",2D) = "white" {}
 		_T("T Value",Range(0,1)) = 0
+		_GreyScale("GreyScale",int) = 0
 	}
 	SubShader
 	{
@@ -35,6 +36,7 @@
 			sampler2D _MainTex;
 			sampler2D _SecondTex;
 			float _T;
+			int _GreyScale;
 
 			v2f vert (appdata v)
 			{
@@ -48,6 +50,7 @@
 			{
 				half4 fTex = tex2D(_MainTex,i.uv);
 				half4 sTex = tex2D(_SecondTex, i.uv);
+				sTex.rgb = lerp(sTex.rgb, dot(sTex.rgb, float3(0.3, 0.59, 0.11)), _GreyScale);
 				return lerp(fTex, sTex, _T);
 			}
 			ENDCG
