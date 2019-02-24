@@ -29,11 +29,6 @@ public class IngamePanel : Panel {
 	}
 
 	private void Update() {
-		Vector3 screenPosition = Camera.main.WorldToScreenPoint(crossHairTargetWorldPosition);
-		Vector3 screenPositionNormalized = new Vector3(screenPosition.x / Camera.main.pixelWidth, screenPosition.y / Camera.main.pixelHeight, 0f);
-		RectTransform mainCanvasRect = PanelManager.Instance.mainCanvasRect;
-		Vector3 guiPosition = new Vector3(screenPositionNormalized.x * mainCanvasRect.rect.width, screenPositionNormalized.y * mainCanvasRect.rect.height, 0f);
-		ropeCrossHair.rectTransform.anchoredPosition = guiPosition;
 		ropeCrossHair.enabled = crossHairShouldBeShown;
 		aiderLine.enabled = crossHairShouldBeShown;
 	}
@@ -45,6 +40,12 @@ public class IngamePanel : Panel {
 			points[1] = crossHairTargetWorldPosition;
 			aiderLine.positionCount = 2;
 			aiderLine.SetPositions(points);
+
+			Vector3 screenPosition = Camera.main.WorldToScreenPoint(crossHairTargetWorldPosition);
+			Vector3 screenPositionNormalized = new Vector3(screenPosition.x / Camera.main.pixelWidth, screenPosition.y / Camera.main.pixelHeight, 0f);
+			RectTransform mainCanvasRect = PanelManager.Instance.mainCanvasRect;
+			Vector3 guiPosition = new Vector3(screenPositionNormalized.x * mainCanvasRect.rect.width, screenPositionNormalized.y * mainCanvasRect.rect.height, 0f);
+			ropeCrossHair.rectTransform.anchoredPosition = guiPosition;
 		}
 	}
 }
