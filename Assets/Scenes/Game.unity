@@ -892,6 +892,9 @@ GameObject:
   - component: {fileID: 369971036}
   - component: {fileID: 369971035}
   - component: {fileID: 369971038}
+  - component: {fileID: 369971039}
+  - component: {fileID: 369971041}
+  - component: {fileID: 369971040}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1007,6 +1010,45 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   sweepingTime: 1
+--- !u!114 &369971039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 369971034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a767357db88816742b1a7210743be684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertical: {fileID: 2100000, guid: 34e63e81479495448aafd7b88a05a200, type: 2}
+  horizontal: {fileID: 2100000, guid: 135016df85210524b8f50ad035105b7a, type: 2}
+  downScale: 4
+  iterations: 4
+--- !u!114 &369971040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 369971034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d8ed22d9a50b54e9806d257c3ba623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 2b9e7a9506ba3354eb731d7cc2e9edec, type: 2}
+--- !u!114 &369971041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 369971034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0bcb60d732eb5e41b62663e01243e60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blurApplier: {fileID: 369971040}
 --- !u!1 &384132107
 GameObject:
   m_ObjectHideFlags: 0
@@ -2238,6 +2280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backGround: {fileID: 1034100918}
+  thisCamera: {fileID: 0}
 --- !u!20 &985699921
 Camera:
   m_ObjectHideFlags: 0
@@ -7696,6 +7739,11 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 225628961824951170, guid: 040d5adde1e7022469c4ebee569e4f7a,
+        type: 2}
+      propertyPath: m_Alpha
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 040d5adde1e7022469c4ebee569e4f7a, type: 2}

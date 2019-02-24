@@ -201,11 +201,19 @@ public class Worm : MonoBehaviour {
 		isGrounded = hit.collider != null;
 	}
 
+	private bool secondChanceUsed = false;
+
 	private void CheckIfOutOfBoundaries() {
 		if (GameController.Instance.currentGameState != GameState.GameStarted)
 			return;
-		if (transform.position.y < ConfigDatabase.Instance.allTimeMininmumWorldY)
-			Die();
+		if (transform.position.y < ConfigDatabase.Instance.allTimeMininmumWorldY) {
+			if (!secondChanceUsed) {
+				secondChanceUsed = true;
+				velocity = Vector2.Reflect(velocity, Vector2.up);
+			} else {
+				Die();
+			}
+		}
 	}
 
 	private void SimulatePhysics() {
@@ -303,7 +311,7 @@ public class Worm : MonoBehaviour {
 	private void OnCollisionEnter(Collision collision) {
 		if (landedHook) {
 			if (velocity.magnitude > 0.01f) {
-				velocity = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
+				velocity = velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
 			}
 		} else if (!collision.collider.CompareTag("LaunchPad")) {
 			Die();
