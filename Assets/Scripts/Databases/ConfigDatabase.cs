@@ -23,6 +23,9 @@ public class ConfigDatabase : MonoBehaviour {
 	public float finishingBlurTime = 0.5f;
 	public AnimationCurve finishSlowMotionCurve;
 
+	[Header("Pause")]
+	public float pauseBlurTime = 0.5f;
+
 	[Header("Worm")]
 	public float gravityScale = 0.2f;
 	public float wormMass = 100;

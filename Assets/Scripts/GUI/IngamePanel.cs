@@ -29,8 +29,8 @@ public class IngamePanel : Panel {
 	}
 
 	private void Update() {
-		ropeCrossHair.enabled = crossHairShouldBeShown;
-		aiderLine.enabled = crossHairShouldBeShown;
+		ropeCrossHair.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
+		aiderLine.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
 	}
 
 	private void LateUpdate() {
@@ -47,5 +47,9 @@ public class IngamePanel : Panel {
 			Vector3 guiPosition = new Vector3(screenPositionNormalized.x * mainCanvasRect.rect.width, screenPositionNormalized.y * mainCanvasRect.rect.height, 0f);
 			ropeCrossHair.rectTransform.anchoredPosition = guiPosition;
 		}
+	}
+
+	public void PauseButton() {
+		GameController.Instance.PauseGame();
 	}
 }
