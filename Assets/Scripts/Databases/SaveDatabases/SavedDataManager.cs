@@ -21,7 +21,6 @@ public class SavedDataManager : MonoBehaviour {
 
 	private void Awake() {
 		DontDestroyOnLoad(this.gameObject);
-		Load();
 	}
 
 	private void Save(SavedData data, string filePath) {
@@ -48,7 +47,20 @@ public class SavedDataManager : MonoBehaviour {
 		return savedData.levelSaveDatabase;
 	}
 
-	private void Load() {
+	public string GetLevelIDWithLevelIndex(int levelIndex) {
+		return LevelResourceDatabase.Instance.levelResourceNames[levelIndex];
+	}
+
+	public LevelSaveDatabase.LevelSaveData GetLevelSaveDataWithID(string levelID) {
+		for (int i = 0; i < savedData.levelSaveDatabase.levelSaveDatas.Length; i++) {
+			if (savedData.levelSaveDatabase.levelSaveDatas[i].levelID == levelID)
+				return savedData.levelSaveDatabase.levelSaveDatas[i];
+		}
+		return null;
+		throw new System.Exception("nincs mentés erről a levelID-ról");
+	}
+
+	public void Load() {
 		bool saveExists = File.Exists(Application.persistentDataPath + fileName);
 
 		if (!saveExists) {

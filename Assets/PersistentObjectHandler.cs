@@ -23,5 +23,6 @@ public class PersistentObjectHandler : MonoBehaviour {
 		for (int i = 0; i < persistentObjects.Length; i++) {
 			Instantiate(persistentObjects[i].gameObject, Vector3.zero, Quaternion.identity);
 		}
+		SavedDataManager.Instance.Load();
 	}
 }
