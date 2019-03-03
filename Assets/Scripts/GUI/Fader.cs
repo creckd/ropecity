@@ -9,6 +9,7 @@ public class Fader : MonoBehaviour {
 
 	public int order;
 	public float fadeTime = 1f;
+	public float delay = 0f;
 
 	private CanvasGroup cG;
 
@@ -26,6 +27,7 @@ public class Fader : MonoBehaviour {
 	}
 
 	IEnumerator Fade(float fromValue, float tarValue) {
+		yield return new WaitForSeconds(delay);
 		float timer = 0f;
 		while (timer <= fadeTime) {
 			timer += Time.unscaledDeltaTime;
