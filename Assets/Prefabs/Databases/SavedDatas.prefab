@@ -9,55 +9,45 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1326395916836230}
+  m_RootGameObject: {fileID: 1509764768564830}
   m_IsPrefabAsset: 1
---- !u!1 &1326395916836230
+--- !u!1 &1509764768564830
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4281452804235484}
-  - component: {fileID: 114254918993213756}
+  - component: {fileID: 4744464021175222}
+  - component: {fileID: 114733628389784262}
   m_Layer: 0
-  m_Name: LevelResourceDatabase
+  m_Name: SavedDatas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4281452804235484
+--- !u!4 &4744464021175222
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1326395916836230}
+  m_GameObject: {fileID: 1509764768564830}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.575413, y: 6.497753, z: 90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114254918993213756
+--- !u!114 &114733628389784262
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1326395916836230}
+  m_GameObject: {fileID: 1509764768564830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec1b8437b7da742419bcc63fa4b9155f, type: 3}
+  m_Script: {fileID: 11500000, guid: 52812aaaf244baf489076d45e7d3ed3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelResourceNames:
-  - dani_001
-  - dani_002
-  - dani_003
-  - dani_002
-  - dani_002
-  - dani_002
-  - dani_002
-  - dani_002
-  - dani_002

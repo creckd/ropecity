@@ -17,10 +17,6 @@ public class Messenger : MonoBehaviour {
 	public Dictionary<string, object> messages = new Dictionary<string, object>();
 
 	void Awake() {
-		if (Instance != this) {
-			Destroy(this.gameObject);
-			return;
-		}
 		DontDestroyOnLoad(this.gameObject);
 	}
 
