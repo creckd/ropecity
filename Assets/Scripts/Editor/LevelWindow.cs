@@ -8,6 +8,11 @@ public class LevelWindow : EditorWindow {
 		GetWindow<LevelWindow>(false, "Level Window", true);
 	}
 
+	[MenuItem("Rope City/Delete Local Save")]
+	public static void DeleteSave() {
+		SavedDataManager.DeleteLocalSave();
+	}
+
 	string levelName = "";
 	string levelPath = "";
 

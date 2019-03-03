@@ -14,10 +14,6 @@ public class LevelResourceDatabase : MonoBehaviour {
 	}
 
 	private void Awake() {
-		if (Instance != this) {
-			Destroy(this.gameObject);
-			return;
-		}
 		DontDestroyOnLoad(this.gameObject);
 	}
 

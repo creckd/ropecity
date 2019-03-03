@@ -12,6 +12,11 @@ public class ConfigDatabase : MonoBehaviour {
 			return instance;
 		}
 	}
+
+	private void Awake() {
+		DontDestroyOnLoad(this.gameObject);
+	}
+
 	[Header("Game")]
 	public float reinitalizingDuration = 1f;
 	public float normalSpeed = 1f;
