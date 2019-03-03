@@ -538,6 +538,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelNumberText: {fileID: 114281670717760420}
+  levelButton: {fileID: 114792118178123718}
+  levelButtonImage: {fileID: 114678929783005748}
+  unlockedSpriteState_passive: {fileID: 21300000, guid: 41b35a20b0200064c93d96ed76b47aaa,
+    type: 3}
+  unlockedSpriteState_active: {fileID: 21300000, guid: 548b4f22fa270a445806d67fbe464fbb,
+    type: 3}
+  completedSpriteState_passive: {fileID: 21300000, guid: fb192e048aacd2141ae23801d6b3b18e,
+    type: 3}
+  completedSpriteState_active: {fileID: 21300000, guid: d561eb4271ed95a41ba2f2e1abf9cc3b,
+    type: 3}
+  chains: {fileID: 1289077675553464}
 --- !u!114 &114677939142700298
 MonoBehaviour:
   m_ObjectHideFlags: 1
