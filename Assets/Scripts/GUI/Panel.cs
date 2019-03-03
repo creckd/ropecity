@@ -38,18 +38,20 @@ public class Panel : MonoBehaviour {
 			for (int i = 0; i < faders.Count; i++) {
 				currentOrder = faders[i].order;
 				if (i < faders.Count-1 && faders[i + 1].order == currentOrder) {
-					float highestWaitingTime = faders[i].fadeTime;
+					float highestWaitingTime = faders[i].fadeTime + faders[i].delay;
 					while (i < faders.Count - 1 && faders[i + 1].order == currentOrder) {
 						faders[i].FadeIn();
-						if (faders[i + 1].fadeTime >= highestWaitingTime)
-							highestWaitingTime = faders[i].fadeTime;
+						if (faders[i + 1].fadeTime + faders[i + 1].delay >= highestWaitingTime)
+							highestWaitingTime = faders[i].fadeTime + faders[i].delay;
 						i++;
 					}
+					if (faders[i].delay + faders[i].fadeTime > highestWaitingTime)
+						highestWaitingTime = faders[i].fadeTime + faders[i].delay;
 					faders[i].FadeIn();
 					yield return new WaitForSecondsRealtime(highestWaitingTime);
 				} else {
 					faders[i].FadeIn();
-					yield return new WaitForSecondsRealtime(faders[i].fadeTime);
+					yield return new WaitForSecondsRealtime(faders[i].fadeTime + faders[i].delay);
 				}
 			}
 		} else {
@@ -68,18 +70,20 @@ public class Panel : MonoBehaviour {
 			for (int i = 0; i < faders.Count; i++) {
 				currentOrder = faders[i].order;
 				if (i < faders.Count-1 && faders[i + 1].order == currentOrder) {
-					float highestWaitingTime = faders[i].fadeTime;
+					float highestWaitingTime = faders[i].fadeTime + faders[i].delay;
 					while (i < faders.Count - 1 && faders[i + 1].order == currentOrder) {
 						faders[i].FadeOut();
-						if (faders[i + 1].fadeTime >= highestWaitingTime)
-							highestWaitingTime = faders[i].fadeTime;
+						if (faders[i + 1].fadeTime + faders[i+1].delay >= highestWaitingTime)
+							highestWaitingTime = faders[i].fadeTime + faders[i].delay;
 						i++;
 					}
+					if (faders[i].delay + faders[i].fadeTime > highestWaitingTime)
+						highestWaitingTime = faders[i].fadeTime + faders[i].delay;
 					faders[i].FadeOut();
 					yield return new WaitForSecondsRealtime(highestWaitingTime);
 				} else {
 					faders[i].FadeOut();
-					yield return new WaitForSecondsRealtime(faders[i].fadeTime);
+					yield return new WaitForSecondsRealtime(faders[i].fadeTime + faders[i].delay);
 				}
 			}
 		} else {

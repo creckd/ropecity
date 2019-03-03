@@ -2812,6 +2812,26 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114871370227180086, guid: 4a98f3c66647ef8468451c2951c83b01,
+        type: 2}
+      propertyPath: order
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255462410070534, guid: 4a98f3c66647ef8468451c2951c83b01,
+        type: 2}
+      propertyPath: order
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114871370227180086, guid: 4a98f3c66647ef8468451c2951c83b01,
+        type: 2}
+      propertyPath: delay
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 114255462410070534, guid: 4a98f3c66647ef8468451c2951c83b01,
+        type: 2}
+      propertyPath: delay
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a98f3c66647ef8468451c2951c83b01, type: 2}
   m_IsPrefabAsset: 0
