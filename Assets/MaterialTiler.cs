@@ -9,9 +9,11 @@ public class MaterialTiler : MonoBehaviour {
 	public float speed = 1f;
 
 	private float timer;
+	private LineRenderer lineRenderer;
 
 	private void Awake() {
-		mat = GetComponent<LineRenderer>().material;
+		lineRenderer = GetComponent<LineRenderer>();
+		mat = lineRenderer.material;
 	}
 
 	private void Update() {
