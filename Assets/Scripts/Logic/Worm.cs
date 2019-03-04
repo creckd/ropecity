@@ -201,18 +201,11 @@ public class Worm : MonoBehaviour {
 		isGrounded = hit.collider != null;
 	}
 
-	private bool secondChanceUsed = false;
-
 	private void CheckIfOutOfBoundaries() {
 		if (GameController.Instance.currentGameState != GameState.GameStarted)
 			return;
 		if (transform.position.y < ConfigDatabase.Instance.allTimeMininmumWorldY) {
-			if (!secondChanceUsed) {
-				secondChanceUsed = true;
-				velocity = Vector2.Reflect(velocity, Vector2.up);
-			} else {
 				Die();
-			}
 		}
 	}
 
