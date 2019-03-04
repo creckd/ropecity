@@ -63,9 +63,9 @@ public class Panel : MonoBehaviour {
 	}
 
 	IEnumerator ClosingAnimation(Action closedCallBack) {
-		faders = faders.OrderBy(x => x.order).ToList();
+		faders = faders.OrderByDescending(x => x.order).ToList();
 		if (faders.Count > 0) {
-			faders = faders.OrderBy(x => x.order).ToList();
+			faders = faders.OrderByDescending(x => x.order).ToList();
 			int currentOrder;
 			for (int i = 0; i < faders.Count; i++) {
 				currentOrder = faders[i].order;
