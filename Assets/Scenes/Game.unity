@@ -8204,6 +8204,8 @@ GameObject:
   - component: {fileID: 1205374544}
   - component: {fileID: 1205374545}
   - component: {fileID: 1205374547}
+  - component: {fileID: 1205374549}
+  - component: {fileID: 1205374548}
   m_Layer: 0
   m_Name: GuiCamera
   m_TagString: Untagged
@@ -8283,6 +8285,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thisCamera: {fileID: 0}
+--- !u!114 &1205374548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1205374543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38db8ff0b30bbb4a9678fb4a8b46f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  imageEffectApplier: {fileID: 1205374549}
+  transitionTime: 1
+--- !u!114 &1205374549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1205374543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19d8ed22d9a50b54e9806d257c3ba623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 17488af95a201664f9b08037797f6600, type: 2}
 --- !u!4 &1205781623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4573588348356560, guid: 931d6e04edcf85542b862293c381c055,

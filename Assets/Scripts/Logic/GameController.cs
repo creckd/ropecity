@@ -102,6 +102,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame() {
+		ImageTransitionHandler.Instance.TransitionOut();
 		GameStarted();
 		currentGameState = GameState.GameStarted;
 	}
