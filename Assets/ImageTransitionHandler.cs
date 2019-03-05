@@ -18,7 +18,9 @@ public class ImageTransitionHandler : MonoBehaviour {
 	public float transitionTime = 1f;
 
 	private const string _TProperty = "_T";
+	private const string withLoadingTextProperty = "_UseLoadingText";
 	private static float t = 0f;
+	private static bool usingLoadingText = false;
 
 	private bool currentlyTransitioning = false;
 	private Coroutine currentTransitionerCoroutine = null;
@@ -38,20 +40,26 @@ public class ImageTransitionHandler : MonoBehaviour {
 		}
 	}
 
-	public void TransitionIn() {
-		TransitionIn(delegate { });
+	public void TransitionIn(bool withLoadingText = false) {
+		usingLoadingText = withLoadingText;
+		material.SetInt(withLoadingTextProperty, usingLoadingText ? 1 : 0);
+		TransitionIn(delegate { },withLoadingText);
 	}
 
-	public void TransitionIn(Action callBack) {
+	public void TransitionIn(Action callBack, bool withLoadingText = false) {
+		usingLoadingText = withLoadingText;
+		material.SetInt(withLoadingTextProperty, usingLoadingText ? 1 : 0);
 		StopCurrentTransitionIfExists();
 		currentTransitionerCoroutine = StartCoroutine(TransitionRoutine(0f, 1f,callBack));
 	}
 
 	public void TransitionOut() {
+		material.SetInt(withLoadingTextProperty, usingLoadingText ? 1 : 0);
 		TransitionOut(delegate { });
 	}
 
 	public void TransitionOut(Action callBack) {
+		material.SetInt(withLoadingTextProperty, usingLoadingText ? 1 : 0);
 		StopCurrentTransitionIfExists();
 		currentTransitionerCoroutine = StartCoroutine(TransitionRoutine(1f, 0f,callBack));
 	}
