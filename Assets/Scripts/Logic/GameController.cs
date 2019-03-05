@@ -102,7 +102,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame() {
-		ImageTransitionHandler.Instance.TransitionOut();
 		GameStarted();
 		currentGameState = GameState.GameStarted;
 	}
@@ -136,7 +135,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator ReInitiliazeGameAfter() {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0f);
 		if (currentWorm != null)
 			currentWorm.Die();
 		ReInitGame();
@@ -147,10 +146,13 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator ReinitializingGame() {
+		ImageTransitionHandler.Instance.TransitionIn();
+		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
 		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 		canStartSlowingTime = false;
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
+		ImageTransitionHandler.Instance.TransitionOut();
 		StartTheGame();
 	}
 
@@ -173,10 +175,22 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void BackToMainMenu() {
+		StartCoroutine(BackToMainMenuRoutine());
+	}
+
+	IEnumerator BackToMainMenuRoutine() {
+		ImageTransitionHandler.Instance.TransitionIn();
+		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 	}
 
 	public void RestartButton() {
+		StartCoroutine(RestartButtonRoutine());
+	}
+
+	IEnumerator RestartButtonRoutine() {
+		ImageTransitionHandler.Instance.TransitionIn();
+		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
 		Messenger.Instance.SendMessage(LevelSelectPanel.LevelIndexKey, LevelController.Instance.currentLevelIndex);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
 	}

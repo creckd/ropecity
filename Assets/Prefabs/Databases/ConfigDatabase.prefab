@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6960ddb980c9594abb49733e74f3841, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reinitalizingDuration: 0.5
+  reinitalizingDuration: 0.01
   normalSpeed: 1
   slowMotionSpeed: 0.4
   allTimeMininmumWorldY: -10
