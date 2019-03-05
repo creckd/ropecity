@@ -36,6 +36,10 @@ public class LevelSelectPanel : Panel {
 	}
 
 	public void PlayLevel(int levelIndex) {
+		ImageTransitionHandler.Instance.TransitionIn(() => { StartLevel(levelIndex); });
+	}
+
+	private void StartLevel(int levelIndex) {
 		Messenger.Instance.SendMessage(LevelIndexKey, levelIndex);
 		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
 	}

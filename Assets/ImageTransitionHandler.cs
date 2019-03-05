@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ public class ImageTransitionHandler : MonoBehaviour {
 	private static ImageTransitionHandler instance = null;
 	public static ImageTransitionHandler Instance {
 		get {
-			if (instance = null)
+			if (instance == null)
 				instance = FindObjectOfType<ImageTransitionHandler>();
 			return instance;
 		}
@@ -25,7 +26,6 @@ public class ImageTransitionHandler : MonoBehaviour {
 
 	private void Awake() {
 		Initialize();
-		TransitionIn();
 	}
 
 	private void Initialize() {
@@ -37,13 +37,21 @@ public class ImageTransitionHandler : MonoBehaviour {
 	}
 
 	public void TransitionIn() {
+		TransitionIn(delegate { });
+	}
+
+	public void TransitionIn(Action callBack) {
 		StopCurrentTransitionIfExists();
-		currentTransitionerCoroutine = StartCoroutine(TransitionRoutine(0f, 1f));
+		currentTransitionerCoroutine = StartCoroutine(TransitionRoutine(0f, 1f,callBack));
 	}
 
 	public void TransitionOut() {
+		TransitionOut(delegate { });
+	}
+
+	public void TransitionOut(Action callBack) {
 		StopCurrentTransitionIfExists();
-		currentTransitionerCoroutine = StartCoroutine(TransitionRoutine(1f, 0f));
+		currentTransitionerCoroutine = StartCoroutine(TransitionRoutine(1f, 0f,callBack));
 	}
 
 	private void StopCurrentTransitionIfExists() {
@@ -53,8 +61,7 @@ public class ImageTransitionHandler : MonoBehaviour {
 		}
 	}
 
-	IEnumerator TransitionRoutine(float fromValue, float tarValue) {
-		yield return new WaitForSeconds(1f);
+	IEnumerator TransitionRoutine(float fromValue, float tarValue, Action finishCallBack) {
 		currentlyTransitioning = true;
 		if (tarValue == 1f)
 			imageEffectApplier.enabled = true;
@@ -69,6 +76,8 @@ public class ImageTransitionHandler : MonoBehaviour {
 		material.SetFloat(_TProperty, t);
 		if (tarValue == 0f)
 			imageEffectApplier.enabled = false;
+		if (finishCallBack != null)
+			finishCallBack();
 		currentlyTransitioning = false;
 	}
 
