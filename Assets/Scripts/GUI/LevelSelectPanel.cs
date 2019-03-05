@@ -36,7 +36,7 @@ public class LevelSelectPanel : Panel {
 	}
 
 	public void PlayLevel(int levelIndex) {
-		ImageTransitionHandler.Instance.TransitionIn(() => { StartLevel(levelIndex); });
+		ImageTransitionHandler.Instance.TransitionIn(() => { StartLevel(levelIndex); },true);
 	}
 
 	private void StartLevel(int levelIndex) {
