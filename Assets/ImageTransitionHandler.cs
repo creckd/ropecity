@@ -26,6 +26,8 @@ public class ImageTransitionHandler : MonoBehaviour {
 
 	private void Awake() {
 		Initialize();
+		if (t == 1f)
+			TransitionOut();
 	}
 
 	private void Initialize() {
