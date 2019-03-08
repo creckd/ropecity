@@ -114,8 +114,13 @@ public class Worm : MonoBehaviour {
 		float maximumRewardedAngle = ConfigDatabase.Instance.maximumRewardedAngleForPullForce;
 		float effectivenessMultiplier = Mathf.Clamp((180f - Mathf.Abs(angle - 45f)) - (180f - maximumRewardedAngle), 0f, maximumRewardedAngle);
 		effectivenessMultiplier = effectivenessMultiplier / maximumRewardedAngle;
-		float reverseVelocityEfficient = 2 * (1f - Vector2.Dot(forceDirection.normalized, velocity.normalized));
-		AddForce(forceDirection * effectivenessMultiplier * 0.01f * ConfigDatabase.Instance.pullForceMultiplier * ((1f/(0.1f + velocity.magnitude * 0.1f)) + reverseVelocityEfficient));
+		float reverseOrNot = Mathf.Sign(Vector2.Dot(forceDirection.normalized, velocity.normalized));
+		Debug.Log(velocity.x);
+		float slowVelocityCoefficent = (1f - 1f * (Mathf.Clamp(reverseOrNot * Mathf.Abs(velocity.x), 0f, 0.25f) / 0.25f));
+		slowVelocityCoefficent = Mathf.Clamp(slowVelocityCoefficent, 0f, 0.5f);
+		float totalMultiplier = effectivenessMultiplier + slowVelocityCoefficent;
+		totalMultiplier *= ConfigDatabase.Instance.pullForceMultiplier;
+		AddForce(forceDirection * totalMultiplier);
 	}
 
 	private void RefreshRopeRenderer() {
@@ -210,7 +215,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void SimulatePhysics() {
-		rb.velocity = Vector3.zero;
+		//rb.velocity = Vector3.zero;
 
 		if (!isGrounded)
 		velocity += Vector2.down * gravity * Time.deltaTime;
@@ -302,21 +307,25 @@ public class Worm : MonoBehaviour {
 		return v;
 	}
 
-	private void OnCollisionEnter(Collision collision) {
-		if (landedHook) {
-			if (velocity.magnitude > 0.01f) {
-				velocity = velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
+	private void OnCollisionEnter(Collision coll) {
+		if (!coll.collider.CompareTag("LaunchPad")) {
+			Vector2 reflected;
+			if (landedHook)
+				reflected = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
+			else
+				reflected = Vector2.Reflect(velocity, FindMedian(coll.contacts).medianNormal);
+			if (reflected.magnitude < ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce) {
+				reflected *= (1f / (reflected.magnitude / ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce));
 			}
-		} else if (!collision.collider.CompareTag("LaunchPad")) {
-			Die();
+			velocity = reflected;
 		}
 	}
 
-	private void OnCollisionStay(Collision collision) {
-			float dot = Vector3.Dot(velocity.normalized, (FindMedian(collision.contacts).medianPoint - transform.position).normalized);
-			dot = (dot + 1) / 2f;
-			velocity *= 1 - dot;
-	}
+	//private void OnCollisionStay(Collision collision) {
+	//		float dot = Vector3.Dot(velocity.normalized, (FindMedian(collision.contacts).medianPoint - transform.position).normalized);
+	//		dot = (dot + 1) / 2f;
+	//		velocity *= 1 - dot;
+	//}
 
 	MedianPoint FindMedian(ContactPoint[] contacts) {
 		MedianPoint mP = new MedianPoint();
