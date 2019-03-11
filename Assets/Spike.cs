@@ -12,6 +12,7 @@ public class Spike : MonoBehaviour {
 
 	private float targetRetractionValue = 0f;
 	private float currentRetractionValue = 0f;
+	private int frameCheckFrequency = 30;
 
 	private void Awake() {
 		currentRetractionValue = 100f;
@@ -19,7 +20,7 @@ public class Spike : MonoBehaviour {
 
 	private void Update() {
 		if (isRetractableSpike) {
-			if (GameController.Instance.currentWorm != null) {
+			if (Time.frameCount % frameCheckFrequency == 0 && GameController.Instance.currentWorm != null) {
 				float distance = Vector3.Distance(GameController.Instance.currentWorm.transform.position, transform.position);
 				if (distance < activationDistance)
 					Activate();
