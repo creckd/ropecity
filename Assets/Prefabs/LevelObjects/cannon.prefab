@@ -66,7 +66,6 @@ GameObject:
   - component: {fileID: 4848398011671046}
   - component: {fileID: 95530428347616932}
   - component: {fileID: 114518035131718152}
-  - component: {fileID: 114101256204013906}
   m_Layer: 0
   m_Name: cannon
   m_TagString: Untagged
@@ -761,18 +760,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114101256204013906
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1095268163596418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectID: CANNON
 --- !u!114 &114518035131718152
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -784,6 +771,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f31630f8b87cc4285db34fa1491da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectID: CANNON
+  objectData: 
   cannonMouthPositionObject: {fileID: 1236823813106056}
 --- !u!137 &137019021591874470
 SkinnedMeshRenderer:

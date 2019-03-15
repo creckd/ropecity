@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LandMine : MonoBehaviour {
+public class LandMine : LevelObject {
 
 	private const string explodeAnimationStateName = "Explode";
 	private const string idleAnimationName = "Idle";

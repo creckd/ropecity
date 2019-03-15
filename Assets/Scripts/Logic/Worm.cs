@@ -308,23 +308,22 @@ public class Worm : MonoBehaviour {
 
 	private void OnCollisionEnter(Collision coll) {
 		if (!coll.collider.CompareTag("LaunchPad")) {
+			MedianPoint mP = FindMedian(coll.contacts);
 			Vector2 reflected;
 			if (landedHook)
 				reflected = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
 			else
-				reflected = Vector2.Reflect(velocity, FindMedian(coll.contacts).medianNormal);
+				reflected = Vector2.Reflect(velocity, mP.medianNormal);
 			if (reflected.magnitude < ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce) {
 				reflected *= (1f / (reflected.magnitude / ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce));
 			}
+			Vector3 collisionDirection = (transform.TransformPoint(boxCollider.center) - mP.medianPoint).normalized;
+			bool isGroundCollision = Vector3.Dot(Vector3.up, collisionDirection) > 0.5f;
+			if (isGroundCollision)
+				reflected.y = Mathf.Clamp(reflected.y, ConfigDatabase.Instance.minYVelocityAfterGroundCollision, Mathf.Infinity);
 			velocity = reflected;
 		}
 	}
-
-	//private void OnCollisionStay(Collision collision) {
-	//		float dot = Vector3.Dot(velocity.normalized, (FindMedian(collision.contacts).medianPoint - transform.position).normalized);
-	//		dot = (dot + 1) / 2f;
-	//		velocity *= 1 - dot;
-	//}
 
 	MedianPoint FindMedian(ContactPoint[] contacts) {
 		MedianPoint mP = new MedianPoint();

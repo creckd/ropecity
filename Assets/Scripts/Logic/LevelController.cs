@@ -47,6 +47,7 @@ public class LevelController : MonoBehaviour {
 			Vector3 position = new Vector3(data.posX, data.posY, data.posZ);
 			Vector3 rotation = new Vector3(data.rotX, data.rotY, data.rotZ);
 			LevelObject levelObject = Instantiate(prefab, position, Quaternion.Euler(rotation), transform) as LevelObject;
+			levelObject.DeserializeObjectData(data.componentData);
 			levelObject.name = prefab.name + " - " + i.ToString();
 			initializedLevelObjects.Add(levelObject);
 		}

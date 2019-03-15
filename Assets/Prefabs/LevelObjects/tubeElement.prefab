@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33009959239989676}
   - component: {fileID: 23846135635205632}
   - component: {fileID: 65875316533981546}
-  - component: {fileID: 114910161231584112}
+  - component: {fileID: 114963294042718750}
   m_Layer: 0
   m_Name: tubeElement
   m_TagString: Untagged
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.09321532, y: 0.026068524, z: 0.025878457}
   m_Center: {x: 0.05302809, y: -0.0000000018365753, z: 0.00019076557}
---- !u!114 &114910161231584112
+--- !u!114 &114963294042718750
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928702782793032}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
+  m_Script: {fileID: 11500000, guid: c3c522d0416a86240ab13fb9b1688ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: BASIC_TUBE
+  objectData: 
+  data:
+    flowDirection: {x: 0, y: 0, z: 0, w: 0}

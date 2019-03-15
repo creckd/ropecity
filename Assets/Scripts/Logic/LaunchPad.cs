@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LaunchPad : MonoBehaviour {
+public class LaunchPad : LevelObject {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player")) {

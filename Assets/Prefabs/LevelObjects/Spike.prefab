@@ -71,7 +71,6 @@ GameObject:
   - component: {fileID: 4883937271415894}
   - component: {fileID: 65845381146328096}
   - component: {fileID: 114565484983703870}
-  - component: {fileID: 114274887759461886}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -208,18 +207,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: {x: 0, y: 0, z: 100}
   speed: 1
---- !u!114 &114274887759461886
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1710534260213314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectID: SPIKE
 --- !u!114 &114565484983703870
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e7716190855ad41864e10423d582f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectID: SPIKE
+  objectData: 
   isRetractableSpike: 1
   activationDistance: 20
   retractionSpeed: 20

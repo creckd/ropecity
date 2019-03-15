@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour {
+public class Cannon : LevelObject {
 
 	public GameObject cannonMouthPositionObject;
 

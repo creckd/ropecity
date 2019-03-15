@@ -290,7 +290,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4108584152366814}
   - component: {fileID: 95720050209602772}
-  - component: {fileID: 114235782919457216}
   - component: {fileID: 114559860496622616}
   - component: {fileID: 135723816579930038}
   m_Layer: 0
@@ -1006,18 +1005,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114235782919457216
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901680477854578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectID: LANDMINE
 --- !u!114 &114559860496622616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1029,6 +1016,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde7e293fb51ad24a9da1ad41084306d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectID: LANDMINE
+  objectData: 
   explodeParticle: {fileID: 198608381486142774}
 --- !u!135 &135723816579930038
 SphereCollider:
