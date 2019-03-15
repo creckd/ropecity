@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Finish : MonoBehaviour {
+public class Finish : LevelObject {
 
 	private const string finishAnimationStateName = "Finished";
 	private const string lampColorPropertyName = "_MainColor";

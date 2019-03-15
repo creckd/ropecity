@@ -37,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4401629142917502}
   - component: {fileID: 114523759639913134}
-  - component: {fileID: 114190732710252640}
   - component: {fileID: 65555878178717300}
   m_Layer: 0
   m_Name: LaunchPad
@@ -158,18 +157,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.55, y: 1.21, z: 7.59}
   m_Center: {x: 0, y: 0.34, z: 0}
---- !u!114 &114190732710252640
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1731152388345000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectID: LAUNCH_PAD
 --- !u!114 &114523759639913134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -181,6 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72f46053c3443d49bd2772cd443082f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectID: LAUNCH_PAD
+  objectData: 
 --- !u!198 &198223896782961014
 ParticleSystem:
   m_ObjectHideFlags: 1

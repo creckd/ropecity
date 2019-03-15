@@ -39,8 +39,8 @@ GameObject:
   - component: {fileID: 33272432138358466}
   - component: {fileID: 23743383898607056}
   - component: {fileID: 65725488192547212}
-  - component: {fileID: 114149452433548590}
   - component: {fileID: 114947276974755570}
+  - component: {fileID: 114681165031233872}
   m_Layer: 0
   m_Name: scifiPlatform2
   m_TagString: Untagged
@@ -171,7 +171,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.019999998, y: 0.02, z: 0.030222207}
   m_Center: {x: -9.4643815e-12, y: 0, z: -0.005111099}
---- !u!114 &114149452433548590
+--- !u!114 &114681165031233872
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,10 +179,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1782005733074688}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
+  m_Script: {fileID: 11500000, guid: 5bd8c18c5c726fb43a15f72f4bab29c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: PLATFORM_SCIFI
+  objectData: 
 --- !u!114 &114947276974755570
 MonoBehaviour:
   m_ObjectHideFlags: 1

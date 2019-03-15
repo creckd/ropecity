@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33284972534158138}
   - component: {fileID: 23864788866276152}
   - component: {fileID: 65131489140510402}
-  - component: {fileID: 114833850556068094}
+  - component: {fileID: 114948266458016790}
   m_Layer: 0
   m_Name: 90tube
   m_TagString: Untagged
@@ -97,7 +97,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.050863475, y: 0.026373427, z: 0.038118877}
   m_Center: {x: -0.013497528, y: 0.000052192136, z: 0.022321818}
---- !u!114 &114833850556068094
+--- !u!114 &114948266458016790
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,7 +105,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1997876594194160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74a8617f3e97cf4a879aaa1cc4996c1, type: 3}
+  m_Script: {fileID: 11500000, guid: c3c522d0416a86240ab13fb9b1688ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectID: TUBE90
+  objectData: 
+  data:
+    flowDirection: {x: 0, y: 0, z: 0, w: 0}

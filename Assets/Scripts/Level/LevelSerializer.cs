@@ -15,6 +15,7 @@ public class LevelSerializer {
 	private const string rotXKey = "RX";
 	private const string rotYKey = "RY";
 	private const string rotZKey = "RZ";
+	private const string componentDataKey = "data";
 
 	public static void SerializeCurrentlyOpenedLevel(string levelName) {
 
@@ -32,6 +33,8 @@ public class LevelSerializer {
 			levelObjectDatas[i].rotX = (levelObjects[i].transform.rotation.eulerAngles.x);
 			levelObjectDatas[i].rotY = (levelObjects[i].transform.rotation.eulerAngles.y);
 			levelObjectDatas[i].rotZ = (levelObjects[i].transform.rotation.eulerAngles.z);
+
+			levelObjectDatas[i].componentData = levelObjects[i].SerializeObjectData();
 		}
 
 		LevelData data = new LevelData();
@@ -54,6 +57,8 @@ public class LevelSerializer {
 			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotXKey].AsFloat = level.levelObjects[i].rotX;
 			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotYKey].AsFloat = level.levelObjects[i].rotY;
 			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][rotZKey].AsFloat = level.levelObjects[i].rotZ;
+
+			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][componentDataKey] = level.levelObjects[i].componentData;
 		}
 
 		string jsonString = levelJson.ToString();
@@ -84,6 +89,7 @@ public class LevelSerializer {
 			float rotX = jsonLevel[levelObjectsKey][i][uniqueID][rotXKey].AsFloat;
 			float rotY = jsonLevel[levelObjectsKey][i][uniqueID][rotYKey].AsFloat;
 			float rotZ = jsonLevel[levelObjectsKey][i][uniqueID][rotZKey].AsFloat;
+			string componentData = jsonLevel[levelObjectsKey][i][uniqueID][componentDataKey];
 
 			LevelObjectData objData = new LevelObjectData();
 			objData.uniqueID = uniqueID;
@@ -94,6 +100,8 @@ public class LevelSerializer {
 			objData.rotX = rotX;
 			objData.rotY = rotY;
 			objData.rotZ = rotZ;
+
+			objData.componentData = componentData;
 
 			objDatas[i] = objData;
 

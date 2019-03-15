@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spike : MonoBehaviour {
+public class Spike : LevelObject {
 
 	public bool isRetractableSpike = true;
 	public float activationDistance = 10f;
