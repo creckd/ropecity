@@ -46,7 +46,7 @@ public class LandMine : MonoBehaviour {
 		yield return null;
 		//yield return new WaitForSeconds(0.25f);
 		explodeParticle.Play();
-		yield return new WaitForSeconds(0.185f);
+		yield return new WaitForSecondsRealtime(0.4f);
 		if (GameController.Instance.currentGameState == GameState.GameStarted && Vector3.Distance(transform.position, GameController.Instance.currentWorm.transform.position) < ConfigDatabase.Instance.mineLethalRange)
 			GameController.Instance.currentWorm.Die();
 	}
