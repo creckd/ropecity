@@ -38,4 +38,10 @@ public class Spike : MonoBehaviour {
 	public void Defuse() {
 		targetRetractionValue = 100f;
 	}
+
+	private void OnTriggerEnter(Collider other) {
+		if (GameController.Instance.currentGameState == GameState.GameStarted && other.gameObject == GameController.Instance.currentWorm.gameObject) {
+			GameController.Instance.currentWorm.Die();
+		}
+	}
 }

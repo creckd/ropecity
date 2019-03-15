@@ -43,6 +43,9 @@ public class ConfigDatabase : MonoBehaviour {
 	public float remainingVelocityPercentAfterBounce = 0.75f;
 	public float minimumVelocityMagnitudeAfterBounce = 1f;
 
+	[Header("Traps")]
+	public float mineLethalRange = 5f;
+
 	[Header("Prefabs")]
 	public Worm wormPrefab;
 
