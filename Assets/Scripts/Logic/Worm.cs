@@ -115,7 +115,6 @@ public class Worm : MonoBehaviour {
 		float effectivenessMultiplier = Mathf.Clamp((180f - Mathf.Abs(angle - 45f)) - (180f - maximumRewardedAngle), 0f, maximumRewardedAngle);
 		effectivenessMultiplier = effectivenessMultiplier / maximumRewardedAngle;
 		float reverseOrNot = Mathf.Sign(Vector2.Dot(forceDirection.normalized, velocity.normalized));
-		Debug.Log(velocity.x);
 		float slowVelocityCoefficent = (1f - 1f * (Mathf.Clamp(reverseOrNot * Mathf.Abs(velocity.x), 0f, 0.25f) / 0.25f));
 		slowVelocityCoefficent = Mathf.Clamp(slowVelocityCoefficent, 0f, 0.5f);
 		float totalMultiplier = effectivenessMultiplier + slowVelocityCoefficent;

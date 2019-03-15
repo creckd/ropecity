@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,10 +13,19 @@ public class LandMine : MonoBehaviour {
 
 	public ParticleSystem explodeParticle;
 
-	private void Awake() {
-		anim = GetComponent<Animator>();
-		trigger = GetComponent<SphereCollider>();
-		anim.Play(idleAnimationName, 0, Random.Range(0f, 1f));
+	private void Start() {
+		if (GameController.Instance.currentGameState == GameState.Initialized) {
+			anim = GetComponent<Animator>();
+			trigger = GetComponent<SphereCollider>();
+			anim.Play(idleAnimationName, 0, UnityEngine.Random.Range(0f, 1f));
+
+			GameController.Instance.ReinitalizeGame += ReinitalizeMine;
+		}
+	}
+
+	private void ReinitalizeMine() {
+		anim.Play(idleAnimationName, 0, UnityEngine.Random.Range(0f, 1f));
+		trigger.enabled = true;
 	}
 
 	private void OnTriggerEnter(Collider other) {
@@ -36,5 +46,8 @@ public class LandMine : MonoBehaviour {
 		yield return null;
 		//yield return new WaitForSeconds(0.25f);
 		explodeParticle.Play();
+		yield return new WaitForSeconds(0.185f);
+		if (GameController.Instance.currentGameState == GameState.GameStarted && Vector3.Distance(transform.position, GameController.Instance.currentWorm.transform.position) < ConfigDatabase.Instance.mineLethalRange)
+			GameController.Instance.currentWorm.Die();
 	}
 }
