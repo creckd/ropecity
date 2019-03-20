@@ -1,7 +1,7 @@
 ﻿public class LevelSaveDatabase {
 
 	public class LevelSaveData {
-		public string levelID = "invalid";
+		public int levelIndex = 0;
 		public bool levelCompleted = false;
 		public bool isUnlocked = false;
 	}
@@ -13,7 +13,7 @@
 		levelSaveDatas = new LevelSaveData[numberOfLevels];
 		for (int i = 0; i < numberOfLevels; i++) {
 			levelSaveDatas[i] = new LevelSaveData();
-			levelSaveDatas[i].levelID = LevelResourceDatabase.Instance.levelResourceNames[i];
+			levelSaveDatas[i].levelIndex = i;
 			levelSaveDatas[i].levelCompleted = false;
 			levelSaveDatas[i].isUnlocked = false;
 		}
