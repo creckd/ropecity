@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using OdinSerializer;
 
 public class Spike : LevelObject {
 
-	public bool isRetractableSpike = true;
+	[System.Serializable]
+	public class SpikeData {
+		public bool isRetractableSpike = true;
+	}
+
+	public SpikeData data = new SpikeData();
+
 	public float activationDistance = 10f;
 	public float retractionSpeed = 10f;
 
@@ -19,7 +26,7 @@ public class Spike : LevelObject {
 	}
 
 	private void Update() {
-		if (isRetractableSpike) {
+		if (data.isRetractableSpike) {
 			if (Time.frameCount % frameCheckFrequency == 0 && GameController.Instance.currentWorm != null) {
 				float distance = Vector3.Distance(GameController.Instance.currentWorm.transform.position, transform.position);
 				if (distance < activationDistance)
@@ -43,5 +50,14 @@ public class Spike : LevelObject {
 		if (GameController.Instance.currentGameState == GameState.GameStarted && other.gameObject == GameController.Instance.currentWorm.gameObject) {
 			GameController.Instance.currentWorm.Die();
 		}
+	}
+
+	public override void DeserializeObjectData(string objectData) {
+		if (objectData != null)
+			data = SerializationUtility.DeserializeValue<SpikeData>(System.Text.Encoding.ASCII.GetBytes(objectData), DataFormat.Binary);
+	}
+
+	public override string SerializeObjectData() {
+		return System.Text.Encoding.ASCII.GetString(SerializationUtility.SerializeValue(data, DataFormat.Binary));
 	}
 }

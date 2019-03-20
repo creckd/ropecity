@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22aeed4fb154e2044974398ee5fe35c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDebugTestLevelMode: 0
   currentGameState: 0
   currentWorm: {fileID: 0}

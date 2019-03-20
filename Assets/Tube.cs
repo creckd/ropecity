@@ -10,6 +10,13 @@ public class Tube : LevelObject {
 
 	public TubeData data;
 
+	private Material tubeMat;
+
+	private void Start() {
+		tubeMat = GetComponent<MeshRenderer>().material;
+		tubeMat.SetVector("_TilingDirection", data.flowDirection);
+	}
+
 	public override void DeserializeObjectData(string objectData) {
 		if(objectData != null)
 		data = SerializationUtility.DeserializeValue<TubeData>(System.Text.Encoding.ASCII.GetBytes(objectData), DataFormat.Binary);

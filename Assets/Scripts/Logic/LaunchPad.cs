@@ -6,7 +6,7 @@ public class LaunchPad : LevelObject {
 
 	private void OnTriggerEnter(Collider other) {
 		if (other.CompareTag("Player")) {
-			GameController.Instance.currentWorm.AddForce(transform.up * ConfigDatabase.Instance.launchPadForce);
+			GameController.Instance.currentWorm.SetVelocity(transform.up * ConfigDatabase.Instance.launchPadForce);
 		}
 	}
 }

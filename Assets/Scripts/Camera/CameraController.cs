@@ -21,6 +21,8 @@ public class CameraController : MonoBehaviour {
 
 	public float xDifferenceAllowed = 1f;
 	public float yDifferenceAllowed = 1f;
+	public bool horizontalMovementLocked = false;
+	public bool verticalMovementLocked = false;
 	public float compensationSpeed = 10f;
 
 	public AnimationCurve sweepCurve;
@@ -72,11 +74,13 @@ public class CameraController : MonoBehaviour {
 	void LateUpdate () {
 		if (target != null) {
 			Vector3 wormCameraPosition = target.position - offset;
+			if(!horizontalMovementLocked)
 			if (Mathf.Abs(wormCameraPosition.x - transform.position.x) > xDifferenceAllowed) {
 				float diff = wormCameraPosition.x - transform.position.x;
 				transform.position += Vector3.right * Mathf.Sign(diff) * Mathf.Abs(xDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;
 			}
 
+			if(!verticalMovementLocked)
 			if (Mathf.Abs(wormCameraPosition.y - transform.position.y) > yDifferenceAllowed) {
 				float diff = wormCameraPosition.y - transform.position.y;
 				transform.position += Vector3.up * Mathf.Sign(diff) * Mathf.Abs(yDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;

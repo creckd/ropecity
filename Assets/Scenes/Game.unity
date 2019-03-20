@@ -596,8 +596,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effbe286108df0742b5be75b301e3491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xDifferenceAllowed: 10
-  yDifferenceAllowed: 10
+  xDifferenceAllowed: 20
+  yDifferenceAllowed: 1
+  horizontalMovementLocked: 0
+  verticalMovementLocked: 0
   compensationSpeed: 50
   sweepCurve:
     serializedVersion: 2

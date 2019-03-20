@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reinitalizingDuration: 0.01
   normalSpeed: 1
-  slowMotionSpeed: 0.4
+  slowMotionSpeed: 0.5
   allTimeMininmumWorldY: -10
   finishingSlowMotionTime: 0.75
   finishingBlurTime: 0.5
@@ -100,9 +100,11 @@ MonoBehaviour:
   pullForceMultiplier: 0.15
   maximumRewardedAngleForPullForce: 60
   remainingVelocityPercentAfterBounce: 0.25
+  minYVelocityAfterGroundCollision: 0.25
   minimumVelocityMagnitudeAfterBounce: 0.3
+  mineLethalRange: 5
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}
   cannonShootDirection: {x: 1, y: 0.8}
   cannonShootForceMultiplier: 0.4
-  launchPadForce: 1
+  launchPadForce: 0.75

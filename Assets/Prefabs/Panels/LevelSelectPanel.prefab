@@ -391,7 +391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   order: 0
-  fadeTime: 1
+  fadeTime: 0.5
   delay: 0
 --- !u!114 &114150503241965764
 MonoBehaviour:
@@ -558,9 +558,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a431724a34b733846a899e8bfa5f1594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 1
+  order: 0
   fadeTime: 0.5
-  delay: 0
+  delay: 0.5
   colorPropertyName: _TintColor
 --- !u!114 &114485839181459626
 MonoBehaviour:
@@ -573,9 +573,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a431724a34b733846a899e8bfa5f1594, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 1
+  order: 0
   fadeTime: 0.5
-  delay: 0
+  delay: 0.5
   colorPropertyName: _TintColor
 --- !u!114 &114548880708640024
 MonoBehaviour:
@@ -590,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelNumberText: {fileID: 114281670717760420}
   levelButton: {fileID: 114792118178123718}
-  levelButtonImage: {fileID: 114678929783005748}
+  levelButtonImage: {fileID: 114786915526200688}
   unlockedSpriteState_passive: {fileID: 21300000, guid: 41b35a20b0200064c93d96ed76b47aaa,
     type: 3}
   unlockedSpriteState_active: {fileID: 21300000, guid: 548b4f22fa270a445806d67fbe464fbb,
@@ -744,9 +744,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 743a4b0438a2c6343ba42c1b040cfaca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  order: 1
+  order: 0
   fadeTime: 0.5
-  delay: 0
+  delay: 0.5
 --- !u!114 &114956133921968544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -759,8 +759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   order: 0
-  fadeTime: 1
-  delay: 0.5
+  fadeTime: 0.5
+  delay: 0.25
 --- !u!114 &114966196359835144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1194,7 +1194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 946.0225}
+  m_AnchoredPosition: {x: 0, y: 946.02344}
   m_SizeDelta: {x: 770, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!224 &224593694572584260
