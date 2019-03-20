@@ -62,6 +62,10 @@ public class Worm : MonoBehaviour {
 		velocity += force;
 	}
 
+	public void SetVelocity(Vector2 velocity) {
+		this.velocity = velocity;
+	}
+
 	private void Release(int inputIndex) {
 		if (!gameObject.activeSelf || GameController.Instance.currentGameState == GameState.GameFinished)
 			return;

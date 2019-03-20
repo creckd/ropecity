@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
+	public bool isDebugTestLevelMode = false;
+
 	[HideInInspector]
 	public GameState currentGameState = GameState.NotInitialized;
 
@@ -54,17 +56,19 @@ public class GameController : MonoBehaviour {
 		LandedHook += UnSlowTime;
 		ReleasedHook += SlowTime;
 
-		int levelIndex = 0;
-		string levelPath = "dani_001";
-		object levelMessage;
-		if (Messenger.Instance != null && Messenger.Instance.GetMessage(LevelSelectPanel.LevelIndexKey, out levelMessage)) {
-			levelIndex = (int)levelMessage;
-			levelPath = LevelResourceDatabase.Instance.levelResourceNames[levelIndex];
+		if (!isDebugTestLevelMode) {
+			int levelIndex = 0;
+			string levelPath = "dani_001";
+			object levelMessage;
+			if (Messenger.Instance != null && Messenger.Instance.GetMessage(LevelSelectPanel.LevelIndexKey, out levelMessage)) {
+				levelIndex = (int)levelMessage;
+				levelPath = LevelResourceDatabase.Instance.levelResourceNames[levelIndex];
+			}
+			LevelController.Instance.currentLevelIndex = levelIndex;
+			TextAsset levelAsset = (TextAsset)Resources.Load(levelPath, typeof(TextAsset));
+			LevelData data = LevelSerializer.DeserializeLevel(levelAsset.text);
+			LevelController.Instance.InitializeLevel(data);
 		}
-		LevelController.Instance.currentLevelIndex = levelIndex;
-		TextAsset levelAsset = (TextAsset)Resources.Load(levelPath, typeof(TextAsset));
-		LevelData data = LevelSerializer.DeserializeLevel(levelAsset.text);
-		LevelController.Instance.InitializeLevel(data);
 		currentGameState = GameState.Initialized;
 	}
 
@@ -117,8 +121,17 @@ public class GameController : MonoBehaviour {
 			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 			StartCoroutine(ReInitiliazeGameAfter());
 		} else {
+			UnlockNextLevel();
 			StartCoroutine(FinishingCoroutine());
 		}
+	}
+
+	private void UnlockNextLevel() {
+		string nextLevelID = SavedDataManager.Instance.GetLevelIDWithLevelIndex(LevelController.Instance.currentLevelIndex + 1);
+		string thisLevelID = SavedDataManager.Instance.GetLevelIDWithLevelIndex(LevelController.Instance.currentLevelIndex);
+		SavedDataManager.Instance.GetLevelSaveDataWithID(thisLevelID).levelCompleted = true;
+		SavedDataManager.Instance.GetLevelSaveDataWithID(nextLevelID).isUnlocked = true;
+		SavedDataManager.Instance.Save();
 	}
 
 	IEnumerator FinishingCoroutine() {
