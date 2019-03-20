@@ -127,10 +127,8 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void UnlockNextLevel() {
-		string nextLevelID = SavedDataManager.Instance.GetLevelIDWithLevelIndex(LevelController.Instance.currentLevelIndex + 1);
-		string thisLevelID = SavedDataManager.Instance.GetLevelIDWithLevelIndex(LevelController.Instance.currentLevelIndex);
-		SavedDataManager.Instance.GetLevelSaveDataWithID(thisLevelID).levelCompleted = true;
-		SavedDataManager.Instance.GetLevelSaveDataWithID(nextLevelID).isUnlocked = true;
+		SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).levelCompleted = true;
+		SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex + 1).isUnlocked = true;
 		SavedDataManager.Instance.Save();
 	}
 

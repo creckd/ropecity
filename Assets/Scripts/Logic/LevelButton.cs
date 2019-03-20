@@ -25,9 +25,8 @@ public class LevelButton : MonoBehaviour {
 	public void Initialize(int levelIndex) {
 		this.levelIndex = levelIndex;
 
-		string levelID = SavedDataManager.Instance.GetLevelIDWithLevelIndex(levelIndex);
-		levelCompleted = SavedDataManager.Instance.GetLevelSaveDataWithID(levelID).levelCompleted;
-		levelLocked = !SavedDataManager.Instance.GetLevelSaveDataWithID(levelID).isUnlocked;
+		levelCompleted = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(levelIndex).levelCompleted;
+		levelLocked = !SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(levelIndex).isUnlocked;
 
 		levelNumberText.text = (levelIndex + 1).ToString();
 
