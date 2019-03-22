@@ -34,12 +34,12 @@ public class Worm : MonoBehaviour {
 	private int currentHoldID = -1;
 	private float currentHookSearchDistance = 0f;
 
-	Rigidbody rb;
-	BoxCollider boxCollider;
+	Rigidbody2D rb;
+	BoxCollider2D boxCollider;
 
 	public void Initialize() {
-		boxCollider = GetComponent<BoxCollider>();
-		rb = GetComponent<Rigidbody>();
+		boxCollider = GetComponent<BoxCollider2D>();
+		rb = GetComponent<Rigidbody2D>();
 
 		InputController.Instance.TapHappened += Tap;
 		InputController.Instance.ReleaseHappened += Release;
@@ -240,10 +240,10 @@ public class Worm : MonoBehaviour {
 	}
 
 	public bool FindHookPoint(out Vector3 hookPoint, float distanceToUse) {
-		RaycastHit hit;
+		RaycastHit2D hit;
 		hookPoint = Vector3.zero;
 		Ray ray = new Ray(gunPositionObject.transform.position, (gunPositionObject.transform.position - transform.position).normalized);
-		Physics.Raycast(ray, out hit, distanceToUse);
+		hit = Physics2D.Raycast(ray.origin,ray.direction,distanceToUse);
 		if (hit.collider != null) {
 			hookPoint = hit.point;
 		}
@@ -254,9 +254,9 @@ public class Worm : MonoBehaviour {
 		if (Time.realtimeSinceStartup - lastTimeAPointWasAdded < 0.025f)
 			return;
 		Ray ray = new Ray(gunPositionObject.transform.position, (hookPositions[hookPositions.Count - 1] - gunPositionObject.transform.position).normalized);
-		RaycastHit hit;
-		Physics.Raycast(ray, out hit);
-		if (hit.point != hookPositions[hookPositions.Count - 1]) {
+		RaycastHit2D hit;
+		hit = Physics2D.Raycast(ray.origin,ray.direction);
+		if (new Vector3(hit.point.x,hit.point.y,0f) != hookPositions[hookPositions.Count - 1]) {
 			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
 			hookPositions.Add(hit.point);
 			distanceToKeep = Vector3.Distance(hit.point, transform.position);
@@ -310,7 +310,7 @@ public class Worm : MonoBehaviour {
 		return v;
 	}
 
-	private void OnCollisionEnter(Collision coll) {
+	private void OnCollisionEnter2D(Collision2D coll) {
 		if (!coll.collider.CompareTag("LaunchPad")) {
 			MedianPoint mP = FindMedian(coll.contacts);
 			Vector2 reflected;
@@ -321,7 +321,7 @@ public class Worm : MonoBehaviour {
 			if (reflected.magnitude < ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce) {
 				reflected *= (1f / (reflected.magnitude / ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce));
 			}
-			Vector3 collisionDirection = (transform.TransformPoint(boxCollider.center) - mP.medianPoint).normalized;
+			Vector3 collisionDirection = (transform.TransformPoint(transform.localPosition + new Vector3(boxCollider.offset.x,boxCollider.offset.y,0f)) - mP.medianPoint).normalized;
 			bool isGroundCollision = Vector3.Dot(Vector3.up, collisionDirection) > 0.5f;
 			if (isGroundCollision)
 				reflected.y = Mathf.Clamp(reflected.y, ConfigDatabase.Instance.minYVelocityAfterGroundCollision, Mathf.Infinity);
@@ -329,18 +329,16 @@ public class Worm : MonoBehaviour {
 		}
 	}
 
-	MedianPoint FindMedian(ContactPoint[] contacts) {
+	MedianPoint FindMedian(ContactPoint2D[] contacts) {
 		MedianPoint mP = new MedianPoint();
 		mP.medianPoint = Vector3.zero;
 		mP.medianNormal = Vector3.zero;
 		foreach (var cP in contacts) {
 			mP.medianPoint.x += cP.point.x;
 			mP.medianPoint.y += cP.point.y;
-			mP.medianPoint.z += cP.point.z;
 
 			mP.medianNormal.x += cP.normal.x;
 			mP.medianNormal.y += cP.normal.y;
-			mP.medianNormal.z += cP.normal.z;
 		}
 		mP.medianPoint /= contacts.Length;
 		mP.medianNormal /= contacts.Length;

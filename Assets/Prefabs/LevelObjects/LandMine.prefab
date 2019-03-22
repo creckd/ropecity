@@ -291,7 +291,7 @@ GameObject:
   - component: {fileID: 4108584152366814}
   - component: {fileID: 95720050209602772}
   - component: {fileID: 114559860496622616}
-  - component: {fileID: 135723816579930038}
+  - component: {fileID: 58021813017059852}
   m_Layer: 0
   m_Name: LandMine
   m_TagString: Untagged
@@ -987,6 +987,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1818692912005516}
   m_Mesh: {fileID: 4300002, guid: 6451583e599e949449e43c45d170daa3, type: 3}
+--- !u!58 &58021813017059852
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1901680477854578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3.78
 --- !u!95 &95720050209602772
 Animator:
   serializedVersion: 3
@@ -1019,18 +1034,6 @@ MonoBehaviour:
   objectID: LANDMINE
   objectData: 
   explodeParticle: {fileID: 198608381486142774}
---- !u!135 &135723816579930038
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1901680477854578}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.71
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!198 &198106434904121206
 ParticleSystem:
   m_ObjectHideFlags: 1

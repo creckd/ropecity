@@ -9,14 +9,14 @@ public class LandMine : LevelObject {
 	private const string idleAnimationName = "Idle";
 
 	private Animator anim;
-	private SphereCollider trigger;
+	private CircleCollider2D trigger;
 
 	public ParticleSystem explodeParticle;
 
 	private void Start() {
 		if (GameController.Instance.currentGameState == GameState.Initialized) {
 			anim = GetComponent<Animator>();
-			trigger = GetComponent<SphereCollider>();
+			trigger = GetComponent<CircleCollider2D>();
 			anim.Play(idleAnimationName, 0, UnityEngine.Random.Range(0f, 1f));
 
 			GameController.Instance.ReinitalizeGame += ReinitalizeMine;
@@ -28,7 +28,7 @@ public class LandMine : LevelObject {
 		trigger.enabled = true;
 	}
 
-	private void OnTriggerEnter(Collider other) {
+	private void OnTriggerEnter2D(Collider2D other) {
 		bool isWorm = other.CompareTag("Player");
 
 		if (isWorm && GameController.Instance.currentGameState == GameState.GameStarted) {

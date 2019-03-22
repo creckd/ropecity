@@ -13,7 +13,7 @@ public class Tube : LevelObject {
 	private Material tubeMat;
 
 	private void Start() {
-		tubeMat = GetComponent<MeshRenderer>().material;
+		tubeMat = GetComponentInChildren<MeshRenderer>().material;
 		tubeMat.SetVector("_TilingDirection", data.flowDirection);
 	}
 

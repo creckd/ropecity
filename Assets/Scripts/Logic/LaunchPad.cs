@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaunchPad : LevelObject {
 
-	private void OnTriggerEnter(Collider other) {
+	private void OnTriggerEnter2D(Collider2D other) {
 		if (other.CompareTag("Player")) {
 			GameController.Instance.currentWorm.SetVelocity(transform.up * ConfigDatabase.Instance.launchPadForce);
 		}
