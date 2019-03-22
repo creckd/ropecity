@@ -30,7 +30,7 @@ public class Finish : LevelObject {
 		speedText.text = "";
 	}
 
-	private void OnTriggerEnter(Collider other) {
+	private void OnTriggerEnter2D(Collider2D other) {
 		bool isWorm = other.CompareTag("Player");
 
 		if (isWorm && GameController.Instance.currentGameState == GameState.GameStarted) {

@@ -69,8 +69,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4883937271415894}
-  - component: {fileID: 65845381146328096}
   - component: {fileID: 114565484983703870}
+  - component: {fileID: 61619487511173770}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Untagged
@@ -182,18 +182,31 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1685213133089736}
   m_Mesh: {fileID: 4300000, guid: 3ebde6c64aec93449bd10a6e026da278, type: 3}
---- !u!65 &65845381146328096
-BoxCollider:
+--- !u!61 &61619487511173770
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1710534260213314}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.85}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 4.37, z: 1}
-  m_Center: {x: 0, y: -1.8, z: 0}
+  m_Size: {x: 1.42, y: 4.34}
+  m_EdgeRadius: 0
 --- !u!114 &114065266173579212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -220,7 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: SPIKE
   objectData: 
-  isRetractableSpike: 1
+  data:
+    isRetractableSpike: 1
   activationDistance: 20
   retractionSpeed: 20
   spikeSkinned: {fileID: 137900623413730486}

@@ -53,17 +53,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
   - uniqueID: FINISH
-    prefab: {fileID: 114834486450662798, guid: ceedd0645450dbf4ea8e59e124613f4f, type: 2}
+    prefab: {fileID: 114459429967044210, guid: ceedd0645450dbf4ea8e59e124613f4f, type: 2}
   - uniqueID: CANNON
     prefab: {fileID: 114518035131718152, guid: d6d98e2e759e3af45ac70c2af32f82e3, type: 2}
   - uniqueID: BASIC_TUBE
-    prefab: {fileID: 114963294042718750, guid: 43f5fdfcad6c7a44698366f7e513b681, type: 2}
+    prefab: {fileID: 114571089809959820, guid: 848e94efca6afc247b5d4369dc3f27e7, type: 2}
   - uniqueID: PLATFORM_SCIFI
-    prefab: {fileID: 114681165031233872, guid: 2dd8b649ac12419429a078d386970eaf, type: 2}
+    prefab: {fileID: 114447965949492934, guid: 263505d5268501b4f96872dfcd91669d, type: 2}
   - uniqueID: LAUNCH_PAD
     prefab: {fileID: 114523759639913134, guid: 286477608d4d32046991112f892cb8f9, type: 2}
   - uniqueID: TUBE90
-    prefab: {fileID: 114948266458016790, guid: eef9a51f73e0d8d4996386cd385d7446, type: 2}
+    prefab: {fileID: 114511884343949228, guid: eef9a51f73e0d8d4996386cd385d7446, type: 2}
   - uniqueID: LANDMINE
     prefab: {fileID: 114559860496622616, guid: aa6eff877fdc1004692287c63c60d8f8, type: 2}
   - uniqueID: SPIKE
