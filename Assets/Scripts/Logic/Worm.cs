@@ -325,6 +325,13 @@ public class Worm : MonoBehaviour {
 			bool isGroundCollision = Vector3.Dot(Vector3.up, collisionDirection) > 0.5f;
 			if (isGroundCollision)
 				reflected.y = Mathf.Clamp(reflected.y, ConfigDatabase.Instance.minYVelocityAfterGroundCollision, Mathf.Infinity);
+
+			float safetyDistance = 5f; //BONUS SAFETY CHECK
+			RaycastHit2D hit;
+			Ray ray = new Ray(transform.position, reflected.normalized);
+			hit = Physics2D.Raycast(ray.origin, ray.direction, safetyDistance);
+
+			if(hit.collider == null)
 			velocity = reflected;
 		}
 	}
