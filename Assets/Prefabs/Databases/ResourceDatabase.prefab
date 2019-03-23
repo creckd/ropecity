@@ -68,3 +68,5 @@ MonoBehaviour:
     prefab: {fileID: 114559860496622616, guid: aa6eff877fdc1004692287c63c60d8f8, type: 2}
   - uniqueID: SPIKE
     prefab: {fileID: 114565484983703870, guid: 29db1d1720cd28c49983b277ea962165, type: 2}
+  - uniqueID: PLATFORM_SCIFI_UP
+    prefab: {fileID: 114587071772543588, guid: 7737303b98dcfc047b76c72ff0edfd0c, type: 2}

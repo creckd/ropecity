@@ -1,14 +1,31 @@
 fileFormatVersion: 2
-guid: 72c2bcf9b094aab4fb1a9bf3d3e45f6a
+guid: 8946dcf7eddd3114cb15671ee04e6e7d
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
+    100000: basic
+    100002: downscale
+    100004: //RootNode
+    100006: upCurl
+    100008: upscaleCube
+    400000: basic
+    400002: downscale
+    400004: //RootNode
+    400006: upCurl
+    400008: upscaleCube
     2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: Cube
+    2300000: basic
+    2300002: downscale
+    2300004: upCurl
+    2300006: upscaleCube
+    3300000: basic
+    3300002: downscale
+    3300004: upCurl
+    3300006: upscaleCube
+    4300000: downscale
+    4300002: upCurl
+    4300004: basic
+    4300006: upscaleCube
   externalObjects: {}
   materials:
     importMaterials: 1

@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class LevelWindow : EditorWindow {
@@ -49,8 +50,18 @@ public class LevelWindow : EditorWindow {
 		}
 		GUI.backgroundColor = Color.green;
 		if (GUILayout.Button("Save Level")) {
-			LevelSerializer.SerializeCurrentlyOpenedLevel(levelName);
-			Debug.Log("Save Successful!");
+			string jsonString = LevelSerializer.SerializeCurrentlyOpenedLevel(levelName);;
+
+			string path = "Assets/Levels/Resources/";
+			if (File.Exists(path + levelName + ".txt")) {
+				if (EditorUtility.DisplayDialog("This file already exists", "You are going to overwrite " + levelName + ".txt Are you sure?", "Yes", "No")) {
+					File.WriteAllText("Assets/Levels/Resources/" + levelName + ".txt", jsonString);
+					Debug.Log("Save Successful!");
+				}
+			} else {
+				File.WriteAllText("Assets/Levels/Resources/" + levelName + ".txt", jsonString);
+				Debug.Log("Save Successful!");
+			}
 		}
 
 	}
