@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114511884343949228}
   - component: {fileID: 61411944746770672}
   m_Layer: 0
-  m_Name: 90Tube
+  m_Name: 90tube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

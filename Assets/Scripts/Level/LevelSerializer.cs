@@ -17,7 +17,7 @@ public class LevelSerializer {
 	private const string rotZKey = "RZ";
 	private const string componentDataKey = "data";
 
-	public static void SerializeCurrentlyOpenedLevel(string levelName) {
+	public static string SerializeCurrentlyOpenedLevel(string levelName) {
 
 		LevelObject[] levelObjects = Object.FindObjectsOfType<LevelObject>();
 		LevelObjectData[] levelObjectDatas = new LevelObjectData[levelObjects.Length];
@@ -41,11 +41,11 @@ public class LevelSerializer {
 		data.levelName = levelName;
 		data.levelObjects = levelObjectDatas;
 
-		SerializeLevel(data);
+		return SerializeLevel(data);
 
 	}
 
-	public static void SerializeLevel(LevelData level) {
+	public static string SerializeLevel(LevelData level) {
 		JSONObject levelJson = new JSONObject();
 		levelJson[levelNameKey] = level.levelName;
 
@@ -63,11 +63,7 @@ public class LevelSerializer {
 
 		string jsonString = levelJson.ToString();
 
-		string date = System.DateTime.Now.ToString();
-		date = date.Replace("/", "-");
-		date = date.Replace(":", ".");
-
-		File.WriteAllText("Assets/Levels/Resources/" + level.levelName + " (" + date + ")" + ".txt", jsonString);
+		return jsonString;
 	}
 
 	public static LevelData DeserializeLevel(string levelData) {
