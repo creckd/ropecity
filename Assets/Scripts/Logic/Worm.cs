@@ -321,17 +321,17 @@ public class Worm : MonoBehaviour {
 			if (reflected.magnitude < ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce) {
 				reflected *= (1f / (reflected.magnitude / ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce));
 			}
-			Vector3 collisionDirection = (transform.TransformPoint(transform.localPosition + new Vector3(boxCollider.offset.x,boxCollider.offset.y,0f)) - mP.medianPoint).normalized;
-			bool isGroundCollision = Vector3.Dot(Vector3.up, collisionDirection) > 0.5f;
+			Vector3 collisionDirection = (transform.position - mP.medianPoint).normalized;
+			float verticalDot = Vector3.Dot(Vector3.up, collisionDirection);
+
+			bool isGroundCollision = verticalDot > 0.5f;
 			if (isGroundCollision)
 				reflected.y = Mathf.Clamp(reflected.y, ConfigDatabase.Instance.minYVelocityAfterGroundCollision, Mathf.Infinity);
 
-			float safetyDistance = 5f; //BONUS SAFETY CHECK
-			RaycastHit2D hit;
-			Ray ray = new Ray(transform.position, reflected.normalized);
-			hit = Physics2D.Raycast(ray.origin, ray.direction, safetyDistance);
+			float dot = Vector2.Dot(velocity.normalized, reflected.normalized);
 
-			if(hit.collider == null)
+			if (landedHook && dot > 0)
+				return;
 			velocity = reflected;
 		}
 	}
