@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SavedDataManager : MonoBehaviour {
 
-	private const string fileName = "_save";
+	private const string fileName = "/_save";
 
 	private static SavedDataManager instance = null;
 	public static SavedDataManager Instance {
