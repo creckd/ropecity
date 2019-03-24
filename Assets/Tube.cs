@@ -5,6 +5,7 @@ public class Tube : LevelObject {
 
 	[System.Serializable]
 	public class TubeData {
+		[OdinSerialize]
 		public Vector4 flowDirection;
 	}
 
