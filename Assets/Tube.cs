@@ -1,11 +1,9 @@
 ﻿using UnityEngine;
-using OdinSerializer;
 
 public class Tube : LevelObject {
 
 	[System.Serializable]
 	public class TubeData {
-		[OdinSerialize]
 		public Vector4 flowDirection;
 	}
 
@@ -19,11 +17,11 @@ public class Tube : LevelObject {
 	}
 
 	public override void DeserializeObjectData(string objectData) {
-		if(objectData != null)
-		data = SerializationUtility.DeserializeValue<TubeData>(System.Text.Encoding.ASCII.GetBytes(objectData), DataFormat.Binary);
+		if (objectData != null)
+			data = StringSerializationAPI.Deserialize(typeof(TubeData), objectData) as TubeData;
 	}
 
 	public override string SerializeObjectData() {
-		return System.Text.Encoding.ASCII.GetString(SerializationUtility.SerializeValue(data, DataFormat.Binary));
+		return StringSerializationAPI.Serialize(typeof(TubeData), data);
 	}
 }

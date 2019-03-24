@@ -1,5 +1,4 @@
-﻿using OdinSerializer;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -24,13 +23,13 @@ public class SavedDataManager : MonoBehaviour {
 	}
 
 	private void Save(SavedData data, string filePath) {
-		byte[] bytes = SerializationUtility.SerializeValue(data, DataFormat.Binary);
-		File.WriteAllBytes(Application.persistentDataPath + fileName,bytes);
+		string saveString = StringSerializationAPI.Serialize(typeof(SavedData),data);
+		File.WriteAllText(Application.persistentDataPath + fileName, saveString);
 	}
 
 	private SavedData Load(string filePath) {
-		byte[] bytes = File.ReadAllBytes(filePath);
-		return SerializationUtility.DeserializeValue<SavedData>(bytes, DataFormat.Binary);
+		string saveString = File.ReadAllText(filePath);
+		return StringSerializationAPI.Deserialize(typeof(SavedData),saveString) as SavedData;
 	}
 
 	private void CreateEmptySave() {
