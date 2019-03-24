@@ -52,12 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelResourceNames:
-  - dani_001
   - dani_002
-  - dani_001
-  - dani_001
-  - dani_001
-  - dani_001
-  - dani_001
-  - dani_001
-  - dani_001
+  - dani_002
+  - dani_002
+  - dani_002
+  - dani_002
+  - dani_002
+  - dani_002
+  - dani_002
+  - dani_002
