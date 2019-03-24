@@ -27,8 +27,8 @@ public class InputController : MonoBehaviour {
 			ReleaseHappened(0);
 		}
 #endif
-#if UNITY_ANDROID && !UNITY_EDITOR
-				Touch[] touches = Input.touches;
+#if (UNITY_ANDROID || UNITY_IOS) && !UNITY_EDITOR
+		Touch[] touches = Input.touches;
 		foreach (var touch in touches) {
 			if (touch.phase == TouchPhase.Began) {
 				TapHappened(touch.fingerId);
