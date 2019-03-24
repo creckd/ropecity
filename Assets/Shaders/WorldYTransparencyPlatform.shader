@@ -1,6 +1,6 @@
 ﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
 
-Shader "Dani/WorldYTransparency"
+Shader "Dani/WorldYTransparencyPlatform"
 {
 	Properties
 	{
@@ -61,7 +61,7 @@ Shader "Dani/WorldYTransparency"
 			{
 				float4 col = (0,0,0,1);
 				col.rgb = lerp(_SecondColor.rgb, _MainColor.rgb, i.uv.y);
-				//col.rgb *= frac(i.vertexWorld.y);
+				col.rgb *= 1 - (sin(radians(frac(i.vertexWorld.y * 0.05 + _Time.y * 0.25) * 360))) * 0.25;
 				col.a *= saturate((i.vertexWorld.y - _WorldY) / _Falloff);
 				return col;
 			}
