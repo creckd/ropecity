@@ -35,10 +35,10 @@ public class Worm : MonoBehaviour {
 	private float currentHookSearchDistance = 0f;
 
 	Rigidbody2D rb;
-	BoxCollider2D boxCollider;
+	CircleCollider2D circleCollider;
 
 	public void Initialize() {
-		boxCollider = GetComponent<BoxCollider2D>();
+		circleCollider = GetComponent<CircleCollider2D>();
 		rb = GetComponent<Rigidbody2D>();
 
 		InputController.Instance.TapHappened += Tap;
@@ -314,9 +314,14 @@ public class Worm : MonoBehaviour {
 		if (!coll.collider.CompareTag("LaunchPad")) {
 			MedianPoint mP = FindMedian(coll.contacts);
 			Vector2 reflected;
-			if (landedHook)
+			if (landedHook) {
+				float wouldReflectAngle = Vector3.Angle(velocity, Vector3.Reflect(velocity, mP.medianNormal));
+				Debug.Log(wouldReflectAngle);
+				if (wouldReflectAngle < 90f) {
+					return;
+				}
 				reflected = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
-			else
+			} else
 				reflected = Vector2.Reflect(velocity, mP.medianNormal);
 			if (reflected.magnitude < ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce) {
 				reflected *= (1f / (reflected.magnitude / ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce));
@@ -335,6 +340,28 @@ public class Worm : MonoBehaviour {
 			velocity = reflected;
 		}
 	}
+
+	private void OnCollisionStay2D(Collision2D collision) {
+			bool isTouchingSomethingSolid = false;
+			float ropeDecreaseValue = 0.1f;
+			if (distanceToKeep > ropeDecreaseValue * 5f)
+			do {
+				isTouchingSomethingSolid = false;
+				distanceToKeep -= ropeDecreaseValue;
+				transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * ropeDecreaseValue);
+				Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius + 0.1f);
+				foreach (var r in results) {
+					if (r != null) {
+						if (!r.CompareTag("Player") && !r.isTrigger) {
+							isTouchingSomethingSolid = true;
+						}
+					}
+				}
+			if (distanceToKeep < ropeDecreaseValue * 5f)
+				break;
+			} while (isTouchingSomethingSolid);
+	}
+
 
 	MedianPoint FindMedian(ContactPoint2D[] contacts) {
 		MedianPoint mP = new MedianPoint();
