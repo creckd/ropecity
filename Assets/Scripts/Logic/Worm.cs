@@ -248,11 +248,12 @@ public class Worm : MonoBehaviour {
 		transform.position = targetPosition;
 	}
 
-	private void HookCorrection() {
+	private void HookCorrection(bool gainVelocity = true) {
 		if (landedHook) {
 			float currentDistance = Vector3.Distance(transform.position, hookPositions[hookPositions.Count - 1]);
 			float difference = currentDistance - distanceToKeep;
 			Vector2 differenceVelocity = ((Vector2)(hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
+			if(gainVelocity)
 			velocity += differenceVelocity * Time.deltaTime * 10f * ConfigDatabase.Instance.swingForceMultiplier;
 
 			transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
@@ -285,7 +286,7 @@ public class Worm : MonoBehaviour {
 					bool overlapping = true;
 					while (overlapping && distanceToKeep > 2f) {
 						distanceToKeep = Mathf.Clamp(distanceToKeep - 0.01f, 2f, ConfigDatabase.Instance.maxRopeDistance);
-						HookCorrection();
+						HookCorrection(false);
 						overlapping = false;
 						Collider2D[] overlappedColls = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius);
 						foreach (var coll in overlappedColls) {
