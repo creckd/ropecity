@@ -15,8 +15,7 @@ public class IngamePanel : Panel {
 	private bool crossHairShouldBeShown = false;
 
 	private void Awake() {
-		GameController.Instance.GameInitialized += ShowLevelInfo;
-		GameController.Instance.ReinitalizeGame += ShowLevelInfo;
+		GameController.Instance.GameStarted += ShowLevelInfo;
 	}
 
 	public override void OnStartedOpening() {
