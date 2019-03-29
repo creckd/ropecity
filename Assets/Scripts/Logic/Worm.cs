@@ -217,6 +217,9 @@ public class Worm : MonoBehaviour {
 		}
 	}
 
+	bool sliding = false;
+	Vector2 direction = Vector2.zero;
+
 	private void SimulatePhysics() {
 		//rb.velocity = Vector3.zero;
 
@@ -226,6 +229,41 @@ public class Worm : MonoBehaviour {
 		Vector3 targetPosition = new Vector3(transform.position.x + (velocity.x * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.y + (velocity.y * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.z);
 		transform.position = targetPosition;
 
+		if (landedHook) {
+			Vector2 dir;
+			if (sliding)
+				dir = direction;
+			else dir = velocity;
+
+			RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, dir, 3f);
+
+			bool hitSolid = false;
+			RaycastHit2D solidHit = new RaycastHit2D();
+
+			foreach (var hit in hits) {
+				if (!hit.collider.CompareTag("Player") && !hit.collider.isTrigger) {
+					solidHit = hit;
+					hitSolid = true;
+					break;
+				}
+			}
+
+			if (hitSolid) {
+				float wouldReflectAngle = Vector3.Angle(velocity, Vector3.Reflect(dir, solidHit.normal));
+				if (wouldReflectAngle < 100f) {
+					distanceToKeep = Mathf.Clamp(distanceToKeep - 0.1f, 1f, ConfigDatabase.Instance.maxRopeDistance);
+					if (!sliding) {
+						Debug.Log("STARTEDSLIDING");
+						sliding = true;
+						direction = dir;
+					}
+				}
+			} else {
+				sliding = false;
+			}
+		} else {
+			sliding = false;
+		}
 	}
 
 	private void HookCorrection() {
@@ -311,15 +349,12 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void OnCollisionEnter2D(Collision2D coll) {
+		if (sliding)
+			return;
 		if (!coll.collider.CompareTag("LaunchPad")) {
 			MedianPoint mP = FindMedian(coll.contacts);
 			Vector2 reflected;
 			if (landedHook) {
-				float wouldReflectAngle = Vector3.Angle(velocity, Vector3.Reflect(velocity, mP.medianNormal));
-				Debug.Log(wouldReflectAngle);
-				if (wouldReflectAngle < 90f) {
-					return;
-				}
 				reflected = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
 			} else
 				reflected = Vector2.Reflect(velocity, mP.medianNormal);
@@ -341,26 +376,26 @@ public class Worm : MonoBehaviour {
 		}
 	}
 
-	private void OnCollisionStay2D(Collision2D collision) {
-			bool isTouchingSomethingSolid = false;
-			float ropeDecreaseValue = 0.1f;
-			if (distanceToKeep > ropeDecreaseValue * 5f)
-			do {
-				isTouchingSomethingSolid = false;
-				distanceToKeep -= ropeDecreaseValue;
-				transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * ropeDecreaseValue);
-				Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius + 0.1f);
-				foreach (var r in results) {
-					if (r != null) {
-						if (!r.CompareTag("Player") && !r.isTrigger) {
-							isTouchingSomethingSolid = true;
-						}
-					}
-				}
-			if (distanceToKeep < ropeDecreaseValue * 5f)
-				break;
-			} while (isTouchingSomethingSolid);
-	}
+	//private void OnCollisionStay2D(Collision2D collision) {
+	//		bool isTouchingSomethingSolid = false;
+	//		float ropeDecreaseValue = 0.1f;
+	//		if (distanceToKeep > ropeDecreaseValue * 5f)
+	//		do {
+	//			isTouchingSomethingSolid = false;
+	//			distanceToKeep -= ropeDecreaseValue;
+	//			transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * ropeDecreaseValue);
+	//			Collider2D[] results = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius + 0.1f);
+	//			foreach (var r in results) {
+	//				if (r != null) {
+	//					if (!r.CompareTag("Player") && !r.isTrigger) {
+	//						isTouchingSomethingSolid = true;
+	//					}
+	//				}
+	//			}
+	//		if (distanceToKeep < ropeDecreaseValue * 5f)
+	//			break;
+	//		} while (isTouchingSomethingSolid);
+	//}
 
 
 	MedianPoint FindMedian(ContactPoint2D[] contacts) {
