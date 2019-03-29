@@ -4,6 +4,7 @@
 		public int levelIndex = 0;
 		public bool levelCompleted = false;
 		public bool isUnlocked = false;
+		public int numberOfTries = 0;
 	}
 
 	public LevelSaveData[] levelSaveDatas;
@@ -16,6 +17,7 @@
 			levelSaveDatas[i].levelIndex = i;
 			levelSaveDatas[i].levelCompleted = false;
 			levelSaveDatas[i].isUnlocked = false;
+			levelSaveDatas[i].numberOfTries = 0;
 		}
 		levelSaveDatas[0].isUnlocked = true; //First level open
 	}

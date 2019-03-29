@@ -7,17 +7,27 @@ public class IngamePanel : Panel {
 
 	public Image ropeCrossHair;
 	public LineRenderer aiderLine;
+	public AnimatedLevelText animatedLevelText;
 
 	private Vector3 crossHairTargetWorldPosition = Vector3.zero;
 
 	private float lastTimePositionWasChanged;
 	private bool crossHairShouldBeShown = false;
 
+	private void Awake() {
+		GameController.Instance.GameInitialized += ShowLevelInfo;
+		GameController.Instance.ReinitalizeGame += ShowLevelInfo;
+	}
+
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
 		GameController.Instance.FoundPotentionalHitPoint += SetCrossHairPosition;
 		GameController.Instance.ShowUIHookAid += () => { crossHairShouldBeShown = true; };
 		GameController.Instance.HideUIHookAid += () => { crossHairShouldBeShown = false; };
+	}
+
+	private void ShowLevelInfo() {
+		animatedLevelText.ShowLevelText(2.5f, LevelController.Instance.level.levelName, "Run " + SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries.ToString());
 	}
 
 	public void BackToMainMenu() {

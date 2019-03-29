@@ -25,7 +25,7 @@ public class PanelManager : MonoBehaviour {
 	private Panel currentlyOpenedPanel = null;
 	private bool panelTransitionInProgress = false;
 
-	private void Start() {
+	private void Awake() {
 		mainCanvas = GetComponentInParent<Canvas>();
 		mainCanvasRect = mainCanvas.GetComponent<RectTransform>();
 		foreach (var panel in panels) {
