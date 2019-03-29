@@ -105,6 +105,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame() {
+		SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries++;
 		GameStarted();
 		currentGameState = GameState.GameStarted;
 	}
