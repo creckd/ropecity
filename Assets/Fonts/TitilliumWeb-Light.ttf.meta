@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 406527d193dd8664cb044ed312906c75
+guid: 06949373843924a4db5a99d845783e56
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Seven Swordsmen BB
+  fontName: Titillium Web
   fontNames:
-  - Seven Swordsmen BB
+  - Titillium Web
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
