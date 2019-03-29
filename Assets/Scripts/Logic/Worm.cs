@@ -171,8 +171,10 @@ public class Worm : MonoBehaviour {
 		if (GameController.Instance.currentGameState != GameState.GameFinished) {
 			if (landedHook) {
 				RefreshWormRotation();
-				CheckILastHitPointIsNotNeccessaryAnymore();
-				LookForHookCollision();
+				if (!sliding) {
+					CheckILastHitPointIsNotNeccessaryAnymore();
+					LookForHookCollision();
+				}
 			} else {
 				Vector3 hitPosition;
 				if (FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
@@ -200,6 +202,22 @@ public class Worm : MonoBehaviour {
 
 	private void FixedUpdate() {
 		HookCorrection();
+		SlidingMechanic();
+		CheckForPhysicsCollision();
+	}
+
+	private void CheckForPhysicsCollision() {
+		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, velocity, 0.4f);
+		bool physicalCollisionHappened = false;
+		foreach (var hit in hits) {
+			if (!hit.collider.CompareTag("Player") && !hit.collider.isTrigger) {
+				if (physicalCollisionHappened)
+					continue;
+				Collided(hit);
+				physicalCollisionHappened = true;
+			} else if (hit.collider.isTrigger)
+				hit.collider.SendMessage("OnTriggerEnter2D", circleCollider as Collider2D);
+		}
 	}
 
 	private void CheckIfGrounded() {
@@ -228,14 +246,27 @@ public class Worm : MonoBehaviour {
 
 		Vector3 targetPosition = new Vector3(transform.position.x + (velocity.x * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.y + (velocity.y * Time.deltaTime * 20 * 100f / ConfigDatabase.Instance.wormMass), transform.position.z);
 		transform.position = targetPosition;
+	}
 
+	private void HookCorrection() {
+		if (landedHook) {
+			float currentDistance = Vector3.Distance(transform.position, hookPositions[hookPositions.Count - 1]);
+			float difference = currentDistance - distanceToKeep;
+			Vector2 differenceVelocity = ((Vector2)(hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
+			velocity += differenceVelocity * Time.deltaTime * 10f * ConfigDatabase.Instance.swingForceMultiplier;
+
+			transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
+		}
+	}
+
+	private void SlidingMechanic() {
 		if (landedHook) {
 			Vector2 dir;
 			if (sliding)
 				dir = direction;
 			else dir = velocity;
 
-			RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, dir, 3f);
+			RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleCollider.radius, dir, 1f);
 
 			bool hitSolid = false;
 			RaycastHit2D solidHit = new RaycastHit2D();
@@ -250,12 +281,26 @@ public class Worm : MonoBehaviour {
 
 			if (hitSolid) {
 				float wouldReflectAngle = Vector3.Angle(velocity, Vector3.Reflect(dir, solidHit.normal));
+				if (sliding) {
+					bool overlapping = true;
+					while (overlapping && distanceToKeep > 2f) {
+						distanceToKeep = Mathf.Clamp(distanceToKeep - 0.01f, 2f, ConfigDatabase.Instance.maxRopeDistance);
+						HookCorrection();
+						overlapping = false;
+						Collider2D[] overlappedColls = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius);
+						foreach (var coll in overlappedColls) {
+							if (!coll.CompareTag("Player") && !coll.isTrigger) {
+								overlapping = true;
+								break;
+							}
+						}
+					}
+				}
 				if (wouldReflectAngle < 100f) {
-					distanceToKeep = Mathf.Clamp(distanceToKeep - 0.1f, 1f, ConfigDatabase.Instance.maxRopeDistance);
 					if (!sliding) {
-						Debug.Log("STARTEDSLIDING");
 						sliding = true;
-						direction = dir;
+						direction = solidHit.point - (Vector2)transform.position;
+						direction = direction.normalized;
 					}
 				}
 			} else {
@@ -263,17 +308,6 @@ public class Worm : MonoBehaviour {
 			}
 		} else {
 			sliding = false;
-		}
-	}
-
-	private void HookCorrection() {
-		if (landedHook) {
-			float currentDistance = Vector3.Distance(transform.position, hookPositions[hookPositions.Count - 1]);
-			float difference = currentDistance - distanceToKeep;
-			Vector2 differenceVelocity = ((Vector2)(hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
-			velocity += differenceVelocity * Time.deltaTime * 10f * ConfigDatabase.Instance.swingForceMultiplier;
-
-			transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
 		}
 	}
 
@@ -348,20 +382,19 @@ public class Worm : MonoBehaviour {
 		return v;
 	}
 
-	private void OnCollisionEnter2D(Collision2D coll) {
+	private void Collided(RaycastHit2D hitInfo) {
 		if (sliding)
 			return;
-		if (!coll.collider.CompareTag("LaunchPad")) {
-			MedianPoint mP = FindMedian(coll.contacts);
+		if (!hitInfo.collider.CompareTag("LaunchPad")) {
 			Vector2 reflected;
 			if (landedHook) {
 				reflected = -velocity * ConfigDatabase.Instance.remainingVelocityPercentAfterBounce;
 			} else
-				reflected = Vector2.Reflect(velocity, mP.medianNormal);
+				reflected = Vector2.Reflect(velocity, hitInfo.normal);
 			if (reflected.magnitude < ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce) {
 				reflected *= (1f / (reflected.magnitude / ConfigDatabase.Instance.minimumVelocityMagnitudeAfterBounce));
 			}
-			Vector3 collisionDirection = (transform.position - mP.medianPoint).normalized;
+			Vector3 collisionDirection = ((Vector2)transform.position - hitInfo.point).normalized;
 			float verticalDot = Vector3.Dot(Vector3.up, collisionDirection);
 
 			bool isGroundCollision = verticalDot > 0.5f;
