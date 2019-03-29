@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour {
 	public GameState currentGameState = GameState.NotInitialized;
 
 	public Action GameStarted = delegate { };
+	public Action GameInitialized = delegate { }; //First initialization
 	public Action<bool> GameFinished = delegate { };
 	public Action ReinitalizeGame = delegate { };
 
@@ -44,10 +45,6 @@ public class GameController : MonoBehaviour {
 	private float targetTimeScale = 1f;
 
 	private bool canStartSlowingTime = false;
-
-	private void Awake() {
-		InitializeGame();
-	}
 
 	public void InitializeGame() {
 		QualitySettings.vSyncCount = 0;
@@ -70,6 +67,7 @@ public class GameController : MonoBehaviour {
 			LevelController.Instance.InitializeLevel(data);
 		}
 		currentGameState = GameState.Initialized;
+		GameInitialized();
 	}
 
 	private void SlowTime() {
@@ -90,6 +88,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Start() {
+		InitializeGame();
 		StartCoroutine(StartTheGameAfterAFewFrames()); // for subscriptions
 	}
 

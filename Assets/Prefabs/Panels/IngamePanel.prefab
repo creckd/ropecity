@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 222194039055778338}
   - component: {fileID: 114156912435767270}
   m_Layer: 5
-  m_Name: Image
+  m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,9 +88,8 @@ GameObject:
   m_Component:
   - component: {fileID: 224116034855430598}
   - component: {fileID: 222968621136514136}
-  - component: {fileID: 114409398519697670}
   m_Layer: 5
-  m_Name: levelTextBG
+  m_Name: Root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -104,6 +103,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 224868685725575302}
+  - component: {fileID: 95446703972545946}
+  - component: {fileID: 114211901957318720}
   m_Layer: 5
   m_Name: AnimatedLevelText
   m_TagString: Untagged
@@ -246,6 +247,24 @@ Transform:
   m_Father: {fileID: 224639833348964262}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95446703972545946
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251991417205838}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5085bd5d452f6694f8f884e7bbb37a06, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114156912435767270
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -273,6 +292,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114211901957318720
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1251991417205838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fbbad5e52de9f24d909f01a9696f670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stageNameText: {fileID: 114550638331149468}
+  triesText: {fileID: 114247884106541948}
 --- !u!114 &114247884106541948
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -319,33 +351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axis: {x: 0, y: 0, z: 1}
   speed: 500
---- !u!114 &114409398519697670
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1209549414874910}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 64da8ab1f666356409b883f59982a759, type: 2}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.59607846}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
-  m_Type: 0
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
 --- !u!114 &114461848200570912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -414,6 +419,7 @@ MonoBehaviour:
   faders: []
   ropeCrossHair: {fileID: 114500936889737126}
   aiderLine: {fileID: 120475944652768018}
+  animatedLevelText: {fileID: 114211901957318720}
 --- !u!114 &114542620679767796
 MonoBehaviour:
   m_ObjectHideFlags: 1
