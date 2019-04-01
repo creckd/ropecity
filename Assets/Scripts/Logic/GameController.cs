@@ -192,7 +192,7 @@ public class GameController : MonoBehaviour {
 	IEnumerator BackToMainMenuRoutine() {
 		ImageTransitionHandler.Instance.TransitionIn(true);
 		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
-		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+		LoadingController.LoadScene("MainMenu");
 	}
 
 	public void RestartButton() {
@@ -203,7 +203,7 @@ public class GameController : MonoBehaviour {
 		ImageTransitionHandler.Instance.TransitionIn(true);
 		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
 		Messenger.Instance.SendMessage(LevelSelectPanel.LevelIndexKey, LevelController.Instance.currentLevelIndex);
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+		LoadingController.LoadScene("Game");
 	}
 }
 

@@ -30,7 +30,7 @@ public class IngamePanel : FaderPanel {
 	}
 
 	public void BackToMainMenu() {
-		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+		LoadingController.LoadScene("MainMenu");
 	}
 
 	public void SetCrossHairPosition(Vector3 worldPosition) {
