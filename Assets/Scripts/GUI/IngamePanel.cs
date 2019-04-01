@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IngamePanel : Panel {
+public class IngamePanel : FaderPanel {
 
 	public Image ropeCrossHair;
 	public LineRenderer aiderLine;

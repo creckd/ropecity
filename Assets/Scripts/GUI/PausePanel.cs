@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PausePanel : Panel {
+public class PausePanel : FaderPanel {
 	public void MenuButton() {
 		GameController.Instance.BackToMainMenu();
 	}
