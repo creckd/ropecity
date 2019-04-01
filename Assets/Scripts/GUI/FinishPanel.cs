@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinishPanel : Panel {
+public class FinishPanel : FaderPanel {
 
 	public void BackToMainMenu() {
 		GameController.Instance.BackToMainMenu();
