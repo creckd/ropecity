@@ -14,7 +14,7 @@ public class FaderPanel : Panel {
 		foreach (var f in GetComponentsInChildren<Fader>()) {
 			faders.Add(f);
 		}
-		gameObject.SetActive(false);
+		base.Initialize();
 	}
 
 	IEnumerator OpeningAnimationRoutine(Action openedCallBack) {
