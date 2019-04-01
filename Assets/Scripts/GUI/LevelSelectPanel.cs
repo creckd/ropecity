@@ -41,6 +41,6 @@ public class LevelSelectPanel : AnimatorPanel {
 
 	private void StartLevel(int levelIndex) {
 		Messenger.Instance.SendMessage(LevelIndexKey, levelIndex);
-		UnityEngine.SceneManagement.SceneManager.LoadScene("Game");
+		LoadingController.LoadScene("Game");
 	}
 }
