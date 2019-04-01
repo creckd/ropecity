@@ -6,7 +6,7 @@ using UnityEngine;
 
 public abstract class Panel : MonoBehaviour {
 
-	public virtual void Initialize() {}
+	public virtual void Initialize() { gameObject.SetActive(false); }
 
 	public abstract void OpeningAnimation(Action cb);
 	public abstract void ClosingAnimation(Action cb);
