@@ -96,6 +96,7 @@ MonoBehaviour:
   swingForceMultiplier: 2
   rotationSpeed: 600
   ropeShootSpeed: 500
+  minRopeDistance: 4
   maxRopeDistance: 28
   pullForceMultiplier: 0.15
   maximumRewardedAngleForPullForce: 60
