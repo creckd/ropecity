@@ -24,6 +24,7 @@ public class LevelSelectPanel : AnimatorPanel {
 
 	public override void Initialize() {
 		InstantiateLevelButtons();
+		ReInitializeButtons();
 		base.Initialize();
 	}
 
