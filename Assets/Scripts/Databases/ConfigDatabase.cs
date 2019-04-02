@@ -37,6 +37,7 @@ public class ConfigDatabase : MonoBehaviour {
 	public float swingForceMultiplier = 10f;
 	public float rotationSpeed = 1f;
 	public float ropeShootSpeed = 1f;
+	public float minRopeDistance = 1f;
 	public float maxRopeDistance = 10f;
 	public float pullForceMultiplier = 1f;
 	public float maximumRewardedAngleForPullForce = 30f;

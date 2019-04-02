@@ -98,12 +98,12 @@ public class Worm : MonoBehaviour {
 		Vector3 hitPosition = Vector3.zero;
 		float tarDistance = useInrementalDistance ? currentHookSearchDistance : ConfigDatabase.Instance.maxRopeDistance;
 
-		if (!landedHook && FindHookPoint(out hitPosition, tarDistance)) {
+		if (!landedHook && FindHookPoint(out hitPosition, tarDistance) && !WormOverlappingPhysicalCollider()) {
 			rotationEnabled = false;
 			landedHook = true;
 			hookPositions.Add(hitPosition);
 			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
-			distanceToKeep = Vector3.Distance(hitPosition, transform.position);
+			distanceToKeep = Mathf.Clamp(Vector3.Distance(hitPosition, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
 			AddWormPullingForce(hitPosition);
 			GameController.Instance.FoundPotentionalHitPoint(hitPosition);
 			GameController.Instance.LandedHook();
@@ -287,14 +287,7 @@ public class Worm : MonoBehaviour {
 					while (overlapping && distanceToKeep > 2f) {
 						distanceToKeep = Mathf.Clamp(distanceToKeep - 0.01f, 2f, ConfigDatabase.Instance.maxRopeDistance);
 						HookCorrection(false);
-						overlapping = false;
-						Collider2D[] overlappedColls = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius);
-						foreach (var coll in overlappedColls) {
-							if (!coll.CompareTag("Player") && !coll.isTrigger) {
-								overlapping = true;
-								break;
-							}
-						}
+						overlapping = WormOverlappingPhysicalCollider();
 					}
 				}
 				if (wouldReflectAngle < 100f) {
@@ -312,11 +305,23 @@ public class Worm : MonoBehaviour {
 		}
 	}
 
+	private bool WormOverlappingPhysicalCollider() {
+		bool isOverlapping = false;
+		Collider2D[] overlappedColls = Physics2D.OverlapCircleAll(transform.position, circleCollider.radius);
+		foreach (var coll in overlappedColls) {
+			if (!coll.CompareTag("Player") && !coll.isTrigger) {
+				isOverlapping = true;
+				break;
+			}
+		}
+		return isOverlapping;
+	}
+
 	public bool FindHookPoint(out Vector3 hookPoint, float distanceToUse) {
 		RaycastHit2D hit;
 		hookPoint = Vector3.zero;
-		Ray ray = new Ray(gunPositionObject.transform.position, (gunPositionObject.transform.position - transform.position).normalized);
-		hit = Physics2D.Raycast(ray.origin,ray.direction,distanceToUse);
+		Ray ray = new Ray(transform.position, (gunPositionObject.transform.position - transform.position).normalized);
+		hit = Physics2D.Raycast(ray.origin,ray.direction,distanceToUse,~LayerMask.GetMask("Worm"));
 		if (hit.collider != null) {
 			hookPoint = hit.point;
 		}
@@ -326,13 +331,13 @@ public class Worm : MonoBehaviour {
 	public void LookForHookCollision() {
 		if (Time.realtimeSinceStartup - lastTimeAPointWasAdded < 0.025f)
 			return;
-		Ray ray = new Ray(gunPositionObject.transform.position, (hookPositions[hookPositions.Count - 1] - gunPositionObject.transform.position).normalized);
+		Ray ray = new Ray(transform.position, (hookPositions[hookPositions.Count - 1] - transform.position).normalized);
 		RaycastHit2D hit;
-		hit = Physics2D.Raycast(ray.origin,ray.direction);
-		if (new Vector3(hit.point.x,hit.point.y,0f) != hookPositions[hookPositions.Count - 1]) {
+		hit = Physics2D.Raycast(ray.origin,ray.direction,ConfigDatabase.Instance.maxRopeDistance,~LayerMask.GetMask("Worm"));
+		if (new Vector3(hit.point.x,hit.point.y,0f) != hookPositions[hookPositions.Count - 1] && Vector3.Distance(hookPositions[hookPositions.Count-1],new Vector3(hit.point.x,hit.point.y,hookPositions[hookPositions.Count-1].z)) > 1f) {
 			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
 			hookPositions.Add(hit.point);
-			distanceToKeep = Vector3.Distance(hit.point, transform.position);
+			distanceToKeep = Mathf.Clamp(Vector3.Distance(hit.point, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
 		}
 	}
 
