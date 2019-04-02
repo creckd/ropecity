@@ -15,6 +15,8 @@ public class PanelManager : MonoBehaviour {
 		}
 	}
 
+	public const string defaultOpenedPanelChangedTag = "DefaultOpenedPanelShouldBeThisPanel";
+
 	public List<Panel> panels = new List<Panel>();
 
 	[HideInInspector]
@@ -31,7 +33,11 @@ public class PanelManager : MonoBehaviour {
 		foreach (var panel in panels) {
 			panel.Initialize();
 		}
-		TryOpenPanel(panels[0]);
+		int defaultPanelID = 0;
+		object data;
+		if (Messenger.Instance.GetMessage(defaultOpenedPanelChangedTag, out data))
+			defaultPanelID = (int)data;
+		TryOpenPanel(panels[defaultPanelID]);
 	}
 
 	public void TryOpenPanel(Panel p) {
