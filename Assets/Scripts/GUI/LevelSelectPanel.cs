@@ -37,6 +37,7 @@ public class LevelSelectPanel : AnimatorPanel {
 	}
 
 	public void PlayLevel(int levelIndex) {
+		DeactivatePanelButtons();
 		ImageTransitionHandler.Instance.TransitionIn(() => { StartLevel(levelIndex); },true);
 	}
 
