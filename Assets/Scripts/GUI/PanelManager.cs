@@ -28,6 +28,8 @@ public class PanelManager : MonoBehaviour {
 	private bool panelTransitionInProgress = false;
 
 	private void Start() {
+		Time.timeScale = 1;
+
 		mainCanvas = GetComponentInParent<Canvas>();
 		mainCanvasRect = mainCanvas.GetComponent<RectTransform>();
 		foreach (var panel in panels) {

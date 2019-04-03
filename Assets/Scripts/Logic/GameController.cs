@@ -192,6 +192,7 @@ public class GameController : MonoBehaviour {
 	IEnumerator BackToMainMenuRoutine() {
 		ImageTransitionHandler.Instance.TransitionIn(true);
 		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
+		Messenger.Instance.SendMessage(PanelManager.defaultOpenedPanelChangedTag, 1);
 		LoadingController.LoadScene("MainMenu");
 	}
 

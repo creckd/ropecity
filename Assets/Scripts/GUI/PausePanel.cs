@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PausePanel : FaderPanel {
 	public void MenuButton() {
+		DeactivatePanelButtons();
 		GameController.Instance.BackToMainMenu();
 	}
 

@@ -30,6 +30,7 @@ public class IngamePanel : FaderPanel {
 	}
 
 	public void BackToMainMenu() {
+		Messenger.Instance.SendMessage(PanelManager.defaultOpenedPanelChangedTag, 1);
 		LoadingController.LoadScene("MainMenu");
 	}
 
