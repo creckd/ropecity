@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Worm : MonoBehaviour {
 
+	private const string trailMaterialTransparencyName = "_Transparency";
+
 	public GameObject ropeEndPrefab;
 
 	public GameObject gunPositionObject;
@@ -17,6 +19,9 @@ public class Worm : MonoBehaviour {
 	}
 
 	public GameObject ragdoll;
+	public TrailRenderer trail;
+	public TrailRenderer subTrail1;
+	public TrailRenderer subTrail2;
 
 	public ParticleSystem bounceParticle;
 	public ParticleSystem hookHitParticle;
@@ -205,6 +210,7 @@ public class Worm : MonoBehaviour {
 	private void LateUpdate() {
 		if(landedHook || currentHoldID != -1)
 			RefreshRopeRenderer();
+		HandleSpeedTrails();
 	}
 
 	private void FixedUpdate() {
@@ -492,5 +498,24 @@ public class Worm : MonoBehaviour {
 			if (slideParticle.isPlaying)
 				slideParticle.Stop();
 		}
+	}
+
+	private float currentTrailTransparency = 0f;
+
+	private void HandleSpeedTrails() {
+		trail.transform.position = transform.position - new Vector3(velocity.normalized.x, velocity.normalized.y, 0f) * 3f;
+		subTrail1.transform.position = trail.transform.position + Vector3.Cross(Vector3.forward, transform.position - trail.transform.position).normalized * 0.5f;
+		subTrail1.transform.position += (transform.position - trail.transform.position).normalized * 0.5f;
+		subTrail2.transform.position = trail.transform.position + Vector3.Cross(-Vector3.forward, transform.position - trail.transform.position).normalized * 0.5f;
+		subTrail2.transform.position -= (transform.position - trail.transform.position).normalized * 0.5f;
+
+		if (landedHook) {
+			currentTrailTransparency = Mathf.InverseLerp(0.1f, 0.2f, velocity.magnitude);
+		} else {
+			currentTrailTransparency = Mathf.Clamp(currentTrailTransparency - Time.deltaTime * 8f, 0f, Mathf.Infinity);
+		}
+		trail.sharedMaterial.SetFloat(trailMaterialTransparencyName, currentTrailTransparency);
+		bool visible = currentTrailTransparency != 0f;
+		trail.gameObject.SetActive(visible);
 	}
 }
