@@ -18,6 +18,10 @@ public class Worm : MonoBehaviour {
 
 	public GameObject ragdoll;
 
+	public ParticleSystem bounceParticle;
+	public ParticleSystem hookHitParticle;
+	public ParticleSystem slideParticle;
+
 	private bool rotationEnabled = true;
 	private GameObject ropeEnd;
 
@@ -108,6 +112,8 @@ public class Worm : MonoBehaviour {
 			GameController.Instance.FoundPotentionalHitPoint(hitPosition);
 			GameController.Instance.LandedHook();
 			GameController.Instance.HideUIHookAid();
+			hookHitParticle.transform.position = hitPosition;
+			hookHitParticle.Play();
 		}
 	}
 
@@ -193,6 +199,7 @@ public class Worm : MonoBehaviour {
 		}
 		SimulatePhysics();
 		CheckIfOutOfBoundaries();
+		HandleSlideParticle();
 	}
 
 	private void LateUpdate() {
@@ -411,6 +418,9 @@ public class Worm : MonoBehaviour {
 
 			if (landedHook && dot > 0)
 				return;
+
+			bounceParticle.transform.position = hitInfo.point;
+			bounceParticle.Play();
 			velocity = reflected;
 		}
 	}
@@ -472,5 +482,15 @@ public class Worm : MonoBehaviour {
 		ropeRenderer.positionCount = 0;
 		ropeEnd.gameObject.SetActive(false);
 		GameController.Instance.ReleasedHook();
+	}
+
+	private void HandleSlideParticle() {
+		if (sliding) {
+			if (!slideParticle.isPlaying)
+				slideParticle.Play();
+		} else {
+			if (slideParticle.isPlaying)
+				slideParticle.Stop();
+		}
 	}
 }

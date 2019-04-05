@@ -26,7 +26,15 @@ public class IngamePanel : FaderPanel {
 	}
 
 	private void ShowLevelInfo() {
-		animatedLevelText.ShowLevelText(2.5f, LevelController.Instance.level.levelName, "Run " + SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries.ToString());
+		string levelName, triesText;
+		if (!GameController.Instance.isDebugTestLevelMode) {
+			levelName = LevelController.Instance.level.levelName;
+			triesText = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries.ToString();
+		} else {
+			levelName = "Teszt mód";
+			triesText = "végtelen";
+		}
+		animatedLevelText.ShowLevelText(2.5f, levelName, "Run " + triesText);
 	}
 
 	public void BackToMainMenu() {

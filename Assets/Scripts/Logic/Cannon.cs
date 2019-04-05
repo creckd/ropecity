@@ -6,9 +6,11 @@ using UnityEngine;
 public class Cannon : LevelObject {
 
 	public GameObject cannonMouthPositionObject;
+	public ParticleSystem explosionParticle;
 
 	private const string cannonShootAnimationName = "Armature|Shoot";
 	private Animator anim;
+
 
 	private void Start() {
 		if (GameController.Instance.currentGameState == GameState.Initialized) {
@@ -35,9 +37,10 @@ public class Cannon : LevelObject {
 		instantiatedWorm.gameObject.SetActive(false);
 		anim.Play(cannonShootAnimationName, 0, 0f);
 		yield return null;
-		yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length - 0.7f);
+		yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length - 0.8f);
 
 		//CameraShake.Instance.Shake(0.1f, 0.5f, 4f);
+		PlayShootParticles();
 		instantiatedWorm.gameObject.SetActive(true);
 		instantiatedWorm.AddForce(ConfigDatabase.Instance.cannonShootDirection * ConfigDatabase.Instance.cannonShootForceMultiplier);
 		GameController.Instance.StartSlowingTime();
@@ -45,5 +48,10 @@ public class Cannon : LevelObject {
 
 	private void ReinitalizeCannon() {
 		anim.Play("Default", 0, 0f);
+	}
+
+	private void PlayShootParticles() {
+		if(explosionParticle != null)
+		explosionParticle.Play();
 	}
 }

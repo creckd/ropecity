@@ -87,7 +87,7 @@ public class GameController : MonoBehaviour {
 		canStartSlowingTime = true;
 	}
 
-	private void Start() {
+	private void Awake() {
 		InitializeGame();
 		StartCoroutine(StartTheGameAfterAFewFrames()); // for subscriptions
 	}
@@ -105,6 +105,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame() {
+		if(!isDebugTestLevelMode)
 		SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries++;
 		GameStarted();
 		currentGameState = GameState.GameStarted;
