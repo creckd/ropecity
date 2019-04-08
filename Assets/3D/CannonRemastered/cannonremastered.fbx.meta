@@ -20,6 +20,7 @@ ModelImporter:
     100028: //RootNode
     100030: Wheel1
     100032: Wheel2
+    100034: Root
     400000: Armature
     400002: Bone
     400004: Bone.001
@@ -37,6 +38,7 @@ ModelImporter:
     400028: //RootNode
     400030: Wheel1
     400032: Wheel2
+    400034: Root
     2100000: No Name
     2300000: CannonBase
     2300002: Wheel1
@@ -51,6 +53,7 @@ ModelImporter:
     7400000: Armature|CannonShoot
     7400002: Wheel2|CannonShoot
     7400004: Wheel1|CannonShoot
+    7400006: Root|CannonShoot
     9500000: //RootNode
     13700000: Cannon
   externalObjects: {}
