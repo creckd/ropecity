@@ -38,7 +38,7 @@ public class Cannon : LevelObject {
 		yield return new WaitForSecondsRealtime(0.8f);
 		anim.Play(cannonShootAnimationName, 0, 0f);
 		yield return null;
-		yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 5.5f);
+		yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 2.5f);
 
 		//CameraShake.Instance.Shake(0.1f, 0.5f, 4f);
 		PlayShootParticles();
