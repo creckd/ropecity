@@ -33,6 +33,11 @@ public class CameraController : MonoBehaviour {
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
 	}
 
+	private void Start() {
+		horizontalMovementLocked = !LevelController.Instance.settings.isHorizontalCameraMovementEnabled;
+		verticalMovementLocked = !LevelController.Instance.settings.isVerticalCameraMovementEnabled;
+	}
+
 	public void StartTracking(Transform target) {
 		this.target = target;
 
