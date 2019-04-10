@@ -8,6 +8,7 @@ public class LevelSerializer {
 
 	private const string levelNameKey = "lvlName";
 	private const string levelObjectsKey = "lvlObjects";
+	private const string levelSettingsKey = "lvlSettings";
 
 	private const string posXKey = "X";
 	private const string posYKey = "Y";
@@ -40,6 +41,7 @@ public class LevelSerializer {
 		LevelData data = new LevelData();
 		data.levelName = levelName;
 		data.levelObjects = levelObjectDatas;
+		data.settings = LevelController.Instance.settings.GetSerialized();
 
 		return SerializeLevel(data);
 
@@ -48,6 +50,7 @@ public class LevelSerializer {
 	public static string SerializeLevel(LevelData level) {
 		JSONObject levelJson = new JSONObject();
 		levelJson[levelNameKey] = level.levelName;
+		levelJson[levelSettingsKey] = level.settings;
 
 		for (int i = 0; i < level.levelObjects.Length; i++) {
 			levelJson[levelObjectsKey][i][level.levelObjects[i].uniqueID][posXKey].AsFloat = level.levelObjects[i].posX;
@@ -105,6 +108,7 @@ public class LevelSerializer {
 
 		level.levelName = jsonLevel[levelNameKey];
 		level.levelObjects = objDatas;
+		level.settings = jsonLevel[levelSettingsKey];
 
 		return level;
 	}
