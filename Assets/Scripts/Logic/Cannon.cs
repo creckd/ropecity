@@ -6,7 +6,7 @@ using UnityEngine;
 public class Cannon : LevelObject {
 
 	public AnimationCurve aimingCurve;
-	public float aimDegree = 0f;
+	private float aimAngle = 30f;
 
 	public GameObject cannonMouthPositionObject;
 	public GameObject rootObject;
@@ -16,6 +16,12 @@ public class Cannon : LevelObject {
 	private Animator anim;
 	private Quaternion defaultRootRotation;
 
+	[System.Serializable]
+	public class CannonData {
+		public float aimAngle = 30f;
+	}
+
+	public CannonData data = null;
 
 	private void Start() {
 		if (GameController.Instance.currentGameState == GameState.Initialized) {
@@ -24,6 +30,10 @@ public class Cannon : LevelObject {
 			defaultRootRotation = rootObject.transform.rotation;
 			GameController.Instance.GameStarted += StartGame;
 			GameController.Instance.ReinitalizeGame += ReinitalizeCannon;
+
+			if (data != null) {
+				aimAngle = data.aimAngle;
+			} else aimAngle = 30f;
 		}
 	}
 
@@ -43,7 +53,7 @@ public class Cannon : LevelObject {
 		instantiatedWorm.gameObject.SetActive(false);
 		float windUpTimer = 0f;
 		Quaternion defRootRotation = rootObject.transform.rotation;
-		Quaternion tarRootRotation = rootObject.transform.rotation * Quaternion.Euler(new Vector3(-aimDegree, 0f, 0f));
+		Quaternion tarRootRotation = rootObject.transform.rotation * Quaternion.Euler(new Vector3(-aimAngle, 0f, 0f));
 		float windUpTime = 2f;
 		while (windUpTimer <= windUpTime) {
 			windUpTimer += Time.unscaledDeltaTime;
@@ -71,5 +81,14 @@ public class Cannon : LevelObject {
 	private void PlayShootParticles() {
 		if(explosionParticle != null)
 		explosionParticle.Play();
+	}
+
+	public override void DeserializeObjectData(string objectData) {
+		if (objectData != null && objectData != "none")
+			data = StringSerializationAPI.Deserialize(typeof(CannonData), objectData) as CannonData;
+	}
+
+	public override string SerializeObjectData() {
+		return StringSerializationAPI.Serialize(typeof(CannonData), data);
 	}
 }
