@@ -5,9 +5,9 @@ Shader "Dani/Tube"
 	Properties
 	{
 		_MainTex("Main Texture",2D) = "white" {}
-		_Mask("Mask",2D) = "white" {}
 		_Liquid("Liqui",2D) = "white" {}
 		_TilingDirection("Tiling Direction",Vector) = (0,0,0,0)
+		_WorldLiquidHeight("World Liquid Height",float) = 0
 	}
 	SubShader
 	{
@@ -34,10 +34,10 @@ Shader "Dani/Tube"
 			};
 
 			sampler2D _MainTex;
-			sampler2D _Mask;
 			sampler2D _Liquid;
 			float4 _TilingDirection;
 			float4 _Liquid_ST;
+			float _WorldLiquidHeight;
 
 			v2f vert (appdata v)
 			{
@@ -51,10 +51,9 @@ Shader "Dani/Tube"
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float4 col = tex2D(_MainTex,i.uv);
-				float4 mask = tex2D(_Mask, i.uv);
-				float4 liquid = tex2D(_Liquid, (i.uv * float2(_Liquid_ST.x, _Liquid_ST.y)) + float2(_TilingDirection.x * _Time.y * 0.5, _TilingDirection.y * _Time.y * 0.75));
+				float4 liquid = tex2D(_Liquid, (i.uv * float2(_Liquid_ST.x, _Liquid_ST.y)) + float2(_TilingDirection.x * _Time.y * 0.75, _TilingDirection.y * _Time.y * 1));
 				int transparentPart = saturate((1 - col.a) * 10);
-				int final = transparentPart * step(sin((i.vertexWorld.x + i.vertexWorld.y) / 2 * 2 + _Time.y * 5) * 0.02 + 0.5, mask.r);
+				int final = transparentPart * step(i.vertexWorld.y + sin((i.vertexWorld.x + (_Time.y *10)) * 0.5) * 0.3, _WorldLiquidHeight);
 				col.rgb = lerp(col.rgb, liquid.rgb, final);
 				return col;
 			}
