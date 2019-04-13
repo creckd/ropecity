@@ -167,3 +167,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: POWERCUBE
   objectData: 
+  rotationScript: {fileID: 114270835315456756}
