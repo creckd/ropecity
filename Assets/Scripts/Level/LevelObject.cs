@@ -8,4 +8,6 @@ public abstract class LevelObject : MonoBehaviour {
 
 	public virtual void DeserializeObjectData(string data) { }
 	public virtual string SerializeObjectData() { return "none"; }
+	public virtual void HookLandedOnThisObject() { }
+	public virtual void HookReleasedOnThisObject() { }
 }

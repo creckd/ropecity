@@ -34,6 +34,7 @@ public class Worm : MonoBehaviour {
 
 	private bool landedHook = false;
 	private List<Vector3> hookPositions = new List<Vector3>();
+	private Dictionary<Vector3,LevelObject> hookedLevelObjects = new Dictionary<Vector3,LevelObject>();
 	private float distanceToKeep = 0f;
 	private bool perfectHitHappened = false;
 
@@ -91,6 +92,11 @@ public class Worm : MonoBehaviour {
 			ropeRenderer.positionCount = 0;
 			ropeEnd.gameObject.SetActive(false);
 			GameController.Instance.ReleasedHook();
+
+			foreach (var levelObjects in hookedLevelObjects) {
+				levelObjects.Value.HookReleasedOnThisObject();
+			}
+			hookedLevelObjects.Clear();
 		}
 	}
 
@@ -108,20 +114,25 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void SearchForHitPoint(bool useInrementalDistance = false) {
-		Vector3 hitPosition = Vector3.zero;
+		RaycastHit2D hit;
 		float tarDistance = useInrementalDistance ? currentHookSearchDistance : ConfigDatabase.Instance.maxRopeDistance;
 
-		if (!landedHook && FindHookPoint(out hitPosition, tarDistance) && !WormOverlappingPhysicalCollider()) {
+		if (!landedHook && FindHookPoint(out hit, tarDistance) && !WormOverlappingPhysicalCollider()) {
 			rotationEnabled = false;
 			landedHook = true;
-			hookPositions.Add(hitPosition);
+			hookPositions.Add(hit.point);
 			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
-			distanceToKeep = Mathf.Clamp(Vector3.Distance(hitPosition, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
-			AddWormPullingForce(hitPosition);
-			GameController.Instance.FoundPotentionalHitPoint(hitPosition);
+			distanceToKeep = Mathf.Clamp(Vector3.Distance(hit.point, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
+			AddWormPullingForce(hit.point);
+			GameController.Instance.FoundPotentionalHitPoint(hit.point);
 			GameController.Instance.LandedHook();
 			GameController.Instance.HideUIHookAid();
-			hookHitParticle.transform.position = hitPosition;
+			LevelObject levelObjectHit = hit.collider.GetComponent<LevelObject>();
+			if (levelObjectHit) {
+				levelObjectHit.HookLandedOnThisObject();
+				hookedLevelObjects.Add(hit.point, levelObjectHit);
+			}
+			hookHitParticle.transform.position = hit.point;
 			hookHitParticle.Play();
 		}
 	}
@@ -194,9 +205,9 @@ public class Worm : MonoBehaviour {
 					LookForHookCollision();
 				}
 			} else {
-				Vector3 hitPosition;
-				if (FindHookPoint(out hitPosition, ConfigDatabase.Instance.maxRopeDistance)) {
-					GameController.Instance.FoundPotentionalHitPoint(hitPosition);
+				RaycastHit2D hit;
+				if (FindHookPoint(out hit, ConfigDatabase.Instance.maxRopeDistance)) {
+					GameController.Instance.FoundPotentionalHitPoint(hit.point);
 					GameController.Instance.ShowUIHookAid();
 				} else {
 					GameController.Instance.HideUIHookAid();
@@ -346,14 +357,12 @@ public class Worm : MonoBehaviour {
 		return isOverlapping;
 	}
 
-	public bool FindHookPoint(out Vector3 hookPoint, float distanceToUse) {
+	public bool FindHookPoint(out RaycastHit2D raycastHit, float distanceToUse) {
 		RaycastHit2D hit;
-		hookPoint = Vector3.zero;
+
 		Ray ray = new Ray(transform.position, (gunPositionObject.transform.position - transform.position).normalized);
 		hit = Physics2D.Raycast(ray.origin,ray.direction,distanceToUse,~LayerMask.GetMask("Worm"));
-		if (hit.collider != null) {
-			hookPoint = hit.point;
-		}
+		raycastHit = hit;
 		return hit.collider != null;
 	}
 
@@ -366,6 +375,11 @@ public class Worm : MonoBehaviour {
 		if (new Vector3(hit.point.x,hit.point.y,0f) != hookPositions[hookPositions.Count - 1] && Vector3.Distance(hookPositions[hookPositions.Count-1],new Vector3(hit.point.x,hit.point.y,hookPositions[hookPositions.Count-1].z)) > 1f) {
 			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
 			hookPositions.Add(hit.point);
+			LevelObject levelObjectHit = hit.collider.GetComponent<LevelObject>();
+			if (levelObjectHit) {
+				levelObjectHit.HookLandedOnThisObject();
+				hookedLevelObjects.Add(hit.point, levelObjectHit);
+			}
 			distanceToKeep = Mathf.Clamp(Vector3.Distance(hit.point, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
 		}
 	}
@@ -387,6 +401,10 @@ public class Worm : MonoBehaviour {
 	private void DeleteLastHitPoint() {
 		lastTimeAPointWasAdded = Time.realtimeSinceStartup;
 		hookPositions.Remove(hookPositions[hookPositions.Count - 1]);
+		if (hookedLevelObjects.ContainsKey(hookPositions[hookPositions.Count - 1])) {
+			hookedLevelObjects[hookPositions[hookPositions.Count - 1]].HookReleasedOnThisObject();
+			hookedLevelObjects.Remove(hookPositions[hookPositions.Count - 1]);
+		}
 		distanceToKeep = Vector3.Distance(hookPositions[hookPositions.Count - 1], transform.position);
 	}
 
