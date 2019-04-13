@@ -29,7 +29,7 @@ public class LevelController : MonoBehaviour {
 		}
 	}
 
-	private List<LevelObject> initializedLevelObjects = new List<LevelObject>();
+	public List<LevelObject> initializedLevelObjects = new List<LevelObject>();
 
 	public void InitializeLevel(LevelData level) {
 
