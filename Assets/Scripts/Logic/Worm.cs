@@ -437,6 +437,7 @@ public class Worm : MonoBehaviour {
 
 	private void DeleteLastHitPoint() {
 		lastTimeAPointWasRemoved = Time.realtimeSinceStartup;
+		if(hitPoints[hitPoints.Count-1].connectedLevelObject != null)
 		hitPoints[hitPoints.Count - 1].connectedLevelObject.HookReleasedOnThisObject();
 		if (hitPoints[hitPoints.Count - 1].hookHolderPositionHolder != null)
 			Destroy(hitPoints[hitPoints.Count - 1].hookHolderPositionHolder);

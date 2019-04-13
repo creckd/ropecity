@@ -70,3 +70,5 @@ MonoBehaviour:
     prefab: {fileID: 114565484983703870, guid: 29db1d1720cd28c49983b277ea962165, type: 2}
   - uniqueID: PLATFORM_SCIFI_UP
     prefab: {fileID: 114587071772543588, guid: 7737303b98dcfc047b76c72ff0edfd0c, type: 2}
+  - uniqueID: POWERCUBE
+    prefab: {fileID: 114392838741463738, guid: c54f000ece11524419c79430939f4e1a, type: 2}
