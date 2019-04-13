@@ -31022,6 +31022,7 @@ MonoBehaviour:
   settings:
     isVerticalCameraMovementEnabled: 0
     isHorizontalCameraMovementEnabled: 1
+  initializedLevelObjects: []
 --- !u!66 &784542475
 CompositeCollider2D:
   m_ObjectHideFlags: 0

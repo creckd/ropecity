@@ -96,13 +96,14 @@ MonoBehaviour:
   swingForceMultiplier: 2
   rotationSpeed: 600
   ropeShootSpeed: 500
-  minRopeDistance: 4
+  minRopeDistance: 3
   maxRopeDistance: 28
   pullForceMultiplier: 0.15
   maximumRewardedAngleForPullForce: 60
   remainingVelocityPercentAfterBounce: 0.25
   minYVelocityAfterGroundCollision: 0.25
   minimumVelocityMagnitudeAfterBounce: 0.3
+  slidingAngleThreshHold: 85
   mineLethalRange: 5
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}
