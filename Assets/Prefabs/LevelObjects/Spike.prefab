@@ -205,7 +205,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.42, y: 4.34}
+  m_Size: {x: 0.64, y: 3.51}
   m_EdgeRadius: 0
 --- !u!114 &114065266173579212
 MonoBehaviour:
@@ -233,8 +233,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: SPIKE
   objectData: 
-  data:
-    isRetractableSpike: 1
   activationDistance: 20
   retractionSpeed: 20
   spikeSkinned: {fileID: 137900623413730486}
