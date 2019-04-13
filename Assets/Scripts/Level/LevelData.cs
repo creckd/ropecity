@@ -2,6 +2,7 @@
 
 	public string levelName;
 	public LevelObjectData[] levelObjects;
+	public string settings;
 
 	public static bool operator ==(LevelData a, LevelData b) {
 		bool theyAreEqual = true;
