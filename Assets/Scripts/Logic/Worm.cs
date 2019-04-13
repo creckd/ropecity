@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Worm : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class Worm : MonoBehaviour {
 
 	public GameObject gunPositionObject;
 	public LineRenderer ropeRenderer;
+	public Text accuracyText;
 
 	public Vector2 Velocity {
 		get {
@@ -33,6 +35,7 @@ public class Worm : MonoBehaviour {
 	private bool landedHook = false;
 	private List<Vector3> hookPositions = new List<Vector3>();
 	private float distanceToKeep = 0f;
+	private bool perfectHitHappened = false;
 
 	private bool isGrounded = false;
 	private Vector2 velocity;
@@ -84,6 +87,7 @@ public class Worm : MonoBehaviour {
 
 			hookPositions.Clear();
 			landedHook = false;
+			perfectHitHappened = false;
 			ropeRenderer.positionCount = 0;
 			ropeEnd.gameObject.SetActive(false);
 			GameController.Instance.ReleasedHook();
@@ -135,6 +139,9 @@ public class Worm : MonoBehaviour {
 		float totalMultiplier = effectivenessMultiplier + slowVelocityCoefficent;
 		totalMultiplier *= ConfigDatabase.Instance.pullForceMultiplier;
 		AddForce(forceDirection * totalMultiplier);
+
+		if (effectivenessMultiplier > 0.75f)
+			PerfectHit();
 	}
 
 	private void RefreshRopeRenderer() {
@@ -205,6 +212,7 @@ public class Worm : MonoBehaviour {
 		SimulatePhysics();
 		CheckIfOutOfBoundaries();
 		HandleSlideParticle();
+		//HandleAccuracyText();
 	}
 
 	private void LateUpdate() {
@@ -215,8 +223,8 @@ public class Worm : MonoBehaviour {
 
 	private void FixedUpdate() {
 		HookCorrection();
-		SlidingMechanic();
 		CheckForPhysicsCollision();
+		SlidingMechanic();
 	}
 
 	private void CheckForPhysicsCollision() {
@@ -224,6 +232,12 @@ public class Worm : MonoBehaviour {
 		bool physicalCollisionHappened = false;
 		foreach (var hit in hits) {
 			if (!hit.collider.CompareTag("Player") && !hit.collider.isTrigger) {
+				if (physicalCollisionHappened && sliding) {
+					float wouldReflectAngle = Vector3.Angle(velocity, Vector3.Reflect(velocity, hit.normal));
+					if (wouldReflectAngle > ConfigDatabase.Instance.slidingAngleThreshHold) {
+						Collided(hit);
+					}
+				}
 				if (physicalCollisionHappened)
 					continue;
 				Collided(hit);
@@ -303,7 +317,7 @@ public class Worm : MonoBehaviour {
 						overlapping = WormOverlappingPhysicalCollider();
 					}
 				}
-				if (wouldReflectAngle < 100f) {
+				if (wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold) {
 					if (!sliding) {
 						sliding = true;
 						direction = solidHit.point - (Vector2)transform.position;
@@ -311,9 +325,11 @@ public class Worm : MonoBehaviour {
 					}
 				}
 			} else {
+				if(sliding)
 				sliding = false;
 			}
 		} else {
+			if(sliding)
 			sliding = false;
 		}
 	}
@@ -402,8 +418,12 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Collided(RaycastHit2D hitInfo) {
-		if (sliding)
+		float wouldReflectAngle = Vector3.Angle(velocity, Vector3.Reflect(velocity, hitInfo.normal));
+		if (landedHook && wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold)
 			return;
+		else if (sliding && wouldReflectAngle > ConfigDatabase.Instance.slidingAngleThreshHold) {
+			sliding = false;
+		}
 		if (!hitInfo.collider.CompareTag("LaunchPad")) {
 			Vector2 reflected;
 			if (landedHook) {
@@ -517,5 +537,27 @@ public class Worm : MonoBehaviour {
 		trail.sharedMaterial.SetFloat(trailMaterialTransparencyName, currentTrailTransparency);
 		bool visible = currentTrailTransparency != 0f;
 		trail.gameObject.SetActive(visible);
+	}
+
+	private void PerfectHit() {
+		perfectHitHappened = true;
+	}
+
+	private void HandleAccuracyText() {
+		if (landedHook && perfectHitHappened) {
+			if (!accuracyText.transform.parent.gameObject.activeSelf)
+				accuracyText.transform.parent.gameObject.SetActive(true);
+			Vector3 cross, cross1, cross2;
+			Vector3 hitPosition = hookPositions[hookPositions.Count - 1];
+			cross1 = Vector3.Cross((hitPosition - transform.position).normalized, Vector3.forward);
+			cross2 = Vector3.Cross(Vector3.forward, (hitPosition - transform.position).normalized);
+			cross = transform.position.y < hitPosition.y ? cross1.normalized : cross2.normalized;
+			float textDistance = 2f;
+			accuracyText.transform.parent.position = ((hookPositions[hookPositions.Count - 1] + transform.position) / 2f) - cross * textDistance;
+			accuracyText.transform.parent.transform.LookAt(accuracyText.transform.parent.position - cross, Vector3.up);
+		} else {
+			if (accuracyText.transform.parent.gameObject.activeSelf)
+				accuracyText.transform.parent.gameObject.SetActive(false);
+		}
 	}
 }

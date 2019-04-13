@@ -44,6 +44,7 @@ public class ConfigDatabase : MonoBehaviour {
 	public float remainingVelocityPercentAfterBounce = 0.75f;
 	public float minYVelocityAfterGroundCollision = 0.25f;
 	public float minimumVelocityMagnitudeAfterBounce = 1f;
+	public float slidingAngleThreshHold = 85f;
 
 	[Header("Traps")]
 	public float mineLethalRange = 5f;
