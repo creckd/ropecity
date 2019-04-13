@@ -33,8 +33,8 @@ public class Worm : MonoBehaviour {
 	private GameObject ropeEnd;
 
 	private bool landedHook = false;
-	private List<Vector3> hookPositions = new List<Vector3>();
-	private Dictionary<Vector3,LevelObject> hookedLevelObjects = new Dictionary<Vector3,LevelObject>();
+	private List<HitPoint> hitPoints = new List<HitPoint>();
+	private Dictionary<HitPoint,LevelObject> hookedLevelObjects = new Dictionary<HitPoint,LevelObject>();
 	private float distanceToKeep = 0f;
 	private bool perfectHitHappened = false;
 
@@ -42,13 +42,29 @@ public class Worm : MonoBehaviour {
 	private Vector2 velocity;
 	private float gravity = 0.2f;
 	private float feetLength = 2f;
-	private float lastTimeAPointWasAdded = 0f;
 
 	private int currentHoldID = -1;
 	private float currentHookSearchDistance = 0f;
 
 	Rigidbody2D rb;
 	CircleCollider2D circleCollider;
+
+	class HitPoint {
+		public Vector3 hookPosition;
+		public Vector3 attachedVelocityCrossVector;
+		public Vector3 ropeBreakWorldPosition;
+
+		public HitPoint(Vector3 hookPosition, Vector3 attachedVelocityCrossVector, Vector3 ropeBreakWorldPosition) {
+			this.hookPosition = hookPosition;
+			this.attachedVelocityCrossVector = attachedVelocityCrossVector;
+			this.ropeBreakWorldPosition = ropeBreakWorldPosition;
+		}
+
+		public HitPoint(Vector3 hookPosition) {
+			this.hookPosition = hookPosition;
+			this.attachedVelocityCrossVector = Vector3.zero;
+		}
+	}
 
 	public void Initialize() {
 		circleCollider = GetComponent<CircleCollider2D>();
@@ -86,7 +102,7 @@ public class Worm : MonoBehaviour {
 			currentHoldID = -1;
 			rotationEnabled = true;
 
-			hookPositions.Clear();
+			hitPoints.Clear();
 			landedHook = false;
 			perfectHitHappened = false;
 			ropeRenderer.positionCount = 0;
@@ -120,8 +136,8 @@ public class Worm : MonoBehaviour {
 		if (!landedHook && FindHookPoint(out hit, tarDistance) && !WormOverlappingPhysicalCollider()) {
 			rotationEnabled = false;
 			landedHook = true;
-			hookPositions.Add(hit.point);
-			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
+			HitPoint newHookPosition = new HitPoint(hit.point);
+			hitPoints.Add(newHookPosition);
 			distanceToKeep = Mathf.Clamp(Vector3.Distance(hit.point, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
 			AddWormPullingForce(hit.point);
 			GameController.Instance.FoundPotentionalHitPoint(hit.point);
@@ -130,7 +146,7 @@ public class Worm : MonoBehaviour {
 			LevelObject levelObjectHit = hit.collider.GetComponent<LevelObject>();
 			if (levelObjectHit) {
 				levelObjectHit.HookLandedOnThisObject();
-				hookedLevelObjects.Add(hit.point, levelObjectHit);
+				hookedLevelObjects.Add(newHookPosition, levelObjectHit);
 			}
 			hookHitParticle.transform.position = hit.point;
 			hookHitParticle.Play();
@@ -162,14 +178,14 @@ public class Worm : MonoBehaviour {
 
 			Vector3 direction = Vector3.zero;
 			if (landedHook) {
-				ropeRenderer.positionCount = hookPositions.Count + 1;
-				for (int i = hookPositions.Count - 1; i >= 0; i--) {
-					lineRendererPoints.Add(hookPositions[i]);
+				ropeRenderer.positionCount = hitPoints.Count + 1;
+				for (int i = hitPoints.Count - 1; i >= 0; i--) {
+					lineRendererPoints.Add(hitPoints[i].hookPosition);
 				}
-				if (hookPositions.Count >= 2)
-					direction = (hookPositions[0] - hookPositions[1]).normalized;
+				if (hitPoints.Count >= 2)
+					direction = (hitPoints[0].hookPosition - hitPoints[1].hookPosition).normalized;
 				else
-					direction = (hookPositions[0] - gunPositionObject.transform.position).normalized;
+					direction = (hitPoints[0].hookPosition - gunPositionObject.transform.position).normalized;
 			} else {
 				ropeRenderer.positionCount = 2;
 				lineRendererPoints.Add(gunPositionObject.transform.position + (gunPositionObject.transform.position - transform.position).normalized * currentHookSearchDistance);
@@ -185,7 +201,7 @@ public class Worm : MonoBehaviour {
 
 	private void RefreshWormRotation() {
 		Vector3 currentFacingDir = gunPositionObject.transform.position - transform.position;
-		Vector3 hookDir = hookPositions[hookPositions.Count - 1] - gunPositionObject.transform.position;
+		Vector3 hookDir = hitPoints[hitPoints.Count - 1].hookPosition - gunPositionObject.transform.position;
 		currentFacingDir = currentFacingDir.normalized;
 		hookDir = hookDir.normalized;
 		Vector3 cross = Vector3.Cross(currentFacingDir, hookDir);
@@ -288,13 +304,13 @@ public class Worm : MonoBehaviour {
 
 	private void HookCorrection(bool gainVelocity = true) {
 		if (landedHook) {
-			float currentDistance = Vector3.Distance(transform.position, hookPositions[hookPositions.Count - 1]);
+			float currentDistance = Vector3.Distance(transform.position, hitPoints[hitPoints.Count - 1].hookPosition);
 			float difference = currentDistance - distanceToKeep;
-			Vector2 differenceVelocity = ((Vector2)(hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
+			Vector2 differenceVelocity = ((Vector2)(hitPoints[hitPoints.Count - 1].hookPosition - transform.position).normalized * difference);
 			if(gainVelocity)
 			velocity += differenceVelocity * Time.deltaTime * 10f * ConfigDatabase.Instance.swingForceMultiplier;
 
-			transform.position += ((hookPositions[hookPositions.Count - 1] - transform.position).normalized * difference);
+			transform.position += ((hitPoints[hitPoints.Count - 1].hookPosition - transform.position).normalized * difference);
 		}
 	}
 
@@ -366,46 +382,48 @@ public class Worm : MonoBehaviour {
 		return hit.collider != null;
 	}
 
+	private float lastTimeAPointWasRemoved; //so it doesnt add it back instantly
+
 	public void LookForHookCollision() {
-		if (Time.realtimeSinceStartup - lastTimeAPointWasAdded < 0.025f)
+		if (Time.realtimeSinceStartup - lastTimeAPointWasRemoved < 0.25f)
 			return;
-		Ray ray = new Ray(transform.position, (hookPositions[hookPositions.Count - 1] - transform.position).normalized);
+		Ray ray = new Ray(transform.position, (hitPoints[hitPoints.Count - 1].hookPosition - transform.position).normalized);
 		RaycastHit2D hit;
 		hit = Physics2D.Raycast(ray.origin,ray.direction,ConfigDatabase.Instance.maxRopeDistance,~LayerMask.GetMask("Worm"));
-		if (new Vector3(hit.point.x,hit.point.y,0f) != hookPositions[hookPositions.Count - 1] && Vector3.Distance(hookPositions[hookPositions.Count-1],new Vector3(hit.point.x,hit.point.y,hookPositions[hookPositions.Count-1].z)) > 1f) {
-			lastTimeAPointWasAdded = Time.realtimeSinceStartup;
-			hookPositions.Add(hit.point);
+		if (new Vector3(hit.point.x,hit.point.y,0f) != hitPoints[hitPoints.Count - 1].hookPosition && Vector3.Distance(hitPoints[hitPoints.Count-1].hookPosition,new Vector3(hit.point.x,hit.point.y,hitPoints[hitPoints.Count-1].hookPosition.z)) > 1f) {
+			Vector3 normalizedVelocity = velocity.normalized;
+			Vector3 cross = Vector3.Cross(transform.position - new Vector3(hit.point.x, hit.point.y, 0f), (transform.position + normalizedVelocity) - new Vector3(hit.point.x, hit.point.y, 0f));
+			HitPoint newHookPosition = new HitPoint(hit.point, cross,transform.position);
+			hitPoints.Add(newHookPosition);
 			LevelObject levelObjectHit = hit.collider.GetComponent<LevelObject>();
 			if (levelObjectHit) {
 				levelObjectHit.HookLandedOnThisObject();
-				hookedLevelObjects.Add(hit.point, levelObjectHit);
+				hookedLevelObjects.Add(newHookPosition, levelObjectHit);
 			}
+			//distanceToKeep = Vector3.Distance(hit.point, transform.position);
 			distanceToKeep = Mathf.Clamp(Vector3.Distance(hit.point, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
 		}
 	}
 
 	private void CheckILastHitPointIsNotNeccessaryAnymore() {
-		if (hookPositions.Count >= 2) {
-			float diffDot = Vector3.Dot((hookPositions[hookPositions.Count - 1] - gunPositionObject.transform.position).normalized, (hookPositions[hookPositions.Count - 2] - gunPositionObject.transform.position).normalized);
-			if (Mathf.Abs(diffDot - 1f) < 0.01f) {
-				RaycastHit hit;
-				Ray ray = new Ray(gunPositionObject.transform.position, (hookPositions[hookPositions.Count - 2] - gunPositionObject.transform.position).normalized);
-				Physics.Raycast(ray, out hit);
-				float distance = Vector3.Distance(hookPositions[hookPositions.Count - 2], hit.point);
-				if (distance < 1f)
-					DeleteLastHitPoint();
-			}
+		if (hitPoints.Count >= 2) {
+				HitPoint lastHitPoint = hitPoints[hitPoints.Count - 1];
+				Vector3 currentVelocityCross = Vector3.Cross(transform.position - lastHitPoint.hookPosition, lastHitPoint.ropeBreakWorldPosition - lastHitPoint.hookPosition);
+			float dot = Vector3.Dot(currentVelocityCross.normalized, lastHitPoint.attachedVelocityCrossVector.normalized);
+			//Debug.Log(dot);
+			if (dot > 0f)
+				DeleteLastHitPoint();
 		}
 	}
 
 	private void DeleteLastHitPoint() {
-		lastTimeAPointWasAdded = Time.realtimeSinceStartup;
-		hookPositions.Remove(hookPositions[hookPositions.Count - 1]);
-		if (hookedLevelObjects.ContainsKey(hookPositions[hookPositions.Count - 1])) {
-			hookedLevelObjects[hookPositions[hookPositions.Count - 1]].HookReleasedOnThisObject();
-			hookedLevelObjects.Remove(hookPositions[hookPositions.Count - 1]);
+		lastTimeAPointWasRemoved = Time.realtimeSinceStartup;
+		hitPoints.Remove(hitPoints[hitPoints.Count - 1]);
+		if (hookedLevelObjects.ContainsKey(hitPoints[hitPoints.Count - 1])) {
+			hookedLevelObjects[hitPoints[hitPoints.Count - 1]].HookReleasedOnThisObject();
+			hookedLevelObjects.Remove(hitPoints[hitPoints.Count - 1]);
 		}
-		distanceToKeep = Vector3.Distance(hookPositions[hookPositions.Count - 1], transform.position);
+		distanceToKeep = Vector3.Distance(hitPoints[hitPoints.Count - 1].hookPosition, transform.position);
 	}
 
 	public void Die() {
@@ -521,7 +539,7 @@ public class Worm : MonoBehaviour {
 		currentHoldID = -1;
 		rotationEnabled = true;
 
-		hookPositions.Clear();
+		hitPoints.Clear();
 		landedHook = false;
 		ropeRenderer.positionCount = 0;
 		ropeEnd.gameObject.SetActive(false);
@@ -566,12 +584,12 @@ public class Worm : MonoBehaviour {
 			if (!accuracyText.transform.parent.gameObject.activeSelf)
 				accuracyText.transform.parent.gameObject.SetActive(true);
 			Vector3 cross, cross1, cross2;
-			Vector3 hitPosition = hookPositions[hookPositions.Count - 1];
+			Vector3 hitPosition = hitPoints[hitPoints.Count - 1].hookPosition;
 			cross1 = Vector3.Cross((hitPosition - transform.position).normalized, Vector3.forward);
 			cross2 = Vector3.Cross(Vector3.forward, (hitPosition - transform.position).normalized);
 			cross = transform.position.y < hitPosition.y ? cross1.normalized : cross2.normalized;
 			float textDistance = 2f;
-			accuracyText.transform.parent.position = ((hookPositions[hookPositions.Count - 1] + transform.position) / 2f) - cross * textDistance;
+			accuracyText.transform.parent.position = ((hitPoints[hitPoints.Count - 1].hookPosition + transform.position) / 2f) - cross * textDistance;
 			accuracyText.transform.parent.transform.LookAt(accuracyText.transform.parent.position - cross, Vector3.up);
 		} else {
 			if (accuracyText.transform.parent.gameObject.activeSelf)
