@@ -14,7 +14,20 @@ public class LevelController : MonoBehaviour {
 	}
 
 	public LevelData level;
+	[HideInInspector]
 	public int currentLevelIndex = -1;
+
+	public LevelSettings settings;
+
+	[System.Serializable]
+	public class LevelSettings {
+		public bool isVerticalCameraMovementEnabled = false;
+		public bool isHorizontalCameraMovementEnabled = true;
+
+		public string GetSerialized() {
+			return StringSerializationAPI.Serialize(typeof(LevelSettings), this);
+		}
+	}
 
 	private List<LevelObject> initializedLevelObjects = new List<LevelObject>();
 
@@ -35,6 +48,7 @@ public class LevelController : MonoBehaviour {
 		}
 
 		this.level = level;
+		DeserializeAndSetLevelSettings(level.settings);
 
 		foreach (var remaining in FindObjectsOfType<LevelObject>()) {
 			Destroy(remaining.gameObject);
@@ -55,4 +69,9 @@ public class LevelController : MonoBehaviour {
 		Debug.Log("Level initialization successfully completed!");
 	}
 
+	public void DeserializeAndSetLevelSettings(string settingsData) {
+		if (settingsData != null)
+			settings = StringSerializationAPI.Deserialize(typeof(LevelSettings), settingsData) as LevelSettings;
+		else settings = new LevelSettings();
+	}
 }
