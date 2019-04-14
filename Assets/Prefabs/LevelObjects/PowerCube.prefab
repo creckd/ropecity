@@ -168,3 +168,5 @@ MonoBehaviour:
   objectID: POWERCUBE
   objectData: 
   rotationScript: {fileID: 114270835315456756}
+  amountToMoveWhenHit: 0.5
+  movementSpeed: 10
