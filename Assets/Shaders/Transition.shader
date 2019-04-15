@@ -59,7 +59,8 @@
 			float id = floor(i.uv.y * 10) + 1;
 			//return rand(id + _Seed);
 			modifiedUV.x += rand(id + (_Seed*20));
-			float t = _T * 1.5;
+			_T = lerp(0.2, 1, _T);
+			float t =  (_T * 1.5);
 			modifiedUV.x += t;
 			modifiedUV.x *= t;
 			modifiedUV.y = 1 - (abs(0.5 - modifiedUV.y) * 2);
