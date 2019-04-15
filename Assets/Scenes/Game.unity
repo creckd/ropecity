@@ -48457,7 +48457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageEffectApplier: {fileID: 1205374549}
-  transitionTime: 1
+  transitionTime: 1.5
 --- !u!114 &1205374549
 MonoBehaviour:
   m_ObjectHideFlags: 0

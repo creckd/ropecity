@@ -55,14 +55,15 @@
 			{
 			half4 col = tex2D(_MainTex,i.uv);
 			i.uv.x = lerp(i.uv.x,1-i.uv.x,_UVFlipped);
-			float2 modifiedUV = float2(frac(i.uv.x), frac(i.uv.y * 10));
-			float id = floor(i.uv.y * 15) + 1;
+			float2 modifiedUV = float2(frac(i.uv.x), frac(i.uv.y * 15));
+			float id = floor(i.uv.y * 10) + 1;
 			//return rand(id + _Seed);
 			modifiedUV.x += rand(id + (_Seed*20));
-			modifiedUV.x += _T;
-			modifiedUV.x *= _T * 2;
+			float t = _T * 1.5;
+			modifiedUV.x += t;
+			modifiedUV.x *= t;
 			modifiedUV.y = 1 - (abs(0.5 - modifiedUV.y) * 2);
-			float size = 0.5;
+			float size = 0.75;
 			size = size - smoothstep(1, 2, modifiedUV.x);
 			float aa = 0.055;
 			float lines = smoothstep(size / (modifiedUV.x * 1), (size + aa) / (modifiedUV.x * 1),modifiedUV.y);

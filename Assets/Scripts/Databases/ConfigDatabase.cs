@@ -58,4 +58,9 @@ public class ConfigDatabase : MonoBehaviour {
 
 	[Header("LaunchPad")]
 	public float launchPadForce = 1f;
+
+	[Header("Transition")]
+	public AnimationCurve transitionInCurve;
+	public AnimationCurve transitionOutCurve;
+	public float transitionTime = 1f;
 }
