@@ -34,8 +34,10 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private void Start() {
-		horizontalMovementLocked = !LevelController.Instance.settings.isHorizontalCameraMovementEnabled;
-		verticalMovementLocked = !LevelController.Instance.settings.isVerticalCameraMovementEnabled;
+		if (!GameController.Instance.isDebugTestLevelMode) {
+			horizontalMovementLocked = !LevelController.Instance.settings.isHorizontalCameraMovementEnabled;
+			verticalMovementLocked = !LevelController.Instance.settings.isVerticalCameraMovementEnabled;
+		}
 	}
 
 	public void StartTracking(Transform target) {
@@ -86,8 +88,8 @@ public class CameraController : MonoBehaviour {
 			}
 
 			if(!verticalMovementLocked)
-			if (Mathf.Abs(wormCameraPosition.y - transform.position.y) > yDifferenceAllowed) {
-				float diff = wormCameraPosition.y - transform.position.y;
+			if (GameController.Instance.currentWorm.gameObject.activeSelf && Mathf.Abs(GameController.Instance.currentWorm.transform.position.y - transform.position.y) > yDifferenceAllowed) {
+				float diff = GameController.Instance.currentWorm.transform.position.y - transform.position.y;
 				transform.position += Vector3.up * Mathf.Sign(diff) * Mathf.Abs(yDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;
 			}
 		}
