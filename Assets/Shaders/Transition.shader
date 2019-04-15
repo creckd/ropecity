@@ -43,6 +43,8 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 			half4 col = tex2D(_MainTex,i.uv);
+			//col *= 1-_T;
+			//return col;
 			half4 maskCol = tex2D(_Mask, i.uv);
 			float quickerT = saturate(pow(1 - _T, 12)) - 0.1;
 			float gradient = saturate(saturate(1 - (quickerT / maskCol.r)) / 0.05);
