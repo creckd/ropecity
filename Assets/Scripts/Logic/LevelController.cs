@@ -25,6 +25,8 @@ public class LevelController : MonoBehaviour {
 		public bool isHorizontalCameraMovementEnabled = true;
 
 		public string GetSerialized() {
+			this.isVerticalCameraMovementEnabled = !CameraController.Instance.verticalMovementLocked;
+			this.isHorizontalCameraMovementEnabled = !CameraController.Instance.horizontalMovementLocked;
 			return StringSerializationAPI.Serialize(typeof(LevelSettings), this);
 		}
 	}
