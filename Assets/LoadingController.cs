@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class LoadingController : MonoBehaviour {
 
 	public float minimumLoadingTime = 1f;
+	public Animator loadingAnimator;
+	private const string finishedAnimBool = "finishedLoading";
 
 	public static void LoadScene(string sceneName) {
 		Messenger.Instance.SendMessage(LoadingSceneInfoTag, sceneName);
@@ -29,6 +31,12 @@ public class LoadingController : MonoBehaviour {
 
 		while (asyncLoad.progress < 0.9f || Time.realtimeSinceStartup - timeStartedLoading < minimumLoadingTime)
 			yield return null;
+
+		loadingAnimator.SetBool(finishedAnimBool, true);
+		yield return null;
+		while (loadingAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1f) {
+			yield return null;
+		}
 
 		asyncLoad.allowSceneActivation = true;
 	}
