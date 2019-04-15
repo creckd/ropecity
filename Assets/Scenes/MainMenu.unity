@@ -971,7 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   imageEffectApplier: {fileID: 387330551}
-  transitionTime: 1
+  transitionTime: 1.5
 --- !u!1 &396510365
 GameObject:
   m_ObjectHideFlags: 0

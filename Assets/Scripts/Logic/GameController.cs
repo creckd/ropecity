@@ -159,7 +159,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator ReinitializingGame() {
 		ImageTransitionHandler.Instance.TransitionIn();
-		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
+		yield return new WaitForSecondsRealtime(ConfigDatabase.Instance.transitionTime);
 		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 		canStartSlowingTime = false;
 		ReinitalizeGame();
@@ -192,7 +192,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator BackToMainMenuRoutine() {
 		ImageTransitionHandler.Instance.TransitionIn();
-		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
+		yield return new WaitForSecondsRealtime(ConfigDatabase.Instance.transitionTime);
 		Messenger.Instance.SendMessage(PanelManager.defaultOpenedPanelChangedTag, 1);
 		LoadingController.LoadScene("MainMenu");
 	}
@@ -203,7 +203,7 @@ public class GameController : MonoBehaviour {
 
 	IEnumerator RestartButtonRoutine() {
 		ImageTransitionHandler.Instance.TransitionIn();
-		yield return new WaitForSecondsRealtime(ImageTransitionHandler.Instance.transitionTime);
+		yield return new WaitForSecondsRealtime(ConfigDatabase.Instance.transitionTime);
 		Messenger.Instance.SendMessage(LevelSelectPanel.LevelIndexKey, LevelController.Instance.currentLevelIndex);
 		LoadingController.LoadScene("Game");
 	}

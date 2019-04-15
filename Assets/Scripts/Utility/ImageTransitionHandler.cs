@@ -15,7 +15,6 @@ public class ImageTransitionHandler : MonoBehaviour {
 	}
 
 	public SimpleImageEffectApplier imageEffectApplier;
-	public float transitionTime = 1f;
 
 	private const string _TProperty = "_T";
 	private const string flipUV = "_UVFlipped";
@@ -74,9 +73,10 @@ public class ImageTransitionHandler : MonoBehaviour {
 		if (tarValue == 1f)
 			imageEffectApplier.enabled = true;
 		float timer = 0f;
-		while (timer <= transitionTime) {
+		while (timer <= ConfigDatabase.Instance.transitionTime) {
 			timer += Time.unscaledDeltaTime;
-			t = Mathf.Lerp(fromValue, tarValue, timer / transitionTime);
+			float t = timer / ConfigDatabase.Instance.transitionTime;
+			t = Mathf.Lerp(fromValue, tarValue, tarValue == 1f ? ConfigDatabase.Instance.transitionInCurve.Evaluate(t) : ConfigDatabase.Instance.transitionOutCurve.Evaluate(t));
 			material.SetFloat(_TProperty, t);
 			yield return null;
 		}
