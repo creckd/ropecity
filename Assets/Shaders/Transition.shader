@@ -5,6 +5,8 @@
 		_MainTex("Main Texture",2D) = "white" {}
 		_Mask("Mask Texture",2D) = "white" {}
 		_T("_T",Range(0,1)) = 0
+		_UVFlipped("Flipped",int) = 0
+		_Seed("Seed",int) = 2
 	}
 	SubShader
 	{
@@ -31,6 +33,8 @@
 			sampler2D _MainTex;
 			sampler2D _Mask;
 			float _T;
+			int _UVFlipped;
+			int _Seed;
 
 			v2f vert (appdata v)
 			{
@@ -40,18 +44,29 @@
 				return o;
 			}
 			
+			float rand(float r) {
+				r = frac(r * 341.12);
+				r = dot(float2(r,r*r),float2(r*213.6, r + 23.341));
+				return frac(r*(r + 116.12));
+				//return frac(abs(frac(frac(pow(r*0.4512, 2) / r)) - abs(r - 0.528)));
+			}
+			
 			fixed4 frag (v2f i) : SV_Target
 			{
 			half4 col = tex2D(_MainTex,i.uv);
-			//col *= 1-_T;
-			//return col;
-			half4 maskCol = tex2D(_Mask, i.uv);
-			float quickerT = saturate(pow(1 - _T, 12)) - 0.1;
-			float gradient = saturate(saturate(1 - (quickerT / maskCol.r)) / 0.05);
-			float lines = saturate( saturate(1 - (_T/maskCol.b)) / 0.1);
-			float final = saturate((1-lines) - (1-gradient));
-			col.rgb = lerp(col.rgb, half3(0,0,0), final);
-			//col.rgb = lerp(col.rgb,loading.rgb * loading.a, step(_T, 0.9));
+			i.uv.x = lerp(i.uv.x,1-i.uv.x,_UVFlipped);
+			float2 modifiedUV = float2(frac(i.uv.x), frac(i.uv.y * 10));
+			float id = floor(i.uv.y * 15) + 1;
+			//return rand(id + _Seed);
+			modifiedUV.x += rand(id + (_Seed*20));
+			modifiedUV.x += _T;
+			modifiedUV.x *= _T * 2;
+			modifiedUV.y = 1 - (abs(0.5 - modifiedUV.y) * 2);
+			float size = 0.5;
+			size = size - smoothstep(1, 2, modifiedUV.x);
+			float aa = 0.055;
+			float lines = smoothstep(size / (modifiedUV.x * 1), (size + aa) / (modifiedUV.x * 1),modifiedUV.y);
+			col = lerp(half4(0, 0, 0, 0), col, 1 - lines);
 			return col;
 			}
 			ENDCG
