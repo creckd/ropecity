@@ -8,6 +8,7 @@ public class IngamePanel : FaderPanel {
 	public Image ropeCrossHair;
 	public LineRenderer aiderLine;
 	public AnimatedLevelText animatedLevelText;
+	public ReboundIndicator reboundIndicator;
 
 	private Vector3 crossHairTargetWorldPosition = Vector3.zero;
 
@@ -23,6 +24,8 @@ public class IngamePanel : FaderPanel {
 		GameController.Instance.FoundPotentionalHitPoint += SetCrossHairPosition;
 		GameController.Instance.ShowUIHookAid += () => { crossHairShouldBeShown = true; };
 		GameController.Instance.HideUIHookAid += () => { crossHairShouldBeShown = false; };
+		GameController.Instance.TryForReboundJump += () => { reboundIndicator.StartRebound(); };
+		GameController.Instance.StopRebounding += () => { reboundIndicator.StopRebound(); };
 	}
 
 	private void ShowLevelInfo() {

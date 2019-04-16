@@ -36,6 +36,7 @@ public class Worm : MonoBehaviour {
 	private List<HitPoint> hitPoints = new List<HitPoint>();
 	private float distanceToKeep = 0f;
 	private bool perfectHitHappened = false;
+	private bool currentlyRebounding = false;
 
 	private bool isGrounded = false;
 	private Vector2 velocity;
@@ -91,11 +92,16 @@ public class Worm : MonoBehaviour {
 		InputController.Instance.TapHappened += Tap;
 		InputController.Instance.ReleaseHappened += Release;
 		GameController.Instance.GameFinished += GameFinished;
+		GameController.Instance.ReboundJumpSuccessful += SuccessfulRebound;
 		CameraController.Instance.StartTracking(this.transform);
 
 		gravity = ConfigDatabase.Instance.gravityScale;
 		ropeEnd = Instantiate(ropeEndPrefab, transform.position, transform.rotation) as GameObject;
 		ropeEnd.gameObject.SetActive(false);
+	}
+
+	private void SuccessfulRebound() {
+		AddForce(Vector2.up * ConfigDatabase.Instance.reboundAmount);
 	}
 
 	public void DestroyWorm() {
@@ -128,6 +134,10 @@ public class Worm : MonoBehaviour {
 			}
 
 			hitPoints.Clear();
+			if (currentlyRebounding) {
+				currentlyRebounding = false;
+				GameController.Instance.StopRebounding();
+			}
 			landedHook = false;
 			perfectHitHappened = false;
 			ropeRenderer.positionCount = 0;
@@ -258,7 +268,31 @@ public class Worm : MonoBehaviour {
 		SimulatePhysics();
 		CheckIfOutOfBoundaries();
 		HandleSlideParticle();
+		HandleReboundJumps();
 		//HandleAccuracyText();
+	}
+
+	private List<float> velocityMagnitudeSamples = new List<float>();
+	private float lastTimeSampled = 0f;
+
+	private void HandleReboundJumps() {
+		if (landedHook && !currentlyRebounding && distanceToKeep > ConfigDatabase.Instance.maxRopeDistance * 0.35f && Time.realtimeSinceStartup - lastTimeSampled > 0.25f) {
+			lastTimeSampled = Time.realtimeSinceStartup;
+			velocityMagnitudeSamples.Add(velocity.magnitude);
+		}
+		if (velocityMagnitudeSamples.Count >= 8) {
+			float sum = 0f;
+			foreach (var vm in velocityMagnitudeSamples) {
+				sum += vm;
+			}
+			float avg = sum / velocityMagnitudeSamples.Count;
+			velocityMagnitudeSamples.Remove(velocityMagnitudeSamples[0]);
+			if (landedHook && avg <= ConfigDatabase.Instance.reboundMagnitudeRequirement && !currentlyRebounding) {
+				velocityMagnitudeSamples.Clear();
+				currentlyRebounding = true;
+				GameController.Instance.TryForReboundJump();
+			}
+		}
 	}
 
 	private void LateUpdate() {
