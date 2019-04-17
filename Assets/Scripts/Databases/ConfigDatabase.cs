@@ -63,10 +63,4 @@ public class ConfigDatabase : MonoBehaviour {
 	public AnimationCurve transitionInCurve;
 	public AnimationCurve transitionOutCurve;
 	public float transitionTime = 1f;
-
-	[Header("Rebound")]
-	public float reboundSpeed = 1f;
-	public float reboundAmount = 0.35f;
-	public float reboundMagnitudeRequirement = 0.2f;
-	public float reboundSuccessAngleMinimum = 60f;
 }

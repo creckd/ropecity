@@ -39,10 +39,6 @@ public class GameController : MonoBehaviour {
 	public Action ShowUIHookAid = delegate { };
 	public Action HideUIHookAid = delegate { };
 
-	public Action TryForReboundJump = delegate { };
-	public Action StopRebounding = delegate { };
-	public Action ReboundJumpSuccessful = delegate { };
-
 	[HideInInspector]
 	public Worm currentWorm = null;
 

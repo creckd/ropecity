@@ -159,4 +159,3 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionTime: 1.25
-  reboundSpeed: 40
