@@ -600,7 +600,7 @@ MonoBehaviour:
   yDifferenceAllowed: 5
   horizontalMovementLocked: 0
   verticalMovementLocked: 1
-  compensationSpeed: 10
+  compensationSpeed: 20
   sweepCurve:
     serializedVersion: 2
     m_Curve:
