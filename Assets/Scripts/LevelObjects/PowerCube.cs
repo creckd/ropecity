@@ -15,12 +15,16 @@ public class PowerCube : LevelObject {
 	}
 
 	private void Update() {
-		if (currentlyWormHangingOnMe)
-			t = Mathf.Clamp(t + Time.deltaTime * movementSpeed, 0f, 1f);
-		else
-			t = Mathf.Clamp(t - Time.deltaTime * movementSpeed, 0f, 1f);
+		if (currentlyWormHangingOnMe) {
+			transform.position += Vector3.up * Time.deltaTime * 2f;
+		}
 
-		transform.position = Vector3.Lerp(defaultPosition, defaultPosition - Vector3.up * amountToMoveWhenHit, t);
+		//if (currentlyWormHangingOnMe)
+		//	t = Mathf.Clamp(t + Time.deltaTime * movementSpeed, 0f, 1f);
+		//else
+		//	t = Mathf.Clamp(t - Time.deltaTime * movementSpeed, 0f, 1f);
+
+		//transform.position = Vector3.Lerp(defaultPosition, defaultPosition - Vector3.up * amountToMoveWhenHit, t);
 	}
 
 	public override void HookLandedOnThisObject() {
