@@ -21775,10 +21775,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   xDifferenceAllowed: 5
-  yDifferenceAllowed: 5
+  yDifferenceAllowed: 7
   horizontalMovementLocked: 0
   verticalMovementLocked: 0
-  compensationSpeed: 20
+  compensationSpeed: 40
   sweepCurve:
     serializedVersion: 2
     m_Curve:
