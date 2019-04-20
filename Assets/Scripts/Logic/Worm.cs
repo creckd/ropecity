@@ -29,10 +29,11 @@ public class Worm : MonoBehaviour {
 	public ParticleSystem hookHitParticle;
 	public ParticleSystem slideParticle;
 
+	public bool landedHook = false;
+
 	private bool rotationEnabled = true;
 	private GameObject ropeEnd;
 
-	private bool landedHook = false;
 	private List<HitPoint> hitPoints = new List<HitPoint>();
 	private float distanceToKeep = 0f;
 	private bool perfectHitHappened = false;
@@ -167,7 +168,7 @@ public class Worm : MonoBehaviour {
 			distanceToKeep = Mathf.Clamp(Vector3.Distance(hit.point, transform.position),ConfigDatabase.Instance.minRopeDistance,ConfigDatabase.Instance.maxRopeDistance);
 			AddWormPullingForce(hit.point);
 			GameController.Instance.FoundPotentionalHitPoint(hit.point);
-			GameController.Instance.LandedHook();
+			GameController.Instance.LandedHook(hit.point);
 			GameController.Instance.HideUIHookAid();
 			hookHitParticle.transform.position = hit.point;
 			hookHitParticle.Play();
@@ -409,7 +410,7 @@ public class Worm : MonoBehaviour {
 		Ray ray = new Ray(transform.position, (hitPoints[hitPoints.Count - 1].hookPosition - transform.position).normalized);
 		RaycastHit2D hit;
 		hit = Physics2D.Raycast(ray.origin,ray.direction,ConfigDatabase.Instance.maxRopeDistance,~LayerMask.GetMask("Worm"));
-		if (new Vector3(hit.point.x,hit.point.y,0f) != hitPoints[hitPoints.Count - 1].hookPosition && Vector3.Distance(hitPoints[hitPoints.Count-1].hookPosition,new Vector3(hit.point.x,hit.point.y,hitPoints[hitPoints.Count-1].hookPosition.z)) > 1f) {
+		if (hit.collider != null && new Vector3(hit.point.x,hit.point.y,0f) != hitPoints[hitPoints.Count - 1].hookPosition && Vector3.Distance(hitPoints[hitPoints.Count-1].hookPosition,new Vector3(hit.point.x,hit.point.y,hitPoints[hitPoints.Count-1].hookPosition.z)) > 1f) {
 			Vector3 normalizedVelocity = velocity.normalized;
 			Vector3 cross = Vector3.Cross(transform.position - new Vector3(hit.point.x, hit.point.y, 0f), (transform.position + normalizedVelocity) - new Vector3(hit.point.x, hit.point.y, 0f));
 			LevelObject dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();

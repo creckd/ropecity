@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4900788587391894}
   - component: {fileID: 33374116382905558}
   - component: {fileID: 23128694635030260}
-  - component: {fileID: 114270835315456756}
+  - component: {fileID: 114657505459069132}
   m_Layer: 0
   m_Name: powerCube
   m_TagString: Untagged
@@ -140,20 +140,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.57, y: 3.72}
   m_EdgeRadius: 0
---- !u!114 &114270835315456756
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1038855487105632}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e458e5946a853e0438795b7200279138, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomizedStartRotation: 1
-  axis: {x: 0, y: 1, z: 1}
-  speed: 10
 --- !u!114 &114392838741463738
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -167,6 +153,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectID: POWERCUBE
   objectData: 
-  rotationScript: {fileID: 114270835315456756}
+  rotationScript: {fileID: 114657505459069132}
   amountToMoveWhenHit: 0.5
   movementSpeed: 10
+--- !u!114 &114657505459069132
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1038855487105632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e458e5946a853e0438795b7200279138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomizedStartRotation: 1
+  axis: {x: 0, y: 1, z: 1}
+  speed: 10
