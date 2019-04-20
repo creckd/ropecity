@@ -29,6 +29,7 @@ public class CameraController : MonoBehaviour {
 	public float sweepingTime = 1f;
 
 	private float lastHookedPositionY = 0f;
+	private float lastHookedTime = 0f;
 
 	private void Awake() {
 		GameController.Instance.GameFinished += GameFinished;
@@ -38,6 +39,7 @@ public class CameraController : MonoBehaviour {
 
 	private void LandedHook(Vector3 hp) {
 		lastHookedPositionY = hp.y;
+		lastHookedTime = Time.realtimeSinceStartup;
 	}
 
 	private void Start() {
@@ -95,7 +97,7 @@ public class CameraController : MonoBehaviour {
 			}
 
 			float wormY = GameController.Instance.currentWorm.transform.position.y;
-			if (lastHookedPositionY != 0f) {
+			if (lastHookedPositionY != 0f && Time.realtimeSinceStartup - lastHookedTime <= 2f) {
 				float t = GameController.Instance.currentWorm.landedHook ? 0.5f : 0.25f;
 				wormY = Mathf.Lerp(wormY, lastHookedPositionY, t);
 			}
