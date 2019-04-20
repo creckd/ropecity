@@ -72,3 +72,5 @@ MonoBehaviour:
     prefab: {fileID: 114587071772543588, guid: 7737303b98dcfc047b76c72ff0edfd0c, type: 2}
   - uniqueID: POWERCUBE
     prefab: {fileID: 114392838741463738, guid: c54f000ece11524419c79430939f4e1a, type: 2}
+  - uniqueID: JUMPER
+    prefab: {fileID: 114231355613847866, guid: c7c30323a2fa7aa4e84a0b953fa36809, type: 2}

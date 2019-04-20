@@ -28,9 +28,16 @@ public class CameraController : MonoBehaviour {
 	public AnimationCurve sweepCurve;
 	public float sweepingTime = 1f;
 
+	private float lastHookedPositionY = 0f;
+
 	private void Awake() {
 		GameController.Instance.GameFinished += GameFinished;
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
+		GameController.Instance.LandedHook += LandedHook;
+	}
+
+	private void LandedHook(Vector3 hp) {
+		lastHookedPositionY = hp.y;
 	}
 
 	private void Start() {
@@ -87,9 +94,14 @@ public class CameraController : MonoBehaviour {
 				transform.position += Vector3.right * Mathf.Sign(diff) * Mathf.Abs(xDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;
 			}
 
+			float wormY = GameController.Instance.currentWorm.transform.position.y;
+			if (lastHookedPositionY != 0f) {
+				float t = GameController.Instance.currentWorm.landedHook ? 0.5f : 0.25f;
+				wormY = Mathf.Lerp(wormY, lastHookedPositionY, t);
+			}
 			if(!verticalMovementLocked)
-			if (GameController.Instance.currentWorm.gameObject.activeSelf && Mathf.Abs(GameController.Instance.currentWorm.transform.position.y - transform.position.y) > yDifferenceAllowed) {
-				float diff = GameController.Instance.currentWorm.transform.position.y - transform.position.y;
+			if (GameController.Instance.currentWorm.gameObject.activeSelf && Mathf.Abs(wormY - transform.position.y) > yDifferenceAllowed) {
+				float diff = wormY - transform.position.y;
 				transform.position += Vector3.up * Mathf.Sign(diff) * Mathf.Abs(yDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;
 			}
 		}

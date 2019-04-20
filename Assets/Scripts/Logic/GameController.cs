@@ -33,7 +33,7 @@ public class GameController : MonoBehaviour {
 
 	public Action<Vector3> FoundPotentionalHitPoint = delegate { };
 
-	public Action LandedHook = delegate { };
+	public Action<Vector3> LandedHook = delegate { };
 	public Action ReleasedHook = delegate { };
 
 	public Action ShowUIHookAid = delegate { };
@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour {
 		targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
 	}
 
-	private void UnSlowTime() {
+	private void UnSlowTime(Vector3 hp) {
 		if (currentGameState != GameState.GameStarted || !canStartSlowingTime)
 			return;
 		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
