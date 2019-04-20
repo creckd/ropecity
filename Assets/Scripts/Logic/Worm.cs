@@ -121,6 +121,8 @@ public class Worm : MonoBehaviour {
 			currentHoldID = -1;
 			rotationEnabled = true;
 
+			CalculateReleaseJump();
+
 			foreach (var hp in hitPoints) {
 				if(hp.connectedLevelObject != null)
 				hp.connectedLevelObject.HookReleasedOnThisObject();
@@ -135,6 +137,12 @@ public class Worm : MonoBehaviour {
 			ropeEnd.gameObject.SetActive(false);
 			GameController.Instance.ReleasedHook();
 		}
+	}
+
+	private void CalculateReleaseJump() {
+		float coefficent = Mathf.Clamp01(0.05f / Mathf.Clamp(velocity.magnitude,0.1f,Mathf.Infinity));
+		Debug.Log(coefficent);
+		AddForce(coefficent * Vector2.up * 0.5f);
 	}
 
 	private void Tap(int inputIndex) {
