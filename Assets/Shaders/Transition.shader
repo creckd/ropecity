@@ -55,7 +55,7 @@
 			{
 			half4 col = tex2D(_MainTex,i.uv);
 			i.uv.x = lerp(i.uv.x,1-i.uv.x,_UVFlipped);
-			float2 modifiedUV = float2(frac(i.uv.x), frac(i.uv.y * 15));
+			float2 modifiedUV = float2(frac(i.uv.x), frac(i.uv.y * 10));
 			float id = floor(i.uv.y * 10) + 1;
 			//return rand(id + _Seed);
 			modifiedUV.x += rand(id + (_Seed*20));
