@@ -103,7 +103,7 @@ MonoBehaviour:
   remainingVelocityPercentAfterBounce: 0.25
   minYVelocityAfterGroundCollision: 0.25
   minimumVelocityMagnitudeAfterBounce: 0.3
-  slidingAngleThreshHold: 85
+  slidingAngleThreshHold: 110
   mineLethalRange: 5
   wormPrefab: {fileID: 114432807877558836, guid: bba74a465141bb444ada3bfffd75514e,
     type: 2}
