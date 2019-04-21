@@ -140,9 +140,10 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void CalculateReleaseJump() {
-		float coefficent = Mathf.Clamp01(0.05f / Mathf.Clamp(velocity.magnitude,0.1f,Mathf.Infinity));
-		Debug.Log(coefficent);
-		AddForce(coefficent * Vector2.up * 0.5f);
+		if (distanceToKeep >= ConfigDatabase.Instance.maxRopeDistance * 0.35f) {
+			float coefficent = Mathf.Clamp01(0.05f / Mathf.Clamp(velocity.magnitude, 0.1f, Mathf.Infinity));
+			AddForce(coefficent * Vector2.up * 0.5f);
+		}
 	}
 
 	private void Tap(int inputIndex) {
@@ -372,6 +373,7 @@ public class Worm : MonoBehaviour {
 						overlapping = WormOverlappingPhysicalCollider();
 					}
 				}
+				Debug.Log(wouldReflectAngle);
 				if (wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold) {
 					if (!sliding) {
 						sliding = true;
