@@ -373,7 +373,6 @@ public class Worm : MonoBehaviour {
 						overlapping = WormOverlappingPhysicalCollider();
 					}
 				}
-				Debug.Log(wouldReflectAngle);
 				if (wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold) {
 					if (!sliding) {
 						sliding = true;
