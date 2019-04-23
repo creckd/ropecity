@@ -284,6 +284,9 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void CheckForPhysicsCollision() {
+		if(!sliding)
+		Destuck();
+
 		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, velocity, 0.4f);
 		bool physicalCollisionHappened = false;
 		foreach (var hit in hits) {
@@ -300,6 +303,58 @@ public class Worm : MonoBehaviour {
 				physicalCollisionHappened = true;
 			} else if (hit.collider.isTrigger)
 				hit.collider.SendMessage("OnTriggerEnter2D", circleCollider as Collider2D);
+		}
+	}
+
+	private void Destuck() {
+		RaycastHit2D[] initialHits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, Vector2.zero, 0f, ~LayerMask.GetMask("Worm"));
+
+		foreach (var initHit in initialHits) {
+			if (!initHit.collider.isTrigger) {
+				Vector3 firstDestuckPoint = initHit.point + ((Vector2)transform.position - initHit.point).normalized * (circleCollider.radius + 0.1f);
+				bool firstDestuckPointFailed = false;
+				Collider2D[] colls = Physics2D.OverlapCircleAll(firstDestuckPoint, circleCollider.radius, ~LayerMask.GetMask("Worm"));
+				foreach (var col in colls) {
+					if (!col.isTrigger) {
+						firstDestuckPointFailed = true;
+						break;
+					}
+				}
+				if (firstDestuckPointFailed) {
+					Vector3 startingDirection = ((Vector2)transform.position - initHit.point).normalized;
+					float increments = 90f;
+					int currDistanceMultiplier = 1;
+					float currAngle = 0f;
+					bool foundFreePoint = false;
+					while (!foundFreePoint) {
+						bool destuckPointFree = true;
+
+						float currDistance = circleCollider.radius * 2f * currDistanceMultiplier;
+						Vector3 dirWithLength = Quaternion.Euler(0f, 0f, currAngle) * startingDirection;
+						dirWithLength *= currDistance;
+						Vector3 pointToTest = transform.position + dirWithLength;
+						Collider2D[] colliders = Physics2D.OverlapCircleAll(pointToTest, circleCollider.radius, ~LayerMask.GetMask("Worm"));
+						foreach (var col in colliders) {
+							if (!col.isTrigger) {
+								destuckPointFree = false;
+								break;
+							}
+						}
+						if (destuckPointFree) {
+							foundFreePoint = true;
+							transform.position = pointToTest;
+						} else {
+							currAngle += increments;
+							if (currAngle == 360f) {
+								currAngle = 0f;
+								currDistanceMultiplier++;
+							}
+						}
+					}
+				} else {
+					transform.position = firstDestuckPoint;
+				}
+			}
 		}
 	}
 
