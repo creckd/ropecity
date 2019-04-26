@@ -14353,6 +14353,10 @@ Prefab:
       propertyPath: periodWaitTime
       value: 0.55
       objectReference: {fileID: 0}
+    - target: {fileID: 1481054316855576, guid: c7c30323a2fa7aa4e84a0b953fa36809, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7c30323a2fa7aa4e84a0b953fa36809, type: 2}
   m_IsPrefabAsset: 0
@@ -21413,7 +21417,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 555054767}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.84, y: 18.4, z: 0}
+  m_LocalPosition: {x: -19, y: 8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 473720858}
@@ -74516,7 +74520,7 @@ Prefab:
     - target: {fileID: 114071005370810598, guid: f3b0bfd5b337a3146b05ccec4d1b5716,
         type: 2}
       propertyPath: isDebugTestLevelMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b0bfd5b337a3146b05ccec4d1b5716, type: 2}
