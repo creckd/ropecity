@@ -466,19 +466,22 @@ public class Worm : MonoBehaviour {
 		return hit.collider != null;
 	}
 
-	private float lastTimeAPointWasRemoved; //so it doesnt add it back instantly
-
 	public void LookForHookCollision() {
-		if (Time.realtimeSinceStartup - lastTimeAPointWasRemoved < 0.1f)
-			return;
-		Ray ray = new Ray(transform.position, (hitPoints[hitPoints.Count - 1].hookPosition - transform.position).normalized);
+		Vector3 from = transform.position;
+		Vector3 to = (hitPoints[hitPoints.Count - 1].hookPosition - transform.position).normalized;
+		Ray ray = new Ray(from, to);
 		RaycastHit2D hit;
 		hit = Physics2D.Raycast(ray.origin,ray.direction,ConfigDatabase.Instance.maxRopeDistance,~LayerMask.GetMask("Worm"));
-		if (hit.collider != null && new Vector3(hit.point.x,hit.point.y,0f) != hitPoints[hitPoints.Count - 1].hookPosition && Vector3.Distance(hitPoints[hitPoints.Count-1].hookPosition,new Vector3(hit.point.x,hit.point.y,hitPoints[hitPoints.Count-1].hookPosition.z)) > 1f) {
+		if (hit.collider != null && new Vector3(hit.point.x,hit.point.y,0f) != hitPoints[hitPoints.Count - 1].hookPosition) {
+			RaycastHit2D secondHitTest;
+			Ray secondRay = new Ray((Vector2)from, (Vector2)to + velocity.normalized * 0.1f);
+			secondHitTest = Physics2D.Raycast(secondRay.origin, secondRay.direction, ConfigDatabase.Instance.maxRopeDistance, ~LayerMask.GetMask("Worm"));
+			if (Vector3.Distance(secondHitTest.point, hit.point) > 3f)
+				return;
 			Vector3 normalizedVelocity = velocity.normalized;
 			Vector3 cross = Vector3.Cross(transform.position - new Vector3(hit.point.x, hit.point.y, 0f), (transform.position + normalizedVelocity) - new Vector3(hit.point.x, hit.point.y, 0f));
 			LevelObject dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();
-			HitPoint newHookPosition = new HitPoint(hit.point, cross, transform.position);
+			HitPoint newHookPosition = new HitPoint(hit.point, cross, (Vector2)transform.position - hit.point);
 			if (dynamicLevelObjectHit != null) {
 				dynamicLevelObjectHit.HookLandedOnThisObject();
 				newHookPosition.SetConnectedLevelObject(dynamicLevelObjectHit);
@@ -492,7 +495,7 @@ public class Worm : MonoBehaviour {
 	private void CheckILastHitPointIsNotNeccessaryAnymore() {
 		if (hitPoints.Count >= 2) {
 				HitPoint lastHitPoint = hitPoints[hitPoints.Count - 1];
-				Vector3 currentVelocityCross = Vector3.Cross(transform.position - lastHitPoint.hookPosition, lastHitPoint.ropeBreakWorldPosition - lastHitPoint.hookPosition);
+				Vector3 currentVelocityCross = Vector3.Cross(transform.position - lastHitPoint.hookPosition, (lastHitPoint.hookPosition + lastHitPoint.ropeBreakWorldPosition) - lastHitPoint.hookPosition);
 			float dot = Vector3.Dot(currentVelocityCross.normalized, lastHitPoint.attachedVelocityCrossVector.normalized);
 			//Debug.Log(dot);
 			if (dot > 0f)
@@ -501,7 +504,6 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void DeleteLastHitPoint() {
-		lastTimeAPointWasRemoved = Time.realtimeSinceStartup;
 		if(hitPoints[hitPoints.Count-1].connectedLevelObject != null)
 		hitPoints[hitPoints.Count - 1].connectedLevelObject.HookReleasedOnThisObject();
 		if (hitPoints[hitPoints.Count - 1].hookHolderPositionHolder != null)
