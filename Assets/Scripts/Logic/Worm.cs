@@ -58,7 +58,7 @@ public class Worm : MonoBehaviour {
 			}
 		}
 		private Vector3 actualHookPosition;
-		public Vector3 attachedVelocityCrossVector;
+		public Vector3 attachedCross;
 		public Vector3 ropeBreakWorldPosition;
 
 		public LevelObject connectedLevelObject = null;
@@ -66,13 +66,13 @@ public class Worm : MonoBehaviour {
 
 		public HitPoint(Vector3 hookPosition, Vector3 attachedVelocityCrossVector, Vector3 ropeBreakWorldPosition) {
 			this.actualHookPosition = hookPosition;
-			this.attachedVelocityCrossVector = attachedVelocityCrossVector;
+			this.attachedCross = attachedVelocityCrossVector;
 			this.ropeBreakWorldPosition = ropeBreakWorldPosition;
 		}
 
 		public HitPoint(Vector3 hookPosition) {
 			this.actualHookPosition = hookPosition;
-			this.attachedVelocityCrossVector = Vector3.zero;
+			this.attachedCross = Vector3.zero;
 		}
 
 		public void SetConnectedLevelObject(LevelObject connected) {
@@ -479,7 +479,9 @@ public class Worm : MonoBehaviour {
 			if (Vector3.Distance(secondHitTest.point, hit.point) > 3f)
 				return;
 			Vector3 normalizedVelocity = velocity.normalized;
-			Vector3 cross = Vector3.Cross(transform.position - new Vector3(hit.point.x, hit.point.y, 0f), (transform.position + normalizedVelocity) - new Vector3(hit.point.x, hit.point.y, 0f));
+			Vector3 fst = (transform.position + normalizedVelocity * 0.1f) - (Vector3)hit.point;
+			Vector3 snd = (Vector3)hit.point- hitPoints[hitPoints.Count - 1].hookPosition;
+			Vector3 cross = Vector3.Cross(fst,snd);
 			LevelObject dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();
 			HitPoint newHookPosition = new HitPoint(hit.point, cross, (Vector2)transform.position - hit.point);
 			if (dynamicLevelObjectHit != null) {
@@ -494,10 +496,11 @@ public class Worm : MonoBehaviour {
 
 	private void CheckILastHitPointIsNotNeccessaryAnymore() {
 		if (hitPoints.Count >= 2) {
-				HitPoint lastHitPoint = hitPoints[hitPoints.Count - 1];
-				Vector3 currentVelocityCross = Vector3.Cross(transform.position - lastHitPoint.hookPosition, (lastHitPoint.hookPosition + lastHitPoint.ropeBreakWorldPosition) - lastHitPoint.hookPosition);
-			float dot = Vector3.Dot(currentVelocityCross.normalized, lastHitPoint.attachedVelocityCrossVector.normalized);
-			//Debug.Log(dot);
+			HitPoint lastHitPoint = hitPoints[hitPoints.Count - 1];
+			Vector3 fst = transform.position - hitPoints[hitPoints.Count - 1].hookPosition;
+			Vector3 snd = hitPoints[hitPoints.Count - 2].hookPosition - hitPoints[hitPoints.Count - 1].hookPosition;
+			Vector3 currentCross = Vector3.Cross(fst,snd);
+			float dot = Vector3.Dot(currentCross.normalized, lastHitPoint.attachedCross.normalized);
 			if (dot > 0f)
 				DeleteLastHitPoint();
 		}
