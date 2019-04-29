@@ -472,9 +472,10 @@ public class Worm : MonoBehaviour {
 		Ray ray = new Ray(from, to);
 		RaycastHit2D hit;
 		hit = Physics2D.Raycast(ray.origin,ray.direction,ConfigDatabase.Instance.maxRopeDistance,~LayerMask.GetMask("Worm"));
-		if (hit.collider != null && new Vector3(hit.point.x,hit.point.y,0f) != hitPoints[hitPoints.Count - 1].hookPosition) {
+		Vector3 hitPosition = new Vector3(hit.point.x, hit.point.y, 0f);
+		if (hit.collider != null && Vector3.Distance(hitPosition,hitPoints[hitPoints.Count-1].hookPosition) >= 0.1f) {
 			RaycastHit2D secondHitTest;
-			Ray secondRay = new Ray((Vector2)from, (Vector2)to + velocity.normalized * 0.1f);
+			Ray secondRay = new Ray((Vector2)from, (Vector2)to + velocity.normalized * 0.01f);
 			secondHitTest = Physics2D.Raycast(secondRay.origin, secondRay.direction, ConfigDatabase.Instance.maxRopeDistance, ~LayerMask.GetMask("Worm"));
 			if (Vector3.Distance(secondHitTest.point, hit.point) > 3f)
 				return;
