@@ -16,7 +16,8 @@ public class Jumper : LevelObject {
 		currSign = startingDirectionIsRight ? 1 : -1;
 	}
 
-	private void Update() {
+	override protected void Update() {
+		base.Update();
 		if (Time.realtimeSinceStartup - lastTimeJumped >= periodWaitTime) {
 			lastTimeJumped = Time.realtimeSinceStartup;
 			Jump();
