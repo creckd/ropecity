@@ -479,9 +479,14 @@ public class Worm : MonoBehaviour {
 		Vector3 hitPosition = new Vector3(hit.point.x, hit.point.y, 0f);
 		if (hit.collider != null && Vector3.Distance(hitPosition,hitPoints[hitPoints.Count-1].hookPosition) >= 0.1f) {
 
+			LevelObject dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();
+
 			RaycastHit2D secondHit;
 			Vector3 fromPosition = from + (Vector3)velocity.normalized * 0.5f;
-			Vector3 toPosition = hitPoints[hitPoints.Count - 1].hookPosition + (Vector3)velocity.normalized * 0.5f;
+			Vector3 sumVelocity = velocity;
+			if (dynamicLevelObjectHit != null)
+				sumVelocity -= (Vector3)dynamicLevelObjectHit.velocity;
+			Vector3 toPosition = hitPoints[hitPoints.Count - 1].hookPosition + sumVelocity.normalized * 0.5f;
 			Ray secondRay = new Ray(fromPosition, toPosition - fromPosition);
 			secondHit = Physics2D.Raycast(secondRay.origin, secondRay.direction, Vector3.Distance(transform.position, hitPoints[hitPoints.Count - 1].hookPosition) - 1f, ~LayerMask.GetMask("Worm"));
 
@@ -491,7 +496,6 @@ public class Worm : MonoBehaviour {
 			if (secondHitDistance > firstHitDistance)
 				return;
 
-			LevelObject dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();
 			Vector3 normalizedVelocity = velocity;
 			if(dynamicLevelObjectHit != null)
 				normalizedVelocity -= (Vector3)dynamicLevelObjectHit.velocity;
