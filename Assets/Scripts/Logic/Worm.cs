@@ -543,11 +543,6 @@ public class Worm : MonoBehaviour {
 					if (dynamicLevelObjectHit != null) {
 						newHookPosition.SetConnectedLevelObject(dynamicLevelObjectHit);
 					}
-
-					//if (dynamicLevelObjectHit != null) {
-					//	dynamicLevelObjectHit.HookLandedOnThisObject();
-					//	newHookPosition.SetConnectedLevelObject(dynamicLevelObjectHit);
-					//}
 					hitPoints.Insert(i,newHookPosition);
 				}
 
