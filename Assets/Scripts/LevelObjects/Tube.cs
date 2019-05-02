@@ -16,7 +16,8 @@ public class Tube : LevelObject {
 		tubeMat.SetVector("_TilingDirection", data.flowDirection);
 	}
 
-	private void Update() {
+	protected override void Update() {
+		base.Update();
 		tubeMat.SetFloat("_WorldLiquidHeight", transform.position.y);
 	}
 

@@ -14,7 +14,8 @@ public class PowerCube : LevelObject {
 		defaultPosition = transform.position;
 	}
 
-	private void Update() {
+	protected override void Update() {
+		base.Update();
 
 		if (currentlyWormHangingOnMe)
 			t = Mathf.Clamp(t + Time.deltaTime * movementSpeed, 0f, 1f);
