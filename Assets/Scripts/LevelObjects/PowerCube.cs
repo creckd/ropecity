@@ -22,7 +22,7 @@ public class PowerCube : LevelObject {
 		else
 			t = Mathf.Clamp(t - Time.deltaTime * movementSpeed, 0f, 1f);
 
-		transform.position = Vector3.Lerp(defaultPosition, defaultPosition - Vector3.up * amountToMoveWhenHit, t);
+		//transform.position = Vector3.Lerp(defaultPosition, defaultPosition - Vector3.up * amountToMoveWhenHit, t);
 	}
 
 	public override void HookLandedOnThisObject() {
