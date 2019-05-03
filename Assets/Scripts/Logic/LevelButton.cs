@@ -12,6 +12,7 @@ public class LevelButton : MonoBehaviour {
 	public GameObject chains;
 	public Image paddleLock;
 	public Image checkBoxImage;
+	public Image completedMarker;
 
 	private int levelIndex = 0;
 	private bool levelCompleted = false;
@@ -33,10 +34,12 @@ public class LevelButton : MonoBehaviour {
 			chains.gameObject.SetActive(false);
 			paddleLock.gameObject.SetActive(false);
 			checkBoxImage.gameObject.SetActive(true);
+			completedMarker.gameObject.SetActive(true);
 		} else if (levelLocked) {
 			chains.gameObject.SetActive(true);
 			paddleLock.gameObject.SetActive(true);
 			checkBoxImage.gameObject.SetActive(false);
+			completedMarker.gameObject.SetActive(false);
 
 			levelNumberText.color = Color.gray;
 		} else {
@@ -44,6 +47,7 @@ public class LevelButton : MonoBehaviour {
 			chains.gameObject.SetActive(false);
 			paddleLock.gameObject.SetActive(false);
 			checkBoxImage.gameObject.SetActive(true);
+			completedMarker.gameObject.SetActive(false);
 
 		}
 	}
