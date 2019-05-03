@@ -9,15 +9,9 @@ public class LevelButton : MonoBehaviour {
 	public Button levelButton;
 	public Image levelButtonImage;
 
-	[Header("Unlocked")]
-	public Sprite unlockedSpriteState_passive;
-	public Sprite unlockedSpriteState_active;
-	[Header("Completed")]
-	public Sprite completedSpriteState_passive;
-	public Sprite completedSpriteState_active;
-
 	public GameObject chains;
 	public Image paddleLock;
+	public Image checkBoxImage;
 
 	private int levelIndex = 0;
 	private bool levelCompleted = false;
@@ -35,24 +29,23 @@ public class LevelButton : MonoBehaviour {
 	}
 
 	private void RefreshButtonState() {
-		return;
-		SpriteState currentState = levelButton.spriteState;
 		if (levelCompleted) {
-			levelButtonImage.sprite = completedSpriteState_passive;
-			currentState.pressedSprite = completedSpriteState_active;
 			chains.gameObject.SetActive(false);
 			paddleLock.gameObject.SetActive(false);
+			checkBoxImage.gameObject.SetActive(true);
 		} else if (levelLocked) {
 			chains.gameObject.SetActive(true);
 			paddleLock.gameObject.SetActive(true);
+			checkBoxImage.gameObject.SetActive(false);
+
 			levelNumberText.color = Color.gray;
 		} else {
-			levelButtonImage.sprite = unlockedSpriteState_passive;
-			currentState.pressedSprite = unlockedSpriteState_active;
+
 			chains.gameObject.SetActive(false);
 			paddleLock.gameObject.SetActive(false);
+			checkBoxImage.gameObject.SetActive(true);
+
 		}
-		levelButton.spriteState = currentState;
 	}
 
 	public void LevelButtonClicked() {
