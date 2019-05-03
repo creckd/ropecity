@@ -29,7 +29,7 @@ public class LevelSelectPanel : AnimatorPanel {
 	}
 
 	public void InstantiateLevelButtons() {
-		for (int i = 0; i < LevelResourceDatabase.Instance.levelResourceNames.Length; i++) {
+		for (int i = 0; i < 6; i++) {
 			instantiatedLevelButtons.Add(Instantiate(sampleLevelButton, Vector3.zero, Quaternion.identity, gridLayout.transform) as LevelButton);
 			instantiatedLevelButtons[i].Initialize(i);
 		}

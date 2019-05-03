@@ -35,6 +35,7 @@ public class LevelButton : MonoBehaviour {
 	}
 
 	private void RefreshButtonState() {
+		return;
 		SpriteState currentState = levelButton.spriteState;
 		if (levelCompleted) {
 			levelButtonImage.sprite = completedSpriteState_passive;
