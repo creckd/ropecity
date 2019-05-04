@@ -28,6 +28,20 @@ public class LevelSelectPanel : AnimatorPanel {
 		base.Initialize();
 	}
 
+	public override void OnStartedOpening() {
+		base.OnStartedOpening();
+		foreach (var b in instantiatedLevelButtons) {
+			b.PlayAppearAnimation();
+		}
+	}
+
+	public override void OnStartedClosing() {
+		base.OnStartedClosing();
+		foreach (var b in instantiatedLevelButtons) {
+			b.PlayDisappearAnimation();
+		}
+	}
+
 	public void InstantiateLevelButtons() {
 		for (int i = 0; i < 6; i++) {
 			instantiatedLevelButtons.Add(Instantiate(sampleLevelButton, Vector3.zero, Quaternion.identity, gridLayout.transform) as LevelButton);

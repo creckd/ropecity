@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuPanel : FaderPanel {
+public class MainMenuPanel : AnimatorPanel {
 
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
