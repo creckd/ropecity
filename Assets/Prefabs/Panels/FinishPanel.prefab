@@ -148,7 +148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1891527633462922
 GameObject:
   m_ObjectHideFlags: 1
@@ -318,7 +318,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 06949373843924a4db5a99d845783e56, type: 3}
+    m_Font: {fileID: 12800000, guid: a723977e067e26f4f98aa7a54b562ae2, type: 3}
     m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 0
@@ -476,6 +476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e458e5946a853e0438795b7200279138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomizedStartRotation: 0
   axis: {x: 0, y: 0, z: 1}
   speed: 100
 --- !u!222 &222094598080511546
@@ -596,7 +597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -309}
+  m_AnchoredPosition: {x: 0, y: -342.44}
   m_SizeDelta: {x: 313.9, y: 88.158}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224350747165167810
