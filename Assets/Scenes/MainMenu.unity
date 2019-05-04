@@ -2771,6 +2771,40 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1900146028380446, guid: 714f5fc6f9561f440bb2bfe22995b365, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346265552104562, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346265552104562, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346265552104562, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 309.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346265552104562, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346265552104562, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 230
+      objectReference: {fileID: 0}
+    - target: {fileID: 224346265552104562, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 170
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 714f5fc6f9561f440bb2bfe22995b365, type: 2}
   m_IsPrefabAsset: 0
@@ -3206,30 +3240,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 224884653870236222, guid: ab1441b4d31e891469d07ad51ef47832,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224884653870236222, guid: ab1441b4d31e891469d07ad51ef47832,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224884653870236222, guid: ab1441b4d31e891469d07ad51ef47832,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 224884653870236222, guid: ab1441b4d31e891469d07ad51ef47832,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: -140
-      objectReference: {fileID: 0}
-    - target: {fileID: 1154616833483452, guid: ab1441b4d31e891469d07ad51ef47832, type: 2}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ab1441b4d31e891469d07ad51ef47832, type: 2}
