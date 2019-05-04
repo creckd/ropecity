@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4733973361361536}
   - component: {fileID: 120636411721081846}
   - component: {fileID: 114440214875702434}
+  - component: {fileID: 114688771649175108}
   m_Layer: 5
   m_Name: chainLine1
   m_TagString: Untagged
@@ -210,6 +211,7 @@ GameObject:
   - component: {fileID: 4996382368762636}
   - component: {fileID: 120194524829210760}
   - component: {fileID: 114401060652463334}
+  - component: {fileID: 114073977937346928}
   m_Layer: 5
   m_Name: chainLine2
   m_TagString: Untagged
@@ -470,6 +472,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114073977937346928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356631248143552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fd4d126cf46b244b1a2993e1e77459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorPropertyName: _TintColor
+  alphaValue: 1
 --- !u!114 &114078011424829086
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -691,7 +706,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -918,6 +933,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114688771649175108
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1039322970968242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fd4d126cf46b244b1a2993e1e77459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorPropertyName: _TintColor
+  alphaValue: 1
 --- !u!114 &114756919515863278
 MonoBehaviour:
   m_ObjectHideFlags: 1
