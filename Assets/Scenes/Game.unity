@@ -6459,6 +6459,10 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1836702727671178, guid: 040d5adde1e7022469c4ebee569e4f7a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 040d5adde1e7022469c4ebee569e4f7a, type: 2}
   m_IsPrefabAsset: 0
@@ -7282,6 +7286,22 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: -37.101562
       objectReference: {fileID: 0}
+    - target: {fileID: 114550638331149468, guid: 345601d2cac71794592e5ccf616ed1a9,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a723977e067e26f4f98aa7a54b562ae2,
+        type: 3}
+    - target: {fileID: 114247884106541948, guid: 345601d2cac71794592e5ccf616ed1a9,
+        type: 2}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: a723977e067e26f4f98aa7a54b562ae2,
+        type: 3}
+    - target: {fileID: 1823074866337200, guid: 345601d2cac71794592e5ccf616ed1a9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345601d2cac71794592e5ccf616ed1a9, type: 2}
   m_IsPrefabAsset: 0
@@ -7495,6 +7515,10 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1666911290891048, guid: a91edad49453f054ba79700d0ac1ae8e, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a91edad49453f054ba79700d0ac1ae8e, type: 2}
