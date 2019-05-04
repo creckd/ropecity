@@ -18,8 +18,15 @@ public class LevelButton : MonoBehaviour {
 	private bool levelCompleted = false;
 	private bool levelLocked = false;
 
+	private Animator anim;
+
+	private const string appearAnimName = "LevelButtonAppear";
+	private const string disappearAnimName = "LevelButtonDisappear";
+
 	public void Initialize(int levelIndex) {
 		this.levelIndex = levelIndex;
+
+		anim = GetComponent<Animator>();
 
 		levelCompleted = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(levelIndex).levelCompleted;
 		levelLocked = !SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(levelIndex).isUnlocked;
@@ -50,6 +57,14 @@ public class LevelButton : MonoBehaviour {
 			completedMarker.gameObject.SetActive(false);
 
 		}
+	}
+
+	public void PlayAppearAnimation() {
+		anim.Play(appearAnimName,0,0f);
+	}
+
+	public void PlayDisappearAnimation() {
+		anim.Play(disappearAnimName, 0, 0f);
 	}
 
 	public void LevelButtonClicked() {

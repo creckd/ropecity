@@ -78,7 +78,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1180342161747524
 GameObject:
   m_ObjectHideFlags: 1
@@ -274,6 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224488386874079810}
   - component: {fileID: 222536794157384524}
+  - component: {fileID: 225271376260988456}
   m_Layer: 5
   m_Name: Root
   m_TagString: Untagged
@@ -393,7 +394,7 @@ Animator:
   m_GameObject: {fileID: 1154616833483452}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 025dca5cc267a2e47aa357174a0fab11, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1588,3 +1589,14 @@ RectTransform:
   m_AnchoredPosition: {x: 5, y: -24}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!225 &225271376260988456
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1841615347655008}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
