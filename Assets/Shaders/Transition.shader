@@ -53,22 +53,26 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
+			//_T*= 0.5;
 			half4 col = tex2D(_MainTex,i.uv);
-			i.uv.x = lerp(i.uv.x,1-i.uv.x,_UVFlipped);
-			float2 modifiedUV = float2(frac(i.uv.x), frac(i.uv.y * 10));
-			float id = floor(i.uv.y * 10) + 1;
-			//return rand(id + _Seed);
-			modifiedUV.x += rand(id + (_Seed*20));
-			_T = lerp(0.2, 1, _T);
-			float t =  (_T * 1.5);
-			modifiedUV.x += t;
-			modifiedUV.x *= t;
-			modifiedUV.y = 1 - (abs(0.5 - modifiedUV.y) * 2);
-			float size = 0.75;
-			size = size - smoothstep(1, 2, modifiedUV.x);
-			float aa = 0.055;
-			float lines = smoothstep(size / (modifiedUV.x * 1), (size + aa) / (modifiedUV.x * 1),modifiedUV.y);
-			col = lerp(half4(0, 0, 0, 0), col, 1 - lines);
+			float bw = 0.001;
+			float bww = 0.01;
+			float halft = min(_T,0.51);
+			float uso = sin(i.uv.x* 20) * 0.01 * _T;
+			float bso = sin(i.uv.x* 20) * 0.01 * _T;
+			float b = smoothstep(halft-0.01,halft,i.uv.y + uso);
+			float bo = smoothstep(halft-(bw+bww),halft-(bww),i.uv.y + uso);
+			float inverseT = (1-min(_T,0.51));
+			float u = smoothstep(inverseT+0.01,inverseT,i.uv.y + bso);
+			float uo = smoothstep(inverseT+(bw + bww),inverseT + (bww),i.uv.y + bso);
+
+			float g = abs(0.5 - i.uv.x) * 2;
+			_T = 1-smoothstep(0.5,1,_T);
+			float fade = 0.2 * (1-_T);
+			uo *= smoothstep(_T,_T-fade,g);
+			bo *= smoothstep(_T,_T-fade,g);
+			col.rgb *= b * u;
+			col.rgb += bo * (1-b) + uo * (1-u);
 			return col;
 			}
 			ENDCG
