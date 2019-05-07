@@ -27,9 +27,11 @@ public class LevelSelectPanel : AnimatorPanel {
 	public GridLayoutGroup gridLayout;
 	public LevelButton sampleLevelButton;
 	public Text sectionText;
+	public Image sectionMask;
 
 	private int currentlyOpenedSection = -1;
-	private float sectionAnimationTime = 0.5f;
+	private float sectionAnimationTime = 0.6f;
+	private int animatingDirection = 1;
 
 	public override void Initialize() {
 		base.Initialize();
@@ -37,15 +39,22 @@ public class LevelSelectPanel : AnimatorPanel {
 		ReInitializeButtons();
 		RefreshAllSectionButtonActiveness();
 		sampleLevelButton.gameObject.SetActive(false);
+		sectionMask.material = Instantiate(sectionMask.material);
 	}
 
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
 		OpenSection(0);
+		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {
+			b.PlayAppearAnimation();
+		}
 	}
 
 	public override void OnStartedClosing() {
 		base.OnStartedClosing();
+		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {
+			b.PlayDisappearAnimation();
+		}
 		CloseCurrentlyOpenedSection();
 	}
 
@@ -72,24 +81,24 @@ public class LevelSelectPanel : AnimatorPanel {
 		if (sectionNumber == currentlyOpenedSection)
 			return;
 
-		sectionText.text = (sectionNumber + 1).ToString();
-
 		if (currentlyOpenedSection != -1) {
+			animatingDirection = sectionNumber < currentlyOpenedSection ? 0 : 1;
 			CloseCurrentlyOpenedSection();
 			StartCoroutine(WaitAndCallBack(sectionAnimationTime, () => { OpenSection(sectionNumber); }));
 			return;
 		}
+
+		Debug.Log(animatingDirection);
+
 
 		if (!panelInTransition)
 			DeactivatePanelButtons();
 
 		currentlyOpenedSection = sectionNumber;
 		RefreshAllSectionButtonActiveness();
+		sectionText.text = (currentlyOpenedSection + 1).ToString();
 
-		SectionButtons sButtons = GetSectionButtonsForSection(sectionNumber);
-		foreach (var b in sButtons.instantiatedLevelButtons) {
-			b.PlayAppearAnimation();
-		}
+		ShowSection();
 
 		if(!panelInTransition)
 			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivatePanelButtons));
@@ -100,15 +109,32 @@ public class LevelSelectPanel : AnimatorPanel {
 		if (!panelInTransition)
 			DeactivatePanelButtons();
 
-		SectionButtons sButtons = GetSectionButtonsForSection(currentlyOpenedSection);
-		foreach (var b in sButtons.instantiatedLevelButtons) {
-			b.PlayDisappearAnimation();
-		}
+		HideSection();
 
 		currentlyOpenedSection = -1;
 
 		if (!panelInTransition)
 			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivatePanelButtons));
+	}
+
+	public void HideSection() {
+		StartCoroutine(MaskSection(0f));
+	}
+
+	public void ShowSection() {
+		StartCoroutine(MaskSection(1f));
+	}
+
+	IEnumerator MaskSection(float targetValue = 0f) {
+		float uvFlipped = System.Convert.ToBoolean(animatingDirection) ?  1f - targetValue : targetValue;
+		sectionMask.material.SetInt("_UVFlipped", (int)uvFlipped);
+		sectionMask.material.SetInt("_Seed", UnityEngine.Random.Range(0, 40));
+		float timer = 0f;
+		while (timer <= sectionAnimationTime) {
+			timer += Time.unscaledDeltaTime;
+			sectionMask.material.SetFloat("_T", Mathf.Lerp(1 - targetValue, targetValue, timer / sectionAnimationTime));
+			yield return null;
+		}
 	}
 
 	private void RefreshAllSectionButtonActiveness() {
