@@ -28,7 +28,7 @@ public class IngamePanel : FaderPanel {
 	private void ShowLevelInfo() {
 		string levelName, triesText;
 		if (!GameController.Instance.isDebugTestLevelMode) {
-			levelName = LevelController.Instance.level.levelName;
+			levelName = "Stage " + (LevelController.Instance.currentLevelIndex+1).ToString();
 			triesText = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries.ToString();
 		} else {
 			levelName = "Teszt mód";
