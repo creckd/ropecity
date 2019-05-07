@@ -10,14 +10,22 @@
 	public LevelSaveData[] levelSaveDatas;
 
 	public void CreateEmpty() {
-		int numberOfLevels = LevelResourceDatabase.Instance.levelResourceNames.Length;
-		levelSaveDatas = new LevelSaveData[numberOfLevels];
-		for (int i = 0; i < numberOfLevels; i++) {
-			levelSaveDatas[i] = new LevelSaveData();
-			levelSaveDatas[i].levelIndex = i;
-			levelSaveDatas[i].levelCompleted = false;
-			levelSaveDatas[i].isUnlocked = false;
-			levelSaveDatas[i].numberOfTries = 0;
+		int numberOfAllLevels = 0;
+		foreach (var s in LevelResourceDatabase.Instance.sections) {
+			numberOfAllLevels += s.levelResourceNames.Length;
+		}
+		levelSaveDatas = new LevelSaveData[numberOfAllLevels];
+		int globalIndex = 0;
+		for (int i = 0; i < LevelResourceDatabase.Instance.sections.Length; i++) {
+			int numberOfLevelsInThisSection = LevelResourceDatabase.Instance.sections[i].levelResourceNames.Length;
+			for (int j = 0; j < numberOfLevelsInThisSection; j++) {
+				levelSaveDatas[globalIndex + j] = new LevelSaveData();
+				levelSaveDatas[globalIndex + j].levelIndex = globalIndex + j;
+				levelSaveDatas[globalIndex + j].levelCompleted = false;
+				levelSaveDatas[globalIndex + j].isUnlocked = false;
+				levelSaveDatas[globalIndex + j].numberOfTries = 0;
+			}
+			globalIndex += numberOfLevelsInThisSection;
 		}
 		levelSaveDatas[0].isUnlocked = true; //First level open
 	}
