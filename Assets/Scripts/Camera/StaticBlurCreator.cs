@@ -22,16 +22,19 @@ public class StaticBlurCreator : MonoBehaviour {
 	public int downScale = 0;
 	public int iterations = 1;
 
+	public bool disableObjectAfterSnapShot = false;
 
 	public void CreateStaticBlurImage() {
 		attachedCamera = GetComponent<Camera>();
 		int width = attachedCamera.pixelWidth >> downScale;
 		int height = attachedCamera.pixelHeight >> downScale;
-		RenderTexture rt = RenderTexture.GetTemporary(width, height);
+		RenderTexture rt = RenderTexture.GetTemporary(width,height,16,RenderTextureFormat.ARGB32);
 
-		BackgroundCamera.Instance.thisCamera.targetTexture = rt;
-		BackgroundCamera.Instance.thisCamera.Render();
-		BackgroundCamera.Instance.thisCamera.targetTexture = null;
+		if (BackgroundCamera.Instance != null) {
+			BackgroundCamera.Instance.thisCamera.targetTexture = rt;
+			BackgroundCamera.Instance.thisCamera.Render();
+			BackgroundCamera.Instance.thisCamera.targetTexture = null;
+		}
 
 		attachedCamera.targetTexture = rt;
 		attachedCamera.Render();
@@ -51,5 +54,7 @@ public class StaticBlurCreator : MonoBehaviour {
 
 		Shader.SetGlobalTexture(renderTextureGlobalPropName, rt);
 		//RenderTexture.ReleaseTemporary(rt);
+		if (disableObjectAfterSnapShot)
+			gameObject.SetActive(false);
 	}
 }
