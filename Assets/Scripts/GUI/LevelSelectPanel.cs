@@ -28,9 +28,9 @@ public class LevelSelectPanel : AnimatorPanel {
 	public LevelButton sampleLevelButton;
 	public Text sectionText;
 	public Image sectionMask;
+	public float sectionAnimationTime = 0.6f;
 
 	private int currentlyOpenedSection = -1;
-	private float sectionAnimationTime = 0.6f;
 	private int animatingDirection = 1;
 
 	public override void Initialize() {
@@ -128,7 +128,7 @@ public class LevelSelectPanel : AnimatorPanel {
 	IEnumerator MaskSection(float targetValue = 0f) {
 		float uvFlipped = System.Convert.ToBoolean(animatingDirection) ?  1f - targetValue : targetValue;
 		sectionMask.material.SetInt("_UVFlipped", (int)uvFlipped);
-		sectionMask.material.SetInt("_Seed", UnityEngine.Random.Range(0, 40));
+		//sectionMask.material.SetInt("_Seed", UnityEngine.Random.Range(0, 40));
 		float timer = 0f;
 		while (timer <= sectionAnimationTime) {
 			timer += Time.unscaledDeltaTime;

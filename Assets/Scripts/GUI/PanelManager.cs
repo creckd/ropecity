@@ -29,6 +29,8 @@ public class PanelManager : MonoBehaviour {
 
 	private void Start() {
 		Time.timeScale = 1;
+		QualitySettings.vSyncCount = 0;
+		Application.targetFrameRate = 300;
 
 		mainCanvas = GetComponentInParent<Canvas>();
 		mainCanvasRect = mainCanvas.GetComponent<RectTransform>();

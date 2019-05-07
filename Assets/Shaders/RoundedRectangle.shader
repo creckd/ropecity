@@ -61,7 +61,7 @@
 				Radius = max(min(min(abs(Radius * 2), abs(Width)), abs(Height)), 1e-5);
 				float2 uv = abs(i.uv * 2 - 1) - float2(Width, Height) + Radius;
 				float d = length(max(0, uv)) / Radius;
-				float f = saturate((1 - d) / (fwidth(d) * 4));
+				float f = saturate((1 - d) / (fwidth(d) * 2.5));
 				float4 finalColor;
 				finalColor.a = 1;
 				finalColor.rgb = i.color.rgb;

@@ -18,6 +18,7 @@ public class ManualLineRendererFader : MonoBehaviour {
 		materialToFade = lineRenderer.material;// = Instantiate(lineRenderer.material);
 
 		defaultColor = materialToFade.GetColor(colorPropertyName);
+		materialToFade.SetColor(colorPropertyName, new Color(defaultColor.r, defaultColor.g, defaultColor.b, 0f));
 	}
 
 	private void Update() {

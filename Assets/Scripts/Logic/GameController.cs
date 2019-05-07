@@ -47,9 +47,6 @@ public class GameController : MonoBehaviour {
 	private bool canStartSlowingTime = false;
 
 	public void InitializeGame() {
-		QualitySettings.vSyncCount = 0;
-		Application.targetFrameRate = 300;
-
 		LandedHook += UnSlowTime;
 		ReleasedHook += SlowTime;
 
