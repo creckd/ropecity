@@ -88,9 +88,6 @@ public class LevelSelectPanel : AnimatorPanel {
 			return;
 		}
 
-		Debug.Log(animatingDirection);
-
-
 		if (!panelInTransition)
 			DeactivatePanelButtons();
 

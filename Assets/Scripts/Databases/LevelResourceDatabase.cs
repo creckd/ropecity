@@ -23,9 +23,9 @@ public class LevelResourceDatabase : MonoBehaviour {
 	public string GetResourceWithLevelIndex(int levelIndex) {
 		int s = 0;
 		for (int i = 0; i < sections.Length; i++) {
-			s += sections.Length;
+			s += sections[i].levelResourceNames.Length;
 			if (s > levelIndex) {
-				s -= sections.Length;
+				s -= sections[i].levelResourceNames.Length;
 				return sections[i].levelResourceNames[levelIndex-s];
 			}
 		}

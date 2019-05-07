@@ -170,7 +170,6 @@ public class Worm : MonoBehaviour {
 			rotationEnabled = false;
 			landedHook = true;
 			HitPoint newHookPosition = new HitPoint(hit.point);
-			Debug.Log(hit.collider.gameObject.name);
 			LevelObject dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();
 			if (dynamicLevelObjectHit != null) {
 				dynamicLevelObjectHit.HookLandedOnThisObject();
