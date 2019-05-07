@@ -31,9 +31,11 @@ public class LevelSelectPanel : AnimatorPanel {
 	private float sectionAnimationTime = 1f;
 
 	public override void Initialize() {
+		base.Initialize();
 		InitializeSections();
 		ReInitializeButtons();
-		base.Initialize();
+		RefreshAllSectionButtonActiveness();
+		sampleLevelButton.gameObject.SetActive(false);
 	}
 
 	public override void OnStartedOpening() {
@@ -47,7 +49,6 @@ public class LevelSelectPanel : AnimatorPanel {
 	}
 
 	private void InitializeSections() {
-		sampleLevelButton.gameObject.SetActive(false);
 		int globalLevelIndex = 0;
 
 		for (int i = 0; i < LevelResourceDatabase.Instance.sections.Length; i++) {
@@ -76,18 +77,13 @@ public class LevelSelectPanel : AnimatorPanel {
 			return;
 		}
 
-		for (int i = 0; i < instantiatedSectionButtons.Count; i++) {
-			bool isThisTheSectionToBeOpened = i == sectionNumber;
-			foreach (var b in instantiatedSectionButtons[i].instantiatedLevelButtons) {
-				b.gameObject.SetActive(isThisTheSectionToBeOpened);
-			}
-		}
+		currentlyOpenedSection = sectionNumber;
+		RefreshAllSectionButtonActiveness();
 
 		SectionButtons sButtons = GetSectionButtonsForSection(sectionNumber);
 		foreach (var b in sButtons.instantiatedLevelButtons) {
 			b.PlayAppearAnimation();
 		}
-		currentlyOpenedSection = sectionNumber;
 	}
 
 	private void CloseCurrentlyOpenedSection() {
@@ -98,6 +94,15 @@ public class LevelSelectPanel : AnimatorPanel {
 		}
 
 		currentlyOpenedSection = -1;
+	}
+
+	private void RefreshAllSectionButtonActiveness() {
+		for (int i = 0; i < instantiatedSectionButtons.Count; i++) {
+			bool isThisTheSectionToBeOpened = i == currentlyOpenedSection;
+			foreach (var b in instantiatedSectionButtons[i].instantiatedLevelButtons) {
+				b.gameObject.SetActive(isThisTheSectionToBeOpened);
+			}
+		}
 	}
 
 	IEnumerator WaitAndCallBack(float waitTime, Action cb) {
