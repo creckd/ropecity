@@ -26,9 +26,10 @@ public class LevelSelectPanel : AnimatorPanel {
 
 	public GridLayoutGroup gridLayout;
 	public LevelButton sampleLevelButton;
+	public Text sectionText;
 
 	private int currentlyOpenedSection = -1;
-	private float sectionAnimationTime = 1f;
+	private float sectionAnimationTime = 0.5f;
 
 	public override void Initialize() {
 		base.Initialize();
@@ -71,11 +72,16 @@ public class LevelSelectPanel : AnimatorPanel {
 		if (sectionNumber == currentlyOpenedSection)
 			return;
 
+		sectionText.text = (sectionNumber + 1).ToString();
+
 		if (currentlyOpenedSection != -1) {
 			CloseCurrentlyOpenedSection();
 			StartCoroutine(WaitAndCallBack(sectionAnimationTime, () => { OpenSection(sectionNumber); }));
 			return;
 		}
+
+		if (!panelInTransition)
+			DeactivatePanelButtons();
 
 		currentlyOpenedSection = sectionNumber;
 		RefreshAllSectionButtonActiveness();
@@ -84,9 +90,15 @@ public class LevelSelectPanel : AnimatorPanel {
 		foreach (var b in sButtons.instantiatedLevelButtons) {
 			b.PlayAppearAnimation();
 		}
+
+		if(!panelInTransition)
+			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivatePanelButtons));
 	}
 
 	private void CloseCurrentlyOpenedSection() {
+
+		if (!panelInTransition)
+			DeactivatePanelButtons();
 
 		SectionButtons sButtons = GetSectionButtonsForSection(currentlyOpenedSection);
 		foreach (var b in sButtons.instantiatedLevelButtons) {
@@ -94,6 +106,9 @@ public class LevelSelectPanel : AnimatorPanel {
 		}
 
 		currentlyOpenedSection = -1;
+
+		if (!panelInTransition)
+			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivatePanelButtons));
 	}
 
 	private void RefreshAllSectionButtonActiveness() {
@@ -117,6 +132,20 @@ public class LevelSelectPanel : AnimatorPanel {
 				return sB;
 		}
 		return null;
+	}
+
+	public void NextSectionButton() {
+		int nextSectionNumber = currentlyOpenedSection + 1;
+		if (nextSectionNumber < LevelResourceDatabase.Instance.sections.Length) {
+			OpenSection(nextSectionNumber);
+		}
+	}
+
+	public void PreviousSectionButton() {
+		int previousSectionNumber = currentlyOpenedSection - 1;
+		if (previousSectionNumber >= 0) {
+			OpenSection(previousSectionNumber);
+		}
 	}
 
 	public void PlayLevel(int levelIndex) {

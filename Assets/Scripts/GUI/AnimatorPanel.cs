@@ -10,6 +10,8 @@ public class AnimatorPanel : Panel {
 	private const string openingAnimationStateName = "Open";
 	private const string closingAnimationStateName = "Close";
 
+	protected bool panelInTransition = false;
+
 	public override void Initialize() {
 		anim = GetComponent<Animator>();
 		base.Initialize();
@@ -22,6 +24,7 @@ public class AnimatorPanel : Panel {
 		OnOpened();
 		if (openedCallBack != null)
 			openedCallBack();
+		panelInTransition = false;
 	}
 
 	IEnumerator ClosingAnimationRoutine(Action closedCallBack) {
@@ -31,6 +34,7 @@ public class AnimatorPanel : Panel {
 		OnClosed();
 		if (closedCallBack != null)
 			closedCallBack();
+		panelInTransition = false;
 	}
 
 	public override void OpeningAnimation(Action cb) {
@@ -39,5 +43,15 @@ public class AnimatorPanel : Panel {
 
 	public override void ClosingAnimation(Action cb) {
 		StartCoroutine(ClosingAnimationRoutine(cb));
+	}
+
+	public override void OnStartedClosing() {
+		base.OnStartedClosing();
+		panelInTransition = true;
+	}
+
+	public override void OnStartedOpening() {
+		base.OnStartedOpening();
+		panelInTransition = true;
 	}
 }
