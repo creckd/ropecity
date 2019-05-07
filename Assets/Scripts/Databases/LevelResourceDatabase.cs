@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,5 +18,18 @@ public class LevelResourceDatabase : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 	}
 
-	public string[] levelResourceNames;
+	public Section[] sections;
+
+	public string GetResourceWithLevelIndex(int levelIndex) {
+		int s = 0;
+		for (int i = 0; i < sections.Length; i++) {
+			s += sections.Length;
+			if (s > levelIndex) {
+				s -= sections.Length;
+				return sections[i].levelResourceNames[levelIndex-s];
+			}
+		}
+		throw new Exception("Túl magas levelindex, nincs ilyen felvéve a Level Resource Database-ben");
+		return "";
+	}
 }

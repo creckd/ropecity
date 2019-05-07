@@ -46,19 +46,6 @@ public class SavedDataManager : MonoBehaviour {
 		return savedData.levelSaveDatabase;
 	}
 
-	public string GetLevelIDWithLevelIndex(int levelIndex) {
-		return LevelResourceDatabase.Instance.levelResourceNames[levelIndex];
-	}
-
-	public LevelSaveDatabase.LevelSaveData GetLevelSaveDataWithID(string levelID) {
-		for (int i = 0; i < LevelResourceDatabase.Instance.levelResourceNames.Length; i++) {
-			if (LevelResourceDatabase.Instance.levelResourceNames[i] == levelID)
-				return savedData.levelSaveDatabase.levelSaveDatas[i];
-		}
-		return null;
-		throw new System.Exception("nincs mentés erről a levelID-ról");
-	}
-
 	public LevelSaveDatabase.LevelSaveData GetLevelSaveDataWithLevelIndex(int levelIndex) {
 		return savedData.levelSaveDatabase.levelSaveDatas[levelIndex];
 	}

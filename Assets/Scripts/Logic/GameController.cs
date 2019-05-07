@@ -59,7 +59,7 @@ public class GameController : MonoBehaviour {
 			object levelMessage;
 			if (Messenger.Instance != null && Messenger.Instance.GetMessage(LevelSelectPanel.LevelIndexKey, out levelMessage)) {
 				levelIndex = (int)levelMessage;
-				levelPath = LevelResourceDatabase.Instance.levelResourceNames[levelIndex];
+				levelPath = LevelResourceDatabase.Instance.GetResourceWithLevelIndex(levelIndex);
 			}
 			LevelController.Instance.currentLevelIndex = levelIndex;
 			TextAsset levelAsset = (TextAsset)Resources.Load(levelPath, typeof(TextAsset));

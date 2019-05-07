@@ -51,13 +51,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1b8437b7da742419bcc63fa4b9155f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelResourceNames:
-  - dani_001
-  - dani_004
-  - dani_005
-  - dani_007
-  - dani_008
-  - dani_002
-  - dani_003
-  - dani_006
-  - dani_002
+  sections:
+  - levelResourceNames:
+    - dani_001
+    - dani_001
+    - dani_001
+    - dani_001
+    - dani_001
+    - dani_001
+  - levelResourceNames:
+    - dani_001
+    - dani_001
+    - dani_001
+    - dani_001
+    - dani_001
+    - dani_001
