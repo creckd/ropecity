@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: FinishGlass
-  m_Shader: {fileID: 4800000, guid: 49064025e065265419db24b5e4d8c589, type: 3}
+  m_Shader: {fileID: 4800000, guid: c486729ba4b9e1a4d89ce65d55554e18, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -39,7 +39,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7ac2606f8974ec0438b4dc182fdce903, type: 3}
+        m_Texture: {fileID: 2800000, guid: 1de86f70e98e5934daa924ab446b72a6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -74,4 +74,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _MainColor: {r: 0.08085619, g: 0.745283, b: 0.745283, a: 0.50980395}
+    - _MainColor: {r: 0.08085619, g: 0.745283, b: 0.745283, a: 0.16862746}
