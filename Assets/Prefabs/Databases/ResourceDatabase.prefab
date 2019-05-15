@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
   - uniqueID: FINISH
-    prefab: {fileID: 114459429967044210, guid: ceedd0645450dbf4ea8e59e124613f4f, type: 2}
+    prefab: {fileID: 114338428108192972, guid: ceedd0645450dbf4ea8e59e124613f4f, type: 2}
   - uniqueID: CANNON
     prefab: {fileID: 114518035131718152, guid: d6d98e2e759e3af45ac70c2af32f82e3, type: 2}
   - uniqueID: BASIC_TUBE
