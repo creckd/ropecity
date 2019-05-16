@@ -44,6 +44,7 @@ Shader "Dani/Glass"
 
 			sampler2D _MainTex;
 			sampler2D _MainTex_ST;
+			sampler2D _GlassUI;
 			float4 _MainColor;
 
 			v2f vert (appdata v)
@@ -59,21 +60,17 @@ Shader "Dani/Glass"
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				float4 glassTex = tex2D(_MainTex,i.uv);
+				half4 glassTex = tex2D(_MainTex,i.uv);
+				half4 UI = tex2D(_GlassUI, i.uv * float2(2,1));
 				float3 worldSpaceViewDir = _WorldSpaceCameraPos.xyz - i.vertexWorld.xyz;
 				float s = 1 - dot(normalize(worldSpaceViewDir), normalize(i.normal));
 				float specular = step(0.25, s) * 0.1;
 				specular += step(0.65, s) * 0.1;
 				specular += step(0.85, s) * 0.1;
-				//specular += step(0.75, s) * 0.2;
-				//specular += step(0.85, s) * 0.2;
-				//specular += step(0.65, s) * 0.15;
-				//specular += step(0.85, s) * 0.15;
-
-				half4 finalColor = lerp(glassTex,_MainColor,1-glassTex.a);
-
-				//finalColor += s * 1;
-				//finalColor.a *= s;
+				UI.rgb = UI.rgb * UI.a + glassTex.rgb * (1 - UI.a);
+				glassTex.rgb = UI.rgb;
+				glassTex.a = lerp(glassTex.a, UI.a, UI.a);
+				half4 finalColor = glassTex;
 				finalColor += specular;
 				finalColor = saturate(finalColor);
 				return finalColor;
