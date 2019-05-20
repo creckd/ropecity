@@ -14,15 +14,18 @@ public class IngamePanel : FaderPanel {
 	private float lastTimePositionWasChanged;
 	private bool crossHairShouldBeShown = false;
 
-	private void Awake() {
-		GameController.Instance.GameStarted += ShowLevelInfo;
-	}
-
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
+		GameController.Instance.GameStarted += ShowLevelInfo;
 		GameController.Instance.FoundPotentionalHitPoint += SetCrossHairPosition;
 		GameController.Instance.ShowUIHookAid += () => { crossHairShouldBeShown = true; };
 		GameController.Instance.HideUIHookAid += () => { crossHairShouldBeShown = false; };
+	}
+
+	public override void OnStartedClosing() {
+		base.OnStartedClosing();
+		GameController.Instance.FoundPotentionalHitPoint -= SetCrossHairPosition;
+		GameController.Instance.GameStarted += ShowLevelInfo;
 	}
 
 	private void ShowLevelInfo() {

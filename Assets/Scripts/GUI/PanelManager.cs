@@ -27,11 +27,7 @@ public class PanelManager : MonoBehaviour {
 	private Panel currentlyOpenedPanel = null;
 	private bool panelTransitionInProgress = false;
 
-	private void Start() {
-		Time.timeScale = 1;
-		QualitySettings.vSyncCount = 0;
-		Application.targetFrameRate = 300;
-
+	public void InitializeGUI() {
 		mainCanvas = GetComponentInParent<Canvas>();
 		mainCanvasRect = mainCanvas.GetComponent<RectTransform>();
 		foreach (var panel in panels) {

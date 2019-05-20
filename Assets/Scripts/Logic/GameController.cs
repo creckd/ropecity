@@ -5,6 +5,7 @@ using UnityEngine;
 public enum GameState {
 	NotInitialized,
 	Initialized,
+	ShowingTutorial,
 	GameStarted,
 	GameFinished,
 	GamePaused
@@ -90,9 +91,24 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator StartTheGameAfterAFewFrames() {
+
 		yield return null;
+
+		LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
+		bool shouldStartTutorial = LevelController.Instance.currentLevelIndex == 0 && saveData.levelCompleted == false;
+
+		if (shouldStartTutorial) {
+			currentGameState = GameState.ShowingTutorial;
+			Messenger.Instance.SendMessage(PanelManager.defaultOpenedPanelChangedTag, 3); // open tutorial panel
+		}
+
+		PanelManager.Instance.InitializeGUI();
+
+		while (currentGameState != GameState.Initialized)
+			yield return null;
+
 		yield return null;
-		yield return null;
+
 		StartTheGame();
 	}
 
@@ -101,9 +117,17 @@ public class GameController : MonoBehaviour {
 		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * 7.5f);
 	}
 
+	public void FinishTutorial() {
+		if (currentGameState == GameState.ShowingTutorial) {
+			currentGameState = GameState.Initialized;
+		}
+	}
+
 	private void StartTheGame() {
-		if(!isDebugTestLevelMode)
-		SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries++;
+		LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
+		if (!isDebugTestLevelMode) {
+			saveData.numberOfTries++;
+		}
 		GameStarted();
 		currentGameState = GameState.GameStarted;
 	}
