@@ -54,11 +54,11 @@ MonoBehaviour:
   sections:
   - levelResourceNames:
     - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
+    - dani_002
+    - dani_003
+    - dani_004
+    - dani_005
+    - dani_006
   - levelResourceNames:
     - dani_001
     - dani_001
