@@ -33,6 +33,7 @@ public class ConfigDatabase : MonoBehaviour {
 
 	[Header("Tutorial")]
 	public float tutorialBlurTime = 1f;
+	public float tutorialRequiredWatchTime = 5f;
 
 	[Header("Worm")]
 	public float gravityScale = 0.2f;
