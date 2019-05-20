@@ -91,6 +91,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   pauseBlurTime: 0.25
+  tutorialBlurTime: 0.5
   gravityScale: 0.5
   wormMass: 20
   swingForceMultiplier: 2

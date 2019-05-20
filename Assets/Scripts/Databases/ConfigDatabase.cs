@@ -31,6 +31,9 @@ public class ConfigDatabase : MonoBehaviour {
 	[Header("Pause")]
 	public float pauseBlurTime = 0.5f;
 
+	[Header("Tutorial")]
+	public float tutorialBlurTime = 1f;
+
 	[Header("Worm")]
 	public float gravityScale = 0.2f;
 	public float wormMass = 100;

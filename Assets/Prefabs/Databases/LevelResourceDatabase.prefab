@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sections:
   - levelResourceNames:
-    - dani_001
+    - dani_tutorial_map
     - dani_002
     - dani_003
     - dani_004
