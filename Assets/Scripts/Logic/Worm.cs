@@ -590,9 +590,9 @@ public class Worm : MonoBehaviour {
 		Destroy(ropeEnd.gameObject);
 		ragdoll.gameObject.SetActive(true);
 		ragdoll.transform.SetParent(null);
-		foreach (var rb in ragdoll.GetComponentsInChildren<Rigidbody>()) {
-			rb.AddForce(velocity * 100f,ForceMode.Impulse);
-			rb.AddForce(rb.transform.forward * 20f * Vector3.Distance(rb.transform.position,transform.position), ForceMode.Impulse);
+		foreach (var rb in ragdoll.GetComponentsInChildren<Rigidbody2D>()) {
+			rb.AddForce(velocity * 50f,ForceMode2D.Impulse);
+			rb.AddForce(rb.transform.forward * 20f * Vector3.Distance(rb.transform.position,transform.position), ForceMode2D.Impulse);
 		}
 		DestroyWorm();
 	}
