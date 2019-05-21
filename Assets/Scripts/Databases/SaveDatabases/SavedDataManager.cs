@@ -68,5 +68,10 @@ public class SavedDataManager : MonoBehaviour {
 	public static void DeleteLocalSave() {
 		if (File.Exists(Application.persistentDataPath + fileName))
 			File.Delete(Application.persistentDataPath + fileName);
+
+		if (Application.isPlaying) {
+			PersistentObjectHandler.DeletePersistentObjects(); //Delete runtime save
+			UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+		}
 	}
 }

@@ -7,6 +7,7 @@ public class PersistentObjectHandler : MonoBehaviour {
 	private static bool initialized = false;
 
 	public GameObject[] persistentObjects;
+	private static GameObject[] instantiatedPersistentObjects;
 
 	private void Awake() {
 		if (!initialized) {
@@ -20,9 +21,17 @@ public class PersistentObjectHandler : MonoBehaviour {
 
 	private void InitializePersistentObjects() {
 		initialized = true;
+		instantiatedPersistentObjects = new GameObject[persistentObjects.Length];
 		for (int i = 0; i < persistentObjects.Length; i++) {
-			Instantiate(persistentObjects[i].gameObject, Vector3.zero, Quaternion.identity);
+			instantiatedPersistentObjects[i] = Instantiate(persistentObjects[i].gameObject, Vector3.zero, Quaternion.identity) as GameObject;
 		}
 		SavedDataManager.Instance.Load();
+	}
+
+	public static void DeletePersistentObjects() {
+		for (int i = 0; i < instantiatedPersistentObjects.Length; i++) {
+			Destroy(instantiatedPersistentObjects[i].gameObject);
+		}
+		initialized = false;
 	}
 }
