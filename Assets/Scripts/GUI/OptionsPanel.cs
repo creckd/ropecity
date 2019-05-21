@@ -16,4 +16,8 @@ public class OptionsPanel : AnimatorPanel {
 		languageSelector.ResetLanguageSelector();
 	}
 
+	public void DebugDeleteSave() {
+		SavedDataManager.DeleteLocalSave();
+	}
+
 }
