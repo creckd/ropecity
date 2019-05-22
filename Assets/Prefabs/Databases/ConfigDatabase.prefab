@@ -54,6 +54,8 @@ MonoBehaviour:
   reinitalizingDuration: 0.01
   normalSpeed: 1
   slowMotionSpeed: 0.5
+  unhookedTimeDampeningSpeed: 7.5
+  hookedTimeDampeningSpeed: 4
   allTimeMininmumWorldY: -10
   finishingSlowMotionTime: 0.75
   finishingBlurTime: 0.5

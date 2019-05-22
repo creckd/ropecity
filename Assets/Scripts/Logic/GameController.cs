@@ -44,6 +44,7 @@ public class GameController : MonoBehaviour {
 	public Worm currentWorm = null;
 
 	private float targetTimeScale = 1f;
+	private float currentDampeningValue = 7.5f;
 
 	private bool canStartSlowingTime = false;
 
@@ -72,16 +73,20 @@ public class GameController : MonoBehaviour {
 		if (currentGameState != GameState.GameStarted || !canStartSlowingTime)
 			return;
 		targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
+		currentDampeningValue = ConfigDatabase.Instance.unhookedTimeDampeningSpeed;
+
 	}
 
 	private void UnSlowTime(Vector3 hp) {
 		if (currentGameState != GameState.GameStarted || !canStartSlowingTime)
 			return;
 		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
+		currentDampeningValue = ConfigDatabase.Instance.hookedTimeDampeningSpeed;
 	}
 
 	public void StartSlowingTime() {
 		targetTimeScale = ConfigDatabase.Instance.slowMotionSpeed;
+		currentDampeningValue = ConfigDatabase.Instance.unhookedTimeDampeningSpeed;
 		canStartSlowingTime = true;
 	}
 
@@ -114,7 +119,7 @@ public class GameController : MonoBehaviour {
 
 	private void Update() {
 		if(currentGameState != GameState.GameFinished && currentGameState != GameState.GamePaused)
-		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * 7.5f);
+		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * currentDampeningValue);
 	}
 
 	public void FinishTutorial() {
