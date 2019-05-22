@@ -99,8 +99,12 @@ public class GameController : MonoBehaviour {
 
 		yield return null;
 
-		LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
-		bool shouldStartTutorial = LevelController.Instance.currentLevelIndex == 0 && saveData.levelCompleted == false;
+		bool shouldStartTutorial = false;
+
+		if (!isDebugTestLevelMode) {
+			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
+			shouldStartTutorial = LevelController.Instance.currentLevelIndex == 0 && saveData.levelCompleted == false;
+		}
 
 		if (shouldStartTutorial) {
 			currentGameState = GameState.ShowingTutorial;
@@ -129,8 +133,8 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame() {
-		LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
 		if (!isDebugTestLevelMode) {
+			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
 			saveData.numberOfTries++;
 		}
 		GameStarted();
