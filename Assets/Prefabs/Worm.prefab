@@ -4738,6 +4738,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 755f0058036f93840a4771677e91ac57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ropeLayerMask:
+    serializedVersion: 2
+    m_Bits: 2871
   ropeEndPrefab: {fileID: 1455650158802314, guid: 8627f94681bfb4e4bbcc5b9118e60ce8,
     type: 2}
   gunPositionObject: {fileID: 1564951654536738}

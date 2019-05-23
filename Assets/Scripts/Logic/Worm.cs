@@ -8,6 +8,7 @@ public class Worm : MonoBehaviour {
 
 	private const string trailMaterialTransparencyName = "_Transparency";
 
+	public LayerMask ropeLayerMask;
 	public GameObject ropeEndPrefab;
 
 	public GameObject gunPositionObject;
@@ -464,7 +465,7 @@ public class Worm : MonoBehaviour {
 		RaycastHit2D hit;
 
 		Ray ray = new Ray(transform.position, (gunPositionObject.transform.position - transform.position).normalized);
-		hit = Physics2D.Raycast(ray.origin,ray.direction,distanceToUse,~LayerMask.GetMask("Worm"));
+		hit = Physics2D.Raycast(ray.origin,ray.direction,distanceToUse, ropeLayerMask);
 		raycastHit = hit;
 		return hit.collider != null;
 	}
@@ -474,7 +475,7 @@ public class Worm : MonoBehaviour {
 		Vector3 to = (hitPoints[hitPoints.Count - 1].hookPosition - transform.position).normalized;
 		Ray ray = new Ray(from, to);
 		RaycastHit2D hit;
-		hit = Physics2D.Raycast(ray.origin,ray.direction,Vector3.Distance(transform.position,hitPoints[hitPoints.Count-1].hookPosition) - 1f,~LayerMask.GetMask("Worm"));
+		hit = Physics2D.Raycast(ray.origin,ray.direction,Vector3.Distance(transform.position,hitPoints[hitPoints.Count-1].hookPosition) - 1f, ropeLayerMask);
 		Vector3 hitPosition = new Vector3(hit.point.x, hit.point.y, 0f);
 		if (hit.collider != null && Vector3.Distance(hitPosition,hitPoints[hitPoints.Count-1].hookPosition) >= 0.1f) {
 
@@ -487,7 +488,7 @@ public class Worm : MonoBehaviour {
 				sumVelocity -= (Vector3)dynamicLevelObjectHit.velocity;
 			Vector3 toPosition = hitPoints[hitPoints.Count - 1].hookPosition + sumVelocity.normalized * 0.5f;
 			Ray secondRay = new Ray(fromPosition, toPosition - fromPosition);
-			secondHit = Physics2D.Raycast(secondRay.origin, secondRay.direction, Vector3.Distance(transform.position, hitPoints[hitPoints.Count - 1].hookPosition) - 1f, ~LayerMask.GetMask("Worm"));
+			secondHit = Physics2D.Raycast(secondRay.origin, secondRay.direction, Vector3.Distance(transform.position, hitPoints[hitPoints.Count - 1].hookPosition) - 1f, ropeLayerMask);
 
 			float firstHitDistance = Vector3.Distance(hitPosition, transform.position);
 			float secondHitDistance = Vector3.Distance(secondHit.point, transform.position);
@@ -523,11 +524,11 @@ public class Worm : MonoBehaviour {
 				Ray ray = new Ray(from, to);
 				Debug.DrawRay(ray.origin + ray.direction * 0.1f, ray.direction, Color.red);
 				RaycastHit2D hit = new RaycastHit2D();
-				bool pointClear = Physics2D.OverlapPoint(ray.origin + ray.direction * 0.1f, ~LayerMask.GetMask("Worm")) == null;
+				bool pointClear = Physics2D.OverlapPoint(ray.origin + ray.direction * 0.1f, ropeLayerMask) == null;
 				if (pointClear) {
-					hit = Physics2D.Raycast(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ~LayerMask.GetMask("Worm"));
+					hit = Physics2D.Raycast(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ropeLayerMask);
 				} else {
-					RaycastHit2D[] allHits = Physics2D.RaycastAll(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ~LayerMask.GetMask("Worm"));
+					RaycastHit2D[] allHits = Physics2D.RaycastAll(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ropeLayerMask);
 					if (allHits.Length > 1 && !pointClear)
 						hit = allHits[1];
 				}
