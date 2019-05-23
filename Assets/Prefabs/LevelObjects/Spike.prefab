@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4061482533493410}
   - component: {fileID: 33508799917849836}
   - component: {fileID: 137900623413730486}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4246186666804392}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - component: {fileID: 33535224517115692}
   - component: {fileID: 23663555570708110}
   - component: {fileID: 114065266173579212}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Runes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 4883937271415894}
   - component: {fileID: 114565484983703870}
   - component: {fileID: 61619487511173770}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,6 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e458e5946a853e0438795b7200279138, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  randomizedStartRotation: 0
   axis: {x: 0, y: 0, z: 100}
   speed: 1
 --- !u!114 &114565484983703870
