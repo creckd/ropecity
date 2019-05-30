@@ -27,6 +27,9 @@ public class GameController : MonoBehaviour {
 	[HideInInspector]
 	public GameState currentGameState = GameState.NotInitialized;
 
+	public bool gameControllerControlsTime = true;
+	public bool wormInputEnabled = true;
+
 	public Action GameStarted = delegate { };
 	public Action GameInitialized = delegate { }; //First initialization
 	public Action<bool> GameFinished = delegate { };
@@ -39,6 +42,9 @@ public class GameController : MonoBehaviour {
 
 	public Action ShowUIHookAid = delegate { };
 	public Action HideUIHookAid = delegate { };
+
+	public Action ShowHoldIndicator = delegate { };
+	public Action HideHoldIndicator = delegate { };
 
 	[HideInInspector]
 	public Worm currentWorm = null;
@@ -66,6 +72,7 @@ public class GameController : MonoBehaviour {
 			LevelController.Instance.InitializeLevel(data);
 		}
 		currentGameState = GameState.Initialized;
+		TutorialController.Instance.StartTutorial();
 		GameInitialized();
 	}
 
@@ -122,7 +129,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void Update() {
-		if(currentGameState != GameState.GameFinished && currentGameState != GameState.GamePaused)
+		if(currentGameState != GameState.GameFinished && currentGameState != GameState.GamePaused && gameControllerControlsTime)
 		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * currentDampeningValue);
 	}
 
