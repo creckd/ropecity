@@ -32,6 +32,12 @@ public class Worm : MonoBehaviour {
 
 	public bool landedHook = false;
 
+	public Vector3 wormAimDirection {
+		get {
+			return gunPositionObject.transform.position - transform.position;
+		}
+	}
+
 	private bool rotationEnabled = true;
 	private GameObject ropeEnd;
 
@@ -119,7 +125,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Release(int inputIndex) {
-		if (!gameObject.activeSelf || GameController.Instance.currentGameState == GameState.GameFinished)
+		if (!GameController.Instance.wormInputEnabled || !gameObject.activeSelf || GameController.Instance.currentGameState == GameState.GameFinished)
 			return;
 		if (currentHoldID == inputIndex) {
 			currentHoldID = -1;
@@ -151,7 +157,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Tap(int inputIndex) {
-		if (!gameObject.activeSelf || GameController.Instance.currentGameState == GameState.GameFinished)
+		if (landedHook || !GameController.Instance.wormInputEnabled || !gameObject.activeSelf || GameController.Instance.currentGameState == GameState.GameFinished)
 			return;
 		if (currentHoldID == inputIndex)
 			Release(inputIndex);

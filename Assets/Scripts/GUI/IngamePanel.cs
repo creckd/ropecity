@@ -8,6 +8,11 @@ public class IngamePanel : FaderPanel {
 	public Image ropeCrossHair;
 	public LineRenderer aiderLine;
 	public AnimatedLevelText animatedLevelText;
+	public Animator tutorialHoldIndicatorAnimator;
+
+	private const string tutorialHoldIndicatorDefault = "Default";
+	private const string tutorialHoldIndicatorStartHold = "StartHold";
+	private const string tutorialHoldIndicatorHold = "Hold";
 
 	private Vector3 crossHairTargetWorldPosition = Vector3.zero;
 
@@ -20,6 +25,8 @@ public class IngamePanel : FaderPanel {
 		GameController.Instance.FoundPotentionalHitPoint += SetCrossHairPosition;
 		GameController.Instance.ShowUIHookAid += () => { crossHairShouldBeShown = true; };
 		GameController.Instance.HideUIHookAid += () => { crossHairShouldBeShown = false; };
+		GameController.Instance.ShowHoldIndicator += () => { tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorStartHold, 1, 0f); tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorHold, 0, 0f); };
+		GameController.Instance.HideHoldIndicator += () => { tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorDefault, 1, 0f); };
 	}
 
 	public override void OnStartedClosing() {
