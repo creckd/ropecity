@@ -9,10 +9,12 @@ public class IngamePanel : FaderPanel {
 	public LineRenderer aiderLine;
 	public AnimatedLevelText animatedLevelText;
 	public CanvasGroup tutorialHoldIndicatorGroup;
+	public CanvasGroup tutorialReleaseIndicatorGroup;
 	public Animator tutorialHoldIndicatorAnimator;
 
 	private const string tutorialHoldIndicatorHold = "Hold";
 	private float targetTutorialHoldIndicatorVisibility = 0f;
+	private float targetReleaseIndicatorVisibility = 0f;
 
 	private Vector3 crossHairTargetWorldPosition = Vector3.zero;
 
@@ -33,8 +35,20 @@ public class IngamePanel : FaderPanel {
 			targetTutorialHoldIndicatorVisibility = 1f;
 		};
 		GameController.Instance.HideHoldIndicator += () => {
-			IngameBlurController.Instance.UnBlurImage(ConfigDatabase.Instance.tutorialBlurTime,false);
 			targetTutorialHoldIndicatorVisibility = 0f;
+			if(targetReleaseIndicatorVisibility == 0f)
+			IngameBlurController.Instance.UnBlurImage(ConfigDatabase.Instance.tutorialBlurTime,false);
+		};
+		GameController.Instance.ShowReleaseIndicator += () => {
+			StaticBlurCreator.Instance.CreateStaticBlurImage();
+			IngameBlurController.Instance.BlurImage(ConfigDatabase.Instance.tutorialBlurTime, false, true, false);
+			//tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorHold, 0, 0f);
+			targetReleaseIndicatorVisibility = 1f;
+		};
+		GameController.Instance.HideReleaseIndicator += () => {
+			targetReleaseIndicatorVisibility = 0f;
+			if (targetTutorialHoldIndicatorVisibility == 0f)
+				IngameBlurController.Instance.UnBlurImage(ConfigDatabase.Instance.tutorialBlurTime, false);
 		};
 	}
 
@@ -69,6 +83,7 @@ public class IngamePanel : FaderPanel {
 		ropeCrossHair.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
 		aiderLine.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
 		tutorialHoldIndicatorGroup.alpha = Mathf.Lerp(tutorialHoldIndicatorGroup.alpha, targetTutorialHoldIndicatorVisibility, Time.unscaledDeltaTime * 10f);
+		tutorialReleaseIndicatorGroup.alpha = Mathf.Lerp(tutorialReleaseIndicatorGroup.alpha, targetReleaseIndicatorVisibility, Time.unscaledDeltaTime * 10f);
 	}
 
 	private void LateUpdate() {

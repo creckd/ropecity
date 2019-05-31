@@ -47,6 +47,7 @@ public class TutorialController : MonoBehaviour {
 	private void ReleasedHook() {
 		currentlySwinging = false;
 		GameController.Instance.HideHoldIndicator();
+		GameController.Instance.HideReleaseIndicator();
 		GameController.Instance.gameControllerControlsTime = true;
 		GameController.Instance.wormInputEnabled = false;
 	}
@@ -65,8 +66,8 @@ public class TutorialController : MonoBehaviour {
 			float angle = Vector3.SignedAngle(currentWorm.wormAimDirection, Vector3.up, Vector3.forward);
 			float differenceFromPerfectStartAngle = angle - perfectSwingStartAngle;
 			float differenceFromPerfectEndAngle = angle - perfectSwingEndAngle;
-			float angleMargin = 40f;
-			float releasableMargin = 15f;
+			float angleMargin = 25f;
+			float releasableMargin = 3f;
 
 			if (!currentlySwinging && differenceFromPerfectStartAngle >= 0 && differenceFromPerfectStartAngle <= angleMargin && !currentWorm.landedHook) {
 				GameController.Instance.gameControllerControlsTime = false;
@@ -83,9 +84,10 @@ public class TutorialController : MonoBehaviour {
 					Time.timeScale = Mathf.Lerp(0f, ConfigDatabase.Instance.slowMotionSpeed, differenceFromPerfectEndAngle / angleMargin);
 				}
 				if (differenceFromPerfectEndAngle <= releasableMargin) {
-					GameController.Instance.wormInputEnabled = true;
-					//GameController.Instance.HideHoldIndicator();
-					//GameController.Instance.ShowHoldIndicator();
+					if (!GameController.Instance.wormInputEnabled) {
+						GameController.Instance.ShowReleaseIndicator();
+						GameController.Instance.wormInputEnabled = true;
+					}
 				}
 			}
 
