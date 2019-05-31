@@ -30,7 +30,7 @@ public class TutorialController : MonoBehaviour {
 	}
 
 	private void ReleaseHappened(int fingerID) {
-		if (currentlySwinging && !pausedSwinging) {
+		if (!GameController.Instance.wormInputEnabled && currentlySwinging && !pausedSwinging) {
 			GameController.Instance.ShowHoldIndicator();
 			GameController.Instance.gameControllerControlsTime = false;
 			pausedSwinging = true;
