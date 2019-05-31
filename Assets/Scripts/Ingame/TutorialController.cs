@@ -15,11 +15,12 @@ public class TutorialController : MonoBehaviour {
 	}
 
 	private float perfectSwingStartAngle = 45f;
-	private float perfectSwingEndAngle = -30f;
+	private float perfectSwingEndAngle = -25f;
 
 	private Worm currentWorm;
 	private bool currentlySwinging = false;
 	private bool pausedSwinging = false;
+	private int numberOfTimesSwinged = 0;
 
 	public void StartTutorial() {
 		GameController.Instance.LandedHook += LandedHook;
@@ -49,7 +50,19 @@ public class TutorialController : MonoBehaviour {
 		GameController.Instance.HideHoldIndicator();
 		GameController.Instance.HideReleaseIndicator();
 		GameController.Instance.gameControllerControlsTime = true;
-		GameController.Instance.wormInputEnabled = false;
+		numberOfTimesSwinged++;
+		if (numberOfTimesSwinged < 3) {
+			GameController.Instance.wormInputEnabled = false;
+		} else {
+			FinishTutorial();
+		}
+	}
+
+	private void FinishTutorial() {
+		GameController.Instance.LandedHook -= LandedHook;
+		GameController.Instance.ReleasedHook -= ReleasedHook;
+		InputController.Instance.TapHappened -= TapHappened;
+		InputController.Instance.ReleaseHappened -= ReleaseHappened;
 	}
 
 	private void LandedHook(Vector3 obj) {
@@ -61,7 +74,7 @@ public class TutorialController : MonoBehaviour {
 	private void Update() {
 
 		Worm currentWorm = GameController.Instance.currentWorm;
-		if (currentWorm != null) {
+		if (numberOfTimesSwinged < 3 && currentWorm != null) {
 
 			float angle = Vector3.SignedAngle(currentWorm.wormAimDirection, Vector3.up, Vector3.forward);
 			float differenceFromPerfectStartAngle = angle - perfectSwingStartAngle;
