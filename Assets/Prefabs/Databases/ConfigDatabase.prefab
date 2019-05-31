@@ -94,7 +94,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   pauseBlurTime: 0.25
   tutorialBlurTime: 0.5
-  tutorialRequiredWatchTime: 3
+  tutorialRequiredWatchTime: 1
   gravityScale: 0.5
   wormMass: 20
   swingForceMultiplier: 2
