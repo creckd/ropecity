@@ -78,10 +78,13 @@ public class TutorialController : MonoBehaviour {
 					}
 				}
 			} else if (currentlySwinging && differenceFromPerfectEndAngle >= 0 &&  differenceFromPerfectEndAngle <= angleMargin && currentWorm.landedHook) {
-				GameController.Instance.gameControllerControlsTime = false;
-				Time.timeScale = Mathf.Lerp(0f, ConfigDatabase.Instance.slowMotionSpeed, differenceFromPerfectEndAngle / angleMargin);
+				if (!pausedSwinging) {
+					GameController.Instance.gameControllerControlsTime = false;
+					Time.timeScale = Mathf.Lerp(0f, ConfigDatabase.Instance.slowMotionSpeed, differenceFromPerfectEndAngle / angleMargin);
+				}
 				if (differenceFromPerfectEndAngle <= releasableMargin) {
 					GameController.Instance.wormInputEnabled = true;
+					//GameController.Instance.HideHoldIndicator();
 					//GameController.Instance.ShowHoldIndicator();
 				}
 			}

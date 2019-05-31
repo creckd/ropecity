@@ -70028,6 +70028,11 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1360761331}
   m_Mesh: {fileID: 4300000, guid: d951e72b6eb1fb64680ebe73c6ebdfa4, type: 3}
+--- !u!225 &1362494442 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 225801195638595256, guid: 345601d2cac71794592e5ccf616ed1a9,
+    type: 2}
+  m_PrefabInternal: {fileID: 1971595018}
 --- !u!1 &1369421723
 GameObject:
   m_ObjectHideFlags: 0
@@ -84908,8 +84913,13 @@ Prefab:
     - target: {fileID: 225801195638595256, guid: 345601d2cac71794592e5ccf616ed1a9,
         type: 2}
       propertyPath: m_Alpha
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114541856074914500, guid: 345601d2cac71794592e5ccf616ed1a9,
+        type: 2}
+      propertyPath: tutorialHoldIndicatorGroup
+      value: 
+      objectReference: {fileID: 1362494442}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 345601d2cac71794592e5ccf616ed1a9, type: 2}
   m_IsPrefabAsset: 0

@@ -8,11 +8,11 @@ public class IngamePanel : FaderPanel {
 	public Image ropeCrossHair;
 	public LineRenderer aiderLine;
 	public AnimatedLevelText animatedLevelText;
+	public CanvasGroup tutorialHoldIndicatorGroup;
 	public Animator tutorialHoldIndicatorAnimator;
 
-	private const string tutorialHoldIndicatorDefault = "Default";
-	private const string tutorialHoldIndicatorStartHold = "StartHold";
 	private const string tutorialHoldIndicatorHold = "Hold";
+	private float targetTutorialHoldIndicatorVisibility = 0f;
 
 	private Vector3 crossHairTargetWorldPosition = Vector3.zero;
 
@@ -25,8 +25,9 @@ public class IngamePanel : FaderPanel {
 		GameController.Instance.FoundPotentionalHitPoint += SetCrossHairPosition;
 		GameController.Instance.ShowUIHookAid += () => { crossHairShouldBeShown = true; };
 		GameController.Instance.HideUIHookAid += () => { crossHairShouldBeShown = false; };
-		GameController.Instance.ShowHoldIndicator += () => { tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorStartHold, 1, 0f); tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorHold, 0, 0f); };
-		GameController.Instance.HideHoldIndicator += () => { tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorDefault, 1, 0f); };
+		tutorialHoldIndicatorGroup.alpha = 0f;
+		GameController.Instance.ShowHoldIndicator += () => { tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorHold, 0, 0f); targetTutorialHoldIndicatorVisibility = 1f; };
+		GameController.Instance.HideHoldIndicator += () => { targetTutorialHoldIndicatorVisibility = 0f; };
 	}
 
 	public override void OnStartedClosing() {
@@ -59,6 +60,7 @@ public class IngamePanel : FaderPanel {
 	private void Update() {
 		ropeCrossHair.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
 		aiderLine.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
+		tutorialHoldIndicatorGroup.alpha = Mathf.Lerp(tutorialHoldIndicatorGroup.alpha, targetTutorialHoldIndicatorVisibility, Time.unscaledDeltaTime * 10f);
 	}
 
 	private void LateUpdate() {
