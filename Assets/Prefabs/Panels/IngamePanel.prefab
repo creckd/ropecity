@@ -636,7 +636,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487030472733168}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
@@ -726,6 +726,7 @@ MonoBehaviour:
   ropeCrossHair: {fileID: 114500936889737126}
   aiderLine: {fileID: 120475944652768018}
   animatedLevelText: {fileID: 114211901957318720}
+  tutorialHoldIndicatorGroup: {fileID: 225801195638595256}
   tutorialHoldIndicatorAnimator: {fileID: 95402941549950604}
 --- !u!114 &114542620679767796
 MonoBehaviour:
@@ -1313,7 +1314,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 88, y: -155.99998}
+  m_AnchoredPosition: {x: 88, y: -156}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224421438215928236
@@ -1599,7 +1600,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1487030472733168}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0

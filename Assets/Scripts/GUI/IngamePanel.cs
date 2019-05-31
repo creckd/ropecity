@@ -26,8 +26,16 @@ public class IngamePanel : FaderPanel {
 		GameController.Instance.ShowUIHookAid += () => { crossHairShouldBeShown = true; };
 		GameController.Instance.HideUIHookAid += () => { crossHairShouldBeShown = false; };
 		tutorialHoldIndicatorGroup.alpha = 0f;
-		GameController.Instance.ShowHoldIndicator += () => { tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorHold, 0, 0f); targetTutorialHoldIndicatorVisibility = 1f; };
-		GameController.Instance.HideHoldIndicator += () => { targetTutorialHoldIndicatorVisibility = 0f; };
+		GameController.Instance.ShowHoldIndicator += () => {
+			StaticBlurCreator.Instance.CreateStaticBlurImage();
+			IngameBlurController.Instance.BlurImage(ConfigDatabase.Instance.tutorialBlurTime, false, true,false);
+			tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorHold, 0, 0f);
+			targetTutorialHoldIndicatorVisibility = 1f;
+		};
+		GameController.Instance.HideHoldIndicator += () => {
+			IngameBlurController.Instance.UnBlurImage(ConfigDatabase.Instance.tutorialBlurTime,false);
+			targetTutorialHoldIndicatorVisibility = 0f;
+		};
 	}
 
 	public override void OnStartedClosing() {
