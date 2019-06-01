@@ -63,6 +63,43 @@ public class TutorialController : MonoBehaviour {
 		GameController.Instance.ReleasedHook -= ReleasedHook;
 		InputController.Instance.TapHappened -= TapHappened;
 		InputController.Instance.ReleaseHappened -= ReleaseHappened;
+		StartCoroutine(ShowLastTask());
+	}
+
+	IEnumerator ShowLastTask() {
+		GameController.Instance.wormInputEnabled = false;
+		yield return new WaitForSecondsRealtime(0.25f);
+		float pausingTime = 0.5f;
+		StaticBlurCreator.Instance.CreateStaticBlurImage();
+		IngameBlurController.Instance.BlurImage(pausingTime, false, true, true);
+		float t = 0f;
+		float defaultTimeScale = Time.timeScale;
+		GameController.Instance.gameControllerControlsTime = false;
+
+		while (t <= pausingTime) {
+			t += Time.unscaledDeltaTime;
+			Time.timeScale = Mathf.Lerp(defaultTimeScale, 0f, t / pausingTime);
+			yield return null;
+		}
+
+		GameController.Instance.ShowTutorialLastTask();
+
+		yield return new WaitForSecondsRealtime(3f);
+		GameController.Instance.wormInputEnabled = true;
+		IngameBlurController.Instance.UnBlurImage(pausingTime);
+
+		//float resumingTime = 0.5f;
+		//t = 0f;
+		//defaultTimeScale = Time.timeScale;
+		//GameController.Instance.gameControllerControlsTime = false;
+
+		//while (t <= resumingTime) {
+		//	t += Time.unscaledDeltaTime;
+		//	Time.timeScale = Mathf.Lerp(defaultTimeScale, ConfigDatabase.Instance.slow, t / pausingTime);
+		//	yield return null;
+		//}
+
+		GameController.Instance.gameControllerControlsTime = true;
 	}
 
 	private void LandedHook(Vector3 obj) {
@@ -99,12 +136,12 @@ public class TutorialController : MonoBehaviour {
 				if (differenceFromPerfectEndAngle <= releasableMargin) {
 					if (!GameController.Instance.wormInputEnabled) {
 						GameController.Instance.ShowReleaseIndicator();
+						GameController.Instance.HideHoldIndicator();
 						GameController.Instance.wormInputEnabled = true;
 					}
 				}
 			}
-
-
 		}
+
 	}
 }
