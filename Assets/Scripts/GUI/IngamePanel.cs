@@ -11,8 +11,11 @@ public class IngamePanel : FaderPanel {
 	public CanvasGroup tutorialHoldIndicatorGroup;
 	public CanvasGroup tutorialReleaseIndicatorGroup;
 	public Animator tutorialHoldIndicatorAnimator;
+	public Animator getToTheEndAnimator;
 
 	private const string tutorialHoldIndicatorHold = "Hold";
+	private const string getToTheEndStateName = "GetToTheEnd";
+
 	private float targetTutorialHoldIndicatorVisibility = 0f;
 	private float targetReleaseIndicatorVisibility = 0f;
 
@@ -50,6 +53,10 @@ public class IngamePanel : FaderPanel {
 			if (targetTutorialHoldIndicatorVisibility == 0f)
 				IngameBlurController.Instance.UnBlurImage(ConfigDatabase.Instance.tutorialBlurTime, false);
 		};
+		GameController.Instance.ShowTutorialLastTask += () => {
+			getToTheEndAnimator.gameObject.SetActive(true);
+			getToTheEndAnimator.Play(getToTheEndStateName, 0, 0f);
+		};
 	}
 
 	public override void OnStartedClosing() {
@@ -83,7 +90,13 @@ public class IngamePanel : FaderPanel {
 		ropeCrossHair.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
 		aiderLine.enabled = crossHairShouldBeShown && GameController.Instance.currentGameState == GameState.GameStarted;
 		tutorialHoldIndicatorGroup.alpha = Mathf.Lerp(tutorialHoldIndicatorGroup.alpha, targetTutorialHoldIndicatorVisibility, Time.unscaledDeltaTime * 10f);
+		if (tutorialHoldIndicatorGroup.alpha <= 0.05f)
+			tutorialHoldIndicatorGroup.alpha = 0f;
+		tutorialHoldIndicatorGroup.gameObject.SetActive(tutorialHoldIndicatorGroup.alpha != 0);
 		tutorialReleaseIndicatorGroup.alpha = Mathf.Lerp(tutorialReleaseIndicatorGroup.alpha, targetReleaseIndicatorVisibility, Time.unscaledDeltaTime * 10f);
+		if (tutorialReleaseIndicatorGroup.alpha <= 0.05f)
+			tutorialReleaseIndicatorGroup.alpha = 0f;
+		tutorialReleaseIndicatorGroup.gameObject.SetActive(tutorialReleaseIndicatorGroup.alpha != 0);
 	}
 
 	private void LateUpdate() {

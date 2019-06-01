@@ -49,6 +49,8 @@ public class GameController : MonoBehaviour {
 	public Action ShowReleaseIndicator = delegate { };
 	public Action HideReleaseIndicator = delegate { };
 
+	public Action ShowTutorialLastTask = delegate { };
+
 	[HideInInspector]
 	public Worm currentWorm = null;
 
