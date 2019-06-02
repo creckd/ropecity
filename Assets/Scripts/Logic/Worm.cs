@@ -9,6 +9,7 @@ public class Worm : MonoBehaviour {
 	private const string trailMaterialTransparencyName = "_Transparency";
 
 	public LayerMask ropeLayerMask;
+	public LayerMask collisionLayerMask;
 	public GameObject ropeEndPrefab;
 
 	public GameObject gunPositionObject;
@@ -260,7 +261,7 @@ public class Worm : MonoBehaviour {
 			if (landedHook) {
 				RefreshWormRotation();
 				CheckILastHitPointIsNotNeccessaryAnymore();
-				LookForDynamicHookCollisions();
+				//LookForDynamicHookCollisions();
 				LookForHookCollision();
 			} else {
 				RaycastHit2D hit;
@@ -300,7 +301,7 @@ public class Worm : MonoBehaviour {
 		if(!sliding)
 		Destuck();
 
-		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, velocity, 0.4f);
+		RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, velocity, 0.4f,collisionLayerMask);
 		bool physicalCollisionHappened = false;
 		foreach (var hit in hits) {
 			if (!hit.collider.CompareTag("Player") && !hit.collider.isTrigger) {
@@ -320,7 +321,7 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Destuck() {
-		RaycastHit2D[] initialHits = Physics2D.CircleCastAll(transform.position, circleCollider.radius + 0.1f, Vector2.zero, 0f, ~LayerMask.GetMask("Worm"));
+		RaycastHit2D[] initialHits = Physics2D.CircleCastAll(transform.position, circleCollider.radius, Vector2.zero, 0f, collisionLayerMask);
 
 		foreach (var initHit in initialHits) {
 			if (!initHit.collider.isTrigger) {
@@ -493,8 +494,8 @@ public class Worm : MonoBehaviour {
 			RaycastHit2D secondHit;
 			Vector3 fromPosition = from + (Vector3)velocity.normalized * 0.5f;
 			Vector3 sumVelocity = velocity;
-			if (dynamicLevelObjectHit != null)
-				sumVelocity -= (Vector3)dynamicLevelObjectHit.velocity;
+			//if (dynamicLevelObjectHit != null)
+			//	sumVelocity -= (Vector3)dynamicLevelObjectHit.velocity;
 			Vector3 toPosition = hitPoints[hitPoints.Count - 1].hookPosition + sumVelocity.normalized * 0.5f;
 			Ray secondRay = new Ray(fromPosition, toPosition - fromPosition);
 			secondHit = Physics2D.Raycast(secondRay.origin, secondRay.direction, Vector3.Distance(transform.position, hitPoints[hitPoints.Count - 1].hookPosition) - 1f, ropeLayerMask);
@@ -506,8 +507,8 @@ public class Worm : MonoBehaviour {
 				return;
 
 			Vector3 normalizedVelocity = velocity;
-			if(dynamicLevelObjectHit != null)
-				normalizedVelocity -= (Vector3)dynamicLevelObjectHit.velocity;
+			//if(dynamicLevelObjectHit != null)
+			//	normalizedVelocity -= (Vector3)dynamicLevelObjectHit.velocity;
 			Vector3 fst = (transform.position + normalizedVelocity) - (Vector3)hit.point;
 			Vector3 snd = (Vector3)hit.point- hitPoints[hitPoints.Count - 1].hookPosition;
 			Vector3 cross = Vector3.Cross(fst,snd);
@@ -523,45 +524,45 @@ public class Worm : MonoBehaviour {
 		}
 	}
 
-	private void LookForDynamicHookCollisions() {
-		if (hitPoints.Count >= 2) {
-			for (int i = hitPoints.Count - 1; i > 0; i--) {
-				if (!hitPoints[i].isDynamicHitPoint)
-					continue;
-				Vector3 from = hitPoints[i-1].hookPosition;
-				Vector3 to = (hitPoints[i].hookPosition - from).normalized;
-				Ray ray = new Ray(from, to);
-				Debug.DrawRay(ray.origin + ray.direction * 0.1f, ray.direction, Color.red);
-				RaycastHit2D hit = new RaycastHit2D();
-				bool pointClear = Physics2D.OverlapPoint(ray.origin + ray.direction * 0.1f, ropeLayerMask) == null;
-				if (pointClear) {
-					hit = Physics2D.Raycast(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ropeLayerMask);
-				} else {
-					RaycastHit2D[] allHits = Physics2D.RaycastAll(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ropeLayerMask);
-					if (allHits.Length > 1 && !pointClear)
-						hit = allHits[1];
-				}
-				Vector3 hitPosition = new Vector3(hit.point.x, hit.point.y, 0f);
-				LevelObject dynamicLevelObjectHit = null;
-				if(hit.collider != null)
-				dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();
+	//private void LookForDynamicHookCollisions() {
+	//	if (hitPoints.Count >= 2) {
+	//		for (int i = hitPoints.Count - 1; i > 0; i--) {
+	//			if (!hitPoints[i].isDynamicHitPoint)
+	//				continue;
+	//			Vector3 from = hitPoints[i-1].hookPosition;
+	//			Vector3 to = (hitPoints[i].hookPosition - from).normalized;
+	//			Ray ray = new Ray(from, to);
+	//			Debug.DrawRay(ray.origin + ray.direction * 0.1f, ray.direction, Color.red);
+	//			RaycastHit2D hit = new RaycastHit2D();
+	//			bool pointClear = Physics2D.OverlapPoint(ray.origin + ray.direction * 0.1f, ropeLayerMask) == null;
+	//			if (pointClear) {
+	//				hit = Physics2D.Raycast(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ropeLayerMask);
+	//			} else {
+	//				RaycastHit2D[] allHits = Physics2D.RaycastAll(ray.origin + ray.direction * 0.1f, ray.direction, Vector3.Distance(from, hitPoints[i].hookPosition), ropeLayerMask);
+	//				if (allHits.Length > 1 && !pointClear)
+	//					hit = allHits[1];
+	//			}
+	//			Vector3 hitPosition = new Vector3(hit.point.x, hit.point.y, 0f);
+	//			LevelObject dynamicLevelObjectHit = null;
+	//			if(hit.collider != null)
+	//			dynamicLevelObjectHit = hit.collider.GetComponent<LevelObject>();
 
-				if (hit.collider != null && dynamicLevelObjectHit != null && dynamicLevelObjectHit.velocity.magnitude >= 0.01f && Vector3.Distance(hitPosition, (Vector2)hitPoints[i].hookPosition) >= 0.1f && Vector3.Distance(hitPosition,(Vector2)hitPoints[i-1].hookPosition) >= 0.1f) {
-					Debug.Log("New Hit Point " + i.ToString() + " " + hitPosition);
-					Vector3 normalizedVelocity = dynamicLevelObjectHit.velocity;
-					Vector3 fst = hitPoints[i-1].hookPosition - (Vector3)hit.point;
-					Vector3 snd = (hitPoints[i].hookPosition - (Vector3)dynamicLevelObjectHit.velocity) - (Vector3)hit.point;
-					Vector3 cross = Vector3.Cross(fst, snd);
-					HitPoint newHookPosition = new HitPoint(hit.point,cross);
-					if (dynamicLevelObjectHit != null) {
-						newHookPosition.SetConnectedLevelObject(dynamicLevelObjectHit);
-					}
-					hitPoints.Insert(i,newHookPosition);
-				}
+	//			if (hit.collider != null && dynamicLevelObjectHit != null && dynamicLevelObjectHit.velocity.magnitude >= 0.01f && Vector3.Distance(hitPosition, (Vector2)hitPoints[i].hookPosition) >= 0.1f && Vector3.Distance(hitPosition,(Vector2)hitPoints[i-1].hookPosition) >= 0.1f) {
+	//				Debug.Log("New Hit Point " + i.ToString() + " " + hitPosition);
+	//				Vector3 normalizedVelocity = dynamicLevelObjectHit.velocity;
+	//				Vector3 fst = hitPoints[i-1].hookPosition - (Vector3)hit.point;
+	//				Vector3 snd = (hitPoints[i].hookPosition - (Vector3)dynamicLevelObjectHit.velocity) - (Vector3)hit.point;
+	//				Vector3 cross = Vector3.Cross(fst, snd);
+	//				HitPoint newHookPosition = new HitPoint(hit.point,cross);
+	//				if (dynamicLevelObjectHit != null) {
+	//					newHookPosition.SetConnectedLevelObject(dynamicLevelObjectHit);
+	//				}
+	//				hitPoints.Insert(i,newHookPosition);
+	//			}
 
-			}
-		}
-	}
+	//		}
+	//	}
+	//}
 
 	private bool lastPointBeingDeleted = false;
 	private Vector3 lastPositionWhenStartedDeleting = Vector3.zero;
@@ -569,8 +570,8 @@ public class Worm : MonoBehaviour {
 	private void CheckILastHitPointIsNotNeccessaryAnymore() {
 		if (hitPoints.Count >= 2) {
 			HitPoint lastHitPoint = hitPoints[hitPoints.Count - 1];
-			if (lastHitPoint.connectedLevelObject == null)
-				return;
+			//if (lastHitPoint.connectedLevelObject == null)
+			//	return;
 			Vector3 fst = transform.position - hitPoints[hitPoints.Count - 1].hookPosition;
 			Vector3 snd = hitPoints[hitPoints.Count - 2].hookPosition - hitPoints[hitPoints.Count - 1].hookPosition;
 			Vector3 currentCross = Vector3.Cross(fst,snd);

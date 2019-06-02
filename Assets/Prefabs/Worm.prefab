@@ -4741,6 +4741,9 @@ MonoBehaviour:
   ropeLayerMask:
     serializedVersion: 2
     m_Bits: 2871
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 6455
   ropeEndPrefab: {fileID: 1455650158802314, guid: 8627f94681bfb4e4bbcc5b9118e60ce8,
     type: 2}
   gunPositionObject: {fileID: 1564951654536738}
@@ -4754,6 +4757,7 @@ MonoBehaviour:
   hookHitParticle: {fileID: 198872386132319404}
   slideParticle: {fileID: 198706771426811368}
   landedHook: 0
+  totalRotationSinceStart: 0
 --- !u!114 &114435461380752744
 MonoBehaviour:
   m_ObjectHideFlags: 1
