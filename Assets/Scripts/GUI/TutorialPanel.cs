@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class TutorialPanel : FaderPanel {
 
 	private float timeOpened = 0f;
+	public Animator tutorialPhoneAnimator;
 
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
-		IngameBlurController.Instance.BlurImage(ConfigDatabase.Instance.tutorialBlurTime,true);
+		tutorialPhoneAnimator.enabled = true;
+		IngameBlurController.Instance.BlurImage(ConfigDatabase.Instance.tutorialBlurTime, true);
 	}
 
 	public override void OnOpened() {
@@ -28,6 +30,7 @@ public class TutorialPanel : FaderPanel {
 	}
 
 	public override void OnStartedClosing() {
+		tutorialPhoneAnimator.enabled = false;
 		base.OnStartedClosing();
 		IngameBlurController.Instance.UnBlurImage(ConfigDatabase.Instance.tutorialBlurTime);
 	}
