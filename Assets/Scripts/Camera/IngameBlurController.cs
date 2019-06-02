@@ -15,6 +15,7 @@ public class IngameBlurController : MonoBehaviour {
 
 	public SimpleImageEffectApplier blurApplier;
 	private bool currentlyBlured = false;
+	private bool blurredWithMask = false;
 	private Coroutine currentRunningBlurRoutine = null;
 
 	private void Awake() {
@@ -22,6 +23,10 @@ public class IngameBlurController : MonoBehaviour {
 	}
 
 	public void BlurImage(float blurTime = 1f, bool greyScale = false, bool useMask = false, bool forceStartingValue = true) {
+		if (useMask) {
+			StaticBlurCreator.Instance.EnableMaskCamera();
+			blurredWithMask = true;
+		}
 		StopAllCoroutines();
 		currentlyBlured = true;
 		StaticBlurCreator.Instance.CreateStaticBlurImage();
@@ -51,5 +56,9 @@ public class IngameBlurController : MonoBehaviour {
 			yield return null;
 		}
 		blurApplier.mat.SetFloat("_T", target);
+		if (target == 0f && blurredWithMask) {
+			StaticBlurCreator.Instance.DisableMaskCamera();
+			blurredWithMask = false;
+		}
 	}
 }

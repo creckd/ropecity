@@ -77,7 +77,6 @@ public class GameController : MonoBehaviour {
 			LevelController.Instance.InitializeLevel(data);
 		}
 		currentGameState = GameState.Initialized;
-		TutorialController.Instance.StartTutorial();
 		GameInitialized();
 	}
 
@@ -121,6 +120,9 @@ public class GameController : MonoBehaviour {
 		if (shouldStartTutorial) {
 			currentGameState = GameState.ShowingTutorial;
 			Messenger.Instance.SendMessage(PanelManager.defaultOpenedPanelChangedTag, 3); // open tutorial panel
+			TutorialController.Instance.StartTutorial();
+		} else {
+			Destroy(TutorialController.Instance.gameObject);
 		}
 
 		PanelManager.Instance.InitializeGUI();

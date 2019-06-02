@@ -16,6 +16,7 @@ public class StaticBlurCreator : MonoBehaviour {
 	public static string renderTextureGlobalPropName = "_StaticBlurImage";
 
 	private Camera attachedCamera;
+	public Camera maskCamera;
 
 	public Material vertical;
 	public Material horizontal;
@@ -23,8 +24,11 @@ public class StaticBlurCreator : MonoBehaviour {
 	public int iterations = 1;
 
 	public bool disableObjectAfterSnapShot = false;
+	public SimpleImageEffectApplier imgEffect;
 
 	public void CreateStaticBlurImage() {
+		if (imgEffect != null)
+			imgEffect.enabled = false;
 		attachedCamera = GetComponent<Camera>();
 		int width = attachedCamera.pixelWidth >> downScale;
 		int height = attachedCamera.pixelHeight >> downScale;
@@ -56,5 +60,16 @@ public class StaticBlurCreator : MonoBehaviour {
 		//RenderTexture.ReleaseTemporary(rt);
 		if (disableObjectAfterSnapShot)
 			gameObject.SetActive(false);
+		if (imgEffect != null)
+			imgEffect.enabled = true;
 	}
+
+	public void EnableMaskCamera() {
+		maskCamera.gameObject.SetActive(true);
+	}
+
+	public void DisableMaskCamera() {
+		maskCamera.gameObject.SetActive(false);
+	}
+
 }
