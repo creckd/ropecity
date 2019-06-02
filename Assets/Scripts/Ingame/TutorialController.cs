@@ -50,6 +50,7 @@ public class TutorialController : MonoBehaviour {
 		GameController.Instance.HideHoldIndicator();
 		GameController.Instance.HideReleaseIndicator();
 		GameController.Instance.gameControllerControlsTime = true;
+		angleNeededForPerfect45DegreesAtStart = -1f;
 		numberOfTimesSwinged++;
 		if (numberOfTimesSwinged < 3) {
 			GameController.Instance.wormInputEnabled = false;
@@ -88,17 +89,6 @@ public class TutorialController : MonoBehaviour {
 		GameController.Instance.wormInputEnabled = true;
 		IngameBlurController.Instance.UnBlurImage(pausingTime);
 
-		//float resumingTime = 0.5f;
-		//t = 0f;
-		//defaultTimeScale = Time.timeScale;
-		//GameController.Instance.gameControllerControlsTime = false;
-
-		//while (t <= resumingTime) {
-		//	t += Time.unscaledDeltaTime;
-		//	Time.timeScale = Mathf.Lerp(defaultTimeScale, ConfigDatabase.Instance.slow, t / pausingTime);
-		//	yield return null;
-		//}
-
 		GameController.Instance.gameControllerControlsTime = true;
 	}
 
@@ -107,6 +97,9 @@ public class TutorialController : MonoBehaviour {
 		GameController.Instance.gameControllerControlsTime = true;
 		GameController.Instance.wormInputEnabled = false;
 	}
+
+	private float angleNeededForPerfect45DegreesAtStart = -1f;
+	private float totalRotationAtSample = 0f;
 
 	private void Update() {
 
@@ -119,7 +112,24 @@ public class TutorialController : MonoBehaviour {
 			float angleMargin = 25f;
 			float releasableMargin = 3f;
 
-			if (!currentlySwinging && differenceFromPerfectStartAngle >= 0 && differenceFromPerfectStartAngle <= angleMargin && !currentWorm.landedHook) {
+			if (currentWorm != null && angleNeededForPerfect45DegreesAtStart == -1f) {
+				angleNeededForPerfect45DegreesAtStart = differenceFromPerfectStartAngle;
+				if (Mathf.Sign(angleNeededForPerfect45DegreesAtStart) == -1)
+					angleNeededForPerfect45DegreesAtStart = 360f - Mathf.Abs(angleNeededForPerfect45DegreesAtStart);
+				totalRotationAtSample = currentWorm.totalRotationSinceStart;
+				Debug.Log(angleNeededForPerfect45DegreesAtStart);
+			}
+
+			if (!currentlySwinging && differenceFromPerfectStartAngle < 0 && !currentWorm.landedHook) { //Did we go past one round?
+				if ((currentWorm.totalRotationSinceStart - totalRotationAtSample) > angleNeededForPerfect45DegreesAtStart) {
+					currentWorm.transform.Rotate(new Vector3(0f, 0f, differenceFromPerfectStartAngle));
+					angle = Vector3.SignedAngle(currentWorm.wormAimDirection, Vector3.up, Vector3.forward);
+					differenceFromPerfectStartAngle = angle - perfectSwingStartAngle;
+					differenceFromPerfectEndAngle = angle - perfectSwingEndAngle;
+				}
+			}
+
+			if (!currentlySwinging && differenceFromPerfectStartAngle >= 0 && Mathf.Abs(differenceFromPerfectStartAngle) <= angleMargin && !currentWorm.landedHook) {
 				GameController.Instance.gameControllerControlsTime = false;
 				Time.timeScale = Mathf.Lerp(0f, ConfigDatabase.Instance.slowMotionSpeed, differenceFromPerfectStartAngle / angleMargin);
 				if (differenceFromPerfectStartAngle <= releasableMargin) {
@@ -128,10 +138,12 @@ public class TutorialController : MonoBehaviour {
 						GameController.Instance.ShowHoldIndicator();
 					}
 				}
-			} else if (currentlySwinging && differenceFromPerfectEndAngle >= 0 &&  differenceFromPerfectEndAngle <= angleMargin && currentWorm.landedHook) {
+			} else if (currentlySwinging &&  Mathf.Abs(differenceFromPerfectEndAngle) <= angleMargin && currentWorm.landedHook) {
 				if (!pausedSwinging) {
 					GameController.Instance.gameControllerControlsTime = false;
-					Time.timeScale = Mathf.Lerp(0f, ConfigDatabase.Instance.slowMotionSpeed, differenceFromPerfectEndAngle / angleMargin);
+					if (differenceFromPerfectEndAngle >= 0f)
+						Time.timeScale = Mathf.Lerp(0f, ConfigDatabase.Instance.slowMotionSpeed, differenceFromPerfectEndAngle / angleMargin);
+					else Time.timeScale = 0f;
 				}
 				if (differenceFromPerfectEndAngle <= releasableMargin) {
 					if (!GameController.Instance.wormInputEnabled) {

@@ -31,6 +31,7 @@ public class Worm : MonoBehaviour {
 	public ParticleSystem slideParticle;
 
 	public bool landedHook = false;
+	public float totalRotationSinceStart = 0f;
 
 	public Vector3 wormAimDirection {
 		get {
@@ -251,7 +252,9 @@ public class Worm : MonoBehaviour {
 
 	private void Update() {
 		if (rotationEnabled) {
-			transform.Rotate(new Vector3(0f, 0f, Time.deltaTime * ConfigDatabase.Instance.rotationSpeed));
+			float ZRotationThisFrame = Time.deltaTime * ConfigDatabase.Instance.rotationSpeed;
+			transform.Rotate(new Vector3(0f, 0f, ZRotationThisFrame));
+			totalRotationSinceStart += ZRotationThisFrame;
 		}
 		if (GameController.Instance.currentGameState != GameState.GameFinished) {
 			if (landedHook) {
