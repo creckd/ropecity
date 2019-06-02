@@ -22155,11 +22155,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a767357db88816742b1a7210743be684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maskCamera: {fileID: 1288291444}
   vertical: {fileID: 2100000, guid: 34e63e81479495448aafd7b88a05a200, type: 2}
   horizontal: {fileID: 2100000, guid: 135016df85210524b8f50ad035105b7a, type: 2}
   downScale: 4
   iterations: 4
   disableObjectAfterSnapShot: 0
+  imgEffect: {fileID: 369971040}
 --- !u!114 &369971040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66300,7 +66302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1288291443
 Transform:
   m_ObjectHideFlags: 0
