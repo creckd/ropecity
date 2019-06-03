@@ -152,9 +152,16 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void CalculateReleaseJump() {
+
 		if (distanceToKeep >= ConfigDatabase.Instance.maxRopeDistance * 0.35f) {
-			float coefficent = Mathf.Clamp01(0.05f / Mathf.Clamp(velocity.magnitude, 0.1f, Mathf.Infinity));
-			AddForce(coefficent * Vector2.up * 0.5f);
+			Ray ray = new Ray(transform.position, Vector3.up);
+			RaycastHit2D hit;
+			hit = Physics2D.Raycast(ray.origin, ray.direction, 5f, collisionLayerMask);
+			bool upwardsIsClear = hit.collider == null;
+			if (upwardsIsClear) {
+				float coefficent = Mathf.Clamp01(0.05f / Mathf.Clamp(velocity.magnitude, 0.1f, Mathf.Infinity));
+				AddForce(coefficent * Vector2.up * 0.5f);
+			}
 		}
 	}
 
