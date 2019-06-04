@@ -74,3 +74,7 @@ MonoBehaviour:
     prefab: {fileID: 114392838741463738, guid: c54f000ece11524419c79430939f4e1a, type: 2}
   - uniqueID: JUMPER
     prefab: {fileID: 114231355613847866, guid: c7c30323a2fa7aa4e84a0b953fa36809, type: 2}
+  - uniqueID: PLATFORM_SCIFI_SUP
+    prefab: {fileID: 114532650471357290, guid: ef0f167f52d8ce74fad9cec287d434af, type: 2}
+  - uniqueID: PLATFORM_SCIFI_45
+    prefab: {fileID: 114780577289711754, guid: bee96be50a1d7df47aea7b4831602887, type: 2}
