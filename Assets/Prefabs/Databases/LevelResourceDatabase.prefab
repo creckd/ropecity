@@ -54,15 +54,15 @@ MonoBehaviour:
   sections:
   - levelResourceNames:
     - dani_tutorial_map
+    - dani_012
     - dani_011
     - dani_009
     - dani_006
     - dani_010
-    - dani_005
   - levelResourceNames:
+    - dani_005
     - dani_003
     - dani_002
     - dani_004
-    - dani_001
     - dani_001
     - dani_001
