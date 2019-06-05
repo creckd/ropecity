@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spike : LevelObject {
 
@@ -10,6 +11,8 @@ public class Spike : LevelObject {
 	public float retractionSpeed = 10f;
 
 	public SkinnedMeshRenderer spikeSkinned;
+	public CanvasGroup warningCanvasGroup;
+	public ParticleSystem shineParticle;
 
 	private float targetRetractionValue = 0f;
 	private float currentRetractionValue = 0f;
@@ -17,6 +20,7 @@ public class Spike : LevelObject {
 
 	private void Awake() {
 		currentRetractionValue = 100f;
+		warningCanvasGroup.transform.up = Vector3.up;
 	}
 
 	private void Update() {
@@ -28,6 +32,8 @@ public class Spike : LevelObject {
 				else Defuse();
 			}
 			currentRetractionValue = Mathf.Lerp(currentRetractionValue, targetRetractionValue, Time.deltaTime * retractionSpeed);
+			warningCanvasGroup.alpha = Mathf.Lerp(warningCanvasGroup.alpha,(targetRetractionValue / 100f),Time.deltaTime * 12f);
+			shineParticle.gameObject.SetActive(currentRetractionValue <= 5f);
 			spikeSkinned.SetBlendShapeWeight(0, currentRetractionValue);
 		}
 	}

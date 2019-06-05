@@ -28,6 +28,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _GreyScale: 0
-    - _T: 0.92972517
+    - _T: 1
     - _UseMask: 0
     m_Colors: []
