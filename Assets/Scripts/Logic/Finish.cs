@@ -37,11 +37,11 @@ public class Finish : LevelObject {
 
 		if (isWorm && GameController.Instance.currentGameState == GameState.GameStarted) {
 			Worm worm = other.GetComponent<Worm>();
+			Vector2 direction = ((transform.position + (transform.forward * 5f)) - worm.transform.position).normalized;
+			worm.AddForce(direction * 0.5f);
 			BreakGlass(worm);
 			anim.Play(finishAnimationStateName, 0, 0f);
 			//speedText.text = ConvertXVelocityToKMH(worm.Velocity.x).ToString();
-			Vector2 direction = ((transform.position + (transform.forward * 5f)) - worm.transform.position).normalized;
-			worm.AddForce(direction * 0.5f);
 			GameController.Instance.FinishGame(true);
 		}
 	}
