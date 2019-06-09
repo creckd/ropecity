@@ -144,12 +144,12 @@ public class TutorialController : MonoBehaviour {
 					if (differenceFromPerfectEndAngle >= 0f)
 						Time.timeScale = Mathf.Lerp(0f, ConfigDatabase.Instance.slowMotionSpeed, differenceFromPerfectEndAngle / angleMargin);
 					else Time.timeScale = 0f;
-				}
-				if (differenceFromPerfectEndAngle <= releasableMargin) {
-					if (!GameController.Instance.wormInputEnabled) {
-						GameController.Instance.ShowReleaseIndicator();
-						GameController.Instance.HideHoldIndicator();
-						GameController.Instance.wormInputEnabled = true;
+					if (differenceFromPerfectEndAngle <= releasableMargin) {
+						if (!GameController.Instance.wormInputEnabled) {
+							GameController.Instance.ShowReleaseIndicator();
+							GameController.Instance.HideHoldIndicator();
+							GameController.Instance.wormInputEnabled = true;
+						}
 					}
 				}
 			}
