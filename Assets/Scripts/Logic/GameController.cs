@@ -54,6 +54,9 @@ public class GameController : MonoBehaviour {
 	[HideInInspector]
 	public Worm currentWorm = null;
 
+	[HideInInspector]
+	public bool shouldStartTutorial = false;
+
 	private float targetTimeScale = 1f;
 	private float currentDampeningValue = 7.5f;
 
@@ -109,8 +112,6 @@ public class GameController : MonoBehaviour {
 	IEnumerator StartTheGameAfterAFewFrames() {
 
 		yield return null;
-
-		bool shouldStartTutorial = false;
 
 		if (!isDebugTestLevelMode) {
 			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);

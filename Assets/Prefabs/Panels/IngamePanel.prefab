@@ -351,7 +351,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1830878326483512
 GameObject:
   m_ObjectHideFlags: 1
@@ -867,7 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.65882355}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -901,6 +901,7 @@ MonoBehaviour:
   tutorialReleaseIndicatorGroup: {fileID: 225137666302556480}
   tutorialHoldIndicatorAnimator: {fileID: 95402941549950604}
   getToTheEndAnimator: {fileID: 95814362482934762}
+  pauseButton: {fileID: 114542620679767796}
 --- !u!114 &114542620679767796
 MonoBehaviour:
   m_ObjectHideFlags: 1

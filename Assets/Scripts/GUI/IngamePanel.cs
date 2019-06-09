@@ -12,6 +12,7 @@ public class IngamePanel : FaderPanel {
 	public CanvasGroup tutorialReleaseIndicatorGroup;
 	public Animator tutorialHoldIndicatorAnimator;
 	public Animator getToTheEndAnimator;
+	public Button pauseButton;
 
 	private const string tutorialHoldIndicatorHold = "Hold";
 	private const string getToTheEndStateName = "GetToTheEnd";
@@ -45,7 +46,6 @@ public class IngamePanel : FaderPanel {
 		GameController.Instance.ShowReleaseIndicator += () => {
 			StaticBlurCreator.Instance.CreateStaticBlurImage();
 			IngameBlurController.Instance.BlurImage(ConfigDatabase.Instance.tutorialBlurTime, false, true, false);
-			//tutorialHoldIndicatorAnimator.Play(tutorialHoldIndicatorHold, 0, 0f);
 			targetReleaseIndicatorVisibility = 1f;
 		};
 		GameController.Instance.HideReleaseIndicator += () => {
@@ -57,6 +57,10 @@ public class IngamePanel : FaderPanel {
 			getToTheEndAnimator.gameObject.SetActive(true);
 			getToTheEndAnimator.Play(getToTheEndStateName, 0, 0f);
 		};
+
+		if (GameController.Instance.shouldStartTutorial) {
+			pauseButton.gameObject.SetActive(false);
+		}
 	}
 
 	public override void OnStartedClosing() {
