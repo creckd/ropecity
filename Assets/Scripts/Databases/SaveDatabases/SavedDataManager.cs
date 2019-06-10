@@ -47,6 +47,8 @@ public class SavedDataManager : MonoBehaviour {
 	}
 
 	public LevelSaveDatabase.LevelSaveData GetLevelSaveDataWithLevelIndex(int levelIndex) {
+		if (savedData.levelSaveDatabase.levelSaveDatas.Length < (levelIndex + 1))
+			return null;
 		return savedData.levelSaveDatabase.levelSaveDatas[levelIndex];
 	}
 
