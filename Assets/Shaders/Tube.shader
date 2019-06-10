@@ -56,8 +56,8 @@ Shader "Dani/Tube"
 				float4 liquid = tex2D(_Liquid, (i.uv * float2(_Liquid_ST.x, _Liquid_ST.y)) + float2(_TilingDirection.x * _Time.y * 0.75, _TilingDirection.y * _Time.y * 1));
 				int transparentPart = saturate((1 - col.a) * 10);
 				int final = transparentPart * step(i.vertexWorld.y + sin((i.vertexWorld.x + (_Time.y *10)) * 0.5) * 0.3, _WorldLiquidHeight);
-				liquid.rgb *= _LiquidTint.rgb;
-				liquid.rgb -= 0.05;
+				//liquid.rgb *= _LiquidTint.rgb;
+				//liquid.rgb -= 0.05;
 				col.rgb = lerp(col.rgb, liquid.rgb, final);
 				return col;
 			}
