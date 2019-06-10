@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Spike : LevelObject {
+public class NonLevelObjectSpike : MonoBehaviour {
 
 	private bool isRetractableSpike = true;
 
