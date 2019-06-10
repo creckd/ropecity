@@ -33,17 +33,18 @@ public class Spike : LevelObject {
 			}
 			currentRetractionValue = Mathf.Lerp(currentRetractionValue, targetRetractionValue, Time.deltaTime * retractionSpeed);
 			warningCanvasGroup.alpha = Mathf.Lerp(warningCanvasGroup.alpha,(targetRetractionValue / 100f),Time.deltaTime * 12f);
-			shineParticle.gameObject.SetActive(currentRetractionValue <= 5f);
 			spikeSkinned.SetBlendShapeWeight(0, currentRetractionValue);
 		}
 	}
 
 	public void Activate() {
 		targetRetractionValue = 0f;
+		shineParticle.gameObject.SetActive(true);
 	}
 
 	public void Defuse() {
 		targetRetractionValue = 100f;
+		shineParticle.gameObject.SetActive(false);
 	}
 
 	private void OnTriggerEnter2D(Collider2D other) {
