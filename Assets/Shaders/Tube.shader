@@ -6,6 +6,7 @@ Shader "Dani/Tube"
 	{
 		_MainTex("Main Texture",2D) = "white" {}
 		_Liquid("Liqui",2D) = "white" {}
+		_LiquidTint("Liquid Tint",Color) = (0,0,0,0)
 		_TilingDirection("Tiling Direction",Vector) = (0,0,0,0)
 		_WorldLiquidHeight("World Liquid Height",float) = 0
 	}
@@ -37,6 +38,7 @@ Shader "Dani/Tube"
 			sampler2D _Liquid;
 			float4 _TilingDirection;
 			float4 _Liquid_ST;
+			float4 _LiquidTint;
 			float _WorldLiquidHeight;
 
 			v2f vert (appdata v)
@@ -54,6 +56,8 @@ Shader "Dani/Tube"
 				float4 liquid = tex2D(_Liquid, (i.uv * float2(_Liquid_ST.x, _Liquid_ST.y)) + float2(_TilingDirection.x * _Time.y * 0.75, _TilingDirection.y * _Time.y * 1));
 				int transparentPart = saturate((1 - col.a) * 10);
 				int final = transparentPart * step(i.vertexWorld.y + sin((i.vertexWorld.x + (_Time.y *10)) * 0.5) * 0.3, _WorldLiquidHeight);
+				liquid.rgb *= _LiquidTint.rgb;
+				liquid.rgb -= 0.05;
 				col.rgb = lerp(col.rgb, liquid.rgb, final);
 				return col;
 			}
