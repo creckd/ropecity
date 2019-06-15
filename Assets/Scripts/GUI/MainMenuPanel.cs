@@ -13,5 +13,7 @@ public class MainMenuPanel : AnimatorPanel {
 		base.OnStartedOpening();
 
 		Time.timeScale = 1f;
+
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.mainMenuOpening);
 	}
 }

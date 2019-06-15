@@ -20,7 +20,7 @@ public class CustomClip {
 public class CustomClipMemoryFriendly {
     [HideInInspector]
     public string name = "Zene";
-    [AssetPath("","Assets/Audio/Music/Resources/music")]
+    [AssetPath("","Assets/Music/Resources")]
     public string audioClipPath;
     public AudioClip audioClip = null;
     [Range(0f, 1f)]
@@ -35,7 +35,7 @@ public class CustomClipMemoryFriendly {
     public CustomClip CloneToCustomClip() {
         CustomClip customClip = new CustomClip();
         if (audioClip == null) {
-            audioClip = Resources.Load<AudioClip>("music/" + audioClipPath);
+            audioClip = Resources.Load<AudioClip>(audioClipPath);
         }
         customClip.audioClip = audioClip;
         customClip.name = name;
@@ -60,6 +60,17 @@ public class AudioConfigDatabase : MonoBehaviour
         }
     }
 
-	public CustomClip example;
+	public CustomClipMemoryFriendly mainMenuMusic;
+	public CustomClipMemoryFriendly ingameMusic;
+
+	public CustomClip optionsLanguageSelectorTick;
+	public CustomClip optionsWoosh;
+	public CustomClip levelSelectOpening;
+	public CustomClip levelSelectChanging;
+	public CustomClip mainMenuOpening;
+
+	private void Awake() {
+		DontDestroyOnLoad(this.gameObject);
+	}
 
 }

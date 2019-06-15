@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 114762168531299746}
   - component: {fileID: 114406724314436402}
   - component: {fileID: 225927705428348790}
+  - component: {fileID: 114508712782563176}
   m_Layer: 5
   m_Name: optionsButton
   m_TagString: Untagged
@@ -111,6 +112,7 @@ GameObject:
   - component: {fileID: 114616059969779548}
   - component: {fileID: 114221232173672146}
   - component: {fileID: 225626056981854240}
+  - component: {fileID: 114150034051024568}
   m_Layer: 5
   m_Name: characterButton
   m_TagString: Untagged
@@ -182,6 +184,7 @@ GameObject:
   - component: {fileID: 114566230687430536}
   - component: {fileID: 114927792103518908}
   - component: {fileID: 225218152733053502}
+  - component: {fileID: 114010417330727530}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -257,6 +260,27 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114010417330727530
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1845864942558888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 171697__nenadsimic__menu-selection-click
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 2, y: 2.1}
 --- !u!114 &114017913987793874
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -344,6 +368,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114150034051024568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1430646657690660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 171697__nenadsimic__menu-selection-click
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 2, y: 2.1}
 --- !u!114 &114221232173672146
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -541,6 +586,27 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Play
+--- !u!114 &114508712782563176
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1161850597568850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 171697__nenadsimic__menu-selection-click
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 2, y: 2.1}
 --- !u!114 &114547231026891262
 MonoBehaviour:
   m_ObjectHideFlags: 1

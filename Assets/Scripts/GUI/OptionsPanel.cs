@@ -20,4 +20,8 @@ public class OptionsPanel : AnimatorPanel {
 		SavedDataManager.DeleteLocalSave();
 	}
 
+	public void WooshSound() {
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.optionsWoosh);
+	}
+
 }

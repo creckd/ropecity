@@ -36,6 +36,8 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 
 	private SupportedLanguages currentlySelectedLanguage = SupportedLanguages.English;
 
+	private Text currentClosestText = null;
+
 	public void InitializeLanguageSelector() {
 		int numberOfSupportedLanguages = Enum.GetNames(typeof(SupportedLanguages)).Length;
 
@@ -49,6 +51,7 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 
 		centerY = marker.transform.position.y;
 		sampleText.gameObject.SetActive(false);
+		currentClosestText = GetClosestTextToCenter();
 	}
 
 	public void ResetLanguageSelector() {
@@ -78,6 +81,12 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 				SelectLanguage(selected);
 				snapping = false;
 			}
+		}
+
+		Text closest = GetClosestTextToCenter();
+		if (closest != currentClosestText) {
+			currentClosestText = closest;
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.optionsLanguageSelectorTick);
 		}
 	}
 
