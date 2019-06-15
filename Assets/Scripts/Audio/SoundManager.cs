@@ -16,7 +16,7 @@ public class SoundManager : MonoBehaviour
 
     Dictionary<string, GameObject> identifiedObjects = new Dictionary<string, GameObject>();
 
-    public void LoopUntilStopped(AudioClip clip, float volume, float pitch, string id) {
+	public void LoopUntilStopped(AudioClip clip, float volume, float pitch, string id) {
 		if (identifiedObjects.ContainsKey(id))
 			return;
 

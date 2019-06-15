@@ -48,6 +48,7 @@ public class LevelSelectPanel : AnimatorPanel {
 		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {
 			b.PlayAppearAnimation();
 		}
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.levelSelectOpening);
 	}
 
 	public override void OnStartedClosing() {
@@ -82,6 +83,7 @@ public class LevelSelectPanel : AnimatorPanel {
 			return;
 
 		if (currentlyOpenedSection != -1) {
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.levelSelectChanging);
 			animatingDirection = sectionNumber < currentlyOpenedSection ? 0 : 1;
 			CloseCurrentlyOpenedSection();
 			StartCoroutine(WaitAndCallBack(sectionAnimationTime, () => { OpenSection(sectionNumber); }));

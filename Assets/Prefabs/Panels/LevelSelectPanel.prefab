@@ -56,6 +56,7 @@ GameObject:
   - component: {fileID: 222394263066048960}
   - component: {fileID: 114247133979156222}
   - component: {fileID: 114160675545942944}
+  - component: {fileID: 114258504394556284}
   m_Layer: 5
   m_Name: previousSectionButton
   m_TagString: Untagged
@@ -300,6 +301,7 @@ GameObject:
   - component: {fileID: 114677939142700298}
   - component: {fileID: 114078011424829086}
   - component: {fileID: 225500827556872638}
+  - component: {fileID: 114244321386160252}
   m_Layer: 5
   m_Name: backButton
   m_TagString: Untagged
@@ -335,6 +337,7 @@ GameObject:
   - component: {fileID: 222842433231926550}
   - component: {fileID: 114981914024742384}
   - component: {fileID: 114547610753272808}
+  - component: {fileID: 114942815786330740}
   m_Layer: 5
   m_Name: nextSectionButton
   m_TagString: Untagged
@@ -355,6 +358,7 @@ GameObject:
   - component: {fileID: 114792118178123718}
   - component: {fileID: 114548880708640024}
   - component: {fileID: 95874315769436572}
+  - component: {fileID: 114570342607018112}
   m_Layer: 5
   m_Name: LevelButton
   m_TagString: Untagged
@@ -379,7 +383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1953830934187662
 GameObject:
   m_ObjectHideFlags: 1
@@ -575,7 +579,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: d80baf61334bc9e40a2ea1d350796b44, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a99cc95b246ffe44b958e950cb818ee, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -718,6 +722,27 @@ MonoBehaviour:
   m_Spacing: {x: -53, y: -27}
   m_Constraint: 1
   m_ConstraintCount: 3
+--- !u!114 &114244321386160252
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1588008135171598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 67086__sunnysidesound__pop-1
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 0
+    randomizePitchBetween: {x: 0, y: 0}
 --- !u!114 &114247133979156222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -745,6 +770,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114258504394556284
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1046895397658766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 171697__nenadsimic__menu-selection-click
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 2
+    randomizePitch: 0
+    randomizePitchBetween: {x: 1.8, y: 2.2}
 --- !u!114 &114265485550439158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1021,6 +1067,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114570342607018112
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1869541136810154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 404049__deathscyp__breaker-1
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 2
+    randomizePitch: 0
+    randomizePitchBetween: {x: 0, y: 0}
 --- !u!114 &114634853240149336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1244,6 +1311,27 @@ MonoBehaviour:
   rotationAmountRandomness: 1
   rotationSpeed: 500
   rotationSpeedRandomness: 50
+--- !u!114 &114942815786330740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1762056989999146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 171697__nenadsimic__menu-selection-click
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 2
+    randomizePitch: 0
+    randomizePitchBetween: {x: 1.8, y: 2.2}
 --- !u!114 &114966196359835144
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1259,6 +1347,7 @@ MonoBehaviour:
   sampleLevelButton: {fileID: 114548880708640024}
   sectionText: {fileID: 114150503241965764}
   sectionMask: {fileID: 114193110757244760}
+  sectionAnimationTime: 0.5
 --- !u!114 &114968088691042312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1733,8 +1822,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 200}
+  m_AnchoredPosition: {x: 2, y: 0}
+  m_SizeDelta: {x: 184.46, y: 190.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224181671258144258
 RectTransform:
@@ -1791,10 +1880,10 @@ RectTransform:
   m_Father: {fileID: 224593694572584260}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 295.5, y: -100}
+  m_SizeDelta: {x: 230, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224354677628568428
 RectTransform:
@@ -1946,7 +2035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 50, y: 35}
   m_SizeDelta: {x: 196.77, y: 205.14001}
   m_Pivot: {x: 0, y: 0}
 --- !u!224 &224684808167120364
@@ -2011,15 +2100,15 @@ RectTransform:
   m_GameObject: {fileID: 1569911835498256}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 224679287767665718}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -5, y: -0.30000305}
-  m_SizeDelta: {x: 104, y: 104}
+  m_AnchoredPosition: {x: -5.550003, y: -0.30000305}
+  m_SizeDelta: {x: 58.4, y: 58.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224995677980385218
 RectTransform:
