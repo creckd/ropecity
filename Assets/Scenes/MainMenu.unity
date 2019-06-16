@@ -2586,6 +2586,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114244321386160252, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: clipToUse.audioClipPath
+      value: 171697__nenadsimic__menu-selection-click
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244321386160252, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: clipToUse.randomizePitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244321386160252, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: clipToUse.randomizePitchBetween.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114244321386160252, guid: 714f5fc6f9561f440bb2bfe22995b365,
+        type: 2}
+      propertyPath: clipToUse.randomizePitchBetween.y
+      value: 2.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 714f5fc6f9561f440bb2bfe22995b365, type: 2}
   m_IsPrefabAsset: 0

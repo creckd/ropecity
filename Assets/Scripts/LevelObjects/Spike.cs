@@ -13,8 +13,8 @@ public class Spike : LevelObject {
 	public SkinnedMeshRenderer spikeSkinned;
 	public ParticleSystem shineParticle;
 
-	private float targetRetractionValue = 0f;
-	private float currentRetractionValue = 0f;
+	private float targetRetractionValue = 100f;
+	private float currentRetractionValue = 100f;
 	private int frameCheckFrequency = 30;
 
 	private void Awake() {
@@ -35,6 +35,8 @@ public class Spike : LevelObject {
 	}
 
 	public void Activate() {
+		if(targetRetractionValue != 0f)
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.spikeDraw);
 		targetRetractionValue = 0f;
 		shineParticle.gameObject.SetActive(true);
 	}

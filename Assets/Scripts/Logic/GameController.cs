@@ -109,6 +109,11 @@ public class GameController : MonoBehaviour {
 		StartCoroutine(StartTheGameAfterAFewFrames()); // for subscriptions
 	}
 
+	private void Start() {
+		SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.ingameMusic.CloneToCustomClip(), "ingameMusic");
+		SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.ingameAmbient.CloneToCustomClip(), "ingameAmbient");
+	}
+
 	IEnumerator StartTheGameAfterAFewFrames() {
 
 		yield return null;
@@ -148,7 +153,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame() {
-		SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.ingameMusic.CloneToCustomClip(), "ingameMusic");
 		if (!isDebugTestLevelMode) {
 			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
 			saveData.numberOfTries++;
@@ -165,9 +169,11 @@ public class GameController : MonoBehaviour {
 		GameFinished(success);
 		HideUIHookAid();
 		if (!success) {
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.failure);
 			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 			StartCoroutine(ReInitiliazeGameAfter());
 		} else {
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.victory);
 			UnlockNextLevel();
 			StartCoroutine(FinishingCoroutine());
 		}

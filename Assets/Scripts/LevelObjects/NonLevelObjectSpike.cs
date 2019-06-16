@@ -35,6 +35,8 @@ public class NonLevelObjectSpike : MonoBehaviour {
 	}
 
 	public void Activate() {
+		if (targetRetractionValue != 0f)
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.spikeDraw);
 		targetRetractionValue = 0f;
 		shineParticle.gameObject.SetActive(true);
 	}

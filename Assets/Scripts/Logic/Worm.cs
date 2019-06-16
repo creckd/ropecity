@@ -58,6 +58,8 @@ public class Worm : MonoBehaviour {
 	Rigidbody2D rb;
 	CircleCollider2D circleCollider;
 
+	private bool playedSwingSoundOnThisHook = false;
+
 	class HitPoint {
 		public Vector3 hookPosition {
 			get {
@@ -293,6 +295,7 @@ public class Worm : MonoBehaviour {
 		CheckIfOutOfBoundaries();
 		HandleSlideParticle();
 		//HandleAccuracyText();
+		HandleSwingSoundEffect();
 	}
 
 	private void LateUpdate() {
@@ -454,7 +457,7 @@ public class Worm : MonoBehaviour {
 				}
 				if (wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold) {
 					if (!sliding) {
-						SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.wormSlideLoop, "slide");
+						SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.wormSlideLoop);
 
 						sliding = true;
 						direction = solidHit.point - (Vector2)transform.position;
@@ -611,6 +614,8 @@ public class Worm : MonoBehaviour {
 	public void Die() {
 		if (GameController.Instance.currentGameState == GameState.GameFinished)
 			return;
+
+		SoundManager.Instance.StopLoopedSound("slide");
 
 		GameController.Instance.FinishGame(false);
 
@@ -786,6 +791,19 @@ public class Worm : MonoBehaviour {
 		} else {
 			if (accuracyText.transform.parent.gameObject.activeSelf)
 				accuracyText.transform.parent.gameObject.SetActive(false);
+		}
+	}
+
+	private void HandleSwingSoundEffect() {
+		float angle = Vector3.Angle(Vector3.up, gunPositionObject.transform.position - transform.position);
+		if (!playedSwingSoundOnThisHook && angle <= 30f && landedHook) {
+			playedSwingSoundOnThisHook = true;
+			float maxVelLength = 0.9f;
+			float vol = 0.25f * (velocity.magnitude/maxVelLength);
+			float pitch = 0.25f + ((velocity.magnitude / maxVelLength) * 0.75f);
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.swing.audioClip,vol,pitch);
+		} else if (angle > 30f) {
+			playedSwingSoundOnThisHook = false;
 		}
 	}
 

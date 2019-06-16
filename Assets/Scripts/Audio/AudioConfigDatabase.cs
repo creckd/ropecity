@@ -63,6 +63,7 @@ public class AudioConfigDatabase : MonoBehaviour
 
 	public CustomClipMemoryFriendly mainMenuMusic;
 	public CustomClipMemoryFriendly ingameMusic;
+	public CustomClipMemoryFriendly ingameAmbient;
 
 	public CustomClip optionsLanguageSelectorTick;
 	public CustomClip optionsWoosh;
@@ -75,6 +76,13 @@ public class AudioConfigDatabase : MonoBehaviour
 	public CustomClip wormSlideLoop;
 	public CustomClip finishGlassBreak;
 	public CustomClip wormBounce;
+
+	public CustomClip spikeDraw;
+
+	public CustomClip victory;
+	public CustomClip failure;
+
+	public CustomClip swing;
 
 	private void Awake() {
 		DontDestroyOnLoad(this.gameObject);

@@ -96,7 +96,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1669584705471314
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 222912026758434726}
   - component: {fileID: 114009156182889900}
   - component: {fileID: 114017072155671306}
+  - component: {fileID: 114650750943609904}
   m_Layer: 5
   m_Name: continueButton
   m_TagString: Untagged
@@ -159,6 +160,7 @@ GameObject:
   - component: {fileID: 222412938029016808}
   - component: {fileID: 114107748735026802}
   - component: {fileID: 114793430742584856}
+  - component: {fileID: 114501040645155778}
   m_Layer: 5
   m_Name: menuButton
   m_TagString: Untagged
@@ -371,6 +373,27 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Paused
+--- !u!114 &114501040645155778
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1973304618368572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 146720__leszek-szary__menu-clickasd
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 1, y: 1.2}
 --- !u!114 &114650305333300212
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -398,6 +421,27 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114650750943609904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1742447277302598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 146720__leszek-szary__menu-clickasd
+    audioClip: {fileID: 0}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 1, y: 1.2}
 --- !u!114 &114793430742584856
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,8 +719,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 163, y: 163}
+  m_AnchoredPosition: {x: 9, y: 0}
+  m_SizeDelta: {x: 121.8, y: 121.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224997894525551358
 RectTransform:
