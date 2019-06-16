@@ -63,9 +63,9 @@ MonoBehaviour:
     randomizePitchBetween: {x: 0, y: 0}
   ingameMusic:
     name: Zene
-    audioClipPath: 
+    audioClipPath: Super Game Music - A Walk in the Park (Loop)
     audioClip: {fileID: 0}
-    volume: 0.5
+    volume: 0.307
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -152,3 +152,12 @@ MonoBehaviour:
     pitch: 0.95
     randomizePitch: 0
     randomizePitchBetween: {x: 0, y: 0}
+  wormBounce:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: 80384ee5621fa1a4683fb54495403d17, type: 3}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 1.35, y: 1.65}

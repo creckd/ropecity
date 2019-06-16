@@ -148,6 +148,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame() {
+		SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.ingameMusic.CloneToCustomClip(), "ingameMusic");
 		if (!isDebugTestLevelMode) {
 			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
 			saveData.numberOfTries++;
