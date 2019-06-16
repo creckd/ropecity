@@ -799,7 +799,7 @@ public class Worm : MonoBehaviour {
 		if (!playedSwingSoundOnThisHook && angle <= 30f && landedHook) {
 			playedSwingSoundOnThisHook = true;
 			float maxVelLength = 0.9f;
-			float vol = 0.25f * (velocity.magnitude/maxVelLength);
+			float vol = 0.5f * (velocity.magnitude/maxVelLength);
 			float pitch = 0.25f + ((velocity.magnitude / maxVelLength) * 0.75f);
 			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.swing.audioClip,vol,pitch);
 		} else if (angle > 30f) {

@@ -735,14 +735,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clipToUse:
     name: Zene
-    audioClipPath: 67086__sunnysidesound__pop-1
+    audioClipPath: 171697__nenadsimic__menu-selection-click
     audioClip: {fileID: 0}
     volume: 0.5
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
-    randomizePitch: 0
-    randomizePitchBetween: {x: 0, y: 0}
+    randomizePitch: 1
+    randomizePitchBetween: {x: 2, y: 2.1}
 --- !u!114 &114247133979156222
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1082,7 +1082,7 @@ MonoBehaviour:
     name: Zene
     audioClipPath: 404049__deathscyp__breaker-1
     audioClip: {fileID: 0}
-    volume: 0.5
+    volume: 0.188
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 2

@@ -55,7 +55,7 @@ MonoBehaviour:
     name: Zene
     audioClipPath: menuTheme
     audioClip: {fileID: 0}
-    volume: 0.5
+    volume: 0.21
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -63,9 +63,9 @@ MonoBehaviour:
     randomizePitchBetween: {x: 0, y: 0}
   ingameMusic:
     name: Zene
-    audioClipPath: minimalBeat
+    audioClipPath: hiphoploop
     audioClip: {fileID: 0}
-    volume: 0.216
+    volume: 0.106
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -84,7 +84,7 @@ MonoBehaviour:
   optionsLanguageSelectorTick:
     name: Zene
     audioClip: {fileID: 8300000, guid: f47a29322f6cfc046ac649b16a0b4f81, type: 3}
-    volume: 0.5
+    volume: 0.25
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -93,7 +93,7 @@ MonoBehaviour:
   optionsWoosh:
     name: Zene
     audioClip: {fileID: 8300000, guid: 60bb0e67ffbafb344ad3c9f477e1841b, type: 3}
-    volume: 0.35
+    volume: 0.5
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -102,7 +102,7 @@ MonoBehaviour:
   levelSelectOpening:
     name: Zene
     audioClip: {fileID: 8300000, guid: 6a4c876a61070ed4f98d2e4a1d341c40, type: 3}
-    volume: 0.792
+    volume: 0.38
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -111,7 +111,7 @@ MonoBehaviour:
   levelSelectChanging:
     name: Zene
     audioClip: {fileID: 8300000, guid: 2de3f4e269b3cb541aa672aaa019ea51, type: 3}
-    volume: 0.127
+    volume: 0.027
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -128,8 +128,8 @@ MonoBehaviour:
     randomizePitchBetween: {x: 0, y: 0}
   cannonShoot:
     name: Zene
-    audioClip: {fileID: 8300000, guid: 744a8dc7842d5ae4bbb7312f9df6a697, type: 3}
-    volume: 0.411
+    audioClip: {fileID: 8300000, guid: f0f1cedb0258a0343b54f5e5f206a338, type: 3}
+    volume: 0.137
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -138,7 +138,7 @@ MonoBehaviour:
   wormShoot:
     name: Zene
     audioClip: {fileID: 8300000, guid: bb7cbaf75ceef2a4f85111bdaf08b3d0, type: 3}
-    volume: 0.247
+    volume: 0.099
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -173,17 +173,17 @@ MonoBehaviour:
     randomizePitchBetween: {x: 0.7, y: 0.8}
   spikeDraw:
     name: Zene
-    audioClip: {fileID: 8300000, guid: f342bb2fca80c6541885cfa4763ac99e, type: 3}
+    audioClip: {fileID: 8300000, guid: cb8118df14da42c42848bb3020d24a10, type: 3}
     volume: 0.493
     randomizeVolume: 1
-    randomizeVolumeBetween: {x: 0.45, y: 0.65}
+    randomizeVolumeBetween: {x: 0.1, y: 0.2}
     pitch: 1.83
     randomizePitch: 1
-    randomizePitchBetween: {x: 1.5, y: 2}
+    randomizePitchBetween: {x: 1, y: 1.2}
   victory:
     name: Zene
-    audioClip: {fileID: 8300000, guid: c5fab43ea660e524daba07de96c4a1ad, type: 3}
-    volume: 0.348
+    audioClip: {fileID: 8300000, guid: 744a8dc7842d5ae4bbb7312f9df6a697, type: 3}
+    volume: 0.332
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
