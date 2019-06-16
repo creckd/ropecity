@@ -47,6 +47,9 @@ public class Finish : LevelObject {
 	}
 
 	private void BreakGlass(Worm worm) {
+
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.finishGlassBreak);
+
 		originalGlassObject.gameObject.SetActive(false);
 		brokenGlassHolderObject.gameObject.SetActive(true);
 		for (int i = 0; i < shards.Length; i++) {

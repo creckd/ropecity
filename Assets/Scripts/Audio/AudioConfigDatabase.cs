@@ -69,6 +69,11 @@ public class AudioConfigDatabase : MonoBehaviour
 	public CustomClip levelSelectChanging;
 	public CustomClip mainMenuOpening;
 
+	public CustomClip cannonShoot;
+	public CustomClip wormShoot;
+	public CustomClip wormSlideLoop;
+	public CustomClip finishGlassBreak;
+
 	private void Awake() {
 		DontDestroyOnLoad(this.gameObject);
 	}

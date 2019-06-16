@@ -183,6 +183,9 @@ public class Worm : MonoBehaviour {
 		float tarDistance = useInrementalDistance ? currentHookSearchDistance : ConfigDatabase.Instance.maxRopeDistance;
 
 		if (!landedHook && FindHookPoint(out hit, tarDistance) && !WormOverlappingPhysicalCollider()) {
+
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.wormShoot);
+
 			rotationEnabled = false;
 			landedHook = true;
 			HitPoint newHookPosition = new HitPoint(hit.point);
@@ -451,18 +454,24 @@ public class Worm : MonoBehaviour {
 				}
 				if (wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold) {
 					if (!sliding) {
+						SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.wormSlideLoop, "slide");
+
 						sliding = true;
 						direction = solidHit.point - (Vector2)transform.position;
 						direction = direction.normalized;
 					}
 				}
 			} else {
-				if(sliding)
-				sliding = false;
+				if (sliding) {
+					sliding = false;
+					SoundManager.Instance.StopLoopedSound("slide");
+				}
 			}
 		} else {
-			if(sliding)
-			sliding = false;
+			if (sliding) {
+				sliding = false;
+				SoundManager.Instance.StopLoopedSound("slide");
+			}
 		}
 	}
 
@@ -631,6 +640,7 @@ public class Worm : MonoBehaviour {
 		if (landedHook && wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold)
 			return;
 		else if (sliding && wouldReflectAngle > ConfigDatabase.Instance.slidingAngleThreshHold) {
+			SoundManager.Instance.StopLoopedSound("slide");
 			sliding = false;
 		}
 		if (!hitInfo.collider.CompareTag("LaunchPad")) {

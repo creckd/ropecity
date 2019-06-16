@@ -92,7 +92,7 @@ MonoBehaviour:
   levelSelectOpening:
     name: Zene
     audioClip: {fileID: 8300000, guid: 6a4c876a61070ed4f98d2e4a1d341c40, type: 3}
-    volume: 1
+    volume: 0.792
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
@@ -114,5 +114,41 @@ MonoBehaviour:
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
     pitch: 1
+    randomizePitch: 0
+    randomizePitchBetween: {x: 0, y: 0}
+  cannonShoot:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: f0f1cedb0258a0343b54f5e5f206a338, type: 3}
+    volume: 0.188
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1.5
+    randomizePitch: 0
+    randomizePitchBetween: {x: 0, y: 0}
+  wormShoot:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: bb7cbaf75ceef2a4f85111bdaf08b3d0, type: 3}
+    volume: 0.247
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 2.5, y: 3}
+  wormSlideLoop:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: a2056561098d37143b78b1458ee45f3e, type: 3}
+    volume: 0.717
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 0.35
+    randomizePitch: 0
+    randomizePitchBetween: {x: 0, y: 0}
+  finishGlassBreak:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: a70c0c3fc683d1045924e59c22b67124, type: 3}
+    volume: 0.178
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 0.95
     randomizePitch: 0
     randomizePitchBetween: {x: 0, y: 0}
