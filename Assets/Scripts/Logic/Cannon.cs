@@ -66,6 +66,7 @@ public class Cannon : LevelObject {
 		yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 2.5f);
 
 		//CameraShake.Instance.Shake(0.1f, 0.5f, 4f);
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.cannonShoot);
 		PlayShootParticles();
 		instantiatedWorm.transform.position = cannonMouthPositionObject.transform.position;
 		instantiatedWorm.gameObject.SetActive(true);
