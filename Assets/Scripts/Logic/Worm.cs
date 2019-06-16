@@ -636,6 +636,8 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void Collided(RaycastHit2D hitInfo) {
+		if(!sliding)
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.wormBounce);
 		float wouldReflectAngle = Vector3.Angle(velocity, Vector3.Reflect(velocity, hitInfo.normal));
 		if (landedHook && wouldReflectAngle < ConfigDatabase.Instance.slidingAngleThreshHold)
 			return;

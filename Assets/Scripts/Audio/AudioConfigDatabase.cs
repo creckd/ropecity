@@ -40,6 +40,7 @@ public class CustomClipMemoryFriendly {
         customClip.audioClip = audioClip;
         customClip.name = name;
         customClip.pitch = pitch;
+		customClip.volume = volume;
         customClip.randomizePitch = randomizePitch;
         customClip.randomizePitchBetween = randomizePitchBetween;
         customClip.randomizeVolume = randomizeVolume;
@@ -73,6 +74,7 @@ public class AudioConfigDatabase : MonoBehaviour
 	public CustomClip wormShoot;
 	public CustomClip wormSlideLoop;
 	public CustomClip finishGlassBreak;
+	public CustomClip wormBounce;
 
 	private void Awake() {
 		DontDestroyOnLoad(this.gameObject);
