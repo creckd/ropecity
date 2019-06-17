@@ -129,10 +129,10 @@ MonoBehaviour:
   cannonShoot:
     name: Zene
     audioClip: {fileID: 8300000, guid: f0f1cedb0258a0343b54f5e5f206a338, type: 3}
-    volume: 0.137
+    volume: 0.087
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}
-    pitch: 1
+    pitch: 0.6
     randomizePitch: 0
     randomizePitchBetween: {x: 1.4, y: 1.6}
   wormShoot:
