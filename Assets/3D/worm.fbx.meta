@@ -44,6 +44,22 @@ ModelImporter:
     100076: ThumbUp.R
     100078: Worm
     100080: //RootNode
+    100082: Index.L
+    100084: Index.L_end
+    100086: Index.R
+    100088: Index.R_end
+    100090: Middle.L
+    100092: Middle.L_end
+    100094: Middle.R
+    100096: Middle.R_end
+    100098: Pinky.L
+    100100: Pinky.L_end
+    100102: Pinky.R
+    100104: Pinky.R_end
+    100106: Thumb.L
+    100108: Thumb.L_end
+    100110: Thumb.R
+    100112: Thumb.R_end
     400000: Armature
     400002: Bone
     400004: Bone.001
@@ -85,6 +101,22 @@ ModelImporter:
     400076: ThumbUp.R
     400078: Worm
     400080: //RootNode
+    400082: Index.L
+    400084: Index.L_end
+    400086: Index.R
+    400088: Index.R_end
+    400090: Middle.L
+    400092: Middle.L_end
+    400094: Middle.R
+    400096: Middle.R_end
+    400098: Pinky.L
+    400100: Pinky.L_end
+    400102: Pinky.R
+    400104: Pinky.R_end
+    400106: Thumb.L
+    400108: Thumb.L_end
+    400110: Thumb.R
+    400112: Thumb.R_end
     2100000: Material.001
     4300000: Worm
     7400000: Armature|ArmatureAction
@@ -102,6 +134,7 @@ ModelImporter:
     10800000: Point
     10800002: Sun
     13700000: Worm
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1

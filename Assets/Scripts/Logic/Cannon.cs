@@ -11,6 +11,7 @@ public class Cannon : LevelObject {
 	public GameObject cannonMouthPositionObject;
 	public GameObject rootObject;
 	public ParticleSystem explosionParticle;
+	public GameObject wormInTheCannon;
 
 	private const string cannonShootAnimationName = "Armature|CannonShoot";
 	private Animator anim;
@@ -56,20 +57,20 @@ public class Cannon : LevelObject {
 		Quaternion tarRootRotation = rootObject.transform.rotation * Quaternion.Euler(new Vector3(-aimAngle, 0f, 0f));
 		float windUpTime = 2f;
 		while (windUpTimer <= windUpTime) {
-			windUpTimer += Time.unscaledDeltaTime;
+			windUpTimer += Time.deltaTime;
 			rootObject.transform.rotation = Quaternion.LerpUnclamped(defRootRotation, tarRootRotation, aimingCurve.Evaluate(windUpTimer / windUpTime));
 			yield return null;
 		}
 		rootObject.transform.rotation = tarRootRotation;
 		anim.Play(cannonShootAnimationName, 0, 0f);
 		yield return null;
-		yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(0).length - 2.5f);
+		yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length - 2.5f);
 
-		//CameraShake.Instance.Shake(0.1f, 0.5f, 4f);
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.cannonShoot);
 		PlayShootParticles();
 		instantiatedWorm.transform.position = cannonMouthPositionObject.transform.position;
 		instantiatedWorm.gameObject.SetActive(true);
+		wormInTheCannon.gameObject.SetActive(false);
 		instantiatedWorm.AddForce((cannonMouthPositionObject.transform.position - rootObject.transform.position).normalized * ConfigDatabase.Instance.cannonShootForceMultiplier);
 		GameController.Instance.StartSlowingTime();
 	}
@@ -77,6 +78,7 @@ public class Cannon : LevelObject {
 	private void ReinitalizeCannon() {
 		anim.Play("Default", 0, 0f);
 		rootObject.transform.rotation = defaultRootRotation;
+		wormInTheCannon.gameObject.SetActive(true);
 	}
 
 	private void PlayShootParticles() {

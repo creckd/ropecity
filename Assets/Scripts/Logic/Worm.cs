@@ -626,6 +626,7 @@ public class Worm : MonoBehaviour {
 			rb.AddForce(velocity * 50f,ForceMode2D.Impulse);
 			rb.AddForce(rb.transform.forward * 20f * Vector3.Distance(rb.transform.position,transform.position), ForceMode2D.Impulse);
 		}
+		GameController.Instance.WormDiedAtPosition(transform.position);
 		DestroyWorm();
 	}
 

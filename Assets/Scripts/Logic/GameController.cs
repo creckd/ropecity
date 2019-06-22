@@ -35,6 +35,8 @@ public class GameController : MonoBehaviour {
 	public Action<bool> GameFinished = delegate { };
 	public Action ReinitalizeGame = delegate { };
 
+	public Action<Vector3> WormDiedAtPosition = delegate { };
+
 	public Action<Vector3> FoundPotentionalHitPoint = delegate { };
 
 	public Action<Vector3> LandedHook = delegate { };
@@ -138,6 +140,7 @@ public class GameController : MonoBehaviour {
 
 		yield return null;
 
+		CameraController.Instance.StartCinematic();
 		StartTheGame();
 	}
 
@@ -202,7 +205,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator ReInitiliazeGameAfter() {
-		yield return new WaitForSeconds(0f);
+		yield return new WaitForSeconds(0.25f);
 		if (currentWorm != null)
 			currentWorm.Die();
 		ReInitGame();

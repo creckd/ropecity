@@ -17,6 +17,8 @@ public class CameraController : MonoBehaviour {
 	private Transform target = null;
 	private Vector3 offset;
 	private Vector3 cameraStartingPosition;
+	private Quaternion cameraStartingRotation;
+	private Vector3 cannonCameraStartPosition;
 	private bool initializedOffsets = false;
 
 	public float xDifferenceAllowed = 1f;
@@ -26,7 +28,14 @@ public class CameraController : MonoBehaviour {
 	public float compensationSpeed = 10f;
 
 	public AnimationCurve sweepCurve;
+	public AnimationCurve startSweepCurve;
+	public AnimationCurve deathSweepCurve;
 	public float sweepingTime = 1f;
+	public float startingSweepTime = 2f;
+	public float deathSweepTime = 0.5f;
+
+	public Vector3 deathCameraOffset;
+	public Vector3 deathCameraEulerRot;
 
 	private float lastHookedPositionY = 0f;
 	private float lastHookedTime = 0f;
@@ -35,6 +44,7 @@ public class CameraController : MonoBehaviour {
 		GameController.Instance.GameFinished += GameFinished;
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
 		GameController.Instance.LandedHook += LandedHook;
+		GameController.Instance.WormDiedAtPosition += WormDied;
 	}
 
 	private void LandedHook(Vector3 hp) {
@@ -43,10 +53,18 @@ public class CameraController : MonoBehaviour {
 	}
 
 	private void Start() {
+		cameraStartingPosition = transform.position;
+		cameraStartingRotation = transform.rotation;
+		transform.position = CannonCameraPosition.Instance.transform.position;
+		transform.rotation = CannonCameraPosition.Instance.transform.rotation;
 		if (!GameController.Instance.isDebugTestLevelMode) {
 			horizontalMovementLocked = !LevelController.Instance.settings.isHorizontalCameraMovementEnabled;
 			verticalMovementLocked = !LevelController.Instance.settings.isVerticalCameraMovementEnabled;
 		}
+	}
+
+	public void StartCinematic() {
+		StartCoroutine(SweepToStartingPosition());
 	}
 
 	public void StartTracking(Transform target) {
@@ -54,8 +72,8 @@ public class CameraController : MonoBehaviour {
 
 		if (!initializedOffsets) {
 			initializedOffsets = true;
-			offset = target.position - transform.position;
-			cameraStartingPosition = transform.position;
+			offset = target.position - cameraStartingPosition;
+			//cameraStartingPosition = transform.position;
 		}
 
 	}
@@ -71,6 +89,11 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
+	private void WormDied(Vector3 deathPos) {
+		StopTracking();
+		StartCoroutine(SweepToDeathPosition(deathPos));
+	}
+
 	IEnumerator SweepToVictoryPosition(Transform victoryTransform) {
 		float timer = 0f;
 		Vector3 defPosition = transform.position;
@@ -83,12 +106,34 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
+	IEnumerator SweepToStartingPosition() {
+		Vector3 currPos = transform.position;
+		float timer = 0f;
+		while (timer <= startingSweepTime) {
+			timer += Time.deltaTime;
+			transform.position = Vector3.Lerp(currPos, cameraStartingPosition, startSweepCurve.Evaluate(timer / startingSweepTime));
+			transform.rotation = Quaternion.Lerp(CannonCameraPosition.Instance.transform.rotation, cameraStartingRotation, startSweepCurve.Evaluate(timer / startingSweepTime));
+			yield return null;
+		}
+	}
+
+	IEnumerator SweepToDeathPosition(Vector3 deathPosition) {
+		Vector3 currPosition = transform.position;
+		float timer = 0f;
+		while (timer <= deathSweepTime) {
+			timer += Time.unscaledDeltaTime;
+			transform.position = Vector3.Lerp(currPosition, deathPosition + deathCameraOffset, deathSweepCurve.Evaluate(timer / deathSweepTime));
+			transform.rotation = Quaternion.Lerp(cameraStartingRotation, Quaternion.Euler(deathCameraEulerRot.x,deathCameraEulerRot.y,deathCameraEulerRot.z), deathSweepCurve.Evaluate(timer / deathSweepTime));
+			yield return null;
+		}
+	}
+
 	private Transform GetVictoryCameraTransfom() {
 		return VictoryCameraPosition.Instance.transform;
 	}
 
 	void LateUpdate () {
-		if (target != null) {
+		if (target != null && target.gameObject.activeSelf) {
 			Vector3 wormCameraPosition = target.position - offset;
 			if(!horizontalMovementLocked)
 			if (Mathf.Abs(wormCameraPosition.x - transform.position.x) > xDifferenceAllowed) {
@@ -119,6 +164,7 @@ public class CameraController : MonoBehaviour {
 		Vector3 currentCameraPosition = transform.position;
 		while (timer <= ConfigDatabase.Instance.reinitalizingDuration) {
 			transform.position = Vector3.Lerp(currentCameraPosition, cameraStartingPosition, timer / ConfigDatabase.Instance.reinitalizingDuration);
+			transform.rotation = cameraStartingRotation;
 			timer += Time.deltaTime;
 			yield return null;
 		}
