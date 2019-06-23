@@ -69,7 +69,7 @@ public class IngamePanel : FaderPanel {
 		GameController.Instance.GameStarted += ShowLevelInfo;
 	}
 
-	private void ShowLevelInfo() {
+	private void ShowLevelInfo(bool fastStart) {
 		string levelName, triesText;
 		if (!GameController.Instance.isDebugTestLevelMode) {
 			levelName = "Stage " + (LevelController.Instance.currentLevelIndex+1).ToString();

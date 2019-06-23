@@ -30,7 +30,7 @@ public class GameController : MonoBehaviour {
 	public bool gameControllerControlsTime = true;
 	public bool wormInputEnabled = true;
 
-	public Action GameStarted = delegate { };
+	public Action<bool> GameStarted = delegate { };
 	public Action GameInitialized = delegate { }; //First initialization
 	public Action<bool> GameFinished = delegate { };
 	public Action ReinitalizeGame = delegate { };
@@ -141,7 +141,7 @@ public class GameController : MonoBehaviour {
 		yield return null;
 
 		CameraController.Instance.StartCinematic();
-		StartTheGame();
+		StartTheGame(false);
 	}
 
 	private void Update() {
@@ -155,12 +155,12 @@ public class GameController : MonoBehaviour {
 		}
 	}
 
-	private void StartTheGame() {
+	private void StartTheGame(bool fastStart) {
 		if (!isDebugTestLevelMode) {
 			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
 			saveData.numberOfTries++;
 		}
-		GameStarted();
+		GameStarted(fastStart);
 		currentGameState = GameState.GameStarted;
 	}
 
@@ -229,7 +229,7 @@ public class GameController : MonoBehaviour {
 		CameraController.Instance.SwitchGreyScale(false);
 		FlashTransition.Instance.TransitionOut();
 		//ImageTransitionHandler.Instance.TransitionOut();
-		StartTheGame();
+		StartTheGame(true);
 	}
 
 	public void PauseGame() {

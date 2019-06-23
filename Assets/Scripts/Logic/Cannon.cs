@@ -39,29 +39,34 @@ public class Cannon : LevelObject {
 		}
 	}
 
-	private void StartGame() {
-		ShootWorm(ConfigDatabase.Instance.wormPrefab);
+	private void StartGame(bool fastStart) {
+		ShootWorm(ConfigDatabase.Instance.wormPrefab, fastStart);
 	}
 
-	private void ShootWorm(Worm worm) {
-		StartCoroutine(Shoot(worm));
+	private void ShootWorm(Worm worm, bool fastStart) {
+		StartCoroutine(Shoot(worm, fastStart));
 	}
 
-	IEnumerator Shoot(Worm worm) {
+	IEnumerator Shoot(Worm worm, bool fastStart) {
+		if(!fastStart)
 		wormInTheCannon.Play(wormInTheCannonAnimationName, 0, 0f);
 		Worm instantiatedWorm = Instantiate(worm, cannonMouthPositionObject.transform.position, worm.transform.rotation) as Worm;
 		instantiatedWorm.Initialize();
 		GameController.Instance.currentWorm = instantiatedWorm;
 
 		instantiatedWorm.gameObject.SetActive(false);
-		float windUpTimer = 0f;
 		Quaternion defRootRotation = rootObject.transform.rotation;
 		Quaternion tarRootRotation = rootObject.transform.rotation * Quaternion.Euler(new Vector3(-aimAngle, 0f, 0f));
-		float windUpTime = 2f;
-		while (windUpTimer <= windUpTime) {
-			windUpTimer += Time.deltaTime;
-			rootObject.transform.rotation = Quaternion.LerpUnclamped(defRootRotation, tarRootRotation, aimingCurve.Evaluate(windUpTimer / windUpTime));
-			yield return null;
+		if (!fastStart) {
+			float windUpTimer = 0f;
+			float windUpTime = 2f;
+			while (windUpTimer <= windUpTime) {
+				windUpTimer += Time.deltaTime;
+				rootObject.transform.rotation = Quaternion.LerpUnclamped(defRootRotation, tarRootRotation, aimingCurve.Evaluate(windUpTimer / windUpTime));
+				yield return null;
+			}
+		} else {
+			rootObject.transform.rotation = tarRootRotation;
 		}
 		rootObject.transform.rotation = tarRootRotation;
 		anim.Play(cannonShootAnimationName, 0, 0f);
