@@ -27,7 +27,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _GreyScale: 1
-    - _T: 0
+    - _GreyScale: 0
+    - _T: 0.9427699
     - _UseMask: 0
     m_Colors: []

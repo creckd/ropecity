@@ -11,8 +11,9 @@ public class Cannon : LevelObject {
 	public GameObject cannonMouthPositionObject;
 	public GameObject rootObject;
 	public ParticleSystem explosionParticle;
-	public GameObject wormInTheCannon;
+	public Animator wormInTheCannon;
 
+	private const string wormInTheCannonAnimationName = "GettingReady";
 	private const string cannonShootAnimationName = "Armature|CannonShoot";
 	private Animator anim;
 	private Quaternion defaultRootRotation;
@@ -47,6 +48,7 @@ public class Cannon : LevelObject {
 	}
 
 	IEnumerator Shoot(Worm worm) {
+		wormInTheCannon.Play(wormInTheCannonAnimationName, 0, 0f);
 		Worm instantiatedWorm = Instantiate(worm, cannonMouthPositionObject.transform.position, worm.transform.rotation) as Worm;
 		instantiatedWorm.Initialize();
 		GameController.Instance.currentWorm = instantiatedWorm;
