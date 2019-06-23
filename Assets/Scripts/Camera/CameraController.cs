@@ -40,11 +40,18 @@ public class CameraController : MonoBehaviour {
 	private float lastHookedPositionY = 0f;
 	private float lastHookedTime = 0f;
 
+	public SimpleImageEffectApplier greyScaleImgEffect;
+
 	private void Awake() {
 		GameController.Instance.GameFinished += GameFinished;
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
 		GameController.Instance.LandedHook += LandedHook;
 		GameController.Instance.WormDiedAtPosition += WormDied;
+		greyScaleImgEffect.enabled = false;
+	}
+
+	public void SwitchGreyScale(bool state) {
+		greyScaleImgEffect.enabled = state;
 	}
 
 	private void LandedHook(Vector3 hp) {
@@ -91,6 +98,7 @@ public class CameraController : MonoBehaviour {
 
 	private void WormDied(Vector3 deathPos) {
 		StopTracking();
+		//IngameBlurController.Instance.BlurImage(0.25f, true, true, true);
 		StartCoroutine(SweepToDeathPosition(deathPos));
 	}
 
@@ -110,7 +118,7 @@ public class CameraController : MonoBehaviour {
 		Vector3 currPos = transform.position;
 		float timer = 0f;
 		while (timer <= startingSweepTime) {
-			timer += Time.deltaTime;
+			timer += Time.unscaledDeltaTime;
 			transform.position = Vector3.Lerp(currPos, cameraStartingPosition, startSweepCurve.Evaluate(timer / startingSweepTime));
 			transform.rotation = Quaternion.Lerp(CannonCameraPosition.Instance.transform.rotation, cameraStartingRotation, startSweepCurve.Evaluate(timer / startingSweepTime));
 			yield return null;

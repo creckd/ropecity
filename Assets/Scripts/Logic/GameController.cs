@@ -173,7 +173,10 @@ public class GameController : MonoBehaviour {
 		HideUIHookAid();
 		if (!success) {
 			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.failure);
-			targetTimeScale = ConfigDatabase.Instance.normalSpeed;
+			targetTimeScale = 0.3f;
+			Time.timeScale = 0.3f;
+			//targetTimeScale = ConfigDatabase.Instance.normalSpeed;
+			CameraController.Instance.SwitchGreyScale(true);
 			StartCoroutine(ReInitiliazeGameAfter());
 		} else {
 			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.victory);
@@ -205,7 +208,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator ReInitiliazeGameAfter() {
-		yield return new WaitForSeconds(0.25f);
+		yield return new WaitForSecondsRealtime(0.5f);
 		if (currentWorm != null)
 			currentWorm.Die();
 		ReInitGame();
@@ -216,13 +219,16 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator ReinitializingGame() {
-		ImageTransitionHandler.Instance.TransitionIn();
-		yield return new WaitForSecondsRealtime(ConfigDatabase.Instance.transitionTime);
+		FlashTransition.Instance.TransitionIn();
+		//ImageTransitionHandler.Instance.TransitionIn();
+		yield return new WaitForSecondsRealtime(0.5f);
 		targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 		canStartSlowingTime = false;
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
-		ImageTransitionHandler.Instance.TransitionOut();
+		CameraController.Instance.SwitchGreyScale(false);
+		FlashTransition.Instance.TransitionOut();
+		//ImageTransitionHandler.Instance.TransitionOut();
 		StartTheGame();
 	}
 
