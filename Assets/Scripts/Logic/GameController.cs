@@ -173,8 +173,8 @@ public class GameController : MonoBehaviour {
 		HideUIHookAid();
 		if (!success) {
 			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.failure);
-			targetTimeScale = 0.3f;
-			Time.timeScale = 0.3f;
+			targetTimeScale = 0.35f;
+			Time.timeScale = 0.35f;
 			//targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 			CameraController.Instance.SwitchGreyScale(true);
 			StartCoroutine(ReInitiliazeGameAfter());

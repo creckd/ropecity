@@ -159,7 +159,26 @@ public class CameraController : MonoBehaviour {
 				float diff = wormY - transform.position.y;
 				transform.position += Vector3.up * Mathf.Sign(diff) * Mathf.Abs(yDifferenceAllowed - Mathf.Abs(diff)) * Time.deltaTime * compensationSpeed;
 			}
+			if(GameController.Instance.currentGameState == GameState.GameStarted)
+			CheckIfWormInsideCamera();
 		}
+	}
+
+	void CheckIfWormInsideCamera() {
+		Camera cam = GetComponent<Camera>();
+		Worm worm = GameController.Instance.currentWorm;
+		float distance = (worm.transform.position - transform.position).magnitude;
+		float frustumHeight = 2.0f * distance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad);
+		float frustumWidth = frustumHeight * cam.aspect;
+
+		bool wormOutOfView = false;
+		if (Mathf.Abs(worm.transform.position.x - transform.position.x) > frustumWidth / 2f)
+			wormOutOfView = true;
+		if (Mathf.Abs(worm.transform.position.y - transform.position.y) > frustumHeight / 2f)
+			wormOutOfView = true;
+
+		if (wormOutOfView)
+			worm.Die();
 	}
 
 
