@@ -2,6 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public enum CharacterType {
+	Jim,
+	Toilee,
+	Hutton,
+	Freddie,
+	Parson
+}
+
+[System.Serializable]
+public class CharacterData {
+	public CharacterType characterType;
+	public string characterName {
+		get {
+			return characterType.ToString();
+		}
+	}
+}
+
 public class ConfigDatabase : MonoBehaviour {
 
 	private static ConfigDatabase instance = null;
@@ -69,4 +88,7 @@ public class ConfigDatabase : MonoBehaviour {
 	public AnimationCurve transitionInCurve;
 	public AnimationCurve transitionOutCurve;
 	public float transitionTime = 1f;
+
+	[Header("Characters")]
+	public CharacterData[] characters;
 }

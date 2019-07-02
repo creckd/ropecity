@@ -163,3 +163,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   transitionTime: 0.75
+  characters:
+  - characterType: 0
+  - characterType: 1
+  - characterType: 2
+  - characterType: 3
+  - characterType: 4
+  - characterType: 4

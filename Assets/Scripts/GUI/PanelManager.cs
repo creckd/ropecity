@@ -16,6 +16,7 @@ public class PanelManager : MonoBehaviour {
 	}
 
 	public const string defaultOpenedPanelChangedTag = "DefaultOpenedPanelShouldBeThisPanel";
+	public int defaultPanelID = 0;
 
 	public List<Panel> panels = new List<Panel>();
 
@@ -33,7 +34,6 @@ public class PanelManager : MonoBehaviour {
 		foreach (var panel in panels) {
 			panel.Initialize();
 		}
-		int defaultPanelID = 0;
 		object data;
 		if (Messenger.Instance.GetMessage(defaultOpenedPanelChangedTag, out data))
 			defaultPanelID = (int)data;
