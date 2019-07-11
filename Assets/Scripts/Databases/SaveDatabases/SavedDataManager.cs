@@ -52,6 +52,15 @@ public class SavedDataManager : MonoBehaviour {
 		return savedData.levelSaveDatabase.levelSaveDatas[levelIndex];
 	}
 
+	public GeneralSaveDatabase.CharacterSaveData GetCharacterSaveDataWithCharacterType(CharacterType characterType) {
+		GeneralSaveDatabase.CharacterSaveData cData = null;
+		for (int i = 0; i < savedData.generalSaveDatabase.charactersSaveData.Length; i++) {
+			if (savedData.generalSaveDatabase.charactersSaveData[i].characterType == characterType)
+				cData = savedData.generalSaveDatabase.charactersSaveData[i];
+		}
+		return cData;
+	}
+
 	public void Load() {
 		bool saveExists = File.Exists(Application.persistentDataPath + fileName);
 

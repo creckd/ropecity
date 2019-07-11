@@ -164,9 +164,27 @@ MonoBehaviour:
     m_RotationOrder: 4
   transitionTime: 0.75
   characters:
-  - characterType: 0
-  - characterType: 1
-  - characterType: 2
-  - characterType: 3
-  - characterType: 4
-  - characterType: 4
+  - characterName: Jim Hutton
+    characterType: 0
+    characterPrice: 1
+    videoAdCost: 0
+  - characterName: Jr. Toilee
+    characterType: 1
+    characterPrice: 1
+    videoAdCost: 0
+  - characterName: Hutton Boy
+    characterType: 2
+    characterPrice: 1
+    videoAdCost: 0
+  - characterName: Freddie Mercury
+    characterType: 3
+    characterPrice: 1
+    videoAdCost: 0
+  - characterName: Jim Parson
+    characterType: 4
+    characterPrice: 1
+    videoAdCost: 0
+  - characterName: Tim Burton
+    characterType: 5
+    characterPrice: 0
+    videoAdCost: 0

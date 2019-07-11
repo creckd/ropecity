@@ -1896,7 +1896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27faa2fe538fce1498ad540897449dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultPanelID: 3
+  defaultPanelID: 0
   panels:
   - {fileID: 1330353494}
   - {fileID: 465135405}

@@ -8,17 +8,22 @@ public enum CharacterType {
 	Toilee,
 	Hutton,
 	Freddie,
-	Parson
+	Parson,
+	Tim
+}
+
+[System.Serializable]
+public enum PriceType {
+	VideoAD,
+	IAP
 }
 
 [System.Serializable]
 public class CharacterData {
+	public string characterName;
 	public CharacterType characterType;
-	public string characterName {
-		get {
-			return characterType.ToString();
-		}
-	}
+	public PriceType characterPrice;
+	public int videoAdCost = 0;
 }
 
 public class ConfigDatabase : MonoBehaviour {
@@ -91,4 +96,13 @@ public class ConfigDatabase : MonoBehaviour {
 
 	[Header("Characters")]
 	public CharacterData[] characters;
+
+	public CharacterData GetCharacterDataWithType(CharacterType type) {
+		CharacterData data = null;
+		for (int i = 0; i < characters.Length; i++) {
+			if (characters[i].characterType == type)
+				data = characters[i];
+		}
+		return data;
+	}
 }
