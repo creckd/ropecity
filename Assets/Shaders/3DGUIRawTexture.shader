@@ -49,7 +49,7 @@
 				half4 mainCol = tex2D(_MainTex,i.uv);
 				half3 maskRGB = half3(0, 0, 0);
 				float difference = saturate(abs(mainCol.r - maskRGB.r) + abs(mainCol.g - maskRGB.g) + abs(mainCol.b - maskRGB.b));
-				mainCol.a = 1 - step(difference, 0.3);
+				mainCol.a = 1 - step(difference, 0.5);
 				return mainCol * _TintColor;
 			}
 			ENDCG
