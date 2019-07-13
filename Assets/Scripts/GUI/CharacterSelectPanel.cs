@@ -12,6 +12,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public Button buyButton;
 	public Button selectButton;
 	public Text characterName;
+	public Image rarityImage;
 
 	public override void Initialize() {
 		base.Initialize();
@@ -36,6 +37,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 		selectButton.gameObject.SetActive(false);
 
 		characterName.text = selectedCharData.characterName;
+		rarityImage.color = ConfigDatabase.Instance.GetRarityColor(selectedCharData.characterRarity);
 
 		if (selectedCharSaveData.owned)
 			selectButton.gameObject.SetActive(true);

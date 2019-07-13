@@ -2205,6 +2205,7 @@ MonoBehaviour:
   buyButton: {fileID: 114539851115683634}
   selectButton: {fileID: 114018722473581560}
   characterName: {fileID: 114366286244776698}
+  rarityImage: {fileID: 114634320545279872}
 --- !u!114 &114629518539462216
 MonoBehaviour:
   m_ObjectHideFlags: 1

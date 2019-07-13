@@ -13,6 +13,15 @@ public enum CharacterType {
 }
 
 [System.Serializable]
+public enum RarityType {
+	Common,
+	Uncommon,
+	Rare,
+	Epic,
+	Legendary
+}
+
+[System.Serializable]
 public enum PriceType {
 	VideoAD,
 	IAP
@@ -22,6 +31,7 @@ public enum PriceType {
 public class CharacterData {
 	public string characterName;
 	public CharacterType characterType;
+	public RarityType characterRarity;
 	public PriceType characterPrice;
 	public int videoAdCost = 0;
 }
@@ -96,6 +106,11 @@ public class ConfigDatabase : MonoBehaviour {
 
 	[Header("Characters")]
 	public CharacterData[] characters;
+	public Color commonRarityColor;
+	public Color unCommonRarityColor;
+	public Color rareRarityColor;
+	public Color epicRarityColor;
+	public Color legendaryRarityColor;
 
 	public CharacterData GetCharacterDataWithType(CharacterType type) {
 		CharacterData data = null;
@@ -104,5 +119,21 @@ public class ConfigDatabase : MonoBehaviour {
 				data = characters[i];
 		}
 		return data;
+	}
+
+	public Color GetRarityColor(RarityType rarity) {
+		switch (rarity) {
+			case RarityType.Common:
+				return commonRarityColor;
+			case RarityType.Uncommon:
+				return unCommonRarityColor;
+			case RarityType.Rare:
+				return rareRarityColor;
+			case RarityType.Epic:
+				return epicRarityColor;
+			case RarityType.Legendary:
+				return legendaryRarityColor;
+		}
+		return new Color(1f, 0.07f, 0.576f);
 	}
 }
