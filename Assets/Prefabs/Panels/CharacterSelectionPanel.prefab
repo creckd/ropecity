@@ -404,6 +404,7 @@ GameObject:
   - component: {fileID: 224408893686886438}
   - component: {fileID: 20505065149654630}
   - component: {fileID: 114480270346149870}
+  - component: {fileID: 114297031589392974}
   m_Layer: 13
   m_Name: 3DGuiCamera
   m_TagString: Untagged
@@ -1446,7 +1447,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 100
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -1791,6 +1792,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114297031589392974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1342959569560848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 1a862d3844e3c77439772b2f75d65648, type: 2}
 --- !u!114 &114300956404125350
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1995,7 +2008,7 @@ MonoBehaviour:
   m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: d0e2e707bc4a8fd4098c655292a068fa, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
@@ -2463,7 +2476,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 4d7c69820fc32974db56e3027c62e213, type: 2}
+  - {fileID: 2100000, guid: 15eed98902ad7f4458a334f72f5140da, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
