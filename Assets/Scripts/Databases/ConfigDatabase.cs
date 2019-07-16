@@ -4,12 +4,9 @@ using UnityEngine;
 
 [System.Serializable]
 public enum CharacterType {
-	Jim,
+	Worm,
 	Toilee,
-	Hutton,
-	Freddie,
-	Parson,
-	Tim
+	Blob
 }
 
 [System.Serializable]

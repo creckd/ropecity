@@ -164,35 +164,20 @@ MonoBehaviour:
     m_RotationOrder: 4
   transitionTime: 0.75
   characters:
-  - characterName: Jim Hutton
+  - characterName: Tony, the Worm
     characterType: 0
     characterRarity: 0
     characterPrice: 1
     videoAdCost: 0
-  - characterName: Jr. Toilee
-    characterType: 1
-    characterRarity: 1
-    characterPrice: 1
-    videoAdCost: 0
-  - characterName: Hutton Boy
+  - characterName: Mr. Blob
     characterType: 2
     characterRarity: 2
     characterPrice: 1
     videoAdCost: 0
-  - characterName: Freddie Mercury
-    characterType: 3
-    characterRarity: 3
-    characterPrice: 1
-    videoAdCost: 0
-  - characterName: Jim Parson
-    characterType: 4
-    characterRarity: 3
-    characterPrice: 1
-    videoAdCost: 0
-  - characterName: Tim Burton
-    characterType: 5
+  - characterName: Toilee
+    characterType: 1
     characterRarity: 4
-    characterPrice: 0
+    characterPrice: 1
     videoAdCost: 0
   commonRarityColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   unCommonRarityColor: {r: 0.14783564, g: 0.6981132, b: 0, a: 1}
