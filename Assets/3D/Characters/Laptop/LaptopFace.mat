@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: BlobBody
-  m_Shader: {fileID: 4800000, guid: 42bd12aee4073754d9f96a04948d06dc, type: 3}
+  m_Name: LaptopFace
+  m_Shader: {fileID: 4800000, guid: e980a5a7e503f634e802d9580421ab82, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -38,8 +38,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _HappyFace:
+        m_Texture: {fileID: 2800000, guid: 5cf183d266b40494ebda09dc3300e987, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 767039de48a3e0b4db58f9f873e9a1ed, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -72,6 +76,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+    - _BackgroundColor: {r: 0.07796369, g: 0.2264151, b: 0.09820704, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _TintColor: {r: 0.11320752, g: 0.11320752, b: 0.11320752, a: 1}
+    - _FaceColor: {r: 0, g: 1, b: 0.10499668, a: 1}
+    - _TintColor: {r: 1, g: 1, b: 1, a: 1}

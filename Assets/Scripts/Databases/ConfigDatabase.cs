@@ -6,7 +6,8 @@ using UnityEngine;
 public enum CharacterType {
 	Worm,
 	Toilee,
-	Blob
+	Blob,
+	Laptop
 }
 
 [System.Serializable]
