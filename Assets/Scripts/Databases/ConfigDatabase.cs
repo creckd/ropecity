@@ -7,7 +7,8 @@ public enum CharacterType {
 	Worm,
 	Toilee,
 	Blob,
-	Laptop
+	Laptop,
+	Froggy
 }
 
 [System.Serializable]

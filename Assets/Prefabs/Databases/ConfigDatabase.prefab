@@ -181,7 +181,12 @@ MonoBehaviour:
     videoAdCost: 0
   - characterName: Com Pewter
     characterType: 3
-    characterRarity: 3
+    characterRarity: 1
+    characterPrice: 1
+    videoAdCost: 0
+  - characterName: Hip Hop
+    characterType: 4
+    characterRarity: 2
     characterPrice: 1
     videoAdCost: 0
   commonRarityColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
