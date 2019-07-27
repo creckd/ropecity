@@ -8,7 +8,8 @@ public enum CharacterType {
 	Toilee,
 	Blob,
 	Laptop,
-	Froggy
+	Froggy,
+	Kino
 }
 
 [System.Serializable]
