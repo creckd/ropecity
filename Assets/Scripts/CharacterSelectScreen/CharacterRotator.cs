@@ -27,14 +27,11 @@ public class CharacterRotator : MonoBehaviour {
             characterPad.transform.position = transform.position + (-transform.forward * radius);
             characterPad.transform.RotateAround(transform.position, Vector3.up, degreePerObject * i);
             characterPad.transform.rotation = Quaternion.identity;
+			characterPad.transform.LookAt(characterPad.transform.position - (characterPad.transform.position - transform.position).normalized, Vector3.up);
 			characterPad.InitalizeCharacter(cData.characterType);
 
             createdObjects.Add(characterPad);
         }
-
-		foreach (var spObj in createdObjects) {
-			spObj.transform.LookAt(spObj.transform.position - (spObj.transform.position - transform.position).normalized, Vector3.up);
-		}
 
 		closestObj = createdObjects[0].gameObject;
 		samplePad.gameObject.SetActive(false);
@@ -64,6 +61,7 @@ public class CharacterRotator : MonoBehaviour {
         }
         if (prevIndex != currentlySelectedCharIndex) {
 			OnNewCharacterPadSelected(createdObjects[currentlySelectedCharIndex]);
+			createdObjects[prevIndex].Defocused();
         }
 
         if (!beingDragged)

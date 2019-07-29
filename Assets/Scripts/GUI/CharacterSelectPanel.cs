@@ -2,9 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CharacterSelectPanel : AnimatorPanel {
+
+	public float platformRotateSpeed = 1f;
+
 	public CharacterRotator rotator;
 	public CharacterDragArea dragArea;
 
@@ -14,6 +18,9 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public Text characterName;
 	public Image rarityImage;
 
+	private bool characterRotationInProgress = false;
+	private bool rotateForward = false;
+
 	public override void Initialize() {
 		base.Initialize();
 		rotator.OnNewCharacterPadSelected += NewCharacterPadSelected;
@@ -21,6 +28,10 @@ public class CharacterSelectPanel : AnimatorPanel {
 
 		dragArea.OnDragging += OnDragging;
 		dragArea.DragFinished += DraggingFinished;
+	}
+
+	private void Update() {
+		ApplyPlatformRotation();
 	}
 
 	private void NewCharacterPadSelected(CharacterPad obj) {
@@ -62,5 +73,25 @@ public class CharacterSelectPanel : AnimatorPanel {
 	private void DraggingFinished(Vector2 xDelta) {
 		rotator.SetVelocity(-xDelta.x);
 		rotator.beingDragged = false;
+	}
+
+	private void ApplyPlatformRotation() {
+		if (characterRotationInProgress) {
+			int sign = System.Convert.ToInt32(rotateForward) * 2 - 1;
+			rotator.GetCurrentlySelectedPad().RotatePlatform(platformRotateSpeed * sign);
+		}
+	}
+
+	public void StartRotateCurrentlySelectedCharacter(bool rotateForward) {
+		if (!characterRotationInProgress) {
+			rotator.GetCurrentlySelectedPad().snapToForwardRotationConstantly = false;
+			characterRotationInProgress = true;
+			this.rotateForward = rotateForward;
+		}
+	}
+
+	public void StopPlatformRotation() {
+		characterRotationInProgress = false;
+		rotateForward = false;
 	}
 }
