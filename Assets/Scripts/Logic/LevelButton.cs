@@ -13,6 +13,7 @@ public class LevelButton : MonoBehaviour {
 	public Image paddleLock;
 	public Image checkBoxImage;
 	public Image completedMarker;
+	public Image lastPlayedLevelMarker;
 
 	[System.Serializable]
 	public class CharacterSilhouette {
@@ -45,6 +46,8 @@ public class LevelButton : MonoBehaviour {
 	}
 
 	private void RefreshButtonState() {
+
+		lastPlayedLevelMarker.gameObject.SetActive(SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex == levelIndex);
 
 		if (levelCompleted) {
 			chains.gameObject.SetActive(false);

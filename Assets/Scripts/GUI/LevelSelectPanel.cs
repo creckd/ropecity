@@ -174,6 +174,7 @@ public class LevelSelectPanel : AnimatorPanel {
 	}
 
 	public void PlayLevel(int levelIndex) {
+		SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex = levelIndex;
 		DeactivatePanelButtons();
 		ImageTransitionHandler.Instance.TransitionIn(() => { StartLevel(levelIndex); });
 	}

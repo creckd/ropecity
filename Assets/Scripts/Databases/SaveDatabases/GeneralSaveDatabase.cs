@@ -7,12 +7,12 @@ public class GeneralSaveDatabase {
 		public bool owned = false;
 	}
 
-	public int lastPlayedLevelIndex = 0;
+	public int lastPlayedLevelIndex = -1;
 	public CharacterSaveData[] charactersSaveData;
 	public CharacterType currentlyEquippedCharacterType = CharacterType.Worm;
 
 	public void CreateEmpty() {
-		lastPlayedLevelIndex = 0;
+		lastPlayedLevelIndex = -1;
 		charactersSaveData = new CharacterSaveData[ConfigDatabase.Instance.characters.Length];
 		for (int i = 0; i < ConfigDatabase.Instance.characters.Length; i++) {
 			charactersSaveData[i] = new CharacterSaveData();
