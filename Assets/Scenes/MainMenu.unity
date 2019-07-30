@@ -1832,12 +1832,12 @@ Transform:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 224199548993960120, guid: 1ba8abff12719b94d9cfd779a0549acb,
     type: 2}
-  m_PrefabInternal: {fileID: 914424172}
+  m_PrefabInternal: {fileID: 911146415}
 --- !u!114 &778514635 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114614560529198638, guid: 1ba8abff12719b94d9cfd779a0549acb,
     type: 2}
-  m_PrefabInternal: {fileID: 914424172}
+  m_PrefabInternal: {fileID: 911146415}
   m_Script: {fileID: 11500000, guid: d1c0d1591f7c35c418e563d4413566a2, type: 3}
 --- !u!1 &809007122
 GameObject:
@@ -2098,7 +2098,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4573588348356560, guid: 931d6e04edcf85542b862293c381c055,
     type: 2}
   m_PrefabInternal: {fileID: 233014180}
---- !u!1001 &914424172
+--- !u!1001 &911146415
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -2194,25 +2194,6 @@ Prefab:
         type: 2}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1886583440338984, guid: 1ba8abff12719b94d9cfd779a0549acb, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114453066406810092, guid: 1ba8abff12719b94d9cfd779a0549acb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114453066406810092, guid: 1ba8abff12719b94d9cfd779a0549acb,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114614560529198638, guid: 1ba8abff12719b94d9cfd779a0549acb,
-        type: 2}
-      propertyPath: platformRotateSpeed
-      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ba8abff12719b94d9cfd779a0549acb, type: 2}
@@ -2325,58 +2306,6 @@ Transform:
   m_Father: {fileID: 1329656692}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &947000133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1804417530924984, guid: 1ba8abff12719b94d9cfd779a0549acb,
-    type: 2}
-  m_PrefabInternal: {fileID: 914424172}
---- !u!114 &947000137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 947000133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 778514635}
-          m_MethodName: StartRotateCurrentlySelectedCharacter
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 778514635}
-          m_MethodName: StopPlatformRotation
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 1
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!1 &962975411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3971,58 +3900,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4573588348356560, guid: 931d6e04edcf85542b862293c381c055,
     type: 2}
   m_PrefabInternal: {fileID: 1740353701}
---- !u!1 &1791101404 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1028809045721060, guid: 1ba8abff12719b94d9cfd779a0549acb,
-    type: 2}
-  m_PrefabInternal: {fileID: 914424172}
---- !u!114 &1791101408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1791101404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 778514635}
-          m_MethodName: StartRotateCurrentlySelectedCharacter
-          m_Mode: 6
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 778514635}
-          m_MethodName: StopPlatformRotation
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
-        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  delegates: []
 --- !u!1 &1801285175
 GameObject:
   m_ObjectHideFlags: 0

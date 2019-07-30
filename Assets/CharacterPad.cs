@@ -6,8 +6,13 @@ public class CharacterPad : MonoBehaviour {
 
 	[HideInInspector]
 	public CharacterType initializedType;
+
 	public PlatformCharacter[] platformCharacterObjects;
+
+	[HideInInspector]
 	public bool snapToForwardRotationConstantly = false;
+
+	public GameObject selectionEffect;
 
 	private PlatformCharacter initializedPlatformCharacter = null;
 
@@ -57,5 +62,10 @@ public class CharacterPad : MonoBehaviour {
 
 	public void Defocused() {
 		snapToForwardRotationConstantly = true;
+	}
+
+	public void RefreshGraphics() {
+		bool chosenOne = initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
+		selectionEffect.gameObject.SetActive(chosenOne);
 	}
 }

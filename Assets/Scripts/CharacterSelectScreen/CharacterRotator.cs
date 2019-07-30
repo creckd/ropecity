@@ -29,6 +29,7 @@ public class CharacterRotator : MonoBehaviour {
             characterPad.transform.rotation = Quaternion.identity;
 			characterPad.transform.LookAt(characterPad.transform.position - (characterPad.transform.position - transform.position).normalized, Vector3.up);
 			characterPad.InitalizeCharacter(cData.characterType);
+			characterPad.RefreshGraphics();
 
             createdObjects.Add(characterPad);
         }
@@ -50,6 +51,11 @@ public class CharacterRotator : MonoBehaviour {
 		transform.Rotate(new Vector3(0f, xDelta * sensitivity, 0f));
 	}
 
+	public void RefreshAllPlatformGraphics() {
+		foreach (var cO in createdObjects) {
+			cO.RefreshGraphics();
+		}
+	}
 
     void Update() {
         int prevIndex = currentlySelectedCharIndex;

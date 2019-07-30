@@ -23,7 +23,7 @@ public enum RarityType {
 
 [System.Serializable]
 public enum PriceType {
-	VideoAD,
+	UnlockedByLevel,
 	IAP
 }
 
@@ -33,7 +33,7 @@ public class CharacterData {
 	public CharacterType characterType;
 	public RarityType characterRarity;
 	public PriceType characterPrice;
-	public int videoAdCost = 0;
+	public int unlockedByLevelIndex;
 }
 
 public class ConfigDatabase : MonoBehaviour {

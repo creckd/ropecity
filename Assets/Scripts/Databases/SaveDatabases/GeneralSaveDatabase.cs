@@ -1,4 +1,6 @@
-﻿public class GeneralSaveDatabase {
+﻿using System;
+
+public class GeneralSaveDatabase {
 
 	public class CharacterSaveData {
 		public CharacterType characterType;
@@ -7,6 +9,7 @@
 
 	public int lastPlayedLevelIndex = 0;
 	public CharacterSaveData[] charactersSaveData;
+	public CharacterType currentlyEquippedCharacterType = CharacterType.Worm;
 
 	public void CreateEmpty() {
 		lastPlayedLevelIndex = 0;

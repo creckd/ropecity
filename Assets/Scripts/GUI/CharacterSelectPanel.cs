@@ -12,7 +12,8 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public CharacterRotator rotator;
 	public CharacterDragArea dragArea;
 
-	public Button videoAdButton;
+	public Button unlockedByLevelButton;
+	public Text stageText;
 	public Button buyButton;
 	public Button selectButton;
 	public Text characterName;
@@ -43,7 +44,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 		CharacterData selectedCharData = ConfigDatabase.Instance.GetCharacterDataWithType(selectedCharacterType);
 		GeneralSaveDatabase.CharacterSaveData selectedCharSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(selectedCharacterType);
 
-		videoAdButton.gameObject.SetActive(false);
+		unlockedByLevelButton.gameObject.SetActive(false);
 		buyButton.gameObject.SetActive(false);
 		selectButton.gameObject.SetActive(false);
 
@@ -54,15 +55,15 @@ public class CharacterSelectPanel : AnimatorPanel {
 			selectButton.gameObject.SetActive(true);
 		else {
 			switch (selectedCharData.characterPrice) {
-				case PriceType.VideoAD:
-					videoAdButton.gameObject.SetActive(true);
+				case PriceType.UnlockedByLevel:
+					unlockedByLevelButton.gameObject.SetActive(true);
+					stageText.text = string.Format("Stage {0}",selectedCharData.unlockedByLevelIndex + 1);
 					break;
 				case PriceType.IAP:
 					buyButton.gameObject.SetActive(true);
 					break;
 			}
 		}
-
 	}
 
 	private void OnDragging(Vector2 xDelta) {
@@ -93,5 +94,18 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public void StopPlatformRotation() {
 		characterRotationInProgress = false;
 		rotateForward = false;
+	}
+
+	public void BuyCurrentlySelectedCharacter() {
+		CharacterType selectedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
+		GeneralSaveDatabase.CharacterSaveData selectedCharSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(selectedCharacterType);
+		selectedCharSaveData.owned = true;
+		RefreshCharacterDataGUI();
+		SavedDataManager.Instance.Save();
+	}
+
+	public void EquipCharacter() {
+		SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
+		rotator.RefreshAllPlatformGraphics();
 	}
 }
