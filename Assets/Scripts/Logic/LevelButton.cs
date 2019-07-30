@@ -14,6 +14,14 @@ public class LevelButton : MonoBehaviour {
 	public Image checkBoxImage;
 	public Image completedMarker;
 
+	[System.Serializable]
+	public class CharacterSilhouette {
+		public CharacterType type;
+		public GameObject silhouetteObject;
+	}
+
+	public CharacterSilhouette[] silhouettes;
+
 	private int levelIndex = 0;
 	private bool levelCompleted = false;
 	private bool levelLocked = false;
@@ -37,6 +45,7 @@ public class LevelButton : MonoBehaviour {
 	}
 
 	private void RefreshButtonState() {
+
 		if (levelCompleted) {
 			chains.gameObject.SetActive(false);
 			paddleLock.gameObject.SetActive(false);
@@ -50,12 +59,24 @@ public class LevelButton : MonoBehaviour {
 
 			levelNumberText.color = Color.gray;
 		} else {
-
 			chains.gameObject.SetActive(false);
 			paddleLock.gameObject.SetActive(false);
 			checkBoxImage.gameObject.SetActive(true);
 			completedMarker.gameObject.SetActive(false);
+		}
 
+		foreach (var silhouette in silhouettes) {
+			silhouette.silhouetteObject.gameObject.SetActive(false);
+		}
+		for (int i = 0; i < ConfigDatabase.Instance.characters.Length; i++) {
+			if (ConfigDatabase.Instance.characters[i].unlockedByLevelIndex == levelIndex) {
+				foreach (var silhouette in silhouettes) {
+					if (ConfigDatabase.Instance.characters[i].characterType == silhouette.type) {
+						silhouette.silhouetteObject.SetActive(true);
+						break;
+					}
+				}
+			}
 		}
 	}
 
