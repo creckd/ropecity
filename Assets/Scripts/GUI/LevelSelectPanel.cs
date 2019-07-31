@@ -44,11 +44,21 @@ public class LevelSelectPanel : AnimatorPanel {
 
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
-		OpenSection(0);
+		int defaultSectionToOpen = 0;
+		int lastPlayedLevelIndex = SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex;
+		if (lastPlayedLevelIndex != -1) {
+			defaultSectionToOpen = Mathf.CeilToInt((float)(lastPlayedLevelIndex + 1) / (LevelResourceDatabase.Instance.sections.Length * 2)) - 1;
+		}
+		OpenSection(defaultSectionToOpen);
 		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {
 			b.PlayAppearAnimation();
 		}
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.levelSelectOpening);
+	}
+
+	public override void OnOpened() {
+		base.OnOpened();
+		CheckForAnyCharactersUnlocked();
 	}
 
 	public override void OnStartedClosing() {
@@ -182,5 +192,30 @@ public class LevelSelectPanel : AnimatorPanel {
 	private void StartLevel(int levelIndex) {
 		Messenger.Instance.SendMessage(LevelIndexKey, levelIndex);
 		LoadingController.LoadScene("Game");
+	}
+
+	private void CheckForAnyCharactersUnlocked() {
+
+		bool characterWasUnlocked = false;
+
+		for (int i = 0; i < ConfigDatabase.Instance.characters.Length; i++) {
+			CharacterData characterConfigData = ConfigDatabase.Instance.characters[i];
+			GeneralSaveDatabase.CharacterSaveData characterSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(characterConfigData.characterType);
+
+			if (characterConfigData.characterPrice != PriceType.UnlockedByLevel || characterSaveData.owned)
+				continue;
+
+			LevelSaveDatabase.LevelSaveData levelSaveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(characterConfigData.unlockedByLevelIndex);
+			if (levelSaveData.isUnlocked && levelSaveData.levelCompleted && levelSaveData.numberOfTries > 0) {
+				characterWasUnlocked = true;
+				characterSaveData.owned = true;
+				Dictionary<object, object> message = new Dictionary<object, object>();
+				message.Add(UnlockedCharacterPopup.CharacterTypeMessageID, characterConfigData.characterType);
+				PopupManager.Instance.TryOpenPopup(0, message);
+			}
+		}
+
+		if(characterWasUnlocked)
+		SavedDataManager.Instance.Save();
 	}
 }
