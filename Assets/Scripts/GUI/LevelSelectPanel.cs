@@ -47,7 +47,8 @@ public class LevelSelectPanel : AnimatorPanel {
 		int defaultSectionToOpen = 0;
 		int lastPlayedLevelIndex = SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex;
 		if (lastPlayedLevelIndex != -1) {
-			defaultSectionToOpen = Mathf.CeilToInt((float)(lastPlayedLevelIndex + 1) / (LevelResourceDatabase.Instance.sections.Length * 2)) - 1;
+			int numberOfLevelsInASection = LevelResourceDatabase.Instance.sections[0].levelResourceNames.Length;
+			defaultSectionToOpen = Mathf.CeilToInt(((float)(lastPlayedLevelIndex) + 0.1f) / numberOfLevelsInASection) - 1;
 		}
 		OpenSection(defaultSectionToOpen);
 		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {
