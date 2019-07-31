@@ -8,6 +8,21 @@ public class Worm : MonoBehaviour {
 
 	private const string trailMaterialTransparencyName = "_Transparency";
 
+	private const string wormAnimatorHangingBoolProperty = "Hanging";
+
+	[System.Serializable]
+	public class WormSkin {
+		public CharacterType type;
+		public Animator skinAnimator;
+	}
+
+	[Header("Skins")]
+
+	public WormSkin[] wormSkins;
+	private WormSkin currentSkin = null;
+
+	[Header("Base")]
+
 	public LayerMask ropeLayerMask;
 	public LayerMask collisionLayerMask;
 	public GameObject ropeEndPrefab;
@@ -111,6 +126,8 @@ public class Worm : MonoBehaviour {
 		gravity = ConfigDatabase.Instance.gravityScale;
 		ropeEnd = Instantiate(ropeEndPrefab, transform.position, transform.rotation) as GameObject;
 		ropeEnd.gameObject.SetActive(false);
+
+		InitializeSkin(SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType);
 	}
 
 	public void DestroyWorm() {
@@ -150,6 +167,7 @@ public class Worm : MonoBehaviour {
 			ropeRenderer.positionCount = 0;
 			ropeEnd.gameObject.SetActive(false);
 			GameController.Instance.ReleasedHook();
+			currentSkin.skinAnimator.SetBool(wormAnimatorHangingBoolProperty, false);
 		}
 	}
 
@@ -204,6 +222,7 @@ public class Worm : MonoBehaviour {
 			GameController.Instance.HideUIHookAid();
 			hookHitParticle.transform.position = hit.point;
 			hookHitParticle.Play();
+			currentSkin.skinAnimator.SetBool(wormAnimatorHangingBoolProperty, true);
 		}
 	}
 
@@ -813,5 +832,23 @@ public class Worm : MonoBehaviour {
 			Gizmos.color = Color.yellow;
 			Gizmos.DrawSphere(hp.hookPosition, 0.25f);
 		}
+	}
+
+	private void InitializeSkin(CharacterType character) {
+		foreach (var s in wormSkins) {
+			s.skinAnimator.gameObject.SetActive(false);
+		}
+		WormSkin skin = GetSkin(character);
+		skin.skinAnimator.gameObject.SetActive(true);
+		skin.skinAnimator.SetBool(wormAnimatorHangingBoolProperty, false);
+		currentSkin = skin;
+	}
+
+	private WormSkin GetSkin(CharacterType type) {
+		foreach (var skin in wormSkins) {
+			if (skin.type == type)
+				return skin;
+		}
+		return null;
 	}
 }
