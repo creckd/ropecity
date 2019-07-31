@@ -124,14 +124,14 @@ GameObject:
   - component: {fileID: 224320993515113960}
   - component: {fileID: 222019696165936682}
   - component: {fileID: 95136426960609410}
-  - component: {fileID: 114455064827099572}
+  - component: {fileID: 114418230661260238}
   m_Layer: 5
   m_Name: OptionsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1180342161747524
 GameObject:
   m_ObjectHideFlags: 1
@@ -759,6 +759,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114418230661260238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1154616833483452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d66c64a667fbea4ebabb227205aec94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  languageSelector: {fileID: 114898827349158808}
 --- !u!114 &114447218402036346
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -790,17 +802,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.ScrollRect+ScrollRectEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114455064827099572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1154616833483452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e95af81a455d64aa3d252d33b81aaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114487104147920984
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1436,10 +1437,10 @@ RectTransform:
   m_Father: {fileID: 224803742786857660}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -38}
-  m_SizeDelta: {x: 149, y: 76}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224063345443707014
 RectTransform:
@@ -1857,7 +1858,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.0000010280194, y: 0}
-  m_SizeDelta: {x: 300, y: 76}
+  m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224884653870236222
 RectTransform:
