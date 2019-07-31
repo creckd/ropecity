@@ -51,13 +51,6 @@ public class LevelSelectPanel : AnimatorPanel {
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.levelSelectOpening);
 	}
 
-	public override void OnOpened() {
-		base.OnOpened();
-		Dictionary<object, object> testDictionary = new Dictionary<object, object>();
-		testDictionary.Add(UnlockedCharacterPopup.CharacterTypeMessageID, CharacterType.Laptop);
-		PopupManager.Instance.TryOpenPopup(0,testDictionary);
-	}
-
 	public override void OnStartedClosing() {
 		base.OnStartedClosing();
 		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {

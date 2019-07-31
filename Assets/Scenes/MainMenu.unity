@@ -954,6 +954,25 @@ Prefab:
       propertyPath: m_Name
       value: UnlockCharacterPopup
       objectReference: {fileID: 0}
+    - target: {fileID: 224123546970561294, guid: a5316ff24bac00b4b8f0c432af6f8c86,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 224123546970561294, guid: a5316ff24bac00b4b8f0c432af6f8c86,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -322.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224123546970561294, guid: a5316ff24bac00b4b8f0c432af6f8c86,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 510.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1986408146249520, guid: a5316ff24bac00b4b8f0c432af6f8c86, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5316ff24bac00b4b8f0c432af6f8c86, type: 2}
   m_IsPrefabAsset: 0

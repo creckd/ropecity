@@ -2368,7 +2368,7 @@ GameObject:
   - component: {fileID: 95253725503365288}
   - component: {fileID: 114573877596685106}
   m_Layer: 5
-  m_Name: OptionsPanel
+  m_Name: UnlockCharacterPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

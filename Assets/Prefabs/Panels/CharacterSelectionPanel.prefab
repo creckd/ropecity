@@ -7039,7 +7039,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   samplePad: {fileID: 114629518539462216}
   radius: 9
-  sensitivity: 150
+  sensitivity: 200
   snapSpeed: 0.25
   createdObjects: []
   beingDragged: 0
