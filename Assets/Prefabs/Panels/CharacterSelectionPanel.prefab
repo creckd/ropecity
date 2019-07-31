@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 222566144268330774}
   - component: {fileID: 114062841999963340}
   m_Layer: 5
-  m_Name: stageText
+  m_Name: unlockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8317,7 +8317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 68}
+  m_AnchoredPosition: {x: 0, y: 71}
   m_SizeDelta: {x: 1036.5, y: 276.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224458562300011148
@@ -8483,15 +8483,15 @@ RectTransform:
   m_GameObject: {fileID: 1170959982209022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6445524, y: 0.6445524, z: 0.6445524}
+  m_LocalScale: {x: 0.6445525, y: 0.6445525, z: 0.6445525}
   m_Children: []
   m_Father: {fileID: 224451834974552982}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -12}
-  m_SizeDelta: {x: 1140.2, y: 156.8}
+  m_AnchoredPosition: {x: 0, y: -2.1}
+  m_SizeDelta: {x: 1140.2, y: 128.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224862409754220538
 RectTransform:
