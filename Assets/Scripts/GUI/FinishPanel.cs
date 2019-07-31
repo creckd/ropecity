@@ -5,12 +5,12 @@ using UnityEngine;
 public class FinishPanel : FaderPanel {
 
 	public void BackToMainMenu() {
-		DeactivatePanelButtons();
+		DeactivateButtons();
 		GameController.Instance.BackToMainMenu();
 	}
 
 	public void RestartButton() {
-		DeactivatePanelButtons();
+		DeactivateButtons();
 		GameController.Instance.RestartButton();
 	}
 

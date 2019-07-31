@@ -19,7 +19,7 @@ public abstract class Panel : MonoBehaviour {
 		buttons = GetComponentsInChildren<Button>();
 	}
 
-	public void DeactivatePanelButtons() {
+	public void DeactivateButtons() {
 		savedButtonInteractibilityStates.Clear();
 		foreach (var but in buttons) {
 			savedButtonInteractibilityStates.Add(but, but.interactable);
@@ -27,7 +27,7 @@ public abstract class Panel : MonoBehaviour {
 		}
 	}
 
-	public void ActivatePanelButtons() {
+	public void ActivateButtons() {
 		bool interactibility = false;
 		foreach (var but in buttons) {
 			if (savedButtonInteractibilityStates.TryGetValue(but, out interactibility)) {
@@ -47,17 +47,31 @@ public abstract class Panel : MonoBehaviour {
 		OpeningAnimation(openedCallBack);
 	}
 
+	public void Open(Action openedCallBack, Dictionary<object, object> message = null) {
+		OnStartedOpening(message);
+		OpeningAnimation(openedCallBack);
+	}
+
 	public void Close(Action closedCallBack) {
 		OnStartedClosing();
 		ClosingAnimation(closedCallBack);
+	}
+
+	public void CloseThisPopup() {
+		PopupManager.Instance.ClosePopup(this);
 	}
 
 	public void OpenPanel(int panelIndex) {
 		PanelManager.Instance.TryOpenPanel(panelIndex);
 	}
 
-	public virtual void OnStartedOpening() { DeactivatePanelButtons(); } 
-	public virtual void OnOpened() { ActivatePanelButtons(); }
-	public virtual void OnStartedClosing() { DeactivatePanelButtons(); }
-	public virtual void OnClosed() { ActivatePanelButtons(); }
+	public void OpenPopup(int popupIndex) {
+		PopupManager.Instance.TryOpenPopup(popupIndex);
+	}
+
+	public virtual void OnStartedOpening() { DeactivateButtons(); }
+	public virtual void OnStartedOpening(Dictionary<object, object> message) { DeactivateButtons(); }
+	public virtual void OnOpened() { ActivateButtons(); }
+	public virtual void OnStartedClosing() { DeactivateButtons(); }
+	public virtual void OnClosed() { ActivateButtons(); }
 }

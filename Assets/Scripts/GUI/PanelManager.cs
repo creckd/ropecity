@@ -61,6 +61,12 @@ public class PanelManager : MonoBehaviour {
 		p.Open(() => { currentlyOpenedPanel = p; panelTransitionInProgress = false; });
 	}
 
+	private void OpenPanel(Panel p, Dictionary<object,object> message) {
+		panelTransitionInProgress = true;
+		p.gameObject.SetActive(true);
+		p.Open(() => { currentlyOpenedPanel = p; panelTransitionInProgress = false; }, message);
+	}
+
 	private void CloseCurrentlyOpenPanelThenOpen(Panel panelToOpen) {
 		ClosePanel(currentlyOpenedPanel,delegate { OpenPanel(panelToOpen); });
 	}

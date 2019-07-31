@@ -16,14 +16,14 @@ public class TutorialPanel : FaderPanel {
 
 	public override void OnOpened() {
 		base.OnOpened();
-		DeactivatePanelButtons();
+		DeactivateButtons();
 		timeOpened = Time.realtimeSinceStartup;
 	}
 
 	private void Update() {
 		if (timeOpened != 0f) {
 			if (Time.realtimeSinceStartup - timeOpened >= ConfigDatabase.Instance.tutorialRequiredWatchTime) {
-				ActivatePanelButtons();
+				ActivateButtons();
 				timeOpened = 0f;
 			}
 		}

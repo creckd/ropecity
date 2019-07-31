@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour {
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = 300;
 		PanelManager.Instance.InitializeGUI();
+		PopupManager.Instance.InitializeGUI();
 
 		SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.mainMenuMusic.CloneToCustomClip(), "MainMenuMusic");
 

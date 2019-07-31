@@ -51,6 +51,13 @@ public class LevelSelectPanel : AnimatorPanel {
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.levelSelectOpening);
 	}
 
+	public override void OnOpened() {
+		base.OnOpened();
+		Dictionary<object, object> testDictionary = new Dictionary<object, object>();
+		testDictionary.Add(UnlockedCharacterPopup.CharacterTypeMessageID, CharacterType.Laptop);
+		PopupManager.Instance.TryOpenPopup(0,testDictionary);
+	}
+
 	public override void OnStartedClosing() {
 		base.OnStartedClosing();
 		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {
@@ -91,7 +98,7 @@ public class LevelSelectPanel : AnimatorPanel {
 		}
 
 		if (!panelInTransition)
-			DeactivatePanelButtons();
+			DeactivateButtons();
 
 		currentlyOpenedSection = sectionNumber;
 		RefreshAllSectionButtonActiveness();
@@ -100,20 +107,20 @@ public class LevelSelectPanel : AnimatorPanel {
 		ShowSection();
 
 		if(!panelInTransition)
-			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivatePanelButtons));
+			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivateButtons));
 	}
 
 	private void CloseCurrentlyOpenedSection() {
 
 		if (!panelInTransition)
-			DeactivatePanelButtons();
+			DeactivateButtons();
 
 		HideSection();
 
 		currentlyOpenedSection = -1;
 
 		if (!panelInTransition)
-			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivatePanelButtons));
+			StartCoroutine(WaitAndCallBack(sectionAnimationTime, ActivateButtons));
 	}
 
 	public void HideSection() {
@@ -175,7 +182,7 @@ public class LevelSelectPanel : AnimatorPanel {
 
 	public void PlayLevel(int levelIndex) {
 		SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex = levelIndex;
-		DeactivatePanelButtons();
+		DeactivateButtons();
 		ImageTransitionHandler.Instance.TransitionIn(() => { StartLevel(levelIndex); });
 	}
 
