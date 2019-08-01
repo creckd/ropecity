@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114418230661260238}
         m_MethodName: OpenPanel
         m_Mode: 3
         m_Arguments:
