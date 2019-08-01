@@ -49,10 +49,8 @@
 				half4 noise = tex2D(_MainTex,i.uv + float2(_Time.x,0));
 				half4 finalCol = _TintColor;
 				finalCol.a = saturate(finalCol.a - noise.b * .3);
-				finalCol.a *= (1 - i.uv.y * 2);
+				finalCol.a *= (1 - i.uv.y * 8);
 				finalCol.a += smoothstep(0.6, 0.65, noise.b) * smoothstep(0.1,0,i.uv.y) * 0.5;
-				float diff = 0.1;
-				finalCol.a += smoothstep(diff, diff - 0.1, 1 - noise.b) * ((1-i.uv.y) * 0.1) * finalCol.a * 10;
 				finalCol.a = saturate(finalCol.a);
 				return finalCol;
 			}

@@ -65,7 +65,7 @@ public class CharacterPad : MonoBehaviour {
 	}
 
 	public void RefreshGraphics() {
-		bool chosenOne = initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
-		selectionEffect.gameObject.SetActive(chosenOne);
+		//bool chosenOne = initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
+		//selectionEffect.gameObject.SetActive(chosenOne);
 	}
 }

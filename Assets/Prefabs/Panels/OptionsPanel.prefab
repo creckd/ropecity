@@ -974,7 +974,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114418230661260238}
         m_MethodName: DebugDeleteSave
         m_Mode: 1
         m_Arguments:
