@@ -8,6 +8,9 @@ public class CharacterPad : MonoBehaviour {
 	public CharacterType initializedType;
 
 	public PlatformCharacter[] platformCharacterObjects;
+	public PlatformCharacter[] lockedPlatformCharacterObjects;
+
+	public ParticleSystem hologramParticle;
 
 	[HideInInspector]
 	public bool snapToForwardRotationConstantly = false;
@@ -25,6 +28,8 @@ public class CharacterPad : MonoBehaviour {
 
 		initializedPlatformCharacter = GetPlatformCharacterByType(characterType);
 		initializedPlatformCharacter.gameObject.SetActive(true);
+
+		RefreshGraphics();
 	}
 
 	private void Update() {
@@ -56,6 +61,19 @@ public class CharacterPad : MonoBehaviour {
 		return character;
 	}
 
+	private PlatformCharacter GetLockedPlatformCharacterByType(CharacterType type) {
+		PlatformCharacter character = null;
+		foreach (var platformCharacter in lockedPlatformCharacterObjects) {
+			if (platformCharacter.characterType == type) {
+				character = platformCharacter;
+				break;
+			}
+		}
+		if (character == null)
+			throw new System.Exception("Character platform does not have the following character type prepared : " + type.ToString());
+		return character;
+	}
+
 	public void RotatePlatform(float amount) {
 		transform.Rotate(new Vector3(0f, amount * Time.deltaTime, 0f));
 	}
@@ -65,6 +83,10 @@ public class CharacterPad : MonoBehaviour {
 	}
 
 	public void RefreshGraphics() {
+		GeneralSaveDatabase.CharacterSaveData sData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(initializedType);
+		GetPlatformCharacterByType(initializedType).gameObject.SetActive(sData.owned);
+		GetLockedPlatformCharacterByType(initializedType).gameObject.SetActive(!sData.owned);
+		hologramParticle.gameObject.SetActive(!sData.owned);
 		//bool chosenOne = initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
 		//selectionEffect.gameObject.SetActive(chosenOne);
 	}

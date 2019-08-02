@@ -19,6 +19,10 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public Text characterName;
 	public Image rarityImage;
 
+	public Image selectButtonTargetGraphicImage;
+	public Sprite defaultSelectButtonSprite;
+	public Sprite equippedSelectButtonSprite;
+
 	private bool characterRotationInProgress = false;
 	private bool rotateForward = false;
 
@@ -51,9 +55,13 @@ public class CharacterSelectPanel : AnimatorPanel {
 		characterName.text = selectedCharData.characterName;
 		rarityImage.color = ConfigDatabase.Instance.GetRarityColor(selectedCharData.characterRarity);
 
-		if (selectedCharSaveData.owned)
+		bool chosenOne = rotator.GetCurrentlySelectedPad().initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
+		selectButtonTargetGraphicImage.sprite = chosenOne ? equippedSelectButtonSprite : defaultSelectButtonSprite;
+		selectButton.interactable = !chosenOne;
+
+		if (selectedCharSaveData.owned) {
 			selectButton.gameObject.SetActive(true);
-		else {
+		} else {
 			switch (selectedCharData.characterPrice) {
 				case PriceType.UnlockedByLevel:
 					unlockedByLevelButton.gameObject.SetActive(true);
@@ -107,5 +115,6 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public void EquipCharacter() {
 		SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
 		rotator.RefreshAllPlatformGraphics();
+		RefreshCharacterDataGUI();
 	}
 }
