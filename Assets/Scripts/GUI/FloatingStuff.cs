@@ -8,13 +8,16 @@ public class FloatingStuff : MonoBehaviour {
 	public float speed = 1f;
 
 	Vector3 defaultPosition;
-
+	private float randomSeed = 0f;
 
 	private void Awake() {
 		defaultPosition = transform.position;
+		randomSeed = Random.Range(0f, 360f);
 	}
 
 	private void Update() {
-		transform.position = defaultPosition + Vector3.up * Mathf.Sin(Mathf.Repeat(Time.realtimeSinceStartup * speed, 360f) * Mathf.Deg2Rad) * amplitude;
+		Vector3 newPosition = transform.position;
+		newPosition.y = defaultPosition.y + Mathf.Sin(Mathf.Repeat(Time.realtimeSinceStartup * speed + randomSeed, 360f) * Mathf.Deg2Rad) * amplitude;
+		transform.position = newPosition;
 	}
 }
