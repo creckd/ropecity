@@ -19,6 +19,7 @@ public class LevelButton : MonoBehaviour {
 	public class CharacterSilhouette {
 		public CharacterType type;
 		public GameObject silhouetteObject;
+		public GameObject completedSilhouetteObject;
 	}
 
 	public CharacterSilhouette[] silhouettes;
@@ -70,17 +71,27 @@ public class LevelButton : MonoBehaviour {
 
 		foreach (var silhouette in silhouettes) {
 			silhouette.silhouetteObject.gameObject.SetActive(false);
+			silhouette.completedSilhouetteObject.gameObject.SetActive(false);
 		}
+
 		for (int i = 0; i < ConfigDatabase.Instance.characters.Length; i++) {
 			if (ConfigDatabase.Instance.characters[i].unlockedByLevelIndex == levelIndex) {
-				foreach (var silhouette in silhouettes) {
-					if (ConfigDatabase.Instance.characters[i].characterType == silhouette.type) {
-						silhouette.silhouetteObject.SetActive(true);
-						break;
-					}
-				}
+				CharacterSilhouette currentSilhouette = GetSilhouette(ConfigDatabase.Instance.characters[i].characterType);
+				currentSilhouette.completedSilhouetteObject.SetActive(levelCompleted);
+				currentSilhouette.silhouetteObject.gameObject.SetActive(!levelCompleted);
 			}
 		}
+	}
+
+	private CharacterSilhouette GetSilhouette(CharacterType type) {
+		CharacterSilhouette s = null;
+		for (int i = 0; i < silhouettes.Length; i++) {
+			if (silhouettes[i].type == type) {
+				s = silhouettes[i];
+				break;
+			}
+		}
+		return s;
 	}
 
 	public void PlayAppearAnimation() {

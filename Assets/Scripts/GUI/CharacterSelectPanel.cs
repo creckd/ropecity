@@ -35,6 +35,12 @@ public class CharacterSelectPanel : AnimatorPanel {
 		dragArea.DragFinished += DraggingFinished;
 	}
 
+	public override void OnStartedOpening() {
+		base.OnStartedOpening();
+		rotator.RefreshAllPlatformGraphics();
+		RefreshCharacterDataGUI();
+	}
+
 	private void Update() {
 		ApplyPlatformRotation();
 	}
