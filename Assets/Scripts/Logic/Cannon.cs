@@ -5,13 +5,20 @@ using UnityEngine;
 
 public class Cannon : LevelObject {
 
+	[System.Serializable]
+	public class CannonShootableCharacter {
+		public CharacterType characterType;
+		public Animator characterAnimator;
+	}
+
 	public AnimationCurve aimingCurve;
 	private float aimAngle = 30f;
 
 	public GameObject cannonMouthPositionObject;
 	public GameObject rootObject;
 	public ParticleSystem explosionParticle;
-	public Animator wormInTheCannon;
+	public CannonShootableCharacter[] shootableCharacters;
+	private Animator wormInTheCannon;
 
 	private const string wormInTheCannonAnimationName = "GettingReady";
 	private const string cannonShootAnimationName = "Armature|CannonShoot";
@@ -32,11 +39,22 @@ public class Cannon : LevelObject {
 			defaultRootRotation = rootObject.transform.rotation;
 			GameController.Instance.GameStarted += StartGame;
 			GameController.Instance.ReinitalizeGame += ReinitalizeCannon;
+			InitializeCharacter();
 
 			if (data != null) {
 				aimAngle = data.aimAngle;
 			} else aimAngle = 30f;
 		}
+	}
+
+	private void InitializeCharacter() {
+		foreach (var shootable in shootableCharacters) {
+			shootable.characterAnimator.gameObject.SetActive(false);
+		}
+		CharacterType selectedType = SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
+		Animator selectedCharAnimator = GetShootableChar(selectedType).characterAnimator;
+		wormInTheCannon = selectedCharAnimator;
+		wormInTheCannon.gameObject.SetActive(true);
 	}
 
 	private void StartGame(bool fastStart) {
@@ -100,5 +118,16 @@ public class Cannon : LevelObject {
 
 	public override string SerializeObjectData() {
 		return StringSerializationAPI.Serialize(typeof(CannonData), data);
+	}
+
+	private CannonShootableCharacter GetShootableChar(CharacterType type) {
+		CannonShootableCharacter shootableCharacter = null;
+		foreach (var sChar in shootableCharacters) {
+			if (sChar.characterType == type) {
+				shootableCharacter = sChar;
+				break;
+			}
+		}
+		return shootableCharacter;
 	}
 }
