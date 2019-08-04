@@ -164,36 +164,36 @@ MonoBehaviour:
     m_RotationOrder: 4
   transitionTime: 0.75
   characters:
-  - characterName: Tony, the Worm
+  - characterName: Tony
     characterType: 0
     characterRarity: 0
     characterPrice: 0
     unlockedByLevelIndex: -1
-  - characterName: Mr. Blob
+  - characterName: Jelly
     characterType: 2
     characterRarity: 2
     characterPrice: 0
-    unlockedByLevelIndex: 1
+    unlockedByLevelIndex: 6
   - characterName: Toilee
     characterType: 1
     characterRarity: 4
     characterPrice: 0
     unlockedByLevelIndex: 3
-  - characterName: Com Pewter
+  - characterName: Rusty
     characterType: 3
     characterRarity: 1
     characterPrice: 0
-    unlockedByLevelIndex: 5
-  - characterName: Hip Hop
+    unlockedByLevelIndex: 10
+  - characterName: Slippy
     characterType: 4
     characterRarity: 2
-    characterPrice: 0
-    unlockedByLevelIndex: 7
+    characterPrice: 1
+    unlockedByLevelIndex: -1
   - characterName: B33P
     characterType: 5
     characterRarity: 2
-    characterPrice: 1
-    unlockedByLevelIndex: 9
+    characterPrice: 0
+    unlockedByLevelIndex: 1
   commonRarityColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   unCommonRarityColor: {r: 0.14783564, g: 0.6981132, b: 0, a: 1}
   rareRarityColor: {r: 0, g: 0.25120232, b: 0.6603774, a: 1}

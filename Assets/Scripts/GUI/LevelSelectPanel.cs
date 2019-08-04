@@ -46,10 +46,12 @@ public class LevelSelectPanel : AnimatorPanel {
 		base.OnStartedOpening();
 		int defaultSectionToOpen = 0;
 		int lastPlayedLevelIndex = SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex;
-		if (lastPlayedLevelIndex != -1) {
-			int numberOfLevelsInASection = LevelResourceDatabase.Instance.sections[0].levelResourceNames.Length;
-			defaultSectionToOpen = Mathf.CeilToInt(((float)(lastPlayedLevelIndex) + 0.1f) / numberOfLevelsInASection) - 1;
-		}
+		int nextLevel = lastPlayedLevelIndex == -1 ? 0 : lastPlayedLevelIndex + 1;
+
+		nextLevel = (int)Mathf.Clamp(nextLevel,0, (LevelResourceDatabase.Instance.sections.Length * 6) - 1);
+		int numberOfLevelsInASection = LevelResourceDatabase.Instance.sections[0].levelResourceNames.Length;
+		defaultSectionToOpen = Mathf.CeilToInt(((float)(nextLevel) + 0.1f) / numberOfLevelsInASection) - 1;
+
 		OpenSection(defaultSectionToOpen);
 		foreach (var b in GetSectionButtonsForSection(currentlyOpenedSection).instantiatedLevelButtons) {
 			b.PlayAppearAnimation();

@@ -16,6 +16,8 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public Text stageText;
 	public Button buyButton;
 	public Button selectButton;
+	public Button rotateForwardButton;
+	public Button rotateBackwardButton;
 	public Text characterName;
 	public Image rarityImage;
 
@@ -58,6 +60,9 @@ public class CharacterSelectPanel : AnimatorPanel {
 		buyButton.gameObject.SetActive(false);
 		selectButton.gameObject.SetActive(false);
 
+		rotateForwardButton.gameObject.SetActive(true);
+		rotateBackwardButton.gameObject.SetActive(true);
+
 		characterName.text = selectedCharData.characterName;
 		rarityImage.color = ConfigDatabase.Instance.GetRarityColor(selectedCharData.characterRarity);
 
@@ -75,6 +80,8 @@ public class CharacterSelectPanel : AnimatorPanel {
 					break;
 				case PriceType.IAP:
 					buyButton.gameObject.SetActive(true);
+					rotateForwardButton.gameObject.SetActive(false);
+					rotateBackwardButton.gameObject.SetActive(false);
 					break;
 			}
 		}
@@ -115,6 +122,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 		GeneralSaveDatabase.CharacterSaveData selectedCharSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(selectedCharacterType);
 		selectedCharSaveData.owned = true;
 		RefreshCharacterDataGUI();
+		rotator.RefreshAllPlatformGraphics();
 		SavedDataManager.Instance.Save();
 	}
 

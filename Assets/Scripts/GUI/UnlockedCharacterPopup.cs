@@ -27,7 +27,7 @@ public class UnlockedCharacterPopup : AnimatorPanel {
 		Color rarityColor = ConfigDatabase.Instance.GetRarityColor(data.characterRarity);
 		characterName.text = data.characterName;
 		string rarityHex = ColorUtility.ToHtmlStringRGB(rarityColor);
-		messageText.text = "Congratulations! \n\nThe character <color=#"+rarityHex+">"+ data.characterName +"</color> is now available for you!";
+		messageText.text = "The character <color=#"+rarityHex+">"+ data.characterName +"</color> is now available for you!";
 	}
 
 	private PlatformCharacter GetCharacterObject(CharacterType cType) {
@@ -36,5 +36,11 @@ public class UnlockedCharacterPopup : AnimatorPanel {
 				return characterObjects[i];
 		}
 		return null;
+	}
+
+	public void EquipButton() {
+		PopupManager.Instance.ClosePopup(this,() => {
+			PanelManager.Instance.TryOpenPanel(3);
+		});
 	}
 }

@@ -48,7 +48,7 @@ public class LevelButton : MonoBehaviour {
 
 	private void RefreshButtonState() {
 
-		lastPlayedLevelMarker.gameObject.SetActive(SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex == levelIndex);
+		lastPlayedLevelMarker.gameObject.SetActive((SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex + 1) == levelIndex);
 
 		if (levelCompleted) {
 			chains.gameObject.SetActive(false);

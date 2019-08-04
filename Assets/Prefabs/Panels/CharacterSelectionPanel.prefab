@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 222966534998880248}
   - component: {fileID: 114973493469495880}
   m_Layer: 5
-  m_Name: buttonImage
+  m_Name: premiumIAPImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2241,7 +2241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1406662781260872
 GameObject:
   m_ObjectHideFlags: 1
@@ -3520,7 +3520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1612698179172332
 GameObject:
   m_ObjectHideFlags: 1
@@ -3724,7 +3724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1648556740499286
 GameObject:
   m_ObjectHideFlags: 1
@@ -12123,6 +12123,8 @@ MonoBehaviour:
   stageText: {fileID: 114062841999963340}
   buyButton: {fileID: 114539851115683634}
   selectButton: {fileID: 114018722473581560}
+  rotateForwardButton: {fileID: 114140154056777276}
+  rotateBackwardButton: {fileID: 114453066406810092}
   characterName: {fileID: 114366286244776698}
   rarityImage: {fileID: 114634320545279872}
   selectButtonTargetGraphicImage: {fileID: 114526983386269680}
@@ -12392,7 +12394,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: a723977e067e26f4f98aa7a54b562ae2, type: 3}
-    m_FontSize: 43
+    m_FontSize: 57
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
@@ -12535,7 +12537,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 62cf5895999556549ad46be8a8d3dbb5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bc0bcf98146b6bd40a54dc29c7818688, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -18622,7 +18624,6 @@ RectTransform:
   - {fileID: 224941544492683988}
   - {fileID: 224349985636552872}
   - {fileID: 224605137588778294}
-  - {fileID: 224267220127658656}
   m_Father: {fileID: 224458562300011148}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18658,15 +18659,15 @@ RectTransform:
   m_GameObject: {fileID: 1184111005375474}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.13, y: 1.13, z: 1.13}
+  m_LocalScale: {x: 1.1300002, y: 1.1300002, z: 1.1300002}
   m_Children: []
-  m_Father: {fileID: 224218222116491154}
-  m_RootOrder: 3
+  m_Father: {fileID: 224605137588778294}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -5.9999995, y: -25.644012}
-  m_SizeDelta: {x: 162.5, y: 82.4}
+  m_AnchoredPosition: {x: 6, y: -364.2}
+  m_SizeDelta: {x: 203.5, y: 103.2}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224328287063878572
 RectTransform:
@@ -18814,15 +18815,16 @@ RectTransform:
   m_GameObject: {fileID: 1162926126057022}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_LocalScale: {x: 0.8635, y: 0.8635, z: 0.8635}
+  m_Children:
+  - {fileID: 224267220127658656}
   m_Father: {fileID: 224218222116491154}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 234.2, y: 178.3}
+  m_AnchoredPosition: {x: -9, y: 25}
+  m_SizeDelta: {x: 332.9, y: 253.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224665738997130280
 RectTransform:
@@ -19026,8 +19028,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 13}
-  m_SizeDelta: {x: 315.8, y: 315.8}
+  m_AnchoredPosition: {x: 24.672, y: 44.574997}
+  m_SizeDelta: {x: 677.34, y: 388.95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224946143231925078
 RectTransform:
