@@ -5,7 +5,6 @@ using UnityEngine;
 public enum GameState {
 	NotInitialized,
 	Initialized,
-	ShowingTutorial,
 	GameStarted,
 	GameFinished,
 	GamePaused
@@ -126,8 +125,6 @@ public class GameController : MonoBehaviour {
 		}
 
 		if (shouldStartTutorial) {
-			currentGameState = GameState.ShowingTutorial;
-			Messenger.Instance.SendMessage(PanelManager.defaultOpenedPanelChangedTag, 3); // open tutorial panel
 			TutorialController.Instance.StartTutorial();
 		} else {
 			Destroy(TutorialController.Instance.gameObject);
@@ -147,12 +144,6 @@ public class GameController : MonoBehaviour {
 	private void Update() {
 		if(currentGameState != GameState.GameFinished && currentGameState != GameState.GamePaused && gameControllerControlsTime)
 		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * currentDampeningValue);
-	}
-
-	public void FinishTutorial() {
-		if (currentGameState == GameState.ShowingTutorial) {
-			currentGameState = GameState.Initialized;
-		}
 	}
 
 	private void StartTheGame(bool fastStart) {

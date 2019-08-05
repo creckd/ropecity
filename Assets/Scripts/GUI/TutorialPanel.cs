@@ -37,7 +37,7 @@ public class TutorialPanel : FaderPanel {
 
 	public override void OnClosed() {
 		base.OnClosed();
-		GameController.Instance.FinishTutorial();
+		//GameController.Instance.FinishTutorial();
 	}
 
 	public void CloseTutorial() {
