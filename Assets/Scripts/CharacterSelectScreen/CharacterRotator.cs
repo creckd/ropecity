@@ -11,6 +11,8 @@ public class CharacterRotator : MonoBehaviour {
     public float radius = 10f;
 	public float sensitivity = 1f;
 	public float snapSpeed = 1f;
+	public float snapMargin = 1f;
+	public float dragAmount = 1f;
     public List<CharacterPad> createdObjects = new List<CharacterPad>();
 	public bool beingDragged = false;
 	public int currentlySelectedCharIndex = 0;
@@ -47,8 +49,12 @@ public class CharacterRotator : MonoBehaviour {
         return createdObjects[currentlySelectedCharIndex];
     }
 
-    public void SetVelocity(float xDelta) {
+    public void Rotate(float xDelta) {
 		transform.Rotate(new Vector3(0f, xDelta * sensitivity, 0f));
+	}
+
+	public void SetVelocity(float magnitude) {
+		XVelocity = magnitude;
 	}
 
 	public void RefreshAllPlatformGraphics() {
@@ -70,8 +76,13 @@ public class CharacterRotator : MonoBehaviour {
 			createdObjects[prevIndex].Defocused();
         }
 
-        if (!beingDragged)
-            XVelocity = (closestObj.transform.position.x - transform.position.x) * snapSpeed;
+		if (!beingDragged) {
+			if (XVelocity <= snapMargin) {
+				XVelocity = (closestObj.transform.position.x - transform.position.x) * snapSpeed;
+			} else {
+				XVelocity = Mathf.Clamp(XVelocity - Time.deltaTime * dragAmount, 0f, Mathf.Infinity);
+			}
+		}
         transform.Rotate(new Vector3(0f, XVelocity, 0f));
     }
 }

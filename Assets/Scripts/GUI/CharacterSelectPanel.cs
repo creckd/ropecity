@@ -89,12 +89,13 @@ public class CharacterSelectPanel : AnimatorPanel {
 
 	private void OnDragging(Vector2 xDelta) {
 		rotator.beingDragged = true;
-		rotator.SetVelocity(-xDelta.x);
+		rotator.Rotate(-xDelta.x);
 	}
 
 	private void DraggingFinished(Vector2 xDelta) {
-		rotator.SetVelocity(-xDelta.x);
+		rotator.Rotate(-xDelta.x);
 		rotator.beingDragged = false;
+		rotator.SetVelocity(xDelta.magnitude * Mathf.Sign(xDelta.x));
 	}
 
 	private void ApplyPlatformRotation() {
