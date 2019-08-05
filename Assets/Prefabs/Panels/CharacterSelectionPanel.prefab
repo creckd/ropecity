@@ -12447,7 +12447,10 @@ MonoBehaviour:
   samplePad: {fileID: 114629518539462216}
   radius: 9
   sensitivity: 200
-  snapSpeed: 0.25
+  snapSpeed: 0.5
+  snapMargin: 0.5
+  dragAmount: 15
+  releaseImpulseMultiplier: 0.0055
   createdObjects: []
   beingDragged: 0
   currentlySelectedCharIndex: 0

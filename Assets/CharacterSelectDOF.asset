@@ -80,8 +80,8 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       shutterAngle: 360
-      sampleCount: 10
-      frameBlending: 1
+      sampleCount: 4
+      frameBlending: 0
   eyeAdaptation:
     m_Enabled: 0
     m_Settings:
@@ -100,10 +100,10 @@ MonoBehaviour:
     m_Enabled: 0
     m_Settings:
       bloom:
-        intensity: 49.15
-        threshold: 1.14
-        softKnee: 0.549
-        radius: 3.22
+        intensity: 56.28
+        threshold: 2.2
+        softKnee: 0.681
+        radius: 2.87
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}

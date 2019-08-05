@@ -176,7 +176,7 @@ MonoBehaviour:
     unlockedByLevelIndex: 6
   - characterName: Toilee
     characterType: 1
-    characterRarity: 4
+    characterRarity: 3
     characterPrice: 0
     unlockedByLevelIndex: 3
   - characterName: Rusty
@@ -186,7 +186,7 @@ MonoBehaviour:
     unlockedByLevelIndex: 10
   - characterName: Slippy
     characterType: 4
-    characterRarity: 2
+    characterRarity: 4
     characterPrice: 1
     unlockedByLevelIndex: -1
   - characterName: B33P

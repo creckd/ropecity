@@ -87,15 +87,27 @@ public class CharacterSelectPanel : AnimatorPanel {
 		}
 	}
 
+	private float timeStartedDragging;
+	private Vector2 posAtStart;
+
 	private void OnDragging(Vector2 xDelta) {
-		rotator.beingDragged = true;
+		if (!rotator.beingDragged) {
+			rotator.beingDragged = true;
+
+			timeStartedDragging = Time.realtimeSinceStartup;
+			posAtStart = Input.mousePosition;
+		}
 		rotator.Rotate(-xDelta.x);
 	}
 
 	private void DraggingFinished(Vector2 xDelta) {
-		rotator.Rotate(-xDelta.x);
 		rotator.beingDragged = false;
-		rotator.SetVelocity(xDelta.magnitude * Mathf.Sign(xDelta.x));
+		float dragDuration = Time.realtimeSinceStartup - timeStartedDragging;
+		float dragLength = Vector2.Distance(Input.mousePosition, posAtStart);
+		float sign = Mathf.Sign(Input.mousePosition.x - posAtStart.x);
+		float referenceWidth = 2628f;
+		float screenWidth = Screen.width;
+		rotator.SetVelocity((dragLength * 0.1f) * (1f/dragDuration) * -sign * (referenceWidth / screenWidth));
 	}
 
 	private void ApplyPlatformRotation() {

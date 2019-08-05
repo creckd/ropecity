@@ -13,6 +13,7 @@ public class CharacterRotator : MonoBehaviour {
 	public float snapSpeed = 1f;
 	public float snapMargin = 1f;
 	public float dragAmount = 1f;
+	public float releaseImpulseMultiplier = 1f;
     public List<CharacterPad> createdObjects = new List<CharacterPad>();
 	public bool beingDragged = false;
 	public int currentlySelectedCharIndex = 0;
@@ -50,11 +51,13 @@ public class CharacterRotator : MonoBehaviour {
     }
 
     public void Rotate(float xDelta) {
+		startedSnapping = false;
 		transform.Rotate(new Vector3(0f, xDelta * sensitivity, 0f));
 	}
 
 	public void SetVelocity(float magnitude) {
-		XVelocity = magnitude;
+		startedSnapping = false;
+		XVelocity = magnitude * releaseImpulseMultiplier;
 	}
 
 	public void RefreshAllPlatformGraphics() {
@@ -62,6 +65,8 @@ public class CharacterRotator : MonoBehaviour {
 			cO.RefreshGraphics();
 		}
 	}
+
+	private bool startedSnapping = false;
 
     void Update() {
         int prevIndex = currentlySelectedCharIndex;
@@ -77,12 +82,16 @@ public class CharacterRotator : MonoBehaviour {
         }
 
 		if (!beingDragged) {
-			if (XVelocity <= snapMargin) {
+			if (Mathf.Abs(XVelocity) <= snapMargin || startedSnapping) {
+				if (!startedSnapping)
+					startedSnapping = true;
 				XVelocity = (closestObj.transform.position.x - transform.position.x) * snapSpeed;
-			} else {
-				XVelocity = Mathf.Clamp(XVelocity - Time.deltaTime * dragAmount, 0f, Mathf.Infinity);
+			} else if(!startedSnapping) {
+				XVelocity = XVelocity - (Time.deltaTime * Mathf.Sign(XVelocity)) * dragAmount;
 			}
+			transform.Rotate(new Vector3(0f, XVelocity, 0f));
+		} else {
+			XVelocity = 0f;
 		}
-        transform.Rotate(new Vector3(0f, XVelocity, 0f));
     }
 }
