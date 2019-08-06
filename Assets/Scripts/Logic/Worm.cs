@@ -14,6 +14,7 @@ public class Worm : MonoBehaviour {
 	public class WormSkin {
 		public CharacterType type;
 		public Animator skinAnimator;
+		public DyingCharacter dyingCharacter;
 	}
 
 	[Header("Skins")]
@@ -131,9 +132,6 @@ public class Worm : MonoBehaviour {
 	}
 
 	public void DestroyWorm() {
-		InputController.Instance.TapHappened -= Tap;
-		InputController.Instance.ReleaseHappened -= Release;
-		GameController.Instance.GameFinished -= GameFinished;
 		Destroy(this.gameObject);
 	}
 
@@ -639,14 +637,19 @@ public class Worm : MonoBehaviour {
 		GameController.Instance.FinishGame(false);
 
 		Destroy(ropeEnd.gameObject);
-		ragdoll.gameObject.SetActive(true);
-		ragdoll.transform.SetParent(null);
-		foreach (var rb in ragdoll.GetComponentsInChildren<Rigidbody2D>()) {
-			rb.AddForce(velocity * 50f,ForceMode2D.Impulse);
-			rb.AddForce(rb.transform.forward * 20f * Vector3.Distance(rb.transform.position,transform.position), ForceMode2D.Impulse);
-		}
+
 		GameController.Instance.WormDiedAtPosition(transform.position);
-		DestroyWorm();
+		InputController.Instance.TapHappened -= Tap;
+		InputController.Instance.ReleaseHappened -= Release;
+		GameController.Instance.GameFinished -= GameFinished;
+
+		DeathAnimationAndDestroyWorm();
+	}
+
+	private void DeathAnimationAndDestroyWorm() {
+		currentSkin.skinAnimator.gameObject.SetActive(false);
+		currentSkin.dyingCharacter.gameObject.SetActive(true);
+		currentSkin.dyingCharacter.PlayDeath(-velocity,DestroyWorm);
 	}
 
 	private Vector2 Rotate(Vector2 v, float degrees) {

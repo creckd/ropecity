@@ -164,8 +164,8 @@ public class GameController : MonoBehaviour {
 		HideUIHookAid();
 		if (!success) {
 			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.failure);
-			targetTimeScale = 0.35f;
-			Time.timeScale = 0.35f;
+			targetTimeScale = 0.1f;
+			Time.timeScale = 0.1f;
 			//targetTimeScale = ConfigDatabase.Instance.normalSpeed;
 			CameraController.Instance.SwitchGreyScale(true);
 			StartCoroutine(ReInitiliazeGameAfter());
@@ -199,7 +199,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	IEnumerator ReInitiliazeGameAfter() {
-		yield return new WaitForSecondsRealtime(0.5f);
+		yield return new WaitForSecondsRealtime(0.75f);
 		if (currentWorm != null)
 			currentWorm.Die();
 		ReInitGame();
