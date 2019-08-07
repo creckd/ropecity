@@ -649,7 +649,9 @@ public class Worm : MonoBehaviour {
 	private void DeathAnimationAndDestroyWorm() {
 		currentSkin.skinAnimator.gameObject.SetActive(false);
 		currentSkin.dyingCharacter.gameObject.SetActive(true);
-		currentSkin.dyingCharacter.PlayDeath(-velocity,DestroyWorm);
+		currentSkin.dyingCharacter.transform.SetParent(null);
+		currentSkin.dyingCharacter.PlayDeath(velocity,()=> { Destroy(currentSkin.dyingCharacter.gameObject); });
+		Destroy(this.gameObject);
 	}
 
 	private Vector2 Rotate(Vector2 v, float degrees) {

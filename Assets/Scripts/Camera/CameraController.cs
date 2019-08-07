@@ -41,6 +41,7 @@ public class CameraController : MonoBehaviour {
 	private float lastHookedTime = 0f;
 
 	public SimpleImageEffectApplier greyScaleImgEffect;
+	public float greyScaleChangeTime = 1f;
 
 	private void Awake() {
 		GameController.Instance.GameFinished += GameFinished;
@@ -52,6 +53,17 @@ public class CameraController : MonoBehaviour {
 
 	public void SwitchGreyScale(bool state) {
 		greyScaleImgEffect.enabled = state;
+		if (state)
+			StartCoroutine(TurnOnGreyScale());
+	}
+
+	IEnumerator TurnOnGreyScale() {
+		float timer = 0f;
+		while (timer <= greyScaleChangeTime) {
+			timer += Time.unscaledDeltaTime;
+			greyScaleImgEffect.mat.SetFloat("_GlitchStrength", timer / greyScaleChangeTime);
+			yield return null;
+		}
 	}
 
 	private void LandedHook(Vector3 hp) {

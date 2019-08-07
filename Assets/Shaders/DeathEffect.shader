@@ -9,7 +9,7 @@ Shader "Dani/DeathEffect"
 		_TintColor("Tint Color",Color) = (1,1,1,1)
 		_AnimT("Animated T",Range(0,1)) = 0
 		_SecondAnimT("Second Animated T",Range(0,1)) = 0
-		_MainTex("Main Texture",2D) = "white"
+		_MainTex("Main Texture",2D) = "black"
 		_Noise("Noise",2D) = "white"
 	}
 	SubShader
@@ -87,7 +87,8 @@ Shader "Dani/DeathEffect"
 
 				float cutoff = lerp(_LocalYMin, _LocalYMax, _AnimT);
 				float firstBorder = step(i.vertexLocal.y, cutoff);
-				float whiteness = 1 - saturate(abs(cutoff - i.vertexLocal.y) / 0.2);
+				float localRange = _LocalYMax - _LocalYMin;
+				float whiteness = 1 - saturate(abs(cutoff - i.vertexLocal.y) / (0.2 * ((localRange / 2.5) * 0.25)));
 				whiteness = smoothstep(0.5, 0.6, whiteness);
 
 				half4 finalCol = lerp(mainCol, holoCol, firstBorder);
