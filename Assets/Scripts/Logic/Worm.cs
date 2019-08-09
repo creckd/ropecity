@@ -49,6 +49,7 @@ public class Worm : MonoBehaviour {
 
 	public bool landedHook = false;
 	public float totalRotationSinceStart = 0f;
+	public bool hookAidUseUIAllowed = true;
 
 	public Vector3 wormAimDirection {
 		get {
@@ -296,8 +297,10 @@ public class Worm : MonoBehaviour {
 				RaycastHit2D hit;
 				if (FindHookPoint(out hit, ConfigDatabase.Instance.maxRopeDistance)) {
 					GameController.Instance.FoundPotentionalHitPoint(hit.point);
+					if(hookAidUseUIAllowed)
 					GameController.Instance.ShowUIHookAid();
 				} else {
+					if(hookAidUseUIAllowed)
 					GameController.Instance.HideUIHookAid();
 				}
 			}

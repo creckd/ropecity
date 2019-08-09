@@ -83,9 +83,13 @@ public class TutorialController : MonoBehaviour {
 			yield return null;
 		}
 
+		GameController.Instance.HideUIHookAid();
+		GameController.Instance.currentWorm.hookAidUseUIAllowed = false;
 		GameController.Instance.ShowTutorialLastTask();
 
-		yield return new WaitForSecondsRealtime(3f);
+		yield return new WaitForSecondsRealtime(2.5f);
+		GameController.Instance.ShowUIHookAid();
+		GameController.Instance.currentWorm.hookAidUseUIAllowed = true;
 		GameController.Instance.wormInputEnabled = true;
 		IngameBlurController.Instance.UnBlurImage(pausingTime);
 
