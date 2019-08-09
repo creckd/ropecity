@@ -15,6 +15,8 @@ public class Worm : MonoBehaviour {
 		public CharacterType type;
 		public Animator skinAnimator;
 		public DyingCharacter dyingCharacter;
+		public LineRenderer lineRendererToUse;
+		public GameObject customRopeEndPrefab;
 	}
 
 	[Header("Skins")]
@@ -29,7 +31,7 @@ public class Worm : MonoBehaviour {
 	public GameObject ropeEndPrefab;
 
 	public GameObject gunPositionObject;
-	public LineRenderer ropeRenderer;
+	private LineRenderer ropeRenderer = null;
 	public Text accuracyText;
 
 	public Vector2 Velocity {
@@ -126,10 +128,17 @@ public class Worm : MonoBehaviour {
 		CameraController.Instance.StartTracking(this.transform);
 
 		gravity = ConfigDatabase.Instance.gravityScale;
-		ropeEnd = Instantiate(ropeEndPrefab, transform.position, transform.rotation) as GameObject;
-		ropeEnd.gameObject.SetActive(false);
 
 		InitializeSkin(SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType);
+		ropeRenderer = currentSkin.lineRendererToUse;
+		ropeRenderer.gameObject.SetActive(true);
+		if (currentSkin.customRopeEndPrefab) {
+			ropeEnd = Instantiate(currentSkin.customRopeEndPrefab, transform.position, transform.rotation) as GameObject;
+		} else {
+			ropeEnd = new GameObject();
+			ropeEnd.name = "Empty Rope End (None set in skin)";
+		}
+		ropeEnd.gameObject.SetActive(false);
 	}
 
 	public void DestroyWorm() {
@@ -845,6 +854,8 @@ public class Worm : MonoBehaviour {
 	private void InitializeSkin(CharacterType character) {
 		foreach (var s in wormSkins) {
 			s.skinAnimator.gameObject.SetActive(false);
+			if(s.lineRendererToUse)
+			s.lineRendererToUse.gameObject.SetActive(false);
 		}
 		WormSkin skin = GetSkin(character);
 		skin.skinAnimator.gameObject.SetActive(true);
