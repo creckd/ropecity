@@ -11993,7 +11993,8 @@ MonoBehaviour:
     skinAnimator: {fileID: 95962086612365828}
     dyingCharacter: {fileID: 114303373009300796}
     lineRendererToUse: {fileID: 120539105865472874}
-    customRopeEndPrefab: {fileID: 0}
+    customRopeEndPrefab: {fileID: 1350330549159354, guid: 8c06fbf60958db94f87ff1bdfc05dd83,
+      type: 2}
   - type: 4
     skinAnimator: {fileID: 95144379135114432}
     dyingCharacter: {fileID: 114920451547788224}
