@@ -28863,6 +28863,7 @@ MonoBehaviour:
   deathCameraEulerRot: {x: 0, y: 0, z: 5}
   greyScaleImgEffect: {fileID: 369971042}
   greyScaleChangeTime: 0.5
+  cameraResolutionScaleAmount: 50
 --- !u!114 &369971039
 MonoBehaviour:
   m_ObjectHideFlags: 0
