@@ -43,12 +43,21 @@ public class CameraController : MonoBehaviour {
 	public SimpleImageEffectApplier greyScaleImgEffect;
 	public float greyScaleChangeTime = 1f;
 
+	private Vector2 referenceResolution = new Vector2(2436, 1125);
+	public float cameraResolutionScaleAmount = 1f;
+
 	private void Awake() {
 		GameController.Instance.GameFinished += GameFinished;
 		GameController.Instance.ReinitalizeGame += ReinitalizeCamera;
 		GameController.Instance.LandedHook += LandedHook;
 		GameController.Instance.WormDiedAtPosition += WormDied;
 		greyScaleImgEffect.enabled = false;
+
+		Vector2 currentResolution = new Vector2(Screen.width, Screen.height);
+		float referenceAspect = referenceResolution.x / referenceResolution.y;
+		float currentAspect = currentResolution.x / currentResolution.y;
+
+		transform.position -= new Vector3(0f, 0f, cameraResolutionScaleAmount * (1 - Mathf.Clamp01(currentAspect / referenceAspect)));
 	}
 
 	public void SwitchGreyScale(bool state) {
