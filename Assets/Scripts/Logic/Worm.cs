@@ -298,7 +298,7 @@ public class Worm : MonoBehaviour {
 		}
 		if (GameController.Instance.currentGameState != GameState.GameFinished) {
 			if (landedHook) {
-				RefreshWormRotation();
+				//RefreshWormRotation();
 				CheckILastHitPointIsNotNeccessaryAnymore();
 				//LookForDynamicHookCollisions();
 				LookForHookCollision();
@@ -328,8 +328,10 @@ public class Worm : MonoBehaviour {
 	}
 
 	private void LateUpdate() {
-		if(landedHook || currentHoldID != -1)
+		if (landedHook || currentHoldID != -1) {
 			RefreshRopeRenderer();
+			RefreshWormRotation();
+		}
 		HandleSpeedTrails();
 	}
 
