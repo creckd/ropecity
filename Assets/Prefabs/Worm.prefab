@@ -10200,15 +10200,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1275660779674718}
-  m_LocalRotation: {x: 0.6844588, y: -0.1333644, z: -0.7015508, w: -0.14682217}
-  m_LocalPosition: {x: 0.028064, y: -0.059632, z: -0.74339}
+  m_LocalRotation: {x: 0.6714761, y: -0.18010569, z: -0.69735014, w: -0.1743119}
+  m_LocalPosition: {x: -0.102715775, y: 0.10847655, z: -0.7299118}
   m_LocalScale: {x: 0.60221684, y: 0.60221684, z: 0.60221684}
   m_Children:
   - {fileID: 4460837290132784}
   - {fileID: 4991060485103952}
   m_Father: {fileID: 4678399964049480}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 202.837, y: 91.70699, z: -1.4580078}
+  m_LocalEulerAnglesHint: {x: 209.031, y: 92.187, z: -0.08099365}
 --- !u!4 &4939295765324724
 Transform:
   m_ObjectHideFlags: 1
@@ -12215,7 +12215,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.45999908
+        value: 0.34666443
         inSlope: 0.026130246
         outSlope: 0.026130246
         tangentMode: 0
@@ -12224,7 +12224,7 @@ LineRenderer:
         outWeight: 0.51026386
       - serializedVersion: 3
         time: 1
-        value: 0.6466675
+        value: 0.4933319
         inSlope: 0
         outSlope: 0
         tangentMode: 0

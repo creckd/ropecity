@@ -330,7 +330,8 @@ public class Worm : MonoBehaviour {
 	private void LateUpdate() {
 		if (landedHook || currentHoldID != -1) {
 			RefreshRopeRenderer();
-			RefreshWormRotation();
+			if (landedHook)
+				RefreshWormRotation();
 		}
 		HandleSpeedTrails();
 	}
