@@ -6415,6 +6415,8 @@ MonoBehaviour:
     characterAnimator: {fileID: 95670956321977786}
   - characterType: 2
     characterAnimator: {fileID: 95398533351354480}
+  - characterType: 6
+    characterAnimator: {fileID: 95374925056979046}
   data:
     aimAngle: 30
 --- !u!137 &137180306531777532

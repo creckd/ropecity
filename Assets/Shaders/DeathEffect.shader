@@ -16,7 +16,7 @@ Shader "Dani/DeathEffect"
 	{
 		Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
 		Blend SrcAlpha OneMinusSrcAlpha
-		ZWrite Off
+		ZWrite On
 
 		Pass
 		{

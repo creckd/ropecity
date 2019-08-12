@@ -9,7 +9,8 @@ public enum CharacterType {
 	Blob,
 	Laptop,
 	Froggy,
-	Kino
+	Kino,
+	ClassicWorm
 }
 
 [System.Serializable]

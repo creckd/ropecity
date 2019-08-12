@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WormPadWorm
+  m_Name: ClassicWorm
   m_Shader: {fileID: 4800000, guid: 42bd12aee4073754d9f96a04948d06dc, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

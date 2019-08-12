@@ -194,6 +194,11 @@ MonoBehaviour:
     characterRarity: 2
     characterPrice: 0
     unlockedByLevelIndex: 1
+  - characterName: Tony's bro
+    characterType: 6
+    characterRarity: 4
+    characterPrice: 0
+    unlockedByLevelIndex: 11
   commonRarityColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   unCommonRarityColor: {r: 0.14783564, g: 0.6981132, b: 0, a: 1}
   rareRarityColor: {r: 0, g: 0.25120232, b: 0.6603774, a: 1}
