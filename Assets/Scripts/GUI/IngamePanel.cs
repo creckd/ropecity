@@ -7,6 +7,7 @@ public class IngamePanel : FaderPanel {
 
 	public Image ropeCrossHair;
 	public LineRenderer aiderLine;
+	public float aiderLineInsetAmount = 0.01f;
 	public AnimatedLevelText animatedLevelText;
 	public CanvasGroup tutorialHoldIndicatorGroup;
 	public CanvasGroup tutorialReleaseIndicatorGroup;
@@ -108,6 +109,9 @@ public class IngamePanel : FaderPanel {
 			Vector3[] points = new Vector3[2];
 			points[0] = GameController.Instance.currentWorm.gunPositionObject.transform.position;
 			points[1] = crossHairTargetWorldPosition;
+			Vector3 halfPoint = (points[0] + points[1]) / 2f;
+			points[0] = Vector3.Lerp(points[0], halfPoint, aiderLineInsetAmount);
+			points[1] = Vector3.Lerp(points[1], halfPoint, aiderLineInsetAmount);
 			aiderLine.positionCount = 2;
 			aiderLine.SetPositions(points);
 

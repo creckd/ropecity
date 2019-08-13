@@ -131,12 +131,12 @@ public class CharacterSelectPanel : AnimatorPanel {
 	}
 
 	public void BuyCurrentlySelectedCharacter() {
-		CharacterType selectedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
-		GeneralSaveDatabase.CharacterSaveData selectedCharSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(selectedCharacterType);
-		selectedCharSaveData.owned = true;
-		RefreshCharacterDataGUI();
-		rotator.RefreshAllPlatformGraphics();
-		SavedDataManager.Instance.Save();
+		//CharacterType selectedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
+		//GeneralSaveDatabase.CharacterSaveData selectedCharSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(selectedCharacterType);
+		//selectedCharSaveData.owned = true;
+		//RefreshCharacterDataGUI();
+		//rotator.RefreshAllPlatformGraphics();
+		//SavedDataManager.Instance.Save();
 	}
 
 	public void EquipCharacter() {

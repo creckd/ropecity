@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using System.Linq;
 
 public class CharacterRotator : MonoBehaviour {
 
@@ -22,10 +23,16 @@ public class CharacterRotator : MonoBehaviour {
     private GameObject closestObj;
 
     public void Initialize() {
-        float degreePerObject = 360f / ConfigDatabase.Instance.characters.Length;
-        for (int i = 0; i < ConfigDatabase.Instance.characters.Length; i++) {
-			CharacterData cData = ConfigDatabase.Instance.characters[i];
-			CharacterPad characterPad = (Instantiate(samplePad.gameObject, Vector3.zero, Quaternion.identity, transform) as GameObject).GetComponent<CharacterPad>(); ;
+		int numberOfCharacters = ConfigDatabase.Instance.characters.Length;
+		float degreePerObject = 360f / numberOfCharacters;
+
+		CharacterData[] charactersInOrder = new CharacterData[numberOfCharacters];
+		Array.Copy(ConfigDatabase.Instance.characters, charactersInOrder, numberOfCharacters);
+		charactersInOrder = charactersInOrder.OrderBy(character => (int)character.characterPrice).ThenBy(character => character.unlockedByLevelIndex).ToArray();
+
+		for (int i = 0; i < numberOfCharacters; i++) {
+			CharacterData cData = charactersInOrder[i];
+			CharacterPad characterPad = (Instantiate(samplePad.gameObject, Vector3.zero, Quaternion.identity, transform) as GameObject).GetComponent<CharacterPad>();
             characterPad.name = "Character type: " + cData.characterType.ToString() + " on Character pad: " + i.ToString();
             characterPad.transform.position = transform.position + (-transform.forward * radius);
             characterPad.transform.RotateAround(transform.position, Vector3.up, degreePerObject * i);

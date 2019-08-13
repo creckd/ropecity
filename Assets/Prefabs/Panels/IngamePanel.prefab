@@ -962,6 +962,7 @@ MonoBehaviour:
   faders: []
   ropeCrossHair: {fileID: 114500936889737126}
   aiderLine: {fileID: 120475944652768018}
+  aiderLineInsetAmount: 0.1
   animatedLevelText: {fileID: 114211901957318720}
   tutorialHoldIndicatorGroup: {fileID: 225801195638595256}
   tutorialReleaseIndicatorGroup: {fileID: 225137666302556480}
@@ -1231,7 +1232,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -1673,16 +1674,16 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125924172516014}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.4945131, w: -0.8691702}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.9998099, y: 0.9998099, z: 0.9998099}
+  m_LocalScale: {x: 0.40975353, y: 0.40975353, z: 0.40975353}
   m_Children: []
   m_Father: {fileID: 224639833348964262}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1042.125, y: 1090.2141}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224452258816307858
