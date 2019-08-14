@@ -144,7 +144,6 @@ public class GameController : MonoBehaviour {
 	private void Update() {
 		if(currentGameState != GameState.GameFinished && currentGameState != GameState.GamePaused && gameControllerControlsTime)
 		Time.timeScale = Mathf.Lerp(Time.timeScale, targetTimeScale, Time.unscaledDeltaTime * currentDampeningValue);
-		Debug.Log(Time.timeScale);
 	}
 
 	private void StartTheGame(bool fastStart) {

@@ -31,7 +31,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _GlitchStrength: 1.0038905
+    - _GlitchStrength: 1.0023304
     - _GreyScale: 1
     - _T: 0
     - _UseMask: 0

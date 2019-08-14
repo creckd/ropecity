@@ -43,7 +43,6 @@ public class FlashTransition : MonoBehaviour {
 		while (t <= flashTransitionTime) {
 			t += Time.unscaledDeltaTime;
 			flashTransitionImage.color = Color.Lerp(fromColor, tarColor, t/flashTransitionTime);
-			Debug.Log(t);
 			yield return null;
 		}
 		flashTransitionImage.color = tarColor;

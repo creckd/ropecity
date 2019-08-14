@@ -14,6 +14,9 @@ public class Tube : LevelObject {
 	private void Start() {
 		tubeMat = GetComponentInChildren<MeshRenderer>().material;
 		tubeMat.SetVector("_TilingDirection", data.flowDirection);
+		BoxCollider2D boxCollider = GetComponent<BoxCollider2D>();
+		if (Mathf.Abs(transform.position.z) > 5f)
+			boxCollider.enabled = false;
 	}
 
 	protected override void Update() {
