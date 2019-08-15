@@ -30,5 +30,15 @@
 		levelSaveDatas[0].isUnlocked = true; //First level open
 	}
 
+	public int GetLastCompletedLevelIndex() {
+		int lastCompletedLevel = -1;
+		for (int i = 0; i < levelSaveDatas.Length; i++) {
+			if (!levelSaveDatas[i].levelCompleted) {
+				lastCompletedLevel = i - 1;
+				break;
+			}
+		}
+		return lastCompletedLevel;
+	}
 
 }

@@ -46,7 +46,8 @@ public class LevelSelectPanel : AnimatorPanel {
 		base.OnStartedOpening();
 		int defaultSectionToOpen = 0;
 		int lastPlayedLevelIndex = SavedDataManager.Instance.GetGeneralSaveDatabase().lastPlayedLevelIndex;
-		int nextLevel = lastPlayedLevelIndex == -1 ? 0 : lastPlayedLevelIndex + 1;
+		int lastCompletedLevel = SavedDataManager.Instance.GetLevelSaveDatabase().GetLastCompletedLevelIndex();
+		int nextLevel = lastCompletedLevel == -1 ? 0 : lastCompletedLevel + 1;
 
 		nextLevel = (int)Mathf.Clamp(nextLevel,0, (LevelResourceDatabase.Instance.sections.Length * 6) - 1);
 		int numberOfLevelsInASection = LevelResourceDatabase.Instance.sections[0].levelResourceNames.Length;
