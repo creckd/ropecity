@@ -143,5 +143,6 @@ public class CharacterSelectPanel : AnimatorPanel {
 		SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
 		rotator.RefreshAllPlatformGraphics();
 		RefreshCharacterDataGUI();
+		OpenPanel(0);
 	}
 }

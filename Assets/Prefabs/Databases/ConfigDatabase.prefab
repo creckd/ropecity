@@ -173,7 +173,7 @@ MonoBehaviour:
     characterType: 2
     characterRarity: 2
     characterPrice: 0
-    unlockedByLevelIndex: 2
+    unlockedByLevelIndex: 5
   - characterName: Toilee
     characterType: 1
     characterRarity: 3
@@ -193,7 +193,7 @@ MonoBehaviour:
     characterType: 5
     characterRarity: 2
     characterPrice: 0
-    unlockedByLevelIndex: 5
+    unlockedByLevelIndex: 2
   - characterName: Tony's bro
     characterType: 6
     characterRarity: 4
