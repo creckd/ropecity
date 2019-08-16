@@ -5719,6 +5719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: effbe286108df0742b5be75b301e3491, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialMaskCamera: {fileID: 1288291444}
   xDifferenceAllowed: 5
   yDifferenceAllowed: 7
   horizontalMovementLocked: 0

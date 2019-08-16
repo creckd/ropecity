@@ -68,8 +68,11 @@ public class SavedDataManager : MonoBehaviour {
 			CreateEmptySave();
 			return;
 		}
-
-		savedData = Load(Application.persistentDataPath + fileName);
+		try {
+			savedData = Load(Application.persistentDataPath + fileName);
+		} catch {
+			CreateEmptySave();
+		}
 	}
 
 	public void Save() {

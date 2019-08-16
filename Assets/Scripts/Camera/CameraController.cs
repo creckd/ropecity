@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour {
 		}
 	}
 
+	public Camera tutorialMaskCamera;
+
 	private Transform target = null;
 	private Vector3 offset;
 	private Vector3 cameraStartingPosition;
@@ -57,7 +59,9 @@ public class CameraController : MonoBehaviour {
 		float referenceAspect = referenceResolution.x / referenceResolution.y;
 		float currentAspect = currentResolution.x / currentResolution.y;
 
-		transform.position -= new Vector3(0f, 0f, cameraResolutionScaleAmount * (1 - Mathf.Clamp01(currentAspect / referenceAspect)));
+		float offsetAmount = cameraResolutionScaleAmount * (1 - Mathf.Clamp01(currentAspect / referenceAspect));
+		transform.position -= new Vector3(0f, 0f, offsetAmount);
+		tutorialMaskCamera.farClipPlane += offsetAmount;
 	}
 
 	public void SwitchGreyScale(bool state) {
