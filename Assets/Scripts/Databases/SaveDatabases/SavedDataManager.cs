@@ -6,6 +6,7 @@ using UnityEngine;
 public class SavedDataManager : MonoBehaviour {
 
 	private const string fileName = "/_save";
+	private const int saveVersionNumber = 2;
 
 	private static SavedDataManager instance = null;
 	public static SavedDataManager Instance {
@@ -68,6 +69,15 @@ public class SavedDataManager : MonoBehaviour {
 			CreateEmptySave();
 			return;
 		}
+
+		int currentSaveVersion = PlayerPrefs.GetInt("savedDataSaveVersionNumber", -1);
+		bool gameVersionCompatibleWithPreviousSave = currentSaveVersion == saveVersionNumber;
+
+		if (saveExists && !gameVersionCompatibleWithPreviousSave) {
+			CreateEmptySave();
+			return;
+		}
+
 		try {
 			savedData = Load(Application.persistentDataPath + fileName);
 		} catch {
@@ -77,6 +87,7 @@ public class SavedDataManager : MonoBehaviour {
 
 	public void Save() {
 		Save(savedData, Application.persistentDataPath + fileName);
+		PlayerPrefs.SetInt("savedDataSaveVersionNumber", saveVersionNumber);
 	}
 
 	public static void DeleteLocalSave() {
