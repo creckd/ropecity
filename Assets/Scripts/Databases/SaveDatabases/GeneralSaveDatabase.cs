@@ -10,6 +10,7 @@ public class GeneralSaveDatabase {
 	public int lastPlayedLevelIndex = -1;
 	public CharacterSaveData[] charactersSaveData;
 	public CharacterType currentlyEquippedCharacterType = CharacterType.Worm;
+	public bool noAdMode = false;
 
 	public void CreateEmpty() {
 		lastPlayedLevelIndex = -1;
@@ -20,6 +21,7 @@ public class GeneralSaveDatabase {
 			charactersSaveData[i].owned = false;
 		}
 		charactersSaveData[0].owned = true;
+		noAdMode = false;
 	}
 
 }

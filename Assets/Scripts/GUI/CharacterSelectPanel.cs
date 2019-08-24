@@ -131,13 +131,8 @@ public class CharacterSelectPanel : AnimatorPanel {
 	}
 
 	public void BuyCurrentlySelectedCharacter() {
-		AdvertManager.Instance.ShowInterstitial();
-		//CharacterType selectedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
-		//GeneralSaveDatabase.CharacterSaveData selectedCharSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(selectedCharacterType);
-		//selectedCharSaveData.owned = true;
-		//RefreshCharacterDataGUI();
-		//rotator.RefreshAllPlatformGraphics();
-		//SavedDataManager.Instance.Save();
+		//AdvertManager.Instance.ShowInterstitial();
+		IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => { RefreshCharacterDataGUI(); rotator.RefreshAllPlatformGraphics(); });
 	}
 
 	public void EquipCharacter() {
