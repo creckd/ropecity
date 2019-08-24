@@ -131,6 +131,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 	}
 
 	public void BuyCurrentlySelectedCharacter() {
+		AdvertManager.Instance.ShowInterstitial();
 		//CharacterType selectedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
 		//GeneralSaveDatabase.CharacterSaveData selectedCharSaveData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(selectedCharacterType);
 		//selectedCharSaveData.owned = true;
