@@ -4,6 +4,8 @@
 	{
 		_TintColor("Tint Color",Color) = (1,1,1,1)
 		_MainTex("Main Texture",2D) = "white"
+		_EffectTallness("Effect Tallness",float) = 8
+		_NoiseAmplitute("Noise amplitute",float) = 0.1
 	}
 	SubShader
 	{
@@ -35,6 +37,8 @@
 
 			sampler2D _MainTex;
 			half4 _TintColor;
+			float _EffectTallness;
+			float _NoiseAmplitute;
 
 			v2f vert (appdata v)
 			{
@@ -49,8 +53,8 @@
 				half4 noise = tex2D(_MainTex,i.uv + float2(_Time.x,0));
 				half4 finalCol = _TintColor;
 				finalCol.a = saturate(finalCol.a - noise.b * .3);
-				finalCol.a *= (1 - i.uv.y * 8);
-				finalCol.a += smoothstep(0.6, 0.65, noise.b) * smoothstep(0.1,0,i.uv.y) * 0.5;
+				finalCol.a *= (1 - i.uv.y * _EffectTallness);
+				finalCol.a += smoothstep(0.6, 0.65, noise.b) * smoothstep(_NoiseAmplitute,0,i.uv.y) * 0.5;
 				finalCol.a = saturate(finalCol.a);
 				return finalCol;
 			}

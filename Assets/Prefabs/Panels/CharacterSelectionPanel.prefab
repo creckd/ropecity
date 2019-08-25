@@ -12153,7 +12153,9 @@ MonoBehaviour:
   - {fileID: 114779353407046386}
   hologramParticle: {fileID: 198077752296979308}
   snapToForwardRotationConstantly: 0
-  selectionEffect: {fileID: 1886583440338984}
+  selectionEffect: {fileID: 23700426188066168}
+  regularSlectionMat: {fileID: 2100000, guid: 521816cdf8d14304db500935af113371, type: 2}
+  goldenSelectionMat: {fileID: 2100000, guid: 221c90f5b4c36f8428360ca152fc62cb, type: 2}
 --- !u!114 &114634320545279872
 MonoBehaviour:
   m_ObjectHideFlags: 1

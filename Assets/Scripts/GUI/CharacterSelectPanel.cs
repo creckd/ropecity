@@ -38,10 +38,14 @@ public class CharacterSelectPanel : AnimatorPanel {
 		dragArea.DragFinished += DraggingFinished;
 	}
 
-	public override void OnStartedOpening() {
-		base.OnStartedOpening();
+	public void RefreshGUIAndCharacters() {
 		rotator.RefreshAllPlatformGraphics();
 		RefreshCharacterDataGUI();
+	}
+
+	public override void OnStartedOpening() {
+		base.OnStartedOpening();
+		RefreshGUIAndCharacters();
 	}
 
 	private void Update() {
@@ -69,7 +73,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 
 		bool chosenOne = rotator.GetCurrentlySelectedPad().initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
 		selectButtonTargetGraphicImage.sprite = chosenOne ? equippedSelectButtonSprite : defaultSelectButtonSprite;
-		selectButton.interactable = !chosenOne;
+		//selectButton.interactable = !chosenOne;
 
 		if (selectedCharSaveData.owned) {
 			selectButton.gameObject.SetActive(true);
@@ -136,15 +140,14 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public void BuyCurrentlySelectedCharacter() {
 		//AdvertManager.Instance.ShowInterstitial();
 		IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => {
-		RefreshCharacterDataGUI();
-		rotator.RefreshAllPlatformGraphics();
+		RefreshGUIAndCharacters();
+		FoldableIAPButton.Instance.RefreshState();
 		});
 	}
 
 	public void EquipCharacter() {
 		SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
-		rotator.RefreshAllPlatformGraphics();
-		RefreshCharacterDataGUI();
+		RefreshGUIAndCharacters();
 		OpenPanel(0);
 	}
 }

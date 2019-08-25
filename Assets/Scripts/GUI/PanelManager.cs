@@ -25,7 +25,8 @@ public class PanelManager : MonoBehaviour {
 	[HideInInspector]
 	public RectTransform mainCanvasRect;
 
-	private Panel currentlyOpenedPanel = null;
+	[HideInInspector]
+	public Panel currentlyOpenedPanel = null;
 	private bool panelTransitionInProgress = false;
 
 	public void InitializeGUI() {

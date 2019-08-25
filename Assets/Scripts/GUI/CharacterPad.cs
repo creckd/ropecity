@@ -15,7 +15,9 @@ public class CharacterPad : MonoBehaviour {
 	[HideInInspector]
 	public bool snapToForwardRotationConstantly = false;
 
-	public GameObject selectionEffect;
+	public MeshRenderer selectionEffect;
+	public Material regularSlectionMat;
+	public Material goldenSelectionMat;
 
 	private PlatformCharacter initializedPlatformCharacter = null;
 
@@ -84,9 +86,11 @@ public class CharacterPad : MonoBehaviour {
 
 	public void RefreshGraphics() {
 		GeneralSaveDatabase.CharacterSaveData sData = SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(initializedType);
+		CharacterData cData = ConfigDatabase.Instance.GetCharacterDataWithType(sData.characterType);
 		GetPlatformCharacterByType(initializedType).gameObject.SetActive(sData.owned);
 		GetLockedPlatformCharacterByType(initializedType).gameObject.SetActive(!sData.owned);
 		hologramParticle.gameObject.SetActive(!sData.owned);
+		selectionEffect.material = cData.characterPrice == PriceType.IAP && !sData.owned ? goldenSelectionMat : regularSlectionMat;
 		//bool chosenOne = initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
 		//selectionEffect.gameObject.SetActive(chosenOne);
 	}

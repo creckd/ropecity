@@ -7,6 +7,7 @@ using UnityEngine.Purchasing;
 public class IAPHandler : MonoBehaviour {
 
 	public const string premium_edition_characterselect_product_id = "premium_edition";
+	public const string premium_edition_general_product_id = "premium_edition_general";
 
 	private static IAPHandler instance = null;
 	public static IAPHandler Instance {
@@ -34,6 +35,12 @@ public class IAPHandler : MonoBehaviour {
 		iapManager.controller.InitiatePurchase(premium_edition_characterselect_product_id);
 	}
 
+	public void BuyPremiumEditionFromGeneral(Action<bool> purchaseFinished) {
+		Blocker.Instane.Block();
+		lastCallBack += purchaseFinished;
+		iapManager.controller.InitiatePurchase(premium_edition_general_product_id);
+	}
+
 	public void PurchaseFailed(Product p, PurchaseFailureReason failureReason) {
 		Blocker.Instane.UnBlock();
 		lastCallBack(false);
@@ -46,6 +53,12 @@ public class IAPHandler : MonoBehaviour {
 				SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode = true;
 				SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(CharacterType.Froggy).owned = true;
 				SavedDataManager.Instance.Save();
+			}
+			break;
+			case premium_edition_general_product_id: {
+					SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode = true;
+					SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(CharacterType.Froggy).owned = true;
+					SavedDataManager.Instance.Save();
 			}
 			break;
 		}

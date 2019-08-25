@@ -9,10 +9,12 @@ public class IAPManager : IStoreListener {
 
 	public Action<Product> GrantPurchase = delegate { };
 	public Action<Product,PurchaseFailureReason> PurchaseFailed = delegate { };
+	public Action IAPInitialized = delegate { };
 
 	public IAPManager() {
 		var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 		builder.AddProduct(IAPHandler.premium_edition_characterselect_product_id, ProductType.NonConsumable);
+		builder.AddProduct(IAPHandler.premium_edition_general_product_id, ProductType.NonConsumable);
 		//builder.AddProduct("100_gold_coins", ProductType.Consumable, new IDs
 		//{
 		//	{"100_gold_coins_google", GooglePlay.Name},
@@ -28,6 +30,7 @@ public class IAPManager : IStoreListener {
 	public void OnInitialized(IStoreController controller, IExtensionProvider extensions) {
 		this.controller = controller;
 		this.extensions = extensions;
+		IAPInitialized();
 	}
 
 	/// <summary>
