@@ -9,6 +9,12 @@
       <isRightToLeft>false</isRightToLeft>
     </CultureInfo>
     <CultureInfo>
+      <languageCode>de</languageCode>
+      <englishName>German</englishName>
+      <nativeName>Deutsch</nativeName>
+      <isRightToLeft>false</isRightToLeft>
+    </CultureInfo>
+    <CultureInfo>
       <languageCode>en</languageCode>
       <englishName>English</englishName>
       <nativeName>English</nativeName>
