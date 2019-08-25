@@ -18,6 +18,9 @@ public class FoldableIAPButton : MonoBehaviour {
 	public Text priceText;
 	private bool currentlyFolded = true;
 
+	public GameObject iapButtonObject;
+	public GameObject purchasedStateObject;
+
 	private void Start() {
 		RefreshState();
 		IAPHandler.Instance.iapManager.IAPInitialized += RefreshPrice;
@@ -33,8 +36,9 @@ public class FoldableIAPButton : MonoBehaviour {
 	}
 
 	public void RefreshState() {
-		if (SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode)
-			gameObject.SetActive(false);
+		bool purchased = SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode;
+		iapButtonObject.gameObject.SetActive(!purchased);
+		purchasedStateObject.gameObject.SetActive(purchased);
 	}
 
 	public void ChangeState() {
@@ -45,13 +49,13 @@ public class FoldableIAPButton : MonoBehaviour {
 	public void BuyNoAds() {
 		IAPHandler.Instance.BuyPremiumEditionFromGeneral((bool s) => {
 			if (s) {
-				gameObject.SetActive(false);
 				if (PanelManager.Instance.currentlyOpenedPanel != null) {
 					CharacterSelectPanel characterSelectPanel = PanelManager.Instance.currentlyOpenedPanel.gameObject.GetComponent<CharacterSelectPanel>();
 					if (characterSelectPanel != null) {
 						characterSelectPanel.RefreshGUIAndCharacters();
 					}
 				}
+				RefreshState();
 			}
 		});
 	}
