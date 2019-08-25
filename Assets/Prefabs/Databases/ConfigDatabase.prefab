@@ -169,7 +169,7 @@ MonoBehaviour:
     characterRarity: 0
     characterPrice: 0
     unlockedByLevelIndex: -1
-  - characterName: Jelly
+  - characterName: Symbiot
     characterType: 2
     characterRarity: 2
     characterPrice: 0
