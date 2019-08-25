@@ -26,6 +26,8 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public Sprite defaultSelectButtonSprite;
 	public Sprite equippedSelectButtonSprite;
 
+	public Material greyScaleMaterial;
+
 	private bool characterRotationInProgress = false;
 	private bool rotateForward = false;
 
@@ -85,8 +87,15 @@ public class CharacterSelectPanel : AnimatorPanel {
 					break;
 				case PriceType.IAP:
 					buyButton.gameObject.SetActive(true);
-					UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_characterselect_product_id);
-					iapPriceText.text = p.metadata.localizedPriceString;
+					if (IAPHandler.Instance.iapManager.initialized) {
+						UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_characterselect_product_id);
+						iapPriceText.text = p.metadata.localizedPriceString;
+						buyButton.image.material = null;
+						buyButton.interactable = true;
+					} else {
+						buyButton.image.material = greyScaleMaterial;
+						buyButton.interactable = false;
+					}
 					rotateForwardButton.gameObject.SetActive(false);
 					rotateBackwardButton.gameObject.SetActive(false);
 					break;
@@ -141,7 +150,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 		//AdvertManager.Instance.ShowInterstitial();
 		IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => {
 		RefreshGUIAndCharacters();
-		FoldableIAPButton.Instance.RefreshState();
+		FoldableIAPButton.Instance.RefreshGraphics();
 		});
 	}
 

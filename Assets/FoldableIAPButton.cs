@@ -19,26 +19,37 @@ public class FoldableIAPButton : MonoBehaviour {
 	private bool currentlyFolded = true;
 
 	public GameObject iapButtonObject;
-	public GameObject purchasedStateObject;
+	public Image purchasedStateObject;
+	public Image bandImage;
+	public Button buyButton;
+	public Material greyScaleMaterial;
 
 	private void Start() {
-		RefreshState();
-		IAPHandler.Instance.iapManager.IAPInitialized += RefreshPrice;
+		bool purchased = SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode;
+		if (!purchased) {
+			buyButton.interactable = false;
+			if (!IAPHandler.Instance.iapManager.initialized)
+				IAPHandler.Instance.iapManager.IAPInitialized += FetchPrice;
+			else FetchPrice();
+		}
+		RefreshGraphics();
 	}
 
-	private void RefreshPrice() {
+	private void FetchPrice() {
 		UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_general_product_id);
 		priceText.text = p.metadata.localizedPriceString;
+		buyButton.interactable = true;
 	}
 
 	private void OnEnable() {
 		currentlyFolded = true;
 	}
 
-	public void RefreshState() {
-		bool purchased = SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode;
-		iapButtonObject.gameObject.SetActive(!purchased);
-		purchasedStateObject.gameObject.SetActive(purchased);
+	public void RefreshGraphics() {
+		bool isPurchased = SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode;
+		iapButtonObject.gameObject.SetActive(!isPurchased);
+		purchasedStateObject.gameObject.SetActive(isPurchased);
+		bandImage.material = buyButton.interactable ? greyScaleMaterial : null;
 	}
 
 	public void ChangeState() {
@@ -55,7 +66,7 @@ public class FoldableIAPButton : MonoBehaviour {
 						characterSelectPanel.RefreshGUIAndCharacters();
 					}
 				}
-				RefreshState();
+				RefreshGraphics();
 			}
 		});
 	}

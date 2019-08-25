@@ -11,6 +11,8 @@ public class IAPManager : IStoreListener {
 	public Action<Product,PurchaseFailureReason> PurchaseFailed = delegate { };
 	public Action IAPInitialized = delegate { };
 
+	public bool initialized = false;
+
 	public IAPManager() {
 		var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
 		builder.AddProduct(IAPHandler.premium_edition_characterselect_product_id, ProductType.NonConsumable);
@@ -31,6 +33,7 @@ public class IAPManager : IStoreListener {
 		this.controller = controller;
 		this.extensions = extensions;
 		IAPInitialized();
+		initialized = true;
 	}
 
 	/// <summary>

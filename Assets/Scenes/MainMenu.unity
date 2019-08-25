@@ -3334,7 +3334,10 @@ MonoBehaviour:
   anim: {fileID: 1217938338}
   priceText: {fileID: 1400656201}
   iapButtonObject: {fileID: 2063403953}
-  purchasedStateObject: {fileID: 1815713767}
+  purchasedStateObject: {fileID: 1815713769}
+  bandImage: {fileID: 2044707724}
+  buyButton: {fileID: 1769356592}
+  greyScaleMaterial: {fileID: 2100000, guid: d052eae6b80fd384ab1f352595482e6e, type: 2}
 --- !u!95 &1217938338
 Animator:
   serializedVersion: 3
@@ -4006,7 +4009,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: $2.99
+  m_Text: N/A
 --- !u!222 &1400656202
 CanvasRenderer:
   m_ObjectHideFlags: 0
