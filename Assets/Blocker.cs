@@ -5,7 +5,7 @@ using UnityEngine;
 public class Blocker : MonoBehaviour {
 
 	private static Blocker instance = null;
-	public static Blocker Instane {
+	public static Blocker Instance {
 		get {
 			if (instance == null)
 				instance = FindObjectOfType<Blocker>();
