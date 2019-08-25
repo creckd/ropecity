@@ -29,11 +29,13 @@ public class IAPHandler : MonoBehaviour {
 	private Action<bool> lastCallBack = delegate { };
 
 	public void BuyPremiumEditionFromCharacterScreen(Action<bool> purchaseFinished) {
+		Blocker.Instane.Block();
 		lastCallBack += purchaseFinished;
 		iapManager.controller.InitiatePurchase(premium_edition_characterselect_product_id);
 	}
 
 	public void PurchaseFailed(Product p, PurchaseFailureReason failureReason) {
+		Blocker.Instane.UnBlock();
 		lastCallBack(false);
 		lastCallBack = delegate { };
 	}
@@ -47,6 +49,7 @@ public class IAPHandler : MonoBehaviour {
 			}
 			break;
 		}
+		Blocker.Instane.UnBlock();
 		lastCallBack(true);
 		lastCallBack = delegate { };
 	}
