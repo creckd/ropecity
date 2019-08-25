@@ -69,7 +69,7 @@ public class IronSourceEvents : MonoBehaviour
 
     void Awake()
     {
-    #if UNITY_ANDROID
+    #if UNITY_ANDROID && !UNITY_EDITOR
         this.rewardedVideoAndroid = (IUnityRewardedVideo)new IronSourceRewardedVideoAndroid();//sets this.rewardedVideoAndroid as listener for RV(Mediation& Demand Only) events in the bridge
         this.rewardedVideoAndroid.CreateRewardedVideo();//implement RV(Mediation & Demand Only) callbacks in the bridge
         registerRewardedVideoEvents();//subscribe to RV events from this.rewardedVideoAndroid

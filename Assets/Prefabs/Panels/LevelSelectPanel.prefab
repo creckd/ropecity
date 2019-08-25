@@ -476,6 +476,7 @@ GameObject:
   - component: {fileID: 224684808167120364}
   - component: {fileID: 222554104724118456}
   - component: {fileID: 114634853240149336}
+  - component: {fileID: 114164267701327184}
   m_Layer: 5
   m_Name: levelsText
   m_TagString: Untagged
@@ -1341,6 +1342,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114164267701327184
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1388512741724806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39959ce3f8fc47c4188205e76e698873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: LevelSelect.Stages
 --- !u!114 &114193110757244760
 MonoBehaviour:
   m_ObjectHideFlags: 1

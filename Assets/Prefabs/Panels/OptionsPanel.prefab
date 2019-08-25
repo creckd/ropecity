@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 224131177242903260}
   - component: {fileID: 222098548613895510}
   - component: {fileID: 114487104147920984}
+  - component: {fileID: 114972982617319712}
   m_Layer: 5
   m_Name: LanguagesText
   m_TagString: Untagged
@@ -1249,6 +1250,18 @@ MonoBehaviour:
     pitch: 1
     randomizePitch: 0
     randomizePitchBetween: {x: 0, y: 0}
+--- !u!114 &114972982617319712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1180342161747524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39959ce3f8fc47c4188205e76e698873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: Options.Languages
 --- !u!222 &222019696165936682
 CanvasRenderer:
   m_ObjectHideFlags: 1

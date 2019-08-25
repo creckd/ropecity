@@ -5,18 +5,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Linq;
+using SmartLocalization;
 
 public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandler {
 
-	public enum SupportedLanguages {
-		English,
-		French,
-		Russian,
-		Portuguese,
-		Hungarian,
-		ChineseS,
-		ChineseT,
-	}
+	//public enum SupportedLanguages {
+	//	English,
+	//	French,
+	//	Russian,
+	//	Portuguese,
+	//	Hungarian,
+	//	ChineseS,
+	//	ChineseT,
+	//}
+
+	private List<SmartCultureInfo> supportedLanguages = new List<SmartCultureInfo>();
 
 	public float snappingSpeed = 5f;
 
@@ -24,7 +27,7 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 	public Text sampleText;
 	public Image marker;
 
-	private Dictionary<SupportedLanguages, Text> mappedLanguagesTexts = new Dictionary<SupportedLanguages, Text>();
+	private Dictionary<SmartCultureInfo, Text> mappedLanguagesTexts = new Dictionary<SmartCultureInfo, Text>();
 	private List<Text> instantiatedTexts = new List<Text>();
 	private float freezedNormalizedPosition = 0f;
 	private bool shouldRestrict = false;
@@ -34,17 +37,19 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 	private Vector3 snapTargetWorldPosition;
 	private Text snapTargetText = null;
 
-	private SupportedLanguages currentlySelectedLanguage = SupportedLanguages.English;
+	private SmartCultureInfo currentlySelectedLanguage = null;
 
 	private Text currentClosestText = null;
 
 	public void InitializeLanguageSelector() {
-		int numberOfSupportedLanguages = Enum.GetNames(typeof(SupportedLanguages)).Length;
+		currentlySelectedLanguage = LanguageManager.Instance.CurrentlyLoadedCulture;
+		supportedLanguages = LanguageManager.Instance.GetSupportedLanguages();
+		int numberOfSupportedLanguages = supportedLanguages.Count;
 
 		for (int i = 0; i < numberOfSupportedLanguages; i++) {
 			Text languageText = (Instantiate(sampleText.gameObject, languageScrollRect.content.transform) as GameObject).GetComponent<Text>();
-			SupportedLanguages l = (SupportedLanguages)i;
-			languageText.text = l.ToString();
+			SmartCultureInfo l = supportedLanguages[i];
+			languageText.text = l.nativeName;
 			mappedLanguagesTexts.Add(l, languageText);
 			instantiatedTexts.Add(languageText);
 		}
@@ -61,9 +66,9 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 	IEnumerator ResetRoutine() {
 		yield return null; //Wait for 2 frames because UI positions are not updated immeadiatly
 		yield return null;
-		Text first = instantiatedTexts[0];
+		Text first = mappedLanguagesTexts[currentlySelectedLanguage];
 		languageScrollRect.content.transform.position = languageScrollRect.content.transform.position + Vector3.up * (centerY - first.transform.position.y);
-		SupportedLanguages selected = mappedLanguagesTexts.FirstOrDefault(x => x.Value == first).Key;
+		SmartCultureInfo selected = mappedLanguagesTexts.FirstOrDefault(x => x.Value == first).Key;
 		SelectLanguage(selected);
 	}
 
@@ -77,7 +82,7 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 			float dst = Vector3.Distance(languageScrollRect.content.transform.position, snapTargetWorldPosition);
 			if (dst < 0.01f) {
 				languageScrollRect.content.transform.position = snapTargetWorldPosition;
-				SupportedLanguages selected = mappedLanguagesTexts.FirstOrDefault(x => x.Value == snapTargetText).Key;
+				SmartCultureInfo selected = mappedLanguagesTexts.FirstOrDefault(x => x.Value == snapTargetText).Key;
 				SelectLanguage(selected);
 				snapping = false;
 			}
@@ -138,11 +143,12 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 		snapping = true;
 	}
 
-	private void SelectLanguage(SupportedLanguages language) {
+	private void SelectLanguage(SmartCultureInfo language) {
 		if (currentlySelectedLanguage != language) {
 			currentlySelectedLanguage = language;
 			Debug.Log("Changed language to: " + language.ToString());
 			//TODO : IMPLEMENT LANGUAGE CHANGE HERE
+			LanguageManager.Instance.ChangeLanguage(language);
 		}
 		RefreshTextStyles();
 	}

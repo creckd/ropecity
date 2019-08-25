@@ -83,7 +83,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 			switch (selectedCharData.characterPrice) {
 				case PriceType.UnlockedByLevel:
 					unlockedByLevelButton.gameObject.SetActive(true);
-					stageText.text = string.Format("Complete Stage {0} to unlock!", selectedCharData.unlockedByLevelIndex + 1);
+					stageText.text = string.Format(SmartLocalization.LanguageManager.Instance.GetTextValue("CharacterSleect.StageUnlock"), selectedCharData.unlockedByLevelIndex + 1);
 					break;
 				case PriceType.IAP:
 					buyButton.gameObject.SetActive(true);
