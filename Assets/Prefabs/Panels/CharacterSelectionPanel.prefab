@@ -12112,6 +12112,7 @@ MonoBehaviour:
   unlockedByLevelButton: {fileID: 114542852482400552}
   stageText: {fileID: 114062841999963340}
   buyButton: {fileID: 114539851115683634}
+  iapPriceText: {fileID: 114819851396892108}
   selectButton: {fileID: 114018722473581560}
   rotateForwardButton: {fileID: 114140154056777276}
   rotateBackwardButton: {fileID: 114453066406810092}

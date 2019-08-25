@@ -15,6 +15,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public Button unlockedByLevelButton;
 	public Text stageText;
 	public Button buyButton;
+	public Text iapPriceText;
 	public Button selectButton;
 	public Button rotateForwardButton;
 	public Button rotateBackwardButton;
@@ -80,6 +81,8 @@ public class CharacterSelectPanel : AnimatorPanel {
 					break;
 				case PriceType.IAP:
 					buyButton.gameObject.SetActive(true);
+					UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_characterselect_product_id);
+					iapPriceText.text = p.metadata.localizedPriceString;
 					rotateForwardButton.gameObject.SetActive(false);
 					rotateBackwardButton.gameObject.SetActive(false);
 					break;
@@ -132,7 +135,10 @@ public class CharacterSelectPanel : AnimatorPanel {
 
 	public void BuyCurrentlySelectedCharacter() {
 		//AdvertManager.Instance.ShowInterstitial();
-		IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => { RefreshCharacterDataGUI(); rotator.RefreshAllPlatformGraphics(); });
+		IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => {
+		RefreshCharacterDataGUI();
+		rotator.RefreshAllPlatformGraphics();
+		});
 	}
 
 	public void EquipCharacter() {

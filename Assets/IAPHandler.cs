@@ -29,8 +29,8 @@ public class IAPHandler : MonoBehaviour {
 	private Action<bool> lastCallBack = delegate { };
 
 	public void BuyPremiumEditionFromCharacterScreen(Action<bool> purchaseFinished) {
-		iapManager.controller.InitiatePurchase(premium_edition_characterselect_product_id);
 		lastCallBack += purchaseFinished;
+		iapManager.controller.InitiatePurchase(premium_edition_characterselect_product_id);
 	}
 
 	public void PurchaseFailed(Product p, PurchaseFailureReason failureReason) {
@@ -39,7 +39,7 @@ public class IAPHandler : MonoBehaviour {
 	}
 
 	public void GrantPurchase(Product p) {
-		switch (p.ToString()) {
+		switch (p.definition.id) {
 			case premium_edition_characterselect_product_id: {
 				SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode = true;
 				SavedDataManager.Instance.GetCharacterSaveDataWithCharacterType(CharacterType.Froggy).owned = true;
@@ -50,5 +50,4 @@ public class IAPHandler : MonoBehaviour {
 		lastCallBack(true);
 		lastCallBack = delegate { };
 	}
-
 }
