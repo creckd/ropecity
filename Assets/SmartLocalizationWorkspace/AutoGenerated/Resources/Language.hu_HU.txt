@@ -119,8 +119,41 @@
 	<data name="CharacterSleect.StageUnlock" xml:space="preserve">
 		<value>Teljesítsd a {0}. szintet a feloldáshoz</value>
 	</data>
+	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
+		<value>A karakter {0} mostmár elérhető a számodra!</value>
+	</data>
+	<data name="CharacterUnlockedPopup.Congratulations" xml:space="preserve">
+		<value>Gratulálok!</value>
+	</data>
+	<data name="CharacterUnlockedPopup.GoToCharacters" xml:space="preserve">
+		<value>Irány a karakterekhez</value>
+	</data>
+	<data name="CharacterUnlockedPopup.Okay" xml:space="preserve">
+		<value>Rendben</value>
+	</data>
+	<data name="FinishPanel.Completed" xml:space="preserve">
+		<value>Teljesítve!</value>
+	</data>
+	<data name="IngamePanel.GetToTheEnd" xml:space="preserve">
+		<value>JUSS EL A VÉGÉIG</value>
+	</data>
+	<data name="IngamePanel.Hold" xml:space="preserve">
+		<value>TARTSD</value>
+	</data>
+	<data name="IngamePanel.Release" xml:space="preserve">
+		<value>ENGEDD FEL</value>
+	</data>
+	<data name="IngamePanel.runText" xml:space="preserve">
+		<value>{0}. Nekifutás</value>
+	</data>
+	<data name="IngamePanel.stageText" xml:space="preserve">
+		<value>{0}. Szint</value>
+	</data>
 	<data name="LevelSelect.Stages" xml:space="preserve">
 		<value>Szintek</value>
+	</data>
+	<data name="LoadingScreen.Loading" xml:space="preserve">
+		<value>Betöltés</value>
 	</data>
 	<data name="MainMenu.CharacterButton" xml:space="preserve">
 		<value>Karakterek</value>
@@ -134,16 +167,7 @@
 	<data name="Options.Languages" xml:space="preserve">
 		<value>Nyelvek</value>
 	</data>
-	<data name="CharacterUnlockedPopup.Congratulations" xml:space="preserve">
-		<value />
-	</data>
-	<data name="CharacterUnlockedPopup.GoToCharacters" xml:space="preserve">
-		<value />
-	</data>
-	<data name="CharacterUnlockedPopup.Okay" xml:space="preserve">
-		<value />
-	</data>
-	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
-		<value />
+	<data name="PausePanel.Paused" xml:space="preserve">
+		<value>Szünetelve</value>
 	</data>
 </root>

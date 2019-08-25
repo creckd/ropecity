@@ -117,10 +117,43 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 	<data name="CharacterSleect.StageUnlock" xml:space="preserve">
-		<value>Complete Stage {0} to unlock</value>
+		<value>Complete Stage {0} to unlock!</value>
+	</data>
+	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
+		<value>The character {0} is now available for you!</value>
+	</data>
+	<data name="CharacterUnlockedPopup.Congratulations" xml:space="preserve">
+		<value>Congratulations!</value>
+	</data>
+	<data name="CharacterUnlockedPopup.GoToCharacters" xml:space="preserve">
+		<value>Go to Characters</value>
+	</data>
+	<data name="CharacterUnlockedPopup.Okay" xml:space="preserve">
+		<value>Okay</value>
+	</data>
+	<data name="FinishPanel.Completed" xml:space="preserve">
+		<value>Completed!</value>
+	</data>
+	<data name="IngamePanel.GetToTheEnd" xml:space="preserve">
+		<value>GET TO THE END</value>
+	</data>
+	<data name="IngamePanel.Hold" xml:space="preserve">
+		<value>HOLD</value>
+	</data>
+	<data name="IngamePanel.Release" xml:space="preserve">
+		<value>RELEASE</value>
+	</data>
+	<data name="IngamePanel.runText" xml:space="preserve">
+		<value>Run {0}</value>
+	</data>
+	<data name="IngamePanel.stageText" xml:space="preserve">
+		<value>Stage {0}</value>
 	</data>
 	<data name="LevelSelect.Stages" xml:space="preserve">
 		<value>Stages</value>
+	</data>
+	<data name="LoadingScreen.Loading" xml:space="preserve">
+		<value>Loading</value>
 	</data>
 	<data name="MainMenu.CharacterButton" xml:space="preserve">
 		<value>Characters</value>
@@ -134,16 +167,7 @@
 	<data name="Options.Languages" xml:space="preserve">
 		<value>Languages</value>
 	</data>
-	<data name="CharacterUnlockedPopup.Congratulations" xml:space="preserve">
-		<value />
-	</data>
-	<data name="CharacterUnlockedPopup.GoToCharacters" xml:space="preserve">
-		<value />
-	</data>
-	<data name="CharacterUnlockedPopup.Okay" xml:space="preserve">
-		<value />
-	</data>
-	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
-		<value />
+	<data name="PausePanel.Paused" xml:space="preserve">
+		<value>Paused</value>
 	</data>
 </root>

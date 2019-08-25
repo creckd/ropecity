@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 224479316140338186}
   - component: {fileID: 222909488012675040}
   - component: {fileID: 114036788918219924}
+  - component: {fileID: 114307526108621580}
   m_Layer: 5
   m_Name: releaseText
   m_TagString: Untagged
@@ -380,6 +381,7 @@ GameObject:
   - component: {fileID: 224305393755370014}
   - component: {fileID: 222605669485046010}
   - component: {fileID: 114944228973174630}
+  - component: {fileID: 114518730943365784}
   m_Layer: 5
   m_Name: holdText
   m_TagString: Untagged
@@ -449,6 +451,7 @@ GameObject:
   - component: {fileID: 224799177062367734}
   - component: {fileID: 222366189485007838}
   - component: {fileID: 114223638063425738}
+  - component: {fileID: 114367996439887854}
   m_Layer: 5
   m_Name: getToTheEndText
   m_TagString: Untagged
@@ -799,6 +802,18 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Run 1
+--- !u!114 &114307526108621580
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1747875008614042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39959ce3f8fc47c4188205e76e698873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: IngamePanel.Release
 --- !u!114 &114312952550277290
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -840,6 +855,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114367996439887854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1996899777518210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39959ce3f8fc47c4188205e76e698873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: IngamePanel.GetToTheEnd
 --- !u!114 &114454396393586408
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -948,6 +975,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114518730943365784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1830878326483512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39959ce3f8fc47c4188205e76e698873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localizedKey: IngamePanel.Hold
 --- !u!114 &114541856074914500
 MonoBehaviour:
   m_ObjectHideFlags: 1

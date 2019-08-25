@@ -73,13 +73,13 @@ public class IngamePanel : FaderPanel {
 	private void ShowLevelInfo(bool fastStart) {
 		string levelName, triesText;
 		if (!GameController.Instance.isDebugTestLevelMode) {
-			levelName = "Stage " + (LevelController.Instance.currentLevelIndex+1).ToString();
-			triesText = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries.ToString();
+			levelName = string.Format(SmartLocalization.LanguageManager.Instance.GetTextValue("IngamePanel.stageText"), (LevelController.Instance.currentLevelIndex + 1).ToString());
+			triesText = string.Format(SmartLocalization.LanguageManager.Instance.GetTextValue("IngamePanel.runText"), SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries.ToString());
 		} else {
 			levelName = "Teszt mód";
 			triesText = "végtelen";
 		}
-		animatedLevelText.ShowLevelText(2.5f, levelName, "Run " + triesText);
+		animatedLevelText.ShowLevelText(2.5f, levelName, triesText);
 	}
 
 	public void BackToMainMenu() {

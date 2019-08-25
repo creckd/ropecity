@@ -27,7 +27,7 @@ public class UnlockedCharacterPopup : AnimatorPanel {
 		Color rarityColor = ConfigDatabase.Instance.GetRarityColor(data.characterRarity);
 		characterName.text = data.characterName;
 		string rarityHex = ColorUtility.ToHtmlStringRGB(rarityColor);
-		messageText.text = string.Format(SmartLocalization.LanguageManager.Instance.GetTextValue("CharacterUnlockedPopup.CharacterUnlockedText"), " < color=#" + rarityHex + ">" + data.characterName);
+		messageText.text = string.Format(SmartLocalization.LanguageManager.Instance.GetTextValue("CharacterUnlockedPopup.CharacterUnlockedText"), " <color=#" + rarityHex + ">" + data.characterName + "</color>");
 	}
 
 	private PlatformCharacter GetCharacterObject(CharacterType cType) {

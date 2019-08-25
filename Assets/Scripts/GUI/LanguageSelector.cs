@@ -37,12 +37,24 @@ public class LanguageSelector : MonoBehaviour, IEndDragHandler, IBeginDragHandle
 	private Vector3 snapTargetWorldPosition;
 	private Text snapTargetText = null;
 
-	private SmartCultureInfo currentlySelectedLanguage = null;
+	public SmartCultureInfo currentlySelectedLanguage = null;
 
 	private Text currentClosestText = null;
 
 	public void InitializeLanguageSelector() {
-		currentlySelectedLanguage = LanguageManager.Instance.CurrentlyLoadedCulture;
+
+		GeneralSaveDatabase generalSaveDatabase = SavedDataManager.Instance.GetGeneralSaveDatabase();
+		SmartCultureInfo savedLanguage = null;
+		List<SmartCultureInfo> supportedLanguages = new List<SmartCultureInfo>();
+		supportedLanguages = LanguageManager.Instance.GetSupportedLanguages();
+		for (int i = 0; i < supportedLanguages.Count; i++) {
+			if (supportedLanguages[i].languageCode == generalSaveDatabase.currentlySelectedLanguageCode) {
+				savedLanguage = supportedLanguages[i];
+				break;
+			}
+		}
+		currentlySelectedLanguage = savedLanguage;
+
 		supportedLanguages = LanguageManager.Instance.GetSupportedLanguages();
 		int numberOfSupportedLanguages = supportedLanguages.Count;
 

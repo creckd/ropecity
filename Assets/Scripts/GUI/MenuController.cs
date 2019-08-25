@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using SmartLocalization;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,10 +10,29 @@ public class MenuController : MonoBehaviour {
 		Time.timeScale = 1;
 		QualitySettings.vSyncCount = 0;
 		Application.targetFrameRate = 300;
+		CheckAndSetLanguage();
 		PanelManager.Instance.InitializeGUI();
 		PopupManager.Instance.InitializeGUI();
 
 		SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.mainMenuMusic.CloneToCustomClip(), "MainMenuMusic");
+	}
 
+	private void CheckAndSetLanguage() {
+		GeneralSaveDatabase generalSaveDatabase = SavedDataManager.Instance.GetGeneralSaveDatabase();
+		if (generalSaveDatabase.currentlySelectedLanguageCode == "") {
+			generalSaveDatabase.currentlySelectedLanguageCode = "en";
+		}
+
+		SmartCultureInfo savedLanguage = null;
+		List<SmartCultureInfo> supportedLanguages = new List<SmartCultureInfo>();
+		supportedLanguages = LanguageManager.Instance.GetSupportedLanguages();
+		for (int i = 0; i < supportedLanguages.Count; i++) {
+			if (supportedLanguages[i].languageCode == generalSaveDatabase.currentlySelectedLanguageCode) {
+				savedLanguage = supportedLanguages[i];
+				break;
+			}
+		}
+		LanguageManager.Instance.ChangeLanguage(savedLanguage);
+		LanguageManager.SetDontDestroyOnLoad();
 	}
 }

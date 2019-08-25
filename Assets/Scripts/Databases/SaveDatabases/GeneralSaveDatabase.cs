@@ -1,4 +1,5 @@
 ﻿using System;
+using SmartLocalization;
 
 public class GeneralSaveDatabase {
 
@@ -11,6 +12,7 @@ public class GeneralSaveDatabase {
 	public CharacterSaveData[] charactersSaveData;
 	public CharacterType currentlyEquippedCharacterType = CharacterType.Worm;
 	public bool noAdMode = false;
+	public string currentlySelectedLanguageCode = "";
 
 	public void CreateEmpty() {
 		lastPlayedLevelIndex = -1;
@@ -22,6 +24,7 @@ public class GeneralSaveDatabase {
 		}
 		charactersSaveData[0].owned = true;
 		noAdMode = false;
+		currentlySelectedLanguageCode = "";
 	}
 
 }

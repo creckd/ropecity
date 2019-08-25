@@ -24,4 +24,11 @@ public class OptionsPanel : AnimatorPanel {
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.optionsWoosh);
 	}
 
+	public override void OnClosed() {
+		base.OnClosed();
+		if (SavedDataManager.Instance.GetGeneralSaveDatabase().currentlySelectedLanguageCode != languageSelector.currentlySelectedLanguage.languageCode) {
+			SavedDataManager.Instance.GetGeneralSaveDatabase().currentlySelectedLanguageCode = languageSelector.currentlySelectedLanguage.languageCode;
+			SavedDataManager.Instance.Save();
+		}
+	}
 }

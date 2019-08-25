@@ -39,6 +39,7 @@ public class FoldableIAPButton : MonoBehaviour {
 		UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_general_product_id);
 		priceText.text = p.metadata.localizedPriceString;
 		buyButton.interactable = true;
+		RefreshGraphics();
 	}
 
 	private void OnEnable() {
@@ -49,7 +50,7 @@ public class FoldableIAPButton : MonoBehaviour {
 		bool isPurchased = SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode;
 		iapButtonObject.gameObject.SetActive(!isPurchased);
 		purchasedStateObject.gameObject.SetActive(isPurchased);
-		bandImage.material = buyButton.interactable ? greyScaleMaterial : null;
+		bandImage.material = buyButton.interactable ? null : greyScaleMaterial;
 	}
 
 	public void ChangeState() {
