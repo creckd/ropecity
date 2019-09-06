@@ -82,3 +82,5 @@ MonoBehaviour:
     prefab: {fileID: 114835975439963046, guid: aad2ea54eb3967d429c8d08aefe03c1d, type: 2}
   - uniqueID: ROTSPTUBE
     prefab: {fileID: 114913685030201672, guid: 18c2a03a7da9de24996ab6bfe9967994, type: 2}
+  - uniqueID: DNATUBE
+    prefab: {fileID: 114168350548836092, guid: 1b986930b046a15499650d410bb00221, type: 2}
