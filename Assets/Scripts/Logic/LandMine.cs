@@ -44,9 +44,9 @@ public class LandMine : LevelObject {
 		anim.CrossFade(explodeAnimationStateName, 0.1f);
 		trigger.enabled = false;
 		yield return null;
-		//yield return new WaitForSeconds(0.25f);
+		yield return new WaitForSecondsRealtime(0.3f);
 		explodeParticle.Play();
-		yield return new WaitForSecondsRealtime(0.4f);
+		yield return new WaitForSecondsRealtime(0.1f);
 		if (GameController.Instance.currentGameState == GameState.GameStarted && Vector3.Distance(transform.position, GameController.Instance.currentWorm.transform.position) < ConfigDatabase.Instance.mineLethalRange)
 			GameController.Instance.currentWorm.Die();
 	}
