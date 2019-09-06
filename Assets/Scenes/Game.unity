@@ -19886,7 +19886,7 @@ Prefab:
     - target: {fileID: 114071005370810598, guid: f3b0bfd5b337a3146b05ccec4d1b5716,
         type: 2}
       propertyPath: isDebugTestLevelMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3b0bfd5b337a3146b05ccec4d1b5716, type: 2}
