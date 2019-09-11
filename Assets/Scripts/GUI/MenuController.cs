@@ -20,7 +20,8 @@ public class MenuController : MonoBehaviour {
 	private void CheckAndSetLanguage() {
 		GeneralSaveDatabase generalSaveDatabase = SavedDataManager.Instance.GetGeneralSaveDatabase();
 		if (generalSaveDatabase.currentlySelectedLanguageCode == "") {
-			generalSaveDatabase.currentlySelectedLanguageCode = "en";
+			string systemLangCode = LanguageManager.Instance.GetSupportedSystemLanguageCode();
+			generalSaveDatabase.currentlySelectedLanguageCode = systemLangCode == string.Empty ? "en" : systemLangCode;
 		}
 
 		SmartCultureInfo savedLanguage = null;

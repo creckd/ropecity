@@ -120,7 +120,7 @@
 		<value>完成{0}级解锁</value>
 	</data>
 	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
-		<value> 角色{0}现在可供您使用！</value>
+		<value>角色{0}现在可供您使用！</value>
 	</data>
 	<data name="CharacterUnlockedPopup.Congratulations" xml:space="preserve">
 		<value>恭喜！</value>

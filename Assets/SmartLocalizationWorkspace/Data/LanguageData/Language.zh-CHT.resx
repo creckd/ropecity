@@ -129,7 +129,7 @@
 		<value>去角色</value>
 	</data>
 	<data name="CharacterUnlockedPopup.Okay" xml:space="preserve">
-		<value> 好的</value>
+		<value>好的</value>
 	</data>
 	<data name="FinishPanel.Completed" xml:space="preserve">
 		<value>完了！</value>
@@ -144,13 +144,13 @@
 		<value>發布</value>
 	</data>
 	<data name="IngamePanel.runText" xml:space="preserve">
-		<value> 運行{0}</value>
+		<value>運行{0}</value>
 	</data>
 	<data name="IngamePanel.stageText" xml:space="preserve">
 		<value>{0}級</value>
 	</data>
 	<data name="LevelSelect.Stages" xml:space="preserve">
-		<value> 水平</value>
+		<value>水平</value>
 	</data>
 	<data name="LoadingScreen.Loading" xml:space="preserve">
 		<value>載入中</value>
