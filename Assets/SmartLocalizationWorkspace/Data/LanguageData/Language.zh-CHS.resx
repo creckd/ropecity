@@ -117,57 +117,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 	<data name="CharacterSleect.StageUnlock" xml:space="preserve">
-		<value>Complete Stage {0} to unlock!</value>
+		<value>完成{0}级解锁</value>
 	</data>
 	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
-		<value>The character {0} is now available for you!</value>
+		<value> 角色{0}现在可供您使用！</value>
 	</data>
 	<data name="CharacterUnlockedPopup.Congratulations" xml:space="preserve">
-		<value>Congratulations!</value>
+		<value>恭喜！</value>
 	</data>
 	<data name="CharacterUnlockedPopup.GoToCharacters" xml:space="preserve">
-		<value>Go to Characters</value>
+		<value>去角色</value>
 	</data>
 	<data name="CharacterUnlockedPopup.Okay" xml:space="preserve">
-		<value>Okay</value>
+		<value>好的</value>
 	</data>
 	<data name="FinishPanel.Completed" xml:space="preserve">
-		<value>Completed!</value>
+		<value>完了！</value>
 	</data>
 	<data name="IngamePanel.GetToTheEnd" xml:space="preserve">
-		<value>GET TO THE END</value>
+		<value>达到目的</value>
 	</data>
 	<data name="IngamePanel.Hold" xml:space="preserve">
-		<value>HOLD</value>
+		<value>保持 </value>
 	</data>
 	<data name="IngamePanel.Release" xml:space="preserve">
-		<value>RELEASE</value>
+		<value>发布</value>
 	</data>
 	<data name="IngamePanel.runText" xml:space="preserve">
-		<value>Run {0}</value>
+		<value>运行{0}</value>
 	</data>
 	<data name="IngamePanel.stageText" xml:space="preserve">
-		<value>Stage {0}</value>
+		<value>{0}级</value>
 	</data>
 	<data name="LevelSelect.Stages" xml:space="preserve">
-		<value>Stages</value>
+		<value>水平</value>
 	</data>
 	<data name="LoadingScreen.Loading" xml:space="preserve">
-		<value>Loading</value>
+		<value>载入中</value>
 	</data>
 	<data name="MainMenu.CharacterButton" xml:space="preserve">
-		<value>Characters</value>
+		<value>人物</value>
 	</data>
 	<data name="MainMenu.OptionsButton" xml:space="preserve">
-		<value>Options</value>
+		<value>选项</value>
 	</data>
 	<data name="MainMenu.PlayButton" xml:space="preserve">
-		<value>Play</value>
+		<value>玩</value>
 	</data>
 	<data name="Options.Languages" xml:space="preserve">
-		<value>Languages</value>
+		<value>语言</value>
 	</data>
 	<data name="PausePanel.Paused" xml:space="preserve">
-		<value>Paused</value>
+		<value>已暂停</value>
 	</data>
 </root>

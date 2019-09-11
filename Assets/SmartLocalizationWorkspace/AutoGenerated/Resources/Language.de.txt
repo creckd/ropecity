@@ -117,57 +117,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 	<data name="CharacterSleect.StageUnlock" xml:space="preserve">
-		<value>Complete Stage {0} to unlock!</value>
+		<value>Schließe Level {0} ab, um es freizuschalten</value>
 	</data>
 	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
-		<value>The character {0} is now available for you!</value>
+		<value>Der Charakter {0} ist jetzt für Sie verfügbar!</value>
 	</data>
 	<data name="CharacterUnlockedPopup.Congratulations" xml:space="preserve">
-		<value>Congratulations!</value>
+		<value>Glückwunsch!</value>
 	</data>
 	<data name="CharacterUnlockedPopup.GoToCharacters" xml:space="preserve">
-		<value>Go to Characters</value>
+		<value>Gehe zu Charakteren</value>
 	</data>
 	<data name="CharacterUnlockedPopup.Okay" xml:space="preserve">
 		<value>Okay</value>
 	</data>
 	<data name="FinishPanel.Completed" xml:space="preserve">
-		<value>Completed!</value>
+		<value>Fertig!</value>
 	</data>
 	<data name="IngamePanel.GetToTheEnd" xml:space="preserve">
-		<value>GET TO THE END</value>
+		<value>ERREICH DAS ENDE</value>
 	</data>
 	<data name="IngamePanel.Hold" xml:space="preserve">
-		<value>HOLD</value>
+		<value>HALT</value>
 	</data>
 	<data name="IngamePanel.Release" xml:space="preserve">
-		<value>RELEASE</value>
+		<value>VERÖFFENTLICHUNG</value>
 	</data>
 	<data name="IngamePanel.runText" xml:space="preserve">
-		<value>Run {0}</value>
+		<value>Führen Sie {0} aus</value>
 	</data>
 	<data name="IngamePanel.stageText" xml:space="preserve">
-		<value>Stage {0}</value>
+		<value>Bühne {0}</value>
 	</data>
 	<data name="LevelSelect.Stages" xml:space="preserve">
-		<value>Stages</value>
+		<value>Stufen</value>
 	</data>
 	<data name="LoadingScreen.Loading" xml:space="preserve">
-		<value>Loading</value>
+		<value>Geladen</value>
 	</data>
 	<data name="MainMenu.CharacterButton" xml:space="preserve">
-		<value>Characters</value>
+		<value>Zeichen</value>
 	</data>
 	<data name="MainMenu.OptionsButton" xml:space="preserve">
-		<value>Options</value>
+		<value>Optionen</value>
 	</data>
 	<data name="MainMenu.PlayButton" xml:space="preserve">
-		<value>Play</value>
+		<value>Abspielen</value>
 	</data>
 	<data name="Options.Languages" xml:space="preserve">
-		<value>Languages</value>
+		<value>Sprachen</value>
 	</data>
 	<data name="PausePanel.Paused" xml:space="preserve">
-		<value>Paused</value>
+		<value>Angehalten</value>
 	</data>
 </root>
