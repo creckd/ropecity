@@ -14,6 +14,8 @@ public class OptionsPanel : AnimatorPanel {
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
 		languageSelector.ResetLanguageSelector();
+
+		AnalyticsManager.LogEvent("OpenedOptionsPanel");
 	}
 
 	public void DebugDeleteSave() {

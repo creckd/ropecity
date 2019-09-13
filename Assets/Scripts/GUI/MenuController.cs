@@ -15,6 +15,7 @@ public class MenuController : MonoBehaviour {
 		PopupManager.Instance.InitializeGUI();
 
 		SoundManager.Instance.LoopUntilStopped(AudioConfigDatabase.Instance.mainMenuMusic.CloneToCustomClip(), "MainMenuMusic");
+		AnalyticsManager.Initialize();
 	}
 
 	private void CheckAndSetLanguage() {
