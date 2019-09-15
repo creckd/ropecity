@@ -183,13 +183,15 @@ public class GameController : MonoBehaviour {
 			StartCoroutine(FinishingCoroutine());
 		}
 
-		string levelName = LevelResourceDatabase.Instance.GetResourceWithLevelIndex(LevelController.Instance.currentLevelIndex);
-		int tries = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries;
-		Dictionary<string, object> parameters = new Dictionary<string, object>();
-		parameters.Add("name", levelName);
-		parameters.Add("try", tries);
-		parameters.Add("success", success);
-		AnalyticsManager.LogEvent("LevelFinished", parameters);
+		if (!isDebugTestLevelMode) {
+			string levelName = LevelResourceDatabase.Instance.GetResourceWithLevelIndex(LevelController.Instance.currentLevelIndex);
+			int tries = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries;
+			Dictionary<string, object> parameters = new Dictionary<string, object>();
+			parameters.Add("name", levelName);
+			parameters.Add("try", tries);
+			parameters.Add("success", success);
+			AnalyticsManager.LogEvent("LevelFinished", parameters);
+		}
 	}
 
 	private void UnlockNextLevel() {
