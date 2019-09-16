@@ -10,7 +10,15 @@ public class GeneralSaveDatabase {
 
 	public int lastPlayedLevelIndex = -1;
 	public CharacterSaveData[] charactersSaveData;
-	public CharacterType currentlyEquippedCharacterType = CharacterType.Worm;
+	//public CharacterType currentlyEquippedCharacterType = CharacterType.Worm;
+	public CharacterType currentlyEquippedCharacterType {
+		get {
+			return CharacterType.Froggy;
+		}
+		set {
+
+		}
+	}
 	public bool noAdMode = false;
 	public string currentlySelectedLanguageCode = "";
 
