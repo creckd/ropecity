@@ -54,11 +54,25 @@ MonoBehaviour:
   sections:
   - levelResourceNames:
     - dani_tutorial_map
-    - dani_new_age_01
+    - dani_easy_01
     - dani_spike1
-    - dani_spikycubes_01
+    - dani_new_age_01
     - dani_new_age_02
+    - dani_spikycubes_01
+  - levelResourceNames:
+    - dani_easy_02
+    - dani_009
+    - dani_011
     - dani_new_age_03
+    - dani_003
+    - dani_012
+  - levelResourceNames:
+    - dani_004
+    - dani_005
+    - dani_002
+    - dani_001
+    - dani_001
+    - dani_001
   - levelResourceNames:
     - dani_009
     - dani_011
@@ -66,17 +80,3 @@ MonoBehaviour:
     - dani_012
     - dani_004
     - dani_005
-  - levelResourceNames:
-    - dani_002
-    - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
-  - levelResourceNames:
-    - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
-    - dani_001
