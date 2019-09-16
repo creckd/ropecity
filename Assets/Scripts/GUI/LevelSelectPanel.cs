@@ -58,6 +58,8 @@ public class LevelSelectPanel : AnimatorPanel {
 			b.PlayAppearAnimation();
 		}
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.levelSelectOpening);
+
+		AnalyticsManager.LogEvent("OpenedLevelSelectPanel");
 	}
 
 	public override void OnOpened() {

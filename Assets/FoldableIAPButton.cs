@@ -56,6 +56,8 @@ public class FoldableIAPButton : MonoBehaviour {
 	public void ChangeState() {
 		currentlyFolded = !currentlyFolded;
 		anim.SetBool("Folded", currentlyFolded);
+
+		AnalyticsManager.LogEvent("TappedIAPUnfold");
 	}
 
 	public void BuyNoAds() {

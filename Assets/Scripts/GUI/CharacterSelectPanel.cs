@@ -48,6 +48,8 @@ public class CharacterSelectPanel : AnimatorPanel {
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
 		RefreshGUIAndCharacters();
+
+		AnalyticsManager.LogEvent("OpenedCharacterSelectPanel");
 	}
 
 	private void Update() {

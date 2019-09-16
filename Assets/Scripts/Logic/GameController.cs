@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum GameState {
@@ -150,6 +151,13 @@ public class GameController : MonoBehaviour {
 		if (!isDebugTestLevelMode) {
 			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
 			saveData.numberOfTries++;
+
+			string levelName = LevelResourceDatabase.Instance.GetResourceWithLevelIndex(LevelController.Instance.currentLevelIndex);
+			int tries = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries;
+			Dictionary<string, object> parameters = new Dictionary<string, object>();
+			parameters.Add("name", levelName);
+			parameters.Add("try", tries);
+			AnalyticsManager.LogEvent("LevelStarted", parameters);
 		}
 		GameStarted(fastStart);
 		currentGameState = GameState.GameStarted;
@@ -173,6 +181,16 @@ public class GameController : MonoBehaviour {
 			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.victory);
 			UnlockNextLevel();
 			StartCoroutine(FinishingCoroutine());
+		}
+
+		if (!isDebugTestLevelMode) {
+			string levelName = LevelResourceDatabase.Instance.GetResourceWithLevelIndex(LevelController.Instance.currentLevelIndex);
+			int tries = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex).numberOfTries;
+			Dictionary<string, object> parameters = new Dictionary<string, object>();
+			parameters.Add("name", levelName);
+			parameters.Add("try", tries);
+			parameters.Add("success", success);
+			AnalyticsManager.LogEvent("LevelFinished", parameters);
 		}
 	}
 
