@@ -67,12 +67,12 @@ MonoBehaviour:
     - dani_003
     - dani_012
   - levelResourceNames:
+    - dani_medium_01
+    - dani_medium_02
+    - dani_meidum_03
     - dani_004
     - dani_005
     - dani_002
-    - dani_001
-    - dani_001
-    - dani_001
   - levelResourceNames:
     - dani_009
     - dani_011
