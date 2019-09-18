@@ -173,17 +173,17 @@ MonoBehaviour:
     characterType: 2
     characterRarity: 2
     characterPrice: 0
-    unlockedByLevelIndex: 5
+    unlockedByLevelIndex: 2
   - characterName: Toilee
     characterType: 1
     characterRarity: 3
     characterPrice: 0
-    unlockedByLevelIndex: 6
+    unlockedByLevelIndex: 8
   - characterName: Rusty
     characterType: 3
     characterRarity: 1
     characterPrice: 0
-    unlockedByLevelIndex: 10
+    unlockedByLevelIndex: 12
   - characterName: Slippy
     characterType: 4
     characterRarity: 4
@@ -193,7 +193,7 @@ MonoBehaviour:
     characterType: 5
     characterRarity: 2
     characterPrice: 0
-    unlockedByLevelIndex: 2
+    unlockedByLevelIndex: 5
   commonRarityColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   unCommonRarityColor: {r: 0.14783564, g: 0.6981132, b: 0, a: 1}
   rareRarityColor: {r: 0, g: 0.25120232, b: 0.6603774, a: 1}
