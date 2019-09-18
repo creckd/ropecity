@@ -5,10 +5,12 @@ using UnityEngine;
 public class FinishPanel : FaderPanel {
 
 	public override void OnOpened() {
-#if !UNITY_EDITOR
-		Blocker.Instance.Block();
-		AdvertManager.Instance.ShowInterstitial(() => { Blocker.Instance.UnBlock(); });
-#endif
+		#if !UNITY_EDITOR
+		if (AdvertManager.Instance.IsInterstitialAvailable()) {
+			Blocker.Instance.Block();
+			AdvertManager.Instance.ShowInterstitial(() => { Blocker.Instance.UnBlock(); });
+		}
+		#endif
 		base.OnOpened();
 	}
 
