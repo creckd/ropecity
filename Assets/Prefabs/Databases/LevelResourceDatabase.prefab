@@ -57,18 +57,18 @@ MonoBehaviour:
     - supereasy_01
     - supereasy_03
     - supereasy_02
+    - easy_06
     - easy_01
-    - easy_02
   - levelResourceNames:
     - easy_03
+    - easy_02
     - easy_04
-    - easy_06
     - easy_05
     - medium_06
     - medium_01
   - levelResourceNames:
-    - medium_03
     - medium_04
+    - medium_03
     - medium_05
     - medium_02
     - hard_02

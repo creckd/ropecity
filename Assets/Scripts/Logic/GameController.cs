@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour {
 
 		if (!isDebugTestLevelMode) {
 			int levelIndex = 0;
-			string levelPath = "dani_001";
+			string levelPath = "dani_tutorial_map";
 			object levelMessage;
 			if (Messenger.Instance != null && Messenger.Instance.GetMessage(LevelSelectPanel.LevelIndexKey, out levelMessage)) {
 				levelIndex = (int)levelMessage;
