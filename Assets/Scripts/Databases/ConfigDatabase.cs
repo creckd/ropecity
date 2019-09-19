@@ -52,6 +52,9 @@ public class ConfigDatabase : MonoBehaviour {
 		DontDestroyOnLoad(this.gameObject);
 	}
 
+	[Header("Ads")]
+	public int maxLocalSessionsBeforeInterstitial = 5;
+
 	[Header("Game")]
 	public float reinitalizingDuration = 1f;
 	public float normalSpeed = 1f;

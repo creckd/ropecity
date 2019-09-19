@@ -63,6 +63,7 @@ public class GameController : MonoBehaviour {
 	private float currentDampeningValue = 7.5f;
 
 	private bool canStartSlowingTime = false;
+	private int localSessions = 0;
 
 	public void InitializeGame() {
 		LandedHook += UnSlowTime;
@@ -148,6 +149,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void StartTheGame(bool fastStart) {
+		localSessions++;
 		if (!isDebugTestLevelMode) {
 			LevelSaveDatabase.LevelSaveData saveData = SavedDataManager.Instance.GetLevelSaveDataWithLevelIndex(LevelController.Instance.currentLevelIndex);
 			saveData.numberOfTries++;
@@ -235,9 +237,18 @@ public class GameController : MonoBehaviour {
 		canStartSlowingTime = false;
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
+		bool shouldShowInterstitial = !SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode && (localSessions % ConfigDatabase.Instance.maxLocalSessionsBeforeInterstitial == 0);
+		if (shouldShowInterstitial && AdvertManager.Instance.IsInterstitialAvailable()) {
+			Blocker.Instance.Block();
+			AdvertManager.Instance.ShowInterstitial(() => { FinishReinitializationAndStartGame(); Blocker.Instance.UnBlock(); });
+		} else {
+			FinishReinitializationAndStartGame();
+		}
+	}
+
+	private void FinishReinitializationAndStartGame() {
 		CameraController.Instance.SwitchGreyScale(false);
 		FlashTransition.Instance.TransitionOut();
-		//ImageTransitionHandler.Instance.TransitionOut();
 		StartTheGame(true);
 	}
 
