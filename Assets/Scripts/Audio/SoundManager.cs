@@ -107,4 +107,8 @@ public class SoundManager : MonoBehaviour
 
     }
 
+	private void OnApplicationFocus(bool focus) {
+		AudioListener.volume = focus ? 1f : 0f;
+	}
+
 }
