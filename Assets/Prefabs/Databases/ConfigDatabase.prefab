@@ -179,12 +179,12 @@ MonoBehaviour:
     characterType: 1
     characterRarity: 3
     characterPrice: 0
-    unlockedByLevelIndex: 8
+    unlockedByLevelIndex: 12
   - characterName: Rusty
     characterType: 3
     characterRarity: 1
     characterPrice: 0
-    unlockedByLevelIndex: 12
+    unlockedByLevelIndex: 8
   - characterName: Slippy
     characterType: 4
     characterRarity: 4
