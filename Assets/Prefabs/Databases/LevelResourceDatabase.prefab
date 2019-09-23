@@ -62,9 +62,9 @@ MonoBehaviour:
   - levelResourceNames:
     - easy_03
     - easy_02
-    - easy_04
     - easy_05
     - medium_06
+    - easy_04
     - medium_01
   - levelResourceNames:
     - medium_04
