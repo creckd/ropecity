@@ -30,6 +30,6 @@
     android:exported="false"
     android:process=":adnw" />
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
-           android:value="[ADMOB_APP_ID]"/>
+           android:value="ca-app-pub-9539815930599175~3158673314"/>
   </application>
 </manifest>

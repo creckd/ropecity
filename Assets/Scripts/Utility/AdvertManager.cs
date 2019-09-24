@@ -14,8 +14,8 @@ public class AdvertManager : MonoBehaviour {
 		}
 	}
 
-	private const string IronSourceIOSAppKey = "9e5981f5";
-	private const string IronSourceAndroidAppKey = "9e7645f5";
+	private const string IronSourceIOSAppKey = "a27e03ed";
+	private const string IronSourceAndroidAppKey = "a27f5d1d";
 
 	private Action interstitialClosed = delegate { };
 
