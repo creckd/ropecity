@@ -10,7 +10,7 @@
       <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
       <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="true" />
     </activity>
-    <meta-data android:name="flurryApiKey" android:value="" />
+    <meta-data android:name="flurryApiKey" android:value="GGJWWYXJQ5Q3MVZJXV8K" />
     <activity android:name="com.google.android.gms.ads.AdActivity"
     android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" android:theme="@android:style/Theme.Translucent" />
     <activity
