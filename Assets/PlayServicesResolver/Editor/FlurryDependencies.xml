@@ -1,0 +1,8 @@
+<dependencies>
+	<androidPackages>
+		<androidPackage spec="com.google.android.gms:play-services-basement:+"/>
+		<androidPackage spec="com.google.android.gms:play-services-ads-identifier:+"/>
+		<androidPackage spec="com.flurry.android:analytics:11+@aar"/>
+		<androidPackage spec="com.flurry.android:ads:11+@aar"/>
+	</androidPackages>
+</dependencies>
