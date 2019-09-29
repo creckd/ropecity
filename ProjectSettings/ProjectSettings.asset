@@ -872,12 +872,16 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 0
+    Collab: 0
+    ErrorHub: 0
+    Hub: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: d812cbf4-892a-4000-868b-a1e580b5709f
-  projectName: Rope City Official
-  organizationId: ropecitypub
+  cloudProjectId: e73f4837-5fb8-4a97-8b12-42aac90af47d
+  projectName: Rope City
+  organizationId: invictus-games
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
