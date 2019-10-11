@@ -117,7 +117,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
 	<data name="CharacterSleect.StageUnlock" xml:space="preserve">
-		<value>Complete Stage {0} to unlock!</value>
+		<value>Complete o Estágio {0} para desbloquear</value>
 	</data>
 	<data name="CharacterUnlockedPopup.CharacterUnlockedText" xml:space="preserve">
 		<value>O personagem {0} já está disponível para você!</value>
