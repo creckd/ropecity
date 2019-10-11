@@ -17826,17 +17826,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114346442866944054, guid: 040d5adde1e7022469c4ebee569e4f7a,
-        type: 2}
-      propertyPath: m_FontData.m_AlignByGeometry
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114346442866944054, guid: 040d5adde1e7022469c4ebee569e4f7a,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 0f9faac5a9ed0a348a4e4e5f73aa12f4,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 040d5adde1e7022469c4ebee569e4f7a, type: 2}
   m_IsPrefabAsset: 0
@@ -20169,12 +20158,6 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114481637363290514, guid: a91edad49453f054ba79700d0ac1ae8e,
-        type: 2}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 0f9faac5a9ed0a348a4e4e5f73aa12f4,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a91edad49453f054ba79700d0ac1ae8e, type: 2}
   m_IsPrefabAsset: 0
