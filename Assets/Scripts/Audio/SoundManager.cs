@@ -108,7 +108,12 @@ public class SoundManager : MonoBehaviour
     }
 
 	private void OnApplicationFocus(bool focus) {
-		AudioListener.volume = focus ? 1f : 0f;
+		if (focus) {
+			if(!AdvertManager.adCurrentlyPlaying)
+			AudioListener.volume = 1f;
+		} else {
+			AudioListener.volume = 0f;
+		}
 	}
 
 }

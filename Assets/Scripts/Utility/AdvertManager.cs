@@ -14,6 +14,8 @@ public class AdvertManager : MonoBehaviour {
 		}
 	}
 
+	public static bool adCurrentlyPlaying = false;
+
 	private const string IronSourceIOSAppKey = "a27e03ed";
 	private const string IronSourceAndroidAppKey = "a27f5d1d";
 
@@ -46,17 +48,22 @@ public class AdvertManager : MonoBehaviour {
 		IronSource.Agent.loadInterstitial();
 
 		IronSourceEvents.onInterstitialAdClosedEvent += InterstitialClosed;
+		adCurrentlyPlaying = false;
 	}
 
 	private void InterstitialClosed() {
 		interstitialClosed();
 		interstitialClosed = delegate { };
 		IronSource.Agent.loadInterstitial();
+		AudioListener.volume = 1f;
+		adCurrentlyPlaying = false;
 	}
 
 	public void ShowInterstitial(Action callBack) {
 		IronSource.Agent.showInterstitial();
 		interstitialClosed += callBack;
+		AudioListener.volume = 0f;
+		adCurrentlyPlaying = true;
 	}
 
 	public void ShowInterstitial() {
