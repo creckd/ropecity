@@ -240,10 +240,16 @@ public class GameController : MonoBehaviour {
 		bool shouldShowInterstitial = !SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode && (localSessions % ConfigDatabase.Instance.maxLocalSessionsBeforeInterstitial == 0);
 		if (shouldShowInterstitial && AdvertManager.Instance.IsInterstitialAvailable()) {
 			Blocker.Instance.Block();
-			AdvertManager.Instance.ShowInterstitial(() => { FinishReinitializationAndStartGame(); Blocker.Instance.UnBlock(); });
+			AdvertManager.Instance.ShowInterstitial(() => { StartCoroutine(InterstitialFinished()); });
 		} else {
 			FinishReinitializationAndStartGame();
 		}
+	}
+
+	IEnumerator InterstitialFinished() {
+		Blocker.Instance.UnBlock();
+		yield return new WaitForSecondsRealtime(1.5f);
+		FinishReinitializationAndStartGame();
 	}
 
 	private void FinishReinitializationAndStartGame() {
