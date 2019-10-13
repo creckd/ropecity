@@ -29,6 +29,10 @@ public class LevelSelectPanel : AnimatorPanel {
 	public Text sectionText;
 	public Image sectionMask;
 	public float sectionAnimationTime = 0.6f;
+	public Sprite normalSectionChangeSprite;
+	public Sprite lockedSectionChangeSprite;
+	public Image nextSectionImage;
+	public Image previousSectionImage;
 	public Image nextSectionLockedImage;
 
 	private int currentlyOpenedSection = -1;
@@ -111,6 +115,8 @@ public class LevelSelectPanel : AnimatorPanel {
 			DeactivateButtons();
 
 		currentlyOpenedSection = sectionNumber;
+		previousSectionImage.sprite = currentlyOpenedSection == 0 ? lockedSectionChangeSprite : normalSectionChangeSprite;
+		nextSectionImage.sprite = currentlyOpenedSection == LevelResourceDatabase.Instance.sections.Length - 1 ? lockedSectionChangeSprite : normalSectionChangeSprite;
 		RefreshAllSectionButtonActiveness();
 		sectionText.text = (currentlyOpenedSection + 1).ToString();
 		nextSectionLockedImage.gameObject.SetActive(LevelResourceDatabase.Instance.sections.Length == currentlyOpenedSection + 1);
