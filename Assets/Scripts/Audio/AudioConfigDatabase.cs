@@ -81,6 +81,7 @@ public class AudioConfigDatabase : MonoBehaviour
 
 	public CustomClip victory;
 	public CustomClip failure;
+	public CustomClip wormDie;
 
 	public CustomClip swing;
 

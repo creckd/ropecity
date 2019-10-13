@@ -191,7 +191,16 @@ MonoBehaviour:
     randomizePitchBetween: {x: 0, y: 0}
   failure:
     name: Zene
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: e57c7b0d77ec24a47a91ebf25dcde6f9, type: 3}
+    volume: 0.5
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 0.25
+    randomizePitch: 0
+    randomizePitchBetween: {x: 0, y: 0}
+  wormDie:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: 8d724b2087d91584883afdd60c73881f, type: 3}
     volume: 0.5
     randomizeVolume: 0
     randomizeVolumeBetween: {x: 0, y: 0}

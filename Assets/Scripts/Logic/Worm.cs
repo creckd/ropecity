@@ -648,6 +648,7 @@ public class Worm : MonoBehaviour {
 			return;
 
 		SoundManager.Instance.StopLoopedSound("slide");
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.wormDie);
 
 		GameController.Instance.FinishGame(false);
 
