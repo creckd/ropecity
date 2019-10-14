@@ -101,4 +101,23 @@ public class CharacterRotator : MonoBehaviour {
 			XVelocity = 0f;
 		}
     }
+
+	public void SnapToCharacterIndex(int index) {
+		float angleToRotate = Vector3.SignedAngle((transform.position - Vector3.forward * radius) - transform.position, createdObjects[index].transform.position - transform.position, Vector3.up);
+		transform.Rotate(new Vector3(0f, -angleToRotate, 0f));
+	}
+
+	public void SnapToCharacterType(CharacterType type) {
+		CharacterPad pad = null;
+		int i = 0;
+		for (i = 0; i < createdObjects.Count; i++) {
+			if (createdObjects[i].initializedType == type) {
+				pad = createdObjects[i];
+				break;
+			}
+		}
+		if (pad != null) {
+			SnapToCharacterIndex(i);
+		}
+	}
 }

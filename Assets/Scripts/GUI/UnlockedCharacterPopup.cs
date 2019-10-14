@@ -10,6 +10,8 @@ public class UnlockedCharacterPopup : AnimatorPanel {
 	public Text characterName;
 	public PlatformCharacter[] characterObjects;
 
+	private CharacterType typeInitialized = CharacterType.Worm;
+
 	public override void Initialize() {
 		base.Initialize();
 		for (int i = 0; i < characterObjects.Length; i++) {
@@ -28,6 +30,7 @@ public class UnlockedCharacterPopup : AnimatorPanel {
 		characterName.text = data.characterName;
 		string rarityHex = ColorUtility.ToHtmlStringRGB(rarityColor);
 		messageText.text = string.Format(SmartLocalization.LanguageManager.Instance.GetTextValue("CharacterUnlockedPopup.CharacterUnlockedText"), " <color=#" + rarityHex + ">" + data.characterName + "</color>");
+		typeInitialized = typeToInitialize;
 	}
 
 	private PlatformCharacter GetCharacterObject(CharacterType cType) {
@@ -40,7 +43,9 @@ public class UnlockedCharacterPopup : AnimatorPanel {
 
 	public void EquipButton() {
 		PopupManager.Instance.ClosePopup(this,() => {
-			PanelManager.Instance.TryOpenPanel(3);
+			Dictionary<object, object> message = new Dictionary<object, object>();
+			message.Add(CharacterTypeMessageID, typeInitialized);
+			PanelManager.Instance.TryOpenPanel(3,message);
 		});
 	}
 }

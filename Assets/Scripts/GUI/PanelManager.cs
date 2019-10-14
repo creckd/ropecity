@@ -52,8 +52,23 @@ public class PanelManager : MonoBehaviour {
 		}
 	}
 
+	public void TryOpenPanel(Panel p, Dictionary<object,object> message) {
+		if (panelTransitionInProgress)
+			return;
+
+		if (currentlyOpenedPanel != null)
+			CloseCurrentlyOpenPanelThenOpen(p,message);
+		else {
+			OpenPanel(p,message);
+		}
+	}
+
 	public void TryOpenPanel(int panelIndex) {
 		TryOpenPanel(panels[panelIndex]);
+	}
+
+	public void TryOpenPanel(int panelIndex, Dictionary<object,object> message) {
+		TryOpenPanel(panels[panelIndex],message);
 	}
 
 	private void OpenPanel(Panel p) {
@@ -70,6 +85,10 @@ public class PanelManager : MonoBehaviour {
 
 	private void CloseCurrentlyOpenPanelThenOpen(Panel panelToOpen) {
 		ClosePanel(currentlyOpenedPanel,delegate { OpenPanel(panelToOpen); });
+	}
+
+	private void CloseCurrentlyOpenPanelThenOpen(Panel panelToOpen, Dictionary<object,object> message) {
+		ClosePanel(currentlyOpenedPanel, delegate { OpenPanel(panelToOpen,message); });
 	}
 
 	public void ClosePanel(Panel p, Action panelWasClosed) {

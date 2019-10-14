@@ -47,6 +47,16 @@ public class CharacterSelectPanel : AnimatorPanel {
 
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
+		rotator.SnapToCharacterType(SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType);
+		RefreshGUIAndCharacters();
+
+		AnalyticsManager.LogEvent("OpenedCharacterSelectPanel");
+	}
+
+	public override void OnStartedOpening(Dictionary<object, object> message) {
+		base.OnStartedOpening(message);
+		CharacterType characterTypeToOpen = (CharacterType)message[UnlockedCharacterPopup.CharacterTypeMessageID];
+		rotator.SnapToCharacterType(characterTypeToOpen);
 		RefreshGUIAndCharacters();
 
 		AnalyticsManager.LogEvent("OpenedCharacterSelectPanel");
