@@ -65,6 +65,9 @@ public class AudioConfigDatabase : MonoBehaviour
 	public CustomClipMemoryFriendly ingameMusic;
 	public CustomClipMemoryFriendly ingameAmbient;
 
+	public CustomClip characterChangeClick;
+	public CustomClip characterSelectPanelOpenSoundEffect;
+
 	public CustomClip optionsLanguageSelectorTick;
 	public CustomClip optionsWoosh;
 	public CustomClip levelSelectOpening;

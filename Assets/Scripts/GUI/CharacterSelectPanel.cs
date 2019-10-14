@@ -49,6 +49,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 		base.OnStartedOpening();
 		rotator.SnapToCharacterType(SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType);
 		RefreshGUIAndCharacters();
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.characterSelectPanelOpenSoundEffect);
 
 		AnalyticsManager.LogEvent("OpenedCharacterSelectPanel");
 	}
@@ -58,8 +59,15 @@ public class CharacterSelectPanel : AnimatorPanel {
 		CharacterType characterTypeToOpen = (CharacterType)message[UnlockedCharacterPopup.CharacterTypeMessageID];
 		rotator.SnapToCharacterType(characterTypeToOpen);
 		RefreshGUIAndCharacters();
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.characterSelectPanelOpenSoundEffect);
+
 
 		AnalyticsManager.LogEvent("OpenedCharacterSelectPanel");
+	}
+
+	public override void OnStartedClosing() {
+		base.OnStartedClosing();
+		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.characterSelectPanelOpenSoundEffect);
 	}
 
 	private void Update() {

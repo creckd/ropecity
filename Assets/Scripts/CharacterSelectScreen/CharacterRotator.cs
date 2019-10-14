@@ -86,7 +86,8 @@ public class CharacterRotator : MonoBehaviour {
         if (prevIndex != currentlySelectedCharIndex) {
 			OnNewCharacterPadSelected(createdObjects[currentlySelectedCharIndex]);
 			createdObjects[prevIndex].Defocused();
-        }
+			SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.characterChangeClick);
+		}
 
 		if (!beingDragged) {
 			if (Mathf.Abs(XVelocity) <= snapMargin || startedSnapping) {

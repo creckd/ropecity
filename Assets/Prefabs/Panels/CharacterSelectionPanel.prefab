@@ -3530,6 +3530,7 @@ GameObject:
   - component: {fileID: 224938215371410090}
   - component: {fileID: 222717662636488006}
   - component: {fileID: 114018722473581560}
+  - component: {fileID: 114368040417602766}
   m_Layer: 5
   m_Name: SelectButton
   m_TagString: Untagged
@@ -11374,9 +11375,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: a723977e067e26f4f98aa7a54b562ae2, type: 3}
+    m_Font: {fileID: 12800000, guid: 96f2c886d98da9d4db266b40dfb121fe, type: 3}
     m_FontSize: 0
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
     m_MaxSize: 90
@@ -11741,9 +11742,9 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: a723977e067e26f4f98aa7a54b562ae2, type: 3}
+    m_Font: {fileID: 12800000, guid: 96f2c886d98da9d4db266b40dfb121fe, type: 3}
     m_FontSize: 69
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 106
@@ -11754,6 +11755,27 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Jim Moriarty
+--- !u!114 &114368040417602766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1612451581761334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f99b9abf12d942458957629630aed5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clipToUse:
+    name: Zene
+    audioClipPath: 404049__deathscyp__breaker-1
+    audioClip: {fileID: 8300000, guid: d0d61f6a6f98c884783940ec0dbb3cf0, type: 3}
+    volume: 0.1
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1.8
+    randomizePitch: 0
+    randomizePitchBetween: {x: 0, y: 0}
 --- !u!114 &114383946047711424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12389,7 +12411,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: a723977e067e26f4f98aa7a54b562ae2, type: 3}
+    m_Font: {fileID: 12800000, guid: 96f2c886d98da9d4db266b40dfb121fe, type: 3}
     m_FontSize: 57
     m_FontStyle: 1
     m_BestFit: 1
@@ -18616,14 +18638,14 @@ RectTransform:
   m_GameObject: {fileID: 1593664982768792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.12, y: 1.12, z: 1.12}
+  m_LocalScale: {x: 1.3104, y: 1.3104, z: 1.3104}
   m_Children: []
   m_Father: {fileID: 224870140727665184}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000051009, y: -20}
+  m_AnchoredPosition: {x: -0.000005916, y: -5}
   m_SizeDelta: {x: 862.7, y: 161.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224218222116491154
@@ -18674,14 +18696,14 @@ RectTransform:
   m_GameObject: {fileID: 1184111005375474}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1300002, y: 1.1300002, z: 1.1300002}
+  m_LocalScale: {x: 0.96913344, y: 0.96913344, z: 0.96913344}
   m_Children: []
   m_Father: {fileID: 224605137588778294}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 9, y: -370.9}
+  m_AnchoredPosition: {x: 0, y: -376.4}
   m_SizeDelta: {x: 211.3, y: 91.3}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224328287063878572
@@ -18951,7 +18973,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -11}
+  m_AnchoredPosition: {x: 0, y: -1}
   m_SizeDelta: {x: 934.7, y: 122.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224862409754220538

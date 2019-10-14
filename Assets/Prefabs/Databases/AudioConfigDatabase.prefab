@@ -81,6 +81,24 @@ MonoBehaviour:
     pitch: 1
     randomizePitch: 0
     randomizePitchBetween: {x: 0, y: 0}
+  characterChangeClick:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: 56c1297c2a55fd04687aaf568c31eb3d, type: 3}
+    volume: 0.156
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1
+    randomizePitch: 1
+    randomizePitchBetween: {x: 2.25, y: 2.5}
+  characterSelectPanelOpenSoundEffect:
+    name: Zene
+    audioClip: {fileID: 8300000, guid: 5ac98182bbf7a004ba2598917bbf1b47, type: 3}
+    volume: 0.25
+    randomizeVolume: 0
+    randomizeVolumeBetween: {x: 0, y: 0}
+    pitch: 1.25
+    randomizePitch: 1
+    randomizePitchBetween: {x: 1, y: 1.25}
   optionsLanguageSelectorTick:
     name: Zene
     audioClip: {fileID: 8300000, guid: f47a29322f6cfc046ac649b16a0b4f81, type: 3}
