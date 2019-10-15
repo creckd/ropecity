@@ -175,8 +175,10 @@ public class CharacterSelectPanel : AnimatorPanel {
 	}
 
 	public void EquipCharacter() {
-		SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType = rotator.GetCurrentlySelectedPad().initializedType;
+		CharacterType typeToEquip = rotator.GetCurrentlySelectedPad().initializedType;
+		SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType = typeToEquip;
 		RefreshGUIAndCharacters();
 		OpenPanel(0);
+		AnalyticsManager.LogEvent("EquippedCharacter", "characterType", typeToEquip);
 	}
 }
