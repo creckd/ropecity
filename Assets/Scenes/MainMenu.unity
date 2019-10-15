@@ -1911,7 +1911,7 @@ Prefab:
     - target: {fileID: 224989306317769226, guid: a5316ff24bac00b4b8f0c432af6f8c86,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 484.39844
+      value: 484.3984
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a5316ff24bac00b4b8f0c432af6f8c86, type: 2}
@@ -5338,7 +5338,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
