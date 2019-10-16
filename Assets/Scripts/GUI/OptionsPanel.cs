@@ -22,6 +22,14 @@ public class OptionsPanel : AnimatorPanel {
 		SavedDataManager.DeleteLocalSave();
 	}
 
+	public void UnlockAllLevels() {
+		for (int i = 0; i < SavedDataManager.Instance.GetLevelSaveDatabase().levelSaveDatas.Length; i++) {
+			SavedDataManager.Instance.GetLevelSaveDatabase().levelSaveDatas[i].isUnlocked = true;
+		}
+		SavedDataManager.Instance.Save();
+		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+	}
+
 	public void WooshSound() {
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.optionsWoosh);
 	}
