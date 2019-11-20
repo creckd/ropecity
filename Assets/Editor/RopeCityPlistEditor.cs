@@ -4,6 +4,7 @@ using UnityEditor.Callbacks;
 using System.Collections;
 using UnityEditor.iOS.Xcode;
 using System.IO;
+using Prime31.Xcode;
 
 public class RopeCityPlistEditor {
 

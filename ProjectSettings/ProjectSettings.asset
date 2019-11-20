@@ -118,7 +118,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.3
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -155,6 +155,7 @@ PlayerSettings:
     Android: com.none.ropecity
     iOS: com.invictus.ropecity
   buildNumber:
+    Standalone: 2
     iOS: 2
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

@@ -167,6 +167,9 @@
 	<data name="Options.Languages" xml:space="preserve">
 		<value>語言</value>
 	</data>
+	<data name="Options.RestorePurchases" xml:space="preserve">
+		<value>恢復購買</value>
+	</data>
 	<data name="PausePanel.Paused" xml:space="preserve">
 		<value>已暫停</value>
 	</data>

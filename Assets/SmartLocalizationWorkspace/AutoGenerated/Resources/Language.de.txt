@@ -141,7 +141,7 @@
 		<value>HALT</value>
 	</data>
 	<data name="IngamePanel.Release" xml:space="preserve">
-		<value>VERÖFFENTLICHUNG</value>
+		<value>FREILASSEN</value>
 	</data>
 	<data name="IngamePanel.runText" xml:space="preserve">
 		<value>Führen Sie {0} aus</value>
@@ -166,6 +166,9 @@
 	</data>
 	<data name="Options.Languages" xml:space="preserve">
 		<value>Sprachen</value>
+	</data>
+	<data name="Options.RestorePurchases" xml:space="preserve">
+		<value>Käufe wiederherstellen</value>
 	</data>
 	<data name="PausePanel.Paused" xml:space="preserve">
 		<value>Angehalten</value>

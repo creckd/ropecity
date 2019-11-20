@@ -47,6 +47,10 @@ public class IAPHandler : MonoBehaviour {
 		lastCallBack = delegate { };
 	}
 
+	public void RestorePurchases(Action<bool> result) {
+		iapManager.RestorePurchases(result);
+	}
+
 	public void GrantPurchase(Product p) {
 		switch (p.definition.id) {
 			case premium_edition_characterselect_product_id: {

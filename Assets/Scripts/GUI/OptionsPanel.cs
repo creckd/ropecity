@@ -30,6 +30,11 @@ public class OptionsPanel : AnimatorPanel {
 		UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
 	}
 
+	public void RestorePurchases() {
+		Blocker.Instance.Block();
+		IAPHandler.Instance.RestorePurchases((bool b) => { Blocker.Instance.UnBlock(); });
+	}
+
 	public void WooshSound() {
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.optionsWoosh);
 	}

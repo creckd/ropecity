@@ -152,6 +152,9 @@
 	<data name="LevelSelect.Stages" xml:space="preserve">
 		<value>Stages</value>
 	</data>
+	<data name="LoadingScreen.Loading" xml:space="preserve">
+		<value>Loading</value>
+	</data>
 	<data name="MainMenu.CharacterButton" xml:space="preserve">
 		<value>Characters</value>
 	</data>
@@ -167,7 +170,7 @@
 	<data name="PausePanel.Paused" xml:space="preserve">
 		<value>Paused</value>
 	</data>
-	<data name="LoadingScreen.Loading" xml:space="preserve">
-		<value>Loading</value>
+	<data name="Options.RestorePurchases" xml:space="preserve">
+		<value>Restore Purchases</value>
 	</data>
 </root>

@@ -61,4 +61,40 @@ public class IAPManager : IStoreListener {
 	public void OnPurchaseFailed(Product i, PurchaseFailureReason p) {
 		PurchaseFailed(i, p);
 	}
+
+	public void RestorePurchases(Action<bool> restoreCallback) {
+		// If Purchasing has not yet been set up ...
+		if (!initialized) {
+			// ... report the situation and stop restoring. Consider either waiting longer, or retrying initialization.
+			Debug.Log("RestorePurchases FAIL. Not initialized.");
+			return;
+		}
+
+		// If we are running on an Apple device ... 
+		if (Application.platform == RuntimePlatform.IPhonePlayer ||
+			Application.platform == RuntimePlatform.OSXPlayer) {
+			// ... begin restoring purchases
+			Debug.Log("RestorePurchases started ...");
+
+			// Fetch the Apple store-specific subsystem.
+			var apple = extensions.GetExtension<IAppleExtensions>();
+			// Begin the asynchronous process of restoring purchases. Expect a confirmation response in 
+			// the Action<bool> below, and ProcessPurchase if there are previously purchased products to restore.
+			apple.RestoreTransactions((result) => {
+				restoreCallback(result);
+				if (result) {
+					// This does not mean anything was restored,
+					// merely that the restoration process succeeded.
+				} else {
+					// Restoration failed.
+				}
+			});
+		}
+		// Otherwise ...
+		else {
+			restoreCallback(false);
+			// We are not running on an Apple device. No work is necessary to restore purchases.
+			Debug.Log("RestorePurchases FAIL. Not supported on this platform. Current = " + Application.platform);
+		}
+	}
 }

@@ -167,6 +167,9 @@
 	<data name="Options.Languages" xml:space="preserve">
 		<value>Nyelvek</value>
 	</data>
+	<data name="Options.RestorePurchases" xml:space="preserve">
+		<value>Vásárlások visszaállítása</value>
+	</data>
 	<data name="PausePanel.Paused" xml:space="preserve">
 		<value>Szünetelve</value>
 	</data>

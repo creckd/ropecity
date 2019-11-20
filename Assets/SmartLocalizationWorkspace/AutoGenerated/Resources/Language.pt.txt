@@ -167,6 +167,9 @@
 	<data name="Options.Languages" xml:space="preserve">
 		<value>línguas</value>
 	</data>
+	<data name="Options.RestorePurchases" xml:space="preserve">
+		<value>Restaurar compras</value>
+	</data>
 	<data name="PausePanel.Paused" xml:space="preserve">
 		<value>Pausado</value>
 	</data>
