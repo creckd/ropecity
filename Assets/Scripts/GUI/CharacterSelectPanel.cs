@@ -171,6 +171,9 @@ public class CharacterSelectPanel : AnimatorPanel {
 		IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => {
 		RefreshGUIAndCharacters();
 		FoldableIAPButton.Instance.RefreshGraphics();
+		if (s) {
+			InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
+		}
 		});
 	}
 
