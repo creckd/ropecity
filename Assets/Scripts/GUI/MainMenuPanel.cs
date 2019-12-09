@@ -13,8 +13,10 @@ public class MainMenuPanel : AnimatorPanel {
 	public override void OnStartedOpening() {
 		base.OnStartedOpening();
 		if (!SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode) {
-			MoreGamesBoxController.Instance.ShowWithAnimation();
-			MoreGamesBoxController.Instance.ShowNewGame();
+			if (MoreGamesBoxController.Instance.JsonReadSuccess) {
+				MoreGamesBoxController.Instance.ShowWithAnimation();
+				MoreGamesBoxController.Instance.ShowNewGame();
+			}
 		}
 
 		Time.timeScale = 1f;

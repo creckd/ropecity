@@ -1,1 +1,1 @@
-{"Settings":{"PromoUrl":"http://crosspromo.invictus.com:8888/", "GameName":"ropecity", "AutomaticDownloadData":"True", "TrackingFunction":"True", "LogMode":"False", "DebugMode":"True"}}
+{"Settings":{"PromoUrl":"http://crosspromo.invictus.com:8888/", "GameName":"ropecity", "AutomaticDownloadData":"True", "TrackingFunction":"True", "LogMode":"False", "DebugMode":"False"}}
