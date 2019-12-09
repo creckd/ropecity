@@ -24,6 +24,8 @@ public class RopeCityPlistEditor {
 			// ADMOB
 			var admobKey = "GADApplicationIdentifier";
 			rootDict.SetString(admobKey, "ca-app-pub-9539815930599175~9209076344");
+			PlistElementDict transportDict = rootDict.CreateDict("NSAppTransportSecurity");
+			transportDict.SetBoolean("NSAllowsArbitraryLoads", true);
 
 			// Write to file
 			File.WriteAllText(plistPath, plist.WriteToString());
