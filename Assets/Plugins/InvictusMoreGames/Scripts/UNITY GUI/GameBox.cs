@@ -27,8 +27,10 @@ namespace InvictusMoreGames
 			{
 				VideoClip videoClip = Resources.Load<VideoClip>("Game Video/" + data.localVideoId);
 
-				if (videoPlayer.clip == null)
+				if (videoPlayer.clip == null || videoClip == null) {
 					videoPlayer.Stop();
+					videoPlayer.clip = null;
+				}
 
 				if (videoClip != null)
 				{
