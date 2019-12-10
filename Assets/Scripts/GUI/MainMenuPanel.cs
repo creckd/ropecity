@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using InvictusMoreGames;
+using System;
 
 public class MainMenuPanel : AnimatorPanel {
 
@@ -16,6 +17,8 @@ public class MainMenuPanel : AnimatorPanel {
 			if (MoreGamesBoxController.Instance.JsonReadSuccess) {
 				MoreGamesBoxController.Instance.ShowWithAnimation();
 				MoreGamesBoxController.Instance.ShowNewGame();
+			} else {
+				MoreGamesBoxController.Instance.onJsonReadSuccess += MoreGamesJSonRead;
 			}
 		}
 
@@ -24,8 +27,16 @@ public class MainMenuPanel : AnimatorPanel {
 		SoundManager.Instance.CreateOneShot(AudioConfigDatabase.Instance.mainMenuOpening);
 	}
 
+	private void MoreGamesJSonRead(bool read) {
+		if (read && !MoreGamesBoxController.Instance.IsActive) {
+			MoreGamesBoxController.Instance.ShowWithAnimation();
+			MoreGamesBoxController.Instance.ShowNewGame();
+		}
+	}
+
 	public override void OnStartedClosing() {
 		base.OnStartedClosing();
 		MoreGamesBoxController.Instance.HideWithAnimation();
+		MoreGamesBoxController.Instance.onJsonReadSuccess -= MoreGamesJSonRead;
 	}
 }
