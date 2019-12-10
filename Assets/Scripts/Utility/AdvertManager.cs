@@ -48,7 +48,12 @@ public class AdvertManager : MonoBehaviour {
 		IronSource.Agent.loadInterstitial();
 
 		IronSourceEvents.onInterstitialAdClosedEvent += InterstitialClosed;
+		IronSourceEvents.onInterstitialAdShowFailedEvent += InterstitialAdShowFailed;
 		adCurrentlyPlaying = false;
+	}
+
+	private void InterstitialAdShowFailed(IronSourceError err) {
+		InterstitialClosed();
 	}
 
 	private void InterstitialClosed() {
