@@ -70,7 +70,7 @@ public class FoldableIAPButton : MonoBehaviour {
 					}
 				}
 				RefreshGraphics();
-				InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
+				//InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
 			}
 		});
 	}

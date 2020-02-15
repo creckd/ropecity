@@ -172,7 +172,7 @@ public class CharacterSelectPanel : AnimatorPanel {
 		RefreshGUIAndCharacters();
 		FoldableIAPButton.Instance.RefreshGraphics();
 		if (s) {
-			InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
+			//InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
 		}
 		});
 	}
