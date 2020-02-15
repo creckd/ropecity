@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using GoogleMobileAds.Api;
 
 public class AdvertManager : MonoBehaviour {
 
@@ -19,11 +20,18 @@ public class AdvertManager : MonoBehaviour {
 	private const string IronSourceIOSAppKey = "a27e03ed";
 	private const string IronSourceAndroidAppKey = "a27f5d1d";
 
-	private Action interstitialClosed = delegate { };
+    private const string adUnitId = "ca-app-pub-4466868006731309/2417505856";
+
+
+    private Action interstitialClosed = delegate { };
 
 	private bool initialized = false;
 
-	private void OnApplicationPause(bool isPaused) {
+#if UNITY_ANDROID
+    InterstitialAd currentInterstitial = null;
+#endif
+
+    private void OnApplicationPause(bool isPaused) {
 		IronSource.Agent.onApplicationPause(isPaused);
 	}
 
@@ -43,13 +51,21 @@ public class AdvertManager : MonoBehaviour {
 #elif UNITY_ANDROID
 		appKey = IronSourceAndroidAppKey;
 #endif
-		IronSource.Agent.init(appKey, IronSourceAdUnits.INTERSTITIAL);
+
+#if UNITY_IOS
+        IronSource.Agent.init(appKey, IronSourceAdUnits.INTERSTITIAL);
 		IronSource.Agent.validateIntegration();
 		IronSource.Agent.loadInterstitial();
 
 		IronSourceEvents.onInterstitialAdClosedEvent += InterstitialClosed;
 		IronSourceEvents.onInterstitialAdShowFailedEvent += InterstitialAdShowFailed;
-		adCurrentlyPlaying = false;
+#endif
+#if UNITY_ANDROID
+        MobileAds.Initialize(initStatus => {
+            LoadAdmobInterstitial();
+        });
+#endif
+        adCurrentlyPlaying = false;
 	}
 
 	private void InterstitialAdShowFailed(IronSourceError err) {
@@ -59,14 +75,37 @@ public class AdvertManager : MonoBehaviour {
 	private void InterstitialClosed() {
 		interstitialClosed();
 		interstitialClosed = delegate { };
-		IronSource.Agent.loadInterstitial();
-		AudioListener.volume = 1f;
+#if UNITY_IOS
+        IronSource.Agent.loadInterstitial();
+#endif
+#if UNITY_ANDROID
+        LoadAdmobInterstitial();
+#endif
+        AudioListener.volume = 1f;
 		adCurrentlyPlaying = false;
 	}
 
-	public void ShowInterstitial(Action callBack) {
-		IronSource.Agent.showInterstitial();
-		interstitialClosed += callBack;
+    private void InterstitialClosed(object sender, EventArgs e)
+    {
+        InterstitialClosed();
+    }
+
+    private void AdmobFailedToLoadAd(object sender, AdFailedToLoadEventArgs e)
+    {
+    }
+
+    public void ShowInterstitial(Action callBack) {
+#if UNTIY_IOS
+        IronSource.Agent.showInterstitial();
+#endif
+#if UNITY_ANDROID
+        if (currentInterstitial.IsLoaded())
+        {
+            currentInterstitial.OnAdClosed += InterstitialClosed;
+            currentInterstitial.Show();
+        }
+#endif
+        interstitialClosed += callBack;
 		AudioListener.volume = 0f;
 		adCurrentlyPlaying = true;
 	}
@@ -76,9 +115,33 @@ public class AdvertManager : MonoBehaviour {
 	}
 
 	public bool IsInterstitialAvailable() {
-		bool isReady = IronSource.Agent.isInterstitialReady();
-		if (!isReady)
-			IronSource.Agent.loadInterstitial();
+        bool isReady = false;
+#if UNITY_IOS
+        isReady = IronSource.Agent.isInterstitialReady();
+#endif
+#if UNITY_ANDROID
+        isReady = currentInterstitial != null && currentInterstitial.IsLoaded();
+#endif
+        if (!isReady)
+        {
+#if UNITY_ANDROID
+            LoadAdmobInterstitial();
+#endif
+#if UNITY_IOS
+            IronSource.Agent.loadInterstitial();
+#endif
+        }
 		return isReady;
 	}
+
+    private void LoadAdmobInterstitial()
+    {
+        if (currentInterstitial != null)
+            currentInterstitial.Destroy();
+
+        currentInterstitial = new InterstitialAd(adUnitId);
+        AdRequest request = new AdRequest.Builder().Build();
+        currentInterstitial.LoadAd(request);
+        currentInterstitial.OnAdFailedToLoad += AdmobFailedToLoadAd;
+    }
 }

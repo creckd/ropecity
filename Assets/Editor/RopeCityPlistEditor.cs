@@ -7,8 +7,8 @@ using System.IO;
 using Prime31.Xcode;
 
 public class RopeCityPlistEditor {
-
-	[PostProcessBuild]
+#if UNITY_IOS
+    [PostProcessBuild]
 	public static void ChangeXcodePlist(BuildTarget buildTarget, string pathToBuiltProject) {
 
 		if (buildTarget == BuildTarget.iOS) {
@@ -31,4 +31,5 @@ public class RopeCityPlistEditor {
 			File.WriteAllText(plistPath, plist.WriteToString());
 		}
 	}
+#endif
 }
