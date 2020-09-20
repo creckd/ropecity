@@ -2,6 +2,8 @@
 using UnityEngine;
 using Prime31;
 
+// NO ANALYTICS ON THEBALANCE BRANCH
+
 public class AnalyticsManager : MonoBehaviour {
 
 	static string flurryApiKeyAndroid = "GGJWWYXJQ5Q3MVZJXV8K";
@@ -13,11 +15,11 @@ public class AnalyticsManager : MonoBehaviour {
 		if (initialized)
 			return;
 
-	#if UNITY_ANDROID
-		FlurryAnalytics.startSession(flurryApiKeyAndroid,true);
-#elif UNITY_IOS
-		FlurryAnalytics.startSession(flurryApiKeyIOS, true);
-#endif
+//	#if UNITY_ANDROID
+//		FlurryAnalytics.startSession(flurryApiKeyAndroid,true);
+//#elif UNITY_IOS
+//		FlurryAnalytics.startSession(flurryApiKeyIOS, true);
+//#endif
 
 		initialized = true;
 	}
@@ -26,19 +28,19 @@ public class AnalyticsManager : MonoBehaviour {
 		if (!initialized)
 			return;
 
-#if UNITY_ANDROID
-		if (dictionary == null) {
-			FlurryAnalytics.logEvent(name, false);
-		} else {
-			FlurryAnalytics.logEvent(name, ConvertObjectToStringDic(dictionary),false);
-		}
-#elif UNITY_IOS
-		if (dictionary == null) {
-			FlurryAnalytics.logEvent(name,false);
-		} else {
-			FlurryAnalytics.logEventWithParameters(name, ConvertObjectToStringDic(dictionary),false);
-		}
-#endif
+//#if UNITY_ANDROID
+//		if (dictionary == null) {
+//			FlurryAnalytics.logEvent(name, false);
+//		} else {
+//			FlurryAnalytics.logEvent(name, ConvertObjectToStringDic(dictionary),false);
+//		}
+//#elif UNITY_IOS
+//		if (dictionary == null) {
+//			FlurryAnalytics.logEvent(name,false);
+//		} else {
+//			FlurryAnalytics.logEventWithParameters(name, ConvertObjectToStringDic(dictionary),false);
+//		}
+//#endif
 	}
 
 	public static void LogEvent(string name, string parameterName, object parameterValue) {

@@ -106,18 +106,20 @@ public class CharacterSelectPanel : AnimatorPanel {
 					stageText.text = string.Format(SmartLocalization.LanguageManager.Instance.GetTextValue("CharacterSleect.StageUnlock"), selectedCharData.unlockedByLevelIndex + 1);
 					break;
 				case PriceType.IAP:
-					buyButton.gameObject.SetActive(true);
-					if (IAPHandler.Instance.iapManager.initialized) {
-						UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_characterselect_product_id);
-						iapPriceText.text = p.metadata.localizedPriceString;
-						buyButton.image.material = null;
-						buyButton.interactable = true;
-					} else {
-						buyButton.image.material = greyScaleMaterial;
-						buyButton.interactable = false;
-					}
-					rotateForwardButton.gameObject.SetActive(false);
-					rotateBackwardButton.gameObject.SetActive(false);
+                    // NO IAP ON THEBALANCE BRANCH
+
+					//buyButton.gameObject.SetActive(true);
+					//if (IAPHandler.Instance.iapManager.initialized) {
+					//	UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_characterselect_product_id);
+					//	iapPriceText.text = p.metadata.localizedPriceString;
+					//	buyButton.image.material = null;
+					//	buyButton.interactable = true;
+					//} else {
+					//	buyButton.image.material = greyScaleMaterial;
+					//	buyButton.interactable = false;
+					//}
+					//rotateForwardButton.gameObject.SetActive(false);
+					//rotateBackwardButton.gameObject.SetActive(false);
 					break;
 			}
 		}
@@ -168,13 +170,13 @@ public class CharacterSelectPanel : AnimatorPanel {
 
 	public void BuyCurrentlySelectedCharacter() {
 		//AdvertManager.Instance.ShowInterstitial();
-		IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => {
-		RefreshGUIAndCharacters();
-		FoldableIAPButton.Instance.RefreshGraphics();
-		if (s) {
-			//InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
-		}
-		});
+		//IAPHandler.Instance.BuyPremiumEditionFromCharacterScreen((bool s) => {
+		//RefreshGUIAndCharacters();
+		//FoldableIAPButton.Instance.RefreshGraphics();
+		//if (s) {
+		//	//InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
+		//}
+		//});
 	}
 
 	public void EquipCharacter() {

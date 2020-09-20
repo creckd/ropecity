@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-	<application>
-		<meta-data android:name="flurryApiKey" android:value="GGJWWYXJQ5Q3MVZJXV8K"/>
-	</application>
-</manifest>

@@ -31,11 +31,11 @@ public class OptionsPanel : AnimatorPanel {
 	}
 
 	public void RestorePurchases() {
-		Blocker.Instance.Block();
-		IAPHandler.Instance.RestorePurchases((bool b) => {
-		Blocker.Instance.UnBlock();
-		FoldableIAPButton.Instance.RefreshGraphics();
-		});
+		//Blocker.Instance.Block();
+		//IAPHandler.Instance.RestorePurchases((bool b) => {
+		//Blocker.Instance.UnBlock();
+		//FoldableIAPButton.Instance.RefreshGraphics();
+		//});
 	}
 
 	public void WooshSound() {

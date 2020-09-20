@@ -237,13 +237,7 @@ public class GameController : MonoBehaviour {
 		canStartSlowingTime = false;
 		ReinitalizeGame();
 		yield return new WaitForSeconds(ConfigDatabase.Instance.reinitalizingDuration);
-		bool shouldShowInterstitial = !SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode && (localSessions % ConfigDatabase.Instance.maxLocalSessionsBeforeInterstitial == 0);
-		if (shouldShowInterstitial && AdvertManager.Instance.IsInterstitialAvailable()) {
-			Blocker.Instance.Block();
-			AdvertManager.Instance.ShowInterstitial(() => { StartCoroutine(InterstitialFinished()); });
-		} else {
-			FinishReinitializationAndStartGame();
-		}
+		FinishReinitializationAndStartGame();
 	}
 
 	IEnumerator InterstitialFinished() {

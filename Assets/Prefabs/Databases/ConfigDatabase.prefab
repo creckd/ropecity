@@ -182,14 +182,14 @@ MonoBehaviour:
     unlockedByLevelIndex: 12
   - characterName: Rusty
     characterType: 3
-    characterRarity: 1
+    characterRarity: 4
     characterPrice: 0
     unlockedByLevelIndex: 8
   - characterName: Slippy
     characterType: 4
     characterRarity: 4
-    characterPrice: 1
-    unlockedByLevelIndex: -1
+    characterPrice: 0
+    unlockedByLevelIndex: 15
   - characterName: B33P
     characterType: 5
     characterRarity: 2

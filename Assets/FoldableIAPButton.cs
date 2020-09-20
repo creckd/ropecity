@@ -25,21 +25,21 @@ public class FoldableIAPButton : MonoBehaviour {
 	public Material greyScaleMaterial;
 
 	private void Start() {
-		bool purchased = SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode;
-		if (!purchased) {
-			buyButton.interactable = false;
-			if (!IAPHandler.Instance.iapManager.initialized)
-				IAPHandler.Instance.iapManager.IAPInitialized += FetchPrice;
-			else FetchPrice();
-		}
-		RefreshGraphics();
+		//bool purchased = SavedDataManager.Instance.GetGeneralSaveDatabase().noAdMode;
+		//if (!purchased) {
+		//	buyButton.interactable = false;
+		//	if (!IAPHandler.Instance.iapManager.initialized)
+		//		IAPHandler.Instance.iapManager.IAPInitialized += FetchPrice;
+		//	else FetchPrice();
+		//}
+		//RefreshGraphics();
 	}
 
 	private void FetchPrice() {
-		UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_general_product_id);
-		priceText.text = p.metadata.localizedPriceString;
-		buyButton.interactable = true;
-		RefreshGraphics();
+		//UnityEngine.Purchasing.Product p = IAPHandler.Instance.iapManager.controller.products.WithStoreSpecificID(IAPHandler.premium_edition_general_product_id);
+		//priceText.text = p.metadata.localizedPriceString;
+		//buyButton.interactable = true;
+		//RefreshGraphics();
 	}
 
 	private void OnEnable() {
@@ -61,17 +61,17 @@ public class FoldableIAPButton : MonoBehaviour {
 	}
 
 	public void BuyNoAds() {
-		IAPHandler.Instance.BuyPremiumEditionFromGeneral((bool s) => {
-			if (s) {
-				if (PanelManager.Instance.currentlyOpenedPanel != null) {
-					CharacterSelectPanel characterSelectPanel = PanelManager.Instance.currentlyOpenedPanel.gameObject.GetComponent<CharacterSelectPanel>();
-					if (characterSelectPanel != null) {
-						characterSelectPanel.RefreshGUIAndCharacters();
-					}
-				}
-				RefreshGraphics();
-				//InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
-			}
-		});
+		//IAPHandler.Instance.BuyPremiumEditionFromGeneral((bool s) => {
+		//	if (s) {
+		//		if (PanelManager.Instance.currentlyOpenedPanel != null) {
+		//			CharacterSelectPanel characterSelectPanel = PanelManager.Instance.currentlyOpenedPanel.gameObject.GetComponent<CharacterSelectPanel>();
+		//			if (characterSelectPanel != null) {
+		//				characterSelectPanel.RefreshGUIAndCharacters();
+		//			}
+		//		}
+		//		RefreshGraphics();
+		//		//InvictusMoreGames.MoreGamesBoxController.Instance.Hide();
+		//	}
+		//});
 	}
 }
