@@ -173,4 +173,22 @@
 	<data name="PausePanel.Paused" xml:space="preserve">
 		<value>Szünetelve</value>
 	</data>
+	<data name="Character.Tony" xml:space="preserve">
+		<value />
+	</data>
+	<data name="Character.Symbiot" xml:space="preserve">
+		<value />
+	</data>
+	<data name="Character.Toilee" xml:space="preserve">
+		<value />
+	</data>
+	<data name="Character.Rusty" xml:space="preserve">
+		<value />
+	</data>
+	<data name="Character.Slippy" xml:space="preserve">
+		<value />
+	</data>
+	<data name="Character.B33P" xml:space="preserve">
+		<value />
+	</data>
 </root>

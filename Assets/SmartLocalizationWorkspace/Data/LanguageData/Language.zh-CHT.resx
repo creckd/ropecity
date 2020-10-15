@@ -116,6 +116,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+	<data name="Character.B33P" xml:space="preserve">
+		<value>B33P</value>
+	</data>
+	<data name="Character.Rusty" xml:space="preserve">
+		<value>Rusty</value>
+	</data>
+	<data name="Character.Slippy" xml:space="preserve">
+		<value>Slippy</value>
+	</data>
+	<data name="Character.Symbiot" xml:space="preserve">
+		<value>Symbiot</value>
+	</data>
+	<data name="Character.Toilee" xml:space="preserve">
+		<value>Toilee</value>
+	</data>
+	<data name="Character.Tony" xml:space="preserve">
+		<value>Tony</value>
+	</data>
 	<data name="CharacterSleect.StageUnlock" xml:space="preserve">
 		<value>完成{0}級解鎖</value>
 	</data>

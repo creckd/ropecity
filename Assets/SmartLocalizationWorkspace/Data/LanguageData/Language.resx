@@ -167,10 +167,28 @@
 	<data name="Options.Languages" xml:space="preserve">
 		<value>Languages</value>
 	</data>
+	<data name="Options.RestorePurchases" xml:space="preserve">
+		<value>Restore Purchases</value>
+	</data>
 	<data name="PausePanel.Paused" xml:space="preserve">
 		<value>Paused</value>
 	</data>
-	<data name="Options.RestorePurchases" xml:space="preserve">
-		<value>Restore Purchases</value>
+	<data name="Character.Tony" xml:space="preserve">
+		<value>Tony</value>
+	</data>
+	<data name="Character.Symbiot" xml:space="preserve">
+		<value>Symbiot</value>
+	</data>
+	<data name="Character.Toilee" xml:space="preserve">
+		<value>Toilee</value>
+	</data>
+	<data name="Character.Rusty" xml:space="preserve">
+		<value>Rusty</value>
+	</data>
+	<data name="Character.Slippy" xml:space="preserve">
+		<value>Slippy</value>
+	</data>
+	<data name="Character.B33P" xml:space="preserve">
+		<value>B33P</value>
 	</data>
 </root>

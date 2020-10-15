@@ -90,8 +90,17 @@ public class CharacterSelectPanel : AnimatorPanel {
 		rotateForwardButton.gameObject.SetActive(true);
 		rotateBackwardButton.gameObject.SetActive(true);
 
-		characterName.text = selectedCharData.characterName;
-		rarityImage.color = ConfigDatabase.Instance.GetRarityColor(selectedCharData.characterRarity);
+        string nameKey = "Character." + selectedCharData.characterName;
+        if (SmartLocalization.LanguageManager.Instance.HasKey(nameKey))
+        {
+            characterName.text = SmartLocalization.LanguageManager.Instance.GetTextValue(nameKey);
+        }
+        else
+        {
+            characterName.text = selectedCharData.characterName;
+        }
+
+        rarityImage.color = ConfigDatabase.Instance.GetRarityColor(selectedCharData.characterRarity);
 
 		bool chosenOne = rotator.GetCurrentlySelectedPad().initializedType == SavedDataManager.Instance.GetGeneralSaveDatabase().currentlyEquippedCharacterType;
 		selectButtonTargetGraphicImage.sprite = chosenOne ? equippedSelectButtonSprite : defaultSelectButtonSprite;

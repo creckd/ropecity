@@ -116,6 +116,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+	<data name="Character.B33P" xml:space="preserve">
+		<value>B33P</value>
+	</data>
+	<data name="Character.Rusty" xml:space="preserve">
+		<value>러스티</value>
+	</data>
+	<data name="Character.Slippy" xml:space="preserve">
+		<value>슬리피</value>
+	</data>
+	<data name="Character.Symbiot" xml:space="preserve">
+		<value>심비오트</value>
+	</data>
+	<data name="Character.Toilee" xml:space="preserve">
+		<value>토일리</value>
+	</data>
+	<data name="Character.Tony" xml:space="preserve">
+		<value>토니</value>
+	</data>
 	<data name="CharacterSleect.StageUnlock" xml:space="preserve">
 		<value>잠금 해제하려면 {0} 스테이지를 클리어하세요!</value>
 	</data>
@@ -144,7 +162,7 @@
 		<value>놓기</value>
 	</data>
 	<data name="IngamePanel.runText" xml:space="preserve">
-		<value>{0} 달리기</value>
+		<value>{0}차 시도</value>
 	</data>
 	<data name="IngamePanel.stageText" xml:space="preserve">
 		<value>{0} 스테이지</value>
